@@ -1,27 +1,27 @@
 package model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CompositeType;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "Contact", schema = "matchup")
 @IdClass(ContactID.class)
 public class Contact {
-
     //attributes
+    @Embeddable
+    public static class Pk implements Serializable {
+        @Column(name = "id_user_1", nullable=false, updatable=false)
+        private Long idUser1;
 
-    @Id
-    @Column(name = "contact_id1", nullable = false)
-    private long idUser1;
+        @Column(name = "id_user_2", nullable=false, updatable=false)
+        private Long idUser2;
+    }
 
-    @Id
-    @Column(name = "contact_id2", nullable = false)
-    private long idUser2;
-
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @EmbeddedId
+    private Pk id;
 
     @OneToMany(mappedBy = "message_id")
     private List<Message> message;
@@ -32,20 +32,16 @@ public class Contact {
 
     }
 
-    public Contact(long id_user1, long id_user2) {
-        //implement something to get the ids from the respective users right away
-        this.idUser1 = id_user1;
-        this.idUser2 = id_user2;
+    public Pk getId() {
+        return id;
     }
 
-    //encapsulation
-
-    public long getIdUser1() {
-        return idUser1;
+    public List<Message> getMessage() {
+        return message;
     }
 
-    public long getIdUser2() {
-        return idUser2;
+    public void setMessage(List<Message> message) {
+        this.message = message;
     }
 
     //methods
