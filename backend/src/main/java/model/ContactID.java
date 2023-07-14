@@ -1,29 +1,25 @@
 package model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
 import java.io.Serializable;
-
+@Embeddable
 public class ContactID implements Serializable {
+    @Column(name = "id_user_1", nullable=false, updatable=false)
+    private Long idUser1;
 
-    private String idUser1;
-
-    private String idUser2;
+    @Column(name = "id_user_2", nullable=false, updatable=false)
+    private Long idUser2;
 
     //encapsulation
 
-    public String getIdUser1() {
+    public Long getIdUser1() {
         return idUser1;
     }
 
-    public void setIdUser1(String idUser1) {
-        this.idUser1 = idUser1;
-    }
-
-    public String getIdUser2() {
+    public Long getIdUser2() {
         return idUser2;
-    }
-
-    public void setIdUser2(String idUser2) {
-        this.idUser2 = idUser2;
     }
 
     //methods

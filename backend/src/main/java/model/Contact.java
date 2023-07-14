@@ -8,20 +8,19 @@ import java.util.List;
 
 @Entity
 @Table(name = "Contact", schema = "matchup")
-@IdClass(ContactID.class)
 public class Contact {
     //attributes
-    @Embeddable
-    public static class Pk implements Serializable {
-        @Column(name = "id_user_1", nullable=false, updatable=false)
-        private Long idUser1;
-
-        @Column(name = "id_user_2", nullable=false, updatable=false)
-        private Long idUser2;
-    }
+//    @Embeddable
+//    public static class ContactID implements Serializable {
+//        @Column(name = "id_user_1", nullable=false, updatable=false)
+//        private Long idUser1;
+//
+//        @Column(name = "id_user_2", nullable=false, updatable=false)
+//        private Long idUser2;
+//    }
 
     @EmbeddedId
-    private Pk id;
+    private ContactID id;
 
     @OneToMany(mappedBy = "message_id")
     private List<Message> message;
@@ -32,7 +31,7 @@ public class Contact {
 
     }
 
-    public Pk getId() {
+    public ContactID getId() {
         return id;
     }
 

@@ -35,8 +35,8 @@ public class User {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToMany(mappedBy = "contact")
-    private List<Contact> contacts;
+    @OneToMany(mappedBy = "id_user_1")
+    private List<ContactID> contacts;
     public User() {
 
     }
