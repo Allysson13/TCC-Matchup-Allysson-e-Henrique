@@ -22,7 +22,7 @@
         </properties>
     </persistence-unit>
 
-    <persistence-unit name="postgresql" >
+    <persistence-unit name="postgresql-school" >
         <properties>
             <property name="jakarta.persistence.jdbc.url"
                       value="jdbc:postgresql://10.90.24.54/matchup" />
