@@ -3,6 +3,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import model.*;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 
 public class main {
@@ -71,17 +72,33 @@ public class main {
 
 
         Friendship friendship1 = new Friendship("Pendente", LocalDateTime.now(), entityManager.find(User.class, henrique.getId()), entityManager.find(User.class, allysson.getId()));
-        Friendship friendship2 = new Friendship("Pendente", LocalDateTime.now(), allysson, henrique);
+        Friendship friendship2 = new Friendship("Pendente", LocalDateTime.now(), entityManager.find(User.class, allysson.getId()), entityManager.find(User.class, henrique.getId()));
+        entityManager.find(User.class, henrique.getId()).addFriendship(friendship1);
+        entityManager.find(User.class, allysson.getId()).addFriendship(friendship2);
 
         entityManager.getTransaction().begin();
         entityManager.persist(friendship1);
-        entityManager.persist(friendship1);
+        entityManager.persist(friendship2);
+        entityManager.persist(henrique);
         entityManager.persist(allysson);
         entityManager.getTransaction().commit();
 
 
-        Message messageHpA = new Message(Byte.valueOf("Olá, Bom dia!"), LocalDateTime.now(), ".txt", henrique, allysson, true);
-        Message messageApH = new Message(Byte.valueOf("Bom dia!"), LocalDateTime.now(), ".txt", allysson, henrique, false);
+        Message messageHpA = new Message("Ola, Bom dia!".getBytes(StandardCharsets.UTF_8), LocalDateTime.now(), ".txt", entityManager.find(User.class, henrique.getId()), entityManager.find(User.class, allysson.getId()), true);
+        Message messageApH = new Message("Bom dia!".getBytes(StandardCharsets.UTF_8), LocalDateTime.now(), ".txt", entityManager.find(User.class, allysson.getId()), entityManager.find(User.class, henrique.getId()), false);
+        entityManager.find(User.class, henrique.getId()).addSentMessage(messageHpA);
+        entityManager.find(User.class, allysson.getId()).addReceivedMessage(messageHpA);
+        entityManager.find(User.class, henrique.getId()).addReceivedMessage(messageApH);
+        entityManager.find(User.class, allysson.getId()).addSentMessage(messageApH);
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(messageHpA);
+        entityManager.persist(messageApH);
+        entityManager.persist(henrique);
+        entityManager.persist(allysson);
+        entityManager.getTransaction().commit();
+        System.out.println(entityManager.find(User.class, henrique.getId()).getFriends().get(0).getContact().getName());
+
 
     }
 }

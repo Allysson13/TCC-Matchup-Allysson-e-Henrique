@@ -2,7 +2,6 @@ package model;
 
 import jakarta.persistence.*;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,7 +14,7 @@ public class Message {
     private long id;
 
     @Column(name = "hashed_content", nullable = false, length = 1023)
-    private Byte hashedContent;
+    private byte[] hashedContent;
 
     @Column(name = "date", nullable = false, updatable = false)
     private LocalDateTime date;
@@ -40,7 +39,7 @@ public class Message {
 
     }
 
-    public Message(Byte hashedContent, LocalDateTime date, String extension, User sender, User receiver, boolean statusViewed) {
+    public Message(byte[] hashedContent, LocalDateTime date, String extension, User sender, User receiver, boolean statusViewed) {
         this.hashedContent = hashedContent;
         this.date = date;
         this.extension = extension;
@@ -55,11 +54,11 @@ public class Message {
         return id;
     }
 
-    public Byte getHashedContent() {
+    public byte[] getHashedContent() {
         return hashedContent;
     }
 
-    public void setHashedContent(Byte hashedContent) {
+    public void setHashedContent(byte[] hashedContent) {
         this.hashedContent = hashedContent;
     }
 

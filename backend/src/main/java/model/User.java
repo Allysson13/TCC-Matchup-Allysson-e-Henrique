@@ -43,7 +43,7 @@ public class User {
     private List<Interest> interests;
 
     @OneToMany(mappedBy = "sender")
-    private List<Message> sentMessages;
+    private List<Message> sentMessages = new ArrayList<>();
 
     @OneToMany(mappedBy = "receiver")
     private List<Message> receivedMessages;
@@ -175,8 +175,8 @@ public class User {
     // </editor-fold>
 
     public void addFriendship(Friendship friendship){
-        if(this.interests == null){
-            this.interests = new ArrayList<>();
+        if(this.friends == null){
+            this.friends = new ArrayList<>();
         }
         this.friends.add(friendship);
     }
@@ -187,6 +187,22 @@ public class User {
         }
         this.interests.add(interest);
     }
+
+    public void addSentMessage(Message message){
+        if(this.sentMessages == null){
+            this.sentMessages = new ArrayList<>();
+        }
+        this.sentMessages.add(message);
+    }
+
+    public void addReceivedMessage(Message message){
+        if(this.receivedMessages == null){
+            this.receivedMessages = new ArrayList<>();
+        }
+        this.receivedMessages.add(message);
+    }
+
+
 
     @Override
     public String toString() {
