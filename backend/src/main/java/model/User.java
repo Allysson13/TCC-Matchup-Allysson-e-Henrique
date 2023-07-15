@@ -80,7 +80,6 @@ public class User {
     // </editor-fold>
 
     // <editor-fold desc="Encapsulation">
-
     public long getId() {
         return id;
     }

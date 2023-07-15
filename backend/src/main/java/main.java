@@ -23,8 +23,13 @@ public class main {
         entityManager.persist(address);
         entityManager.getTransaction().commit();
 
-        entityManager.find(User.class, user).setAddress(address);
-        entityManager.find(Address.class, address).setU
+        entityManager.find(User.class, user.getId()).setAddress(address);
+        entityManager.find(Address.class, address.getId()).setUser(user);
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(user);
+        entityManager.persist(address);
+        entityManager.getTransaction().commit();
 
 
 
