@@ -2,6 +2,7 @@ package model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -173,8 +174,18 @@ public class User {
     }
     // </editor-fold>
 
-    public boolean addFriend(){
+    public void addFriendship(Friendship friendship){
+        if(this.interests == null){
+            this.interests = new ArrayList<>();
+        }
+        this.friends.add(friendship);
+    }
 
+    public void addInterest(Interest interest){
+        if(this.interests == null){
+            this.interests = new ArrayList<>();
+        }
+        this.interests.add(interest);
     }
 
     @Override

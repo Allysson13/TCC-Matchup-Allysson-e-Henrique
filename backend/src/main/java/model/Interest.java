@@ -15,7 +15,7 @@ public class Interest {
     private String name;
 
     @Column(name = "genre", nullable = false)
-    private String email;
+    private String genre;
 
     @Column(name = "sub_genre", nullable = false)
     private String subGenre;
@@ -37,10 +37,9 @@ public class Interest {
     public Interest() {
     }
 
-    public Interest(long id, String name, String email, String subGenre, String company, String platform, double price) {
-        this.id = id;
+    public Interest(String name, String genre, String subGenre, String company, String platform, double price) {
         this.name = name;
-        this.email = email;
+        this.genre = genre;
         this.subGenre = subGenre;
         this.company = company;
         this.platform = platform;
@@ -62,11 +61,11 @@ public class Interest {
     }
 
     public String getEmail() {
-        return email;
+        return genre;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String genre) {
+        this.genre = genre;
     }
 
     public String getSubGenre() {
@@ -100,14 +99,34 @@ public class Interest {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
     // </editor-fold>
+
+    public void addUser(User user){
+        this.users.add(user);
+    }
 
     @Override
     public String toString() {
         return "Interest{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
+                ", genre='" + genre + '\'' +
                 ", subGenre='" + subGenre + '\'' +
                 ", company='" + company + '\'' +
                 ", platform='" + platform + '\'' +
