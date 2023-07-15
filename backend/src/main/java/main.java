@@ -9,7 +9,7 @@ public class main {
 
     public static void main(String[] args) {
 
-        entityManagerFactory = Persistence.createEntityManagerFactory("postgresql-school");
+        entityManagerFactory = Persistence.createEntityManagerFactory("postgresql-home");
         entityManager = entityManagerFactory.createEntityManager();
 
         User user = new User("henrique", "henrique.lp2006@gmail.com", 17, "hash123", "55031988776655");

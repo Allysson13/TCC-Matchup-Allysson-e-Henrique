@@ -35,8 +35,12 @@ public class User {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToMany(mappedBy = "id_user_1")
+    @OneToMany(mappedBy = "id",cascade = CascadeType.REMOVE)
     private List<User> contacts;
+
+    @ManyToMany
+    private List<Interest> interests;
+
     public User() {
 
     }

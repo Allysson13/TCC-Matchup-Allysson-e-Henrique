@@ -2,6 +2,8 @@ package model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "interests", schema = "matchup")
 public class Interest {
@@ -26,6 +28,9 @@ public class Interest {
 
     @Column(name = "price", nullable = false)
     private double price;
+
+    @ManyToMany(mappedBy = "interests")
+    private List<User> users;
 
     public Interest() {
     }
