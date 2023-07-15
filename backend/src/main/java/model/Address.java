@@ -6,8 +6,6 @@ import jakarta.persistence.*;
 @Table(name = "address", schema = "matchup")
 public class Address {
 
-    //attributes
-
     @Id
     @Column(name = "address_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,22 +29,22 @@ public class Address {
     @OneToOne(mappedBy = "address")
     private User user;
 
-    //constructors
+
+    // <editor-fold desc="Constructors">
     public Address() {
 
     }
 
-    public Address(long id, int number, String street, String neighborhood, String state, int zipcode) {
-        this.id = id;
+    public Address(int number, String street, String neighborhood, String state, int zipcode) {
         this.number = number;
         this.street = street;
         this.neighborhood = neighborhood;
         this.state = state;
         this.zipcode = zipcode;
     }
+    // </editor-fold>
 
-    //encapsulation
-
+    // <editor-fold desc="Encapsulation">
     public long getId() {
         return id;
     }
@@ -91,8 +89,9 @@ public class Address {
         this.zipcode = zipcode;
     }
 
-    //methods
+    // </editor-fold>
 
+    //methods
     @Override
     public String toString() {
         return super.toString();

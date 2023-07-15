@@ -32,6 +32,8 @@ public class Interest {
     @ManyToMany(mappedBy = "interests")
     private List<User> users;
 
+
+    // <editor-fold desc="Constructors">
     public Interest() {
     }
 
@@ -44,7 +46,9 @@ public class Interest {
         this.platform = platform;
         this.price = price;
     }
+    // </editor-fold>
 
+    // <editor-fold desc="Encapsulation">
     public long getId() {
         return id;
     }
@@ -96,6 +100,7 @@ public class Interest {
     public void setPrice(double price) {
         this.price = price;
     }
+    // </editor-fold>
 
     @Override
     public String toString() {
