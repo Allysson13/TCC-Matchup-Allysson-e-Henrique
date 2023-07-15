@@ -13,33 +13,39 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name", nullable=  false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "age", length = 3, nullable = false)
+    @Column(name = "age", length = 3, nullable = false, updatable = false)
     private int age;
 
-    @Column(name = "hashed_password", length = 455, nullable = false)
+    @Column(name = "hashed_password", length = 455, nullable = false, updatable = true)
     private String hashedPassword;
 
     @Column(name = "cellphone_number", length = 455, nullable = false)
     private String cellphoneNumber;
 
-    @Column(name = "profile_picture", length = 455)
+    @Column(name = "profile_picture", length = 455, updatable = true)
     private Byte[] profilePicture;
 
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToMany(mappedBy = "id",cascade = CascadeType.REMOVE)
-    private List<User> contacts;
+    @OneToMany(mappedBy = "user")
+    private List<Friendship> friends;
 
     @ManyToMany
     private List<Interest> interests;
+
+    @OneToMany(mappedBy = "sender")
+    private List<Message> sentMessages;
+
+    @OneToMany(mappedBy = "receiver")
+    private List<Message> receivedMessages;
 
     public User() {
 
