@@ -99,6 +99,8 @@ public class main {
         entityManager.getTransaction().commit();
         System.out.println(entityManager.find(User.class, henrique.getId()).getFriends().get(0).getContact().getName());
 
+        System.out.println(new String(entityManager.find(User.class, henrique.getId()).getReceivedMessages().get(0).getHashedContent(), StandardCharsets.UTF_8));
+
 
     }
 }
