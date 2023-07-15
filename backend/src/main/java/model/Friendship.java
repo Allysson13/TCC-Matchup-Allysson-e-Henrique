@@ -24,22 +24,22 @@ public class Friendship {
 
     @ManyToOne
     @JoinColumn(name = "friend_id", nullable = false, updatable = false)
-    private User contact;
+    private User friend;
 
     // <editor-fold desc="Constructors">
     public Friendship() {
 
     }
 
-    public Friendship(String status, LocalDateTime date, User user, User contact) {
+    public Friendship(String status, LocalDateTime date, User user, User friend) {
         this.status = status;
         this.date = date;
         this.user = user;
-        this.contact = contact;
+        this.friend = friend;
     }
     // </editor-fold>
 
-
+    // <editor-fold desc="Encapsulation">
     public long getId() {
         return id;
     }
@@ -69,12 +69,13 @@ public class Friendship {
     }
 
     public User getContact() {
-        return contact;
+        return friend;
     }
 
-    public void setContact(User contact) {
-        this.contact = contact;
+    public void setContact(User friend) {
+        this.friend = friend;
     }
+    // </editor-fold>
 
     @Override
     public String toString() {
@@ -83,7 +84,7 @@ public class Friendship {
                 ", status='" + status + '\'' +
                 ", date=" + date +
                 ", user=" + user +
-                ", contact=" + contact +
+                ", friend=" + friend +
                 '}';
     }
 }

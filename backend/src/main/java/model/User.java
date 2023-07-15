@@ -173,6 +173,9 @@ public class User {
     }
     // </editor-fold>
 
+    public boolean addFriend(){
+
+    }
 
     @Override
     public String toString() {
