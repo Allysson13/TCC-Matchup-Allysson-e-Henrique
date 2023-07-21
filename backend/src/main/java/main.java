@@ -16,12 +16,11 @@ public class main {
         entityManagerFactory = Persistence.createEntityManagerFactory("postgresql-school");
         entityManager = entityManagerFactory.createEntityManager();
 
-        LocalDateTime birthDate = LocalDateTime.now();
+        LocalDateTime date1 = LocalDateTime.of(2006, 3, 6, 8, 30);
+        LocalDateTime date2 = LocalDateTime.of(2006, 4, 24, 0, 0);
 
-        System.out.println(birthDate);
-
-        User henrique = new model.User("Henrique", "henrique.lp2006@gmail.com", birthDate, "hash123", "5531988776655", null, null);
-        User allysson = new model.User("Allysson", "assuncaoallyssonbruno@gmail.com", birthDate, "hash1234", "5531955443322", null, null);
+        User henrique = new model.User("Henrique", "henrique.lp2006@gmail.com", date1, "hash123", "5531988776655", null, null);
+        User allysson = new model.User("Allysson", "assuncaoallyssonbruno@gmail.com", date2, "hash1234", "5531955443322", null, null);
         Address addressHenrique = new Address(56, "Rua Artur Bernardes", "Pioneiros", "Minas Gerais", 36492323);
         Address addressAllysson = new Address(438, "Avenida João Monlevade", "Pioneiros", "Minas Gerais", 36492-332);
         Interest interest1 = new Interest("The Witcher 3: Wild Hunt", "RPG", "Action RPG,Open World", "CD Project Red", "PC,XBOX,PS4,PS5", 69.90);
