@@ -11,12 +11,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public class main {
-    private static final UserService userService;
 
-    @Autowired
-    public UserService(UserService userService) {
-        this.userService = userService;
-    }
 
     public static void main(String[] args) {
 
