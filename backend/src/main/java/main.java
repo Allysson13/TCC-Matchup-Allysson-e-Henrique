@@ -5,6 +5,7 @@ import model.*;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class main {
     private static EntityManagerFactory entityManagerFactory;
@@ -15,8 +16,12 @@ public class main {
         entityManagerFactory = Persistence.createEntityManagerFactory("postgresql-school");
         entityManager = entityManagerFactory.createEntityManager();
 
-        User henrique = new model.User("Henrique", "henrique.lp2006@gmail.com", 17, "hash123", "5531988776655", null, null);
-        User allysson = new model.User("Allysson", "assuncaoallyssonbruno@gmail.com", 17, "hash1234", "5531955443322", null, null);
+        LocalDateTime birthDate = LocalDateTime.now();
+
+        System.out.println(birthDate);
+
+        User henrique = new model.User("Henrique", "henrique.lp2006@gmail.com", birthDate, "hash123", "5531988776655", null, null);
+        User allysson = new model.User("Allysson", "assuncaoallyssonbruno@gmail.com", birthDate, "hash1234", "5531955443322", null, null);
         Address addressHenrique = new Address(56, "Rua Artur Bernardes", "Pioneiros", "Minas Gerais", 36492323);
         Address addressAllysson = new Address(438, "Avenida João Monlevade", "Pioneiros", "Minas Gerais", 36492-332);
         Interest interest1 = new Interest("The Witcher 3: Wild Hunt", "RPG", "Action RPG,Open World", "CD Project Red", "PC,XBOX,PS4,PS5", 69.90);
