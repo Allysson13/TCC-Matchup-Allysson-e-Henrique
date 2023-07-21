@@ -2,6 +2,7 @@ package model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -118,6 +119,9 @@ public class Interest {
     // </editor-fold>
 
     public void addUser(User user){
+        if(this.users == null){
+            this.users = new ArrayList<>();
+        }
         this.users.add(user);
     }
 

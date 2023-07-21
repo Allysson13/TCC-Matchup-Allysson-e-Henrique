@@ -51,10 +51,10 @@ public class main {
 
 
         addInterest(henrique, interest1);
-        addInterest(henrique, interest1);
-        addInterest(henrique, interest1);
-        addInterest(henrique, interest1);
-        addInterest(henrique, interest1);
+        addInterest(henrique, interest3);
+        addInterest(henrique, interest4);
+        addInterest(henrique, interest2);
+        addInterest(henrique, interest4);
 //        entityManager.find(User.class, henrique.getId()).addInterest(interest1);
 //        entityManager.find(User.class, henrique.getId()).addInterest(interest3);
 //        entityManager.find(User.class, henrique.getId()).addInterest(interest4);
