@@ -31,7 +31,7 @@ public class Message {
     private User receiver;
 
     @Column(name = "status_viewed", nullable = false)
-    private boolean statusViewed;
+    private String statusViewed;
 
 
     // <editor-fold desc="Constructors">
@@ -39,7 +39,7 @@ public class Message {
 
     }
 
-    public Message(byte[] hashedContent, LocalDateTime date, String extension, User sender, User receiver, boolean statusViewed) {
+    public Message(byte[] hashedContent, LocalDateTime date, String extension, User sender, User receiver, String statusViewed) {
         this.hashedContent = hashedContent;
         this.date = date;
         this.extension = extension;
@@ -94,11 +94,11 @@ public class Message {
         this.receiver = receiver;
     }
 
-    public boolean isStatusViewed() {
+    public String getStatusViewed() {
         return statusViewed;
     }
 
-    public void setStatusViewed(boolean statusViewed) {
+    public void setStatusViewed(String statusViewed) {
         this.statusViewed = statusViewed;
     }
     // </editor-fold>
