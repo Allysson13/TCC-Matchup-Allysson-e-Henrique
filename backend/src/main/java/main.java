@@ -17,7 +17,7 @@ public class main {
         entityManager = entityManagerFactory.createEntityManager();
 
         LocalDateTime date1 = LocalDateTime.of(2006, 3, 6, 8, 30);
-        LocalDateTime date2 = LocalDateTime.of(2006, 4, 24, 0, 0);
+        LocalDateTime date2 = LocalDateTime.of(2006, 4, 24, 20, 30);
 
         User henrique = new model.User("Henrique", "henrique.lp2006@gmail.com", date1, "hash123", "5531988776655", null, null);
         User allysson = new model.User("Allysson", "assuncaoallyssonbruno@gmail.com", date2, "hash1234", "5531955443322", null, null);
