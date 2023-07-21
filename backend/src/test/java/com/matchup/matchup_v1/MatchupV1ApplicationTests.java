@@ -1,10 +1,10 @@
-package com.tcc.tcc;
+package com.matchup.matchup_v1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TccMatchupApplicationTests {
+class MatchupV1ApplicationTests {
 
 	@Test
 	void contextLoads() {
