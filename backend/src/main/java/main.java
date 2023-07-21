@@ -41,9 +41,9 @@ public class main {
         save(addressHenrique);
         save(addressAllysson);
         save(interest1);
-        save(interest1);
-        save(interest1);
-        save(interest1);
+        save(interest2);
+        save(interest3);
+        save(interest4);
 
 
         setAddress(henrique, addressHenrique);
@@ -55,11 +55,6 @@ public class main {
         addInterest(henrique, interest4);
         addInterest(henrique, interest2);
         addInterest(henrique, interest4);
-//        entityManager.find(User.class, henrique.getId()).addInterest(interest1);
-//        entityManager.find(User.class, henrique.getId()).addInterest(interest3);
-//        entityManager.find(User.class, henrique.getId()).addInterest(interest4);
-//        entityManager.find(User.class, allysson.getId()).addInterest(interest2);
-//        entityManager.find(User.class, allysson.getId()).addInterest(interest4);
 
 
 //        henrique.solicitate(allysson);
@@ -123,4 +118,6 @@ public class main {
         save(user);
         save(interest);
     }
+
+
 }
