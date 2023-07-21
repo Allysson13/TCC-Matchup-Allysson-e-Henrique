@@ -31,73 +31,91 @@ public class main {
         //public Address(int number, String street, String neighborhood, String state, int zipcode)
         //String name, String email, int age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address address)
 
+        save(henrique);
+        save(allysson);
+        save(addressHenrique);
+        save(addressAllysson);
+        save(interest1);
+        save(interest1);
+        save(interest1);
+        save(interest1);
+
+
+        setAddress(henrique, addressHenrique);
+        setAddress(allysson, addressAllysson);
+
+
+        addInterest(henrique, interest1);
+        addInterest(henrique, interest1);
+        addInterest(henrique, interest1);
+        addInterest(henrique, interest1);
+        addInterest(henrique, interest1);
+//        entityManager.find(User.class, henrique.getId()).addInterest(interest1);
+//        entityManager.find(User.class, henrique.getId()).addInterest(interest3);
+//        entityManager.find(User.class, henrique.getId()).addInterest(interest4);
+//        entityManager.find(User.class, allysson.getId()).addInterest(interest2);
+//        entityManager.find(User.class, allysson.getId()).addInterest(interest4);
+
+
+//        henrique.solicitate(allysson);
+//        allysson.solicitate(henrique);
+//        entityManager.getTransaction().begin();
+//        entityManager.persist(henrique.getFriendshipWithThisUser(allysson));
+//        entityManager.persist(allysson.getFriendshipWithThisUser(henrique));
+//        entityManager.persist(henrique);
+//        entityManager.persist(allysson);
+//        entityManager.getTransaction().commit();
+//
+//
+//        Message messageHpA = new Message("Ola, Bom dia!".getBytes(StandardCharsets.UTF_8), LocalDateTime.now(), ".txt", entityManager.find(User.class, henrique.getId()), entityManager.find(User.class, allysson.getId()), "RECEIVED");
+//        Message messageApH = new Message("Bom dia!".getBytes(StandardCharsets.UTF_8), LocalDateTime.now(), ".txt", entityManager.find(User.class, allysson.getId()), entityManager.find(User.class, henrique.getId()), "PENDING");
+//        entityManager.find(User.class, henrique.getId()).addSentMessage(messageHpA);
+//        entityManager.find(User.class, allysson.getId()).addReceivedMessage(messageHpA);
+//        entityManager.find(User.class, henrique.getId()).addReceivedMessage(messageApH);
+//        entityManager.find(User.class, allysson.getId()).addSentMessage(messageApH);
+//
+//        entityManager.getTransaction().begin();
+//        entityManager.persist(messageHpA);
+//        entityManager.persist(messageApH);
+//        entityManager.persist(henrique);
+//        entityManager.persist(allysson);
+//        entityManager.getTransaction().commit();
+//        System.out.println(entityManager.find(User.class, henrique.getId()).getFriends().get(0).getFriend().getName());
+//
+//        System.out.println(new String(entityManager.find(User.class, henrique.getId()).getReceivedMessages().get(0).getHashedContent(), StandardCharsets.UTF_8));
+//        System.out.println(":)");
+
+    }
+
+    private static void save(Object o){
         entityManager.getTransaction().begin();
-        entityManager.persist(henrique);
-        entityManager.persist(allysson);
-        entityManager.persist(addressHenrique);
-        entityManager.persist(addressAllysson);
-        entityManager.persist(interest1);
-        entityManager.persist(interest2);
-        entityManager.persist(interest3);
-        entityManager.persist(interest4);
+        entityManager.persist(o);
         entityManager.getTransaction().commit();
+    }
 
+    private static User findUser(User user){
+        return entityManager.find(User.class, user.getId());
+    }
 
-        entityManager.find(User.class, henrique.getId()).setAddress(addressHenrique);
-        entityManager.find(Address.class, addressHenrique.getId()).setUser(henrique);
-        entityManager.find(User.class, allysson.getId()).setAddress(addressAllysson);
-        entityManager.find(Address.class, addressAllysson.getId()).setUser(allysson);
+    private static Address findAddress(Address address){
+        return entityManager.find(Address.class, address.getId());
+    }
 
-        entityManager.getTransaction().begin();
-        entityManager.persist(henrique);
-        entityManager.persist(allysson);
-        entityManager.persist(addressHenrique);
-        entityManager.persist(addressAllysson);
-        entityManager.getTransaction().commit();
+    private static Interest findInterest(Interest interest){
+        return entityManager.find(Interest.class, interest.getId());
+    }
 
-        entityManager.find(User.class, henrique.getId()).addInterest(interest1);
-        entityManager.find(User.class, henrique.getId()).addInterest(interest3);
-        entityManager.find(User.class, henrique.getId()).addInterest(interest4);
-        entityManager.find(User.class, allysson.getId()).addInterest(interest2);
-        entityManager.find(User.class, allysson.getId()).addInterest(interest4);
+    private static void setAddress(User user, Address address){
+        findUser(user).setAddress(address);
+        findAddress(address).setUser(user);
+        save(user);
+        save(address);
+    }
 
-        entityManager.getTransaction().begin();
-        entityManager.persist(henrique);
-        entityManager.persist(allysson);
-        entityManager.persist(interest1);
-        entityManager.persist(interest2);
-        entityManager.persist(interest3);
-        entityManager.persist(interest4);
-        entityManager.getTransaction().commit();
-
-
-        henrique.solicitate(allysson);
-        allysson.solicitate(henrique);
-        entityManager.getTransaction().begin();
-        entityManager.persist(henrique.getFriendshipWithThisUser(allysson));
-        entityManager.persist(allysson.getFriendshipWithThisUser(henrique));
-        entityManager.persist(henrique);
-        entityManager.persist(allysson);
-        entityManager.getTransaction().commit();
-
-
-        Message messageHpA = new Message("Ola, Bom dia!".getBytes(StandardCharsets.UTF_8), LocalDateTime.now(), ".txt", entityManager.find(User.class, henrique.getId()), entityManager.find(User.class, allysson.getId()), "RECEIVED");
-        Message messageApH = new Message("Bom dia!".getBytes(StandardCharsets.UTF_8), LocalDateTime.now(), ".txt", entityManager.find(User.class, allysson.getId()), entityManager.find(User.class, henrique.getId()), "PENDING");
-        entityManager.find(User.class, henrique.getId()).addSentMessage(messageHpA);
-        entityManager.find(User.class, allysson.getId()).addReceivedMessage(messageHpA);
-        entityManager.find(User.class, henrique.getId()).addReceivedMessage(messageApH);
-        entityManager.find(User.class, allysson.getId()).addSentMessage(messageApH);
-
-        entityManager.getTransaction().begin();
-        entityManager.persist(messageHpA);
-        entityManager.persist(messageApH);
-        entityManager.persist(henrique);
-        entityManager.persist(allysson);
-        entityManager.getTransaction().commit();
-        System.out.println(entityManager.find(User.class, henrique.getId()).getFriends().get(0).getFriend().getName());
-
-        System.out.println(new String(entityManager.find(User.class, henrique.getId()).getReceivedMessages().get(0).getHashedContent(), StandardCharsets.UTF_8));
-        System.out.println(":)");
-
+    private static void addInterest(User user, Interest interest){
+        findUser(user).addInterest(interest);
+        findInterest(interest).addUser(user);
+        save(user);
+        save(interest);
     }
 }

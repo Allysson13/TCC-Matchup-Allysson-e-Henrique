@@ -31,7 +31,7 @@
             <property name="jakarta.persistence.jdbc.user" value="aula" />
             <property name="jakarta.persistence.jdbc.password" value="aula" />
 
-            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
             <property name="hibernate.default_schema" value="matchup"/>
             <property name="show_sql" value="true"/>
             <!-- https://docs.jboss.org/hibernate/orm/5.4/javadocs/org/hibernate/dialect/package-summary.html -->
