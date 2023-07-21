@@ -68,14 +68,26 @@ public class Friendship {
         this.user = user;
     }
 
-    public User getContact() {
+    public User getFriend() {
         return friend;
     }
 
-    public void setContact(User friend) {
+    public void setFriend(User friend) {
         this.friend = friend;
     }
     // </editor-fold>
+
+    public void accept(){
+        this.status = "ACCEPTED";
+    }
+
+    public void refuse(){
+        this.status = "REFUSED";
+    }
+
+    public void block(){
+        this.status = "BLOCKED";
+    }
 
     @Override
     public String toString() {

@@ -2,6 +2,7 @@ package model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -174,11 +175,37 @@ public class User {
     }
     // </editor-fold>
 
+    public Friendship getFriendshipWithThisUser(User user){
+        for(Friendship f: this.friends){
+            if(user.getId() == f.getFriend().getId()){
+                return f;
+            }
+        }
+        return null;
+    }
+
     public void addFriendship(Friendship friendship){
         if(this.friends == null){
             this.friends = new ArrayList<>();
         }
         this.friends.add(friendship);
+    }
+
+    public void solicitate(User friendToBeAdded){
+        Friendship friendship = new Friendship("PENDING", LocalDateTime.now(), this, friendToBeAdded);//String status, LocalDateTime date, User user, User friend) {
+        addFriendship(friendship);
+    }
+
+    public void acceptSolicitation(Friendship friendship){
+        friendship.accept();
+    }
+
+    public void refuseSolicitation(Friendship friendship){
+        friendship.refuse();
+    }
+
+    public void blockSolicitation(Friendship friendship){
+        friendship.block();
     }
 
     public void addInterest(Interest interest){

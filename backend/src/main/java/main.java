@@ -12,7 +12,7 @@ public class main {
 
     public static void main(String[] args) {
 
-        entityManagerFactory = Persistence.createEntityManagerFactory("postgresql-home");
+        entityManagerFactory = Persistence.createEntityManagerFactory("postgresql-school");
         entityManager = entityManagerFactory.createEntityManager();
 
         User henrique = new model.User("Henrique", "henrique.lp2006@gmail.com", 17, "hash123", "5531988776655", null, null);
@@ -71,14 +71,11 @@ public class main {
         entityManager.getTransaction().commit();
 
 
-        Friendship friendship1 = new Friendship("Pendente", LocalDateTime.now(), entityManager.find(User.class, henrique.getId()), entityManager.find(User.class, allysson.getId()));
-        Friendship friendship2 = new Friendship("Pendente", LocalDateTime.now(), entityManager.find(User.class, allysson.getId()), entityManager.find(User.class, henrique.getId()));
-        entityManager.find(User.class, henrique.getId()).addFriendship(friendship1);
-        entityManager.find(User.class, allysson.getId()).addFriendship(friendship2);
-
+        henrique.solicitate(allysson);
+        allysson.solicitate(henrique);
         entityManager.getTransaction().begin();
-        entityManager.persist(friendship1);
-        entityManager.persist(friendship2);
+        entityManager.persist(henrique.getFriendshipWithThisUser(allysson));
+        entityManager.persist(allysson.getFriendshipWithThisUser(henrique));
         entityManager.persist(henrique);
         entityManager.persist(allysson);
         entityManager.getTransaction().commit();
@@ -97,7 +94,7 @@ public class main {
         entityManager.persist(henrique);
         entityManager.persist(allysson);
         entityManager.getTransaction().commit();
-        System.out.println(entityManager.find(User.class, henrique.getId()).getFriends().get(0).getContact().getName());
+        System.out.println(entityManager.find(User.class, henrique.getId()).getFriends().get(0).getFriend().getName());
 
         System.out.println(new String(entityManager.find(User.class, henrique.getId()).getReceivedMessages().get(0).getHashedContent(), StandardCharsets.UTF_8));
         System.out.println(":)");
