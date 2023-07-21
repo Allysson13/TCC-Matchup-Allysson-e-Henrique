@@ -21,8 +21,8 @@ public class User {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "age", length = 3, nullable = false, updatable = false)
-    private int age;
+    @Column(name = "birth_date", nullable = false, updatable = false)
+    private LocalDateTime birthDate;
 
     @Column(name = "hashed_password", length = 455, nullable = false, updatable = true)
     private String hashedPassword;
@@ -55,21 +55,21 @@ public class User {
 
     }
 
-    public User(String name, String email, int age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address address) {
+    public User(String name, String email, LocalDateTime age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address address) {
         this.name = name;
         this.email = email;
-        this.age = age;
+        this.birthDate = age;
         this.hashedPassword = hashedPassword;
         this.cellphoneNumber = cellphoneNumber;
         this.profilePicture = profilePicture;
         this.address = address;
     }
 
-    public User(long id, String name, String email, int age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages) {
+    public User(long id, String name, String email, LocalDateTime age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.age = age;
+        this.birthDate = age;
         this.hashedPassword = hashedPassword;
         this.cellphoneNumber = cellphoneNumber;
         this.profilePicture = profilePicture;
@@ -102,12 +102,12 @@ public class User {
         this.email = email;
     }
 
-    public int getAge() {
-        return age;
+    public LocalDateTime getBirthDate() {
+        return birthDate;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthDate(LocalDateTime age) {
+        this.birthDate = age;
     }
 
     public String getHashedPassword() {
@@ -237,7 +237,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", age=" + age +
+                ", age=" + birthDate +
                 ", hashedPassword='" + hashedPassword + '\'' +
                 ", cellphoneNumber='" + cellphoneNumber + '\'' +
                 ", profilePicture=" + Arrays.toString(profilePicture) +
