@@ -30,8 +30,8 @@ public class Message {
     @JoinColumn(name = "receiver", nullable = false, updatable = false)
     private User receiver;
 
-    @Column(name = "status_viewed", nullable = false)
-    private String statusViewed;
+    @Column(name = "status", nullable = false)
+    private String status;
 
 
     // <editor-fold desc="Constructors">
@@ -45,7 +45,7 @@ public class Message {
         this.extension = extension;
         this.sender = sender;
         this.receiver = receiver;
-        this.statusViewed = statusViewed;
+        this.status = statusViewed;
     }
     // </editor-fold>
 
@@ -94,14 +94,27 @@ public class Message {
         this.receiver = receiver;
     }
 
-    public String getStatusViewed() {
-        return statusViewed;
+    public String getStatus() {
+        return status;
     }
 
-    public void setStatusViewed(String statusViewed) {
-        this.statusViewed = statusViewed;
-    }
     // </editor-fold>
 
+
+    public void setStatusPending() {
+        this.status = "PENDING";
+    }
+
+    public void setStatusSent() {
+        this.status = "SENT";
+    }
+
+    public void setStatusReceived() {
+        this.status = "RECEIVED";
+    }
+
+    public void setStatusViewed() {
+        this.status = "VIEWED";
+    }
 
 }
