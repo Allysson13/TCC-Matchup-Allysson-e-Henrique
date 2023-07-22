@@ -13,6 +13,6 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
     Page<Address> findByPartOfTheStreet(@Param("street") String partOfTheStreet);
 
     @Query("SELECT a FROM Address a WHERE a.neighborhood LIKE %:neighborhood%")
-    Page<Address> findByPartOfTheNeighborhood(@Param("street") String partOfTheStreet);
+    Page<Address> findByPartOfTheNeighborhood(@Param("neighborhood") String partOfTheNeighborhood);
 
 }
