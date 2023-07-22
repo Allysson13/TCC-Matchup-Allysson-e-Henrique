@@ -30,6 +30,12 @@ public class Interest {
     @Column(name = "price", nullable = false)
     private double price;
 
+    @Column(name = "language", nullable = false)
+    private String language;
+
+    @Column(name = "age_rating", nullable = false, length = 2)
+    private int ageRating;
+
     @ManyToMany(mappedBy = "interests")
     private List<User> users;
 
@@ -38,13 +44,15 @@ public class Interest {
     public Interest() {
     }
 
-    public Interest(String name, String genre, String subGenre, String company, String platform, double price) {
+    public Interest(String name, String genre, String subGenre, String company, String platform, double price, String language, int ageRating) {
         this.name = name;
         this.genre = genre;
         this.subGenre = subGenre;
         this.company = company;
         this.platform = platform;
         this.price = price;
+        this.language = language;
+        this.ageRating = ageRating;
     }
     // </editor-fold>
 
@@ -116,6 +124,14 @@ public class Interest {
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
+    public String getLanguage() {return language;}
+
+    public void setLanguage(String language) {this.language = language;}
+
+    public int getAgeRating() {return ageRating;}
+
+    public void setAgeRating(int ageRating) {this.ageRating = ageRating;}
     // </editor-fold>
 
     public void addUser(User user){
@@ -134,7 +150,9 @@ public class Interest {
                 ", subGenre='" + subGenre + '\'' +
                 ", company='" + company + '\'' +
                 ", platform='" + platform + '\'' +
-                ", price=" + price +
+                ", price='" + price + '\'' +
+                ", language='" + language + '\'' +
+                ", age_rating=" + ageRating +
                 '}';
     }
 
