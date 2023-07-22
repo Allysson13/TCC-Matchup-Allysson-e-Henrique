@@ -15,4 +15,6 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
     @Query("SELECT a FROM Address a WHERE a.neighborhood LIKE %:neighborhood%")
     Page<Address> findByPartOfTheNeighborhood(@Param("neighborhood") String partOfTheNeighborhood);
 
+    Page<Address> findByNumber(int number);
+
 }

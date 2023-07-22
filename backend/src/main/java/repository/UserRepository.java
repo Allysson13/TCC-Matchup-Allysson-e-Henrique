@@ -12,6 +12,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE u.name LIKE %:name%")
     Page<User> findByPartOfTheName(@Param("name") String partOfTheName);
 
-    Page<User> findByName(String name);
+    //Page<User> findByName(String name);
     //Page<Address> findByNumber(int number);
 }
