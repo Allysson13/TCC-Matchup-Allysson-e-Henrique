@@ -14,4 +14,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     //Page<User> findByName(String name);
     //Page<Address> findByNumber(int number);
+
+    @Query("SELECT u FROM User u WHERE u.cellphoneNumber LIKE %:cellphoneNumber%")
+    Page<User> findByPartOfTheCellphoneNumber(@Param("cellphoneNumber") String partOfTheCellphoneNumber);
+
 }
