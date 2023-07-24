@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+
+    Page<User> findById(long id);
     @Query("SELECT u FROM User u WHERE u.name LIKE %:name%")
     Page<User> findByPartOfTheName(@Param("name") String partOfTheName);
 

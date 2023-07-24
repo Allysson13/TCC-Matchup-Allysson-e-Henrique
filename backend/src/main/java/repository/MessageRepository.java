@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
 
+    Page<Message> findById(long id);
+
     /*@Query("SELECT m FROM Message m WHERE m.date LIKE %:date%")
     Page<Message> findByPartOfTheDate(@Param("date") String partOfTheDate);*/
     Page<Message> findByExtension(String extension);

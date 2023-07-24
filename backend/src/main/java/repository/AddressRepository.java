@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Long> {
+
+    Page<Address> findById(long id);
     @Query("SELECT a FROM Address a WHERE a.street LIKE %:street%")
     Page<Address> findByPartOfTheStreet(@Param("street") String partOfTheStreet);
     //Page<Address> findByStreetLikeIgnoreCase(@Param("street") String partOfTheStreet);
