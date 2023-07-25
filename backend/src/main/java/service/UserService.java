@@ -24,4 +24,5 @@ public class UserService {
     public Page<User> findByPartOfTheName(String partOfTheName){
         return userRepository.findByPartOfTheName(partOfTheName);
     }
+
 }
