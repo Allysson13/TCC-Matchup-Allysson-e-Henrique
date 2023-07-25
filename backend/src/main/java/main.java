@@ -3,17 +3,18 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import repository.UserRepository;
 import service.UserService;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Date;
-
 public class main {
 
 
     public static void main(String[] args) {
+
 
 
 //        entityManagerFactory = Persistence.createEntityManagerFactory("postgresql-school");
