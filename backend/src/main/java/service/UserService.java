@@ -18,7 +18,6 @@ public class UserService {
 
     public User saveUser(User userToSave){
         return userRepository.save(userToSave);
-
     }
 
     public Page<User> findByPartOfTheName(String partOfTheName){
