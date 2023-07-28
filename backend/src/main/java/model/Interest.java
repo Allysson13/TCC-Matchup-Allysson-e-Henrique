@@ -24,9 +24,13 @@ public class Interest {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @ManyToMany(mappedBy = "interests")
+    @ManyToMany(mappedBy = "dubbed_interests")
     @Column(nullable = false)
-    private List<Language> languages;
+    private List<Language> dubbing_interests;
+
+    @ManyToMany(mappedBy = "subtitled_interest")
+    @Column(nullable = false)
+    private List<Language> subtitle_languages;
 
     @ManyToMany(mappedBy = "interests")
     @Column(nullable = false)

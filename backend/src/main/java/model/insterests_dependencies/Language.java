@@ -18,7 +18,10 @@ public class Language {
     private String name;
 
     @ManyToMany
-    private List<Interest> interests;
+    private List<Interest> dubbed_interests;
+
+    @ManyToMany
+    private List<Interest> subtitled_interest;
 
     // <editor-fold desc="Constructors">
     public Language() {
@@ -42,12 +45,21 @@ public class Language {
         this.name = name;
     }
 
-    public List<Interest> getInterests() {
-        return interests;
+    public List<Interest> getDubbed_interests() {
+        return dubbed_interests;
     }
 
-    public void setInterests(List<Interest> interests) {
-        this.interests = interests;
+    public void setDubbed_interests(List<Interest> dubbed_interests) {
+        this.dubbed_interests = dubbed_interests;
     }
+
+    public List<Interest> getSubtitled_interest() {
+        return subtitled_interest;
+    }
+
+    public void setSubtitled_interest(List<Interest> subtitled_interest) {
+        this.subtitled_interest = subtitled_interest;
+    }
+
     // </editor-fold>
 }
