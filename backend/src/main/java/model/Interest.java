@@ -1,6 +1,9 @@
 package model;
 
 import jakarta.persistence.*;
+import model.insterests_dependencies.Genre;
+import model.insterests_dependencies.Platform;
+import model.insterests_dependencies.SubGenre;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,17 +20,8 @@ public class Interest {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "genre", nullable = false)
-    private String genre;
-
-    @Column(name = "sub_genre", nullable = false)
-    private String subGenre;
-
     @Column(name = "company", nullable = false)
     private String company;
-
-    @Column(name = "platform", nullable = false)
-    private String platform;
 
     @Column(name = "price", nullable = false)
     private double price;
@@ -39,6 +33,18 @@ public class Interest {
     private int ageRating;
 
     @ManyToMany(mappedBy = "interests")
+    @Column(nullable = false)
+    private List<Genre> genres;
+
+    @ManyToMany(mappedBy = "interests")
+    @Column(nullable = false)
+    private List<SubGenre> subGenre;
+
+    @ManyToMany(mappedBy = "interests")
+    @Column(nullable = false)
+    private List<Platform> platforms;
+
+    @ManyToMany(mappedBy = "interests")
     private List<User> users;
 
 
@@ -46,94 +52,11 @@ public class Interest {
     public Interest() {
     }
 
-    public Interest(String name, String genre, String subGenre, String company, String platform, double price, String language, int ageRating) {
-        this.name = name;
-        this.genre = genre;
-        this.subGenre = subGenre;
-        this.company = company;
-        this.platform = platform;
-        this.price = price;
-        this.language = language;
-        this.ageRating = ageRating;
-    }
+
     // </editor-fold>
 
     // <editor-fold desc="Encapsulation">
-    public long getId() {
-        return id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return genre;
-    }
-
-    public void setEmail(String genre) {
-        this.genre = genre;
-    }
-
-    public String getSubGenre() {
-        return subGenre;
-    }
-
-    public void setSubGenre(String subGenre) {
-        this.subGenre = subGenre;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
-    public String getPlatform() {
-        return platform;
-    }
-
-    public void setPlatform(String platform) {
-        this.platform = platform;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public String getLanguage() {return language;}
-
-    public void setLanguage(String language) {this.language = language;}
-
-    public int getAgeRating() {return ageRating;}
-
-    public void setAgeRating(int ageRating) {this.ageRating = ageRating;}
     // </editor-fold>
 
     public void addUser(User user){
@@ -143,19 +66,5 @@ public class Interest {
         this.users.add(user);
     }
 
-    @Override
-    public String toString() {
-        return "Interest{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", genre='" + genre + '\'' +
-                ", subGenre='" + subGenre + '\'' +
-                ", company='" + company + '\'' +
-                ", platform='" + platform + '\'' +
-                ", price='" + price + '\'' +
-                ", language='" + language + '\'' +
-                ", age_rating=" + ageRating +
-                '}';
-    }
 
 }
