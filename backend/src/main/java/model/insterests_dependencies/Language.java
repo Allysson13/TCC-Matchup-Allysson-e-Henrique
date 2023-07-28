@@ -6,28 +6,25 @@ import model.Interest;
 import java.util.List;
 
 @Entity
-@Table(name = "age_rating_interest", schema = "matchup")
-public class AgeRating {
+@Table(name = "language_interest", schema = "matchup")
+public class Language {
 
     @Id
-    @Column(name="age_rating_id")
+    @Column(name = "language_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-    @OneToMany
-    @Column(nullable = false)
+    @ManyToMany
     private List<Interest> interests;
 
     // <editor-fold desc="Constructors">
-    public AgeRating() {
-
+    public Language() {
     }
 
-    public AgeRating(Long id, String name) {
-        this.id = id;
+    public Language(String name) {
         this.name = name;
     }
     // </editor-fold>
@@ -45,11 +42,12 @@ public class AgeRating {
         this.name = name;
     }
 
-    // </editor-fold>
-
-    @Override
-    public String toString() {
-        return super.toString();
+    public List<Interest> getInterests() {
+        return interests;
     }
 
+    public void setInterests(List<Interest> interests) {
+        this.interests = interests;
+    }
+    // </editor-fold>
 }

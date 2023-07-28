@@ -1,10 +1,7 @@
 package model;
 
 import jakarta.persistence.*;
-import model.insterests_dependencies.AgeRating;
-import model.insterests_dependencies.Genre;
-import model.insterests_dependencies.Platform;
-import model.insterests_dependencies.SubGenre;
+import model.insterests_dependencies.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +24,9 @@ public class Interest {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @Column(name = "language", nullable = false)
-    private String language;
+    @ManyToMany(mappedBy = "interests")
+    @Column(nullable = false)
+    private List<Language> languages;
 
     @ManyToMany(mappedBy = "interests")
     @Column(nullable = false)
