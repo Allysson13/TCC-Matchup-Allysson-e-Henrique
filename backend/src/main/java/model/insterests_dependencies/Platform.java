@@ -38,8 +38,17 @@ public class Platform {
         return name;
     }
 
+    public List<Interest> getInterests() {
+        return interests;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
+
+    public void setInterests(List<Interest> interests) {
+        this.interests = interests;
+    }
+
     // </editor-fold>
 }
