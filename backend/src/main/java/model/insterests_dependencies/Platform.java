@@ -51,4 +51,10 @@ public class Platform {
     }
 
     // </editor-fold>
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
 }

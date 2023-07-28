@@ -6,8 +6,6 @@ import model.insterests_dependencies.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 @Entity
 @Table(name = "interests", schema = "matchup")
 public class Interest {
