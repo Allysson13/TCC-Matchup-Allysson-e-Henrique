@@ -1,6 +1,7 @@
 package model;
 
 import jakarta.persistence.*;
+import model.insterests_dependencies.AgeRating;
 import model.insterests_dependencies.Genre;
 import model.insterests_dependencies.Platform;
 import model.insterests_dependencies.SubGenre;
@@ -29,9 +30,6 @@ public class Interest {
     @Column(name = "language", nullable = false)
     private String language;
 
-    @Column(name = "age_rating", nullable = false, length = 2)
-    private int ageRating;
-
     @ManyToMany(mappedBy = "interests")
     @Column(nullable = false)
     private List<Genre> genres;
@@ -43,6 +41,10 @@ public class Interest {
     @ManyToMany(mappedBy = "interests")
     @Column(nullable = false)
     private List<Platform> platforms;
+
+    @ManyToOne
+    @Column(nullable = false)
+    private AgeRating ageRating;
 
     @ManyToMany(mappedBy = "interests")
     private List<User> users;

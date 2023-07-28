@@ -1,6 +1,9 @@
 package model.insterests_dependencies;
 
 import jakarta.persistence.*;
+import model.Interest;
+
+import java.util.List;
 
 @Entity
 @Table(name = "age_rating_interest", schema = "matchup")
@@ -13,6 +16,10 @@ public class AgeRating {
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany
+    @Column(nullable = false)
+    private List<Interest> interests;
 
     // <editor-fold desc="Constructors">
     public AgeRating() {
