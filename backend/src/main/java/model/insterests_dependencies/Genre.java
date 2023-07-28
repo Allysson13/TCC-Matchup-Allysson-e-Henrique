@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 public class Genre {
 
     @Id
+    @Column(name="genre_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -38,6 +39,8 @@ public class Genre {
     public void setName(String name) {
         this.name = name;
     }
+
+    // </editor-fold>
 
     @Override
     public String toString() {

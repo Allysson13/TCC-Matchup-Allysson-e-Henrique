@@ -3,24 +3,23 @@ package model.insterests_dependencies;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "sub_genre_interest", schema = "matchup")
-public class SubGenre {
+@Table(name = "age_rating_interest", schema = "matchup")
+public class AgeRating {
 
     @Id
-    @Column(name="sub_genre_id")
+    @Column(name="age_rating_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
     // <editor-fold desc="Constructors">
-
-    public SubGenre() {
+    public AgeRating() {
 
     }
 
-    public SubGenre(long id, String name) {
+    public AgeRating(Long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -28,8 +27,7 @@ public class SubGenre {
     // </editor-fold>
 
     // <editor-fold desc="Encapsulation">
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -47,4 +45,5 @@ public class SubGenre {
     public String toString() {
         return super.toString();
     }
+
 }
