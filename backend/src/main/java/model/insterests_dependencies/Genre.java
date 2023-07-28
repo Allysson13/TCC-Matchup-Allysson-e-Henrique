@@ -1,6 +1,9 @@
 package model.insterests_dependencies;
 
 import jakarta.persistence.*;
+import model.Interest;
+
+import java.util.List;
 
 @Entity
 @Table(name = "genre_interest", schema = "matchup")
@@ -13,6 +16,9 @@ public class Genre {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @ManyToMany
+    private List<Interest> interests;
 
     // <editor-fold desc="Constructors">
 
@@ -36,8 +42,16 @@ public class Genre {
         return name;
     }
 
+    public List<Interest> getInterests() {
+        return interests;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setInterests(List<Interest> interests) {
+        this.interests = interests;
     }
 
     // </editor-fold>
