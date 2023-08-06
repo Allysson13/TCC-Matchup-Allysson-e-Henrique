@@ -28,10 +28,10 @@ public class UserService {
         return userRepository.findByPartOfTheName(partOfTheName);
     }
 
-    public void saveUser(){
+    public User saveUser(){
         //public User(String name, String email, LocalDateTime age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address
         //address)
-        userRepository.save(new User("henrique", "henrique.lp2006@gmail.com", LocalDateTime.now(), "eqweqw", "(31)1212121", null, null));
+        return userRepository.save(new User("henrique", "henrique.lp2006@gmail.com", LocalDateTime.now(), "eqweqw", "(31)1212121", null, null));
     }
 
 }

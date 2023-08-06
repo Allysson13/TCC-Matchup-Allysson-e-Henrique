@@ -25,6 +25,8 @@ public class main {
 //
        User henrique = new model.User("Henrique", "henrique.lp2006@gmail.com", date1, "hash123", "5531988776655", null, null);
 
+
+
        //        User allysson = new model.User("Allysson", "assuncaoallyssonbruno@gmail.com", date2, "hash1234", "5531955443322", null, null);
 //        Address addressHenrique = new Address(56, "Rua Artur Bernardes", "Pioneiros", "Minas Gerais", 36492323);
 //        Address addressAllysson = new Address(438, "Avenida João Monlevade", "Pioneiros", "Minas Gerais", 36492-332);

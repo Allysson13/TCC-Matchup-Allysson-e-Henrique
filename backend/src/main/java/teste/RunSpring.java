@@ -18,13 +18,11 @@ public class RunSpring  {
     @RestController
     static class TextController {
 
-
-
-
         @GetMapping("/hello")
         public String hello() {
             return "hello world";
         }
+
 
     }
 
