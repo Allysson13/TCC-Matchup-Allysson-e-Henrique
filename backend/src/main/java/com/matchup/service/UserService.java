@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -28,7 +29,13 @@ public class UserService {
     public User saveUser(){
         //public User(String name, String email, LocalDateTime age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address
         //address)
-        return userRepository.save(new User("henrique", "henrique.lp2006@gmail.com", LocalDateTime.now(), "eqweqw", "(31)1212121", null, null));
+        return userRepository.save(new User("Allysson", "allysson@gmail.com", LocalDateTime.now(), "2134234j3i4gig1234i", "(31)33334444", null, null));
+    }
+
+    public User findById(Long id){
+        //public User(String name, String email, LocalDateTime age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address
+        //address)
+        return userRepository.findById(id).get();
     }
 
 }
