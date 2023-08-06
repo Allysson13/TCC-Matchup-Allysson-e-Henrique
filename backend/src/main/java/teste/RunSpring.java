@@ -17,7 +17,7 @@ public class RunSpring  {
     static class TextController {
 
         @GetMapping("/hello")
-        public ResponseEntity hello() {
+        public String hello() {
             return "hello world";
         }
 
