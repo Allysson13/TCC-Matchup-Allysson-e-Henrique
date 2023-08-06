@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class Message {
 
     @Id
-    @Column(name = "message_id", nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 

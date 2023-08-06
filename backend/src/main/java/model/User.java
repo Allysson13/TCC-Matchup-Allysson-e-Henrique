@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "user", schema = "matchup")
 public class User {
     @Id
-    @Column(name = "user_id", nullable = false)
+    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 

@@ -6,11 +6,10 @@ import model.Interest;
 import java.util.List;
 
 @Entity
-@Table(name = "genre_interest", schema = "matchup")
+@Table(name = "genre", schema = "matchup")
 public class Genre {
 
     @Id
-    @Column(name="genre_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 

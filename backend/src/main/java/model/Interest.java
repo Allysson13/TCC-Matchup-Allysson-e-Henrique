@@ -23,27 +23,21 @@ public class Interest {
     private double price;
 
     @ManyToMany(mappedBy = "dubbed_interests")
-    @Column(nullable = false)
-    private List<Language> dubbing_interests;
+    private List<Language> dubbingInterests;
 
     @ManyToMany(mappedBy = "subtitled_interest")
-    @Column(nullable = false)
-    private List<Language> subtitle_languages;
+    private List<Language> subtitleLanguages;
 
     @ManyToMany(mappedBy = "interests")
-    @Column(nullable = false)
     private List<Genre> genres;
 
     @ManyToMany(mappedBy = "interests")
-    @Column(nullable = false)
     private List<SubGenre> subGenre;
 
     @ManyToMany(mappedBy = "interests")
-    @Column(nullable = false)
     private List<Platform> platforms;
 
     @ManyToOne
-    @Column(nullable = false)
     private AgeRating ageRating;
 
     @ManyToMany(mappedBy = "interests")
@@ -54,12 +48,12 @@ public class Interest {
     public Interest() {
     }
 
-    public Interest(String name, String company, double price, List<Language> dubbing_interests, List<Language> subtitle_languages, List<Genre> genres, List<SubGenre> subGenre, List<Platform> platforms, AgeRating ageRating, List<User> users) {
+    public Interest(String name, String company, double price, List<Language> dubbingInterests, List<Language> subtitleLanguages, List<Genre> genres, List<SubGenre> subGenre, List<Platform> platforms, AgeRating ageRating, List<User> users) {
         this.name = name;
         this.company = company;
         this.price = price;
-        this.dubbing_interests = dubbing_interests;
-        this.subtitle_languages = subtitle_languages;
+        this.dubbingInterests = dubbingInterests;
+        this.subtitleLanguages = subtitleLanguages;
         this.genres = genres;
         this.subGenre = subGenre;
         this.platforms = platforms;
@@ -101,20 +95,20 @@ public class Interest {
         this.price = price;
     }
 
-    public List<Language> getDubbing_interests() {
-        return dubbing_interests;
+    public List<Language> getDubbingInterests() {
+        return dubbingInterests;
     }
 
-    public void setDubbing_interests(List<Language> dubbing_interests) {
-        this.dubbing_interests = dubbing_interests;
+    public void setDubbingInterests(List<Language> dubbingInterests) {
+        this.dubbingInterests = dubbingInterests;
     }
 
-    public List<Language> getSubtitle_languages() {
-        return subtitle_languages;
+    public List<Language> getSubtitleLanguages() {
+        return subtitleLanguages;
     }
 
-    public void setSubtitle_languages(List<Language> subtitle_languages) {
-        this.subtitle_languages = subtitle_languages;
+    public void setSubtitleLanguages(List<Language> subtitleLanguages) {
+        this.subtitleLanguages = subtitleLanguages;
     }
 
     public List<Genre> getGenres() {

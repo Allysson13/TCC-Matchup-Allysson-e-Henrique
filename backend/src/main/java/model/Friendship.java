@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Table(name = "friendships", schema = "matchup")
 public class Friendship {
     @Id
-    @Column(name = "friendship_id", nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 

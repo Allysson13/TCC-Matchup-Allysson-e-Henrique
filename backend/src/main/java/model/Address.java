@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Address {
 
     @Id
-    @Column(name = "address_id", nullable = false)
+    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 

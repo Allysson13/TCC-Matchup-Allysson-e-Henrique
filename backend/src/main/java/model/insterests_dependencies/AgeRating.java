@@ -6,19 +6,17 @@ import model.Interest;
 import java.util.List;
 
 @Entity
-@Table(name = "age_rating_interest", schema = "matchup")
+@Table(name = "age_rating", schema = "matchup")
 public class AgeRating {
 
     @Id
-    @Column(name="age_rating_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-    @OneToMany
-    @Column(nullable = false)
+    @OneToMany(mappedBy = "ageRating")
     private List<Interest> interests;
 
     // <editor-fold desc="Constructors">
