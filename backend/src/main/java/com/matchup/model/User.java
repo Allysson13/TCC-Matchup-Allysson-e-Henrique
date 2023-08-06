@@ -1,4 +1,4 @@
-package model;
+package com.matchup.model;
 
 import jakarta.persistence.*;
 
@@ -30,6 +30,7 @@ public class User {
     @Column(name = "cellphone_number", length = 455, nullable = false)
     private String cellphoneNumber;
 
+    @Lob
     @Column(name = "profile_picture", length = 455, updatable = true)
     private Byte[] profilePicture;
 

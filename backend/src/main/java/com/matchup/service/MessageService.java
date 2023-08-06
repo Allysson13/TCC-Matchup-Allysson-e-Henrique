@@ -1,10 +1,9 @@
-package service;
+package com.matchup.service;
 
-import model.Message;
+import com.matchup.model.Message;
+import com.matchup.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import repository.MessageRepository;
 
 @Service
 public class MessageService {

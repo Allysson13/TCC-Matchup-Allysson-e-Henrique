@@ -1,10 +1,11 @@
-package service;
+package com.matchup.service;
 
-import model.Address;
+import com.matchup.model.Address;
+import com.matchup.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import repository.AddressRepository;
+
 @Service
 public class AddressService {
 
@@ -17,8 +18,8 @@ public class AddressService {
         return addressRepository.save(addressToSave);
     }
 
-    public Page<Address> findByPartOfTheStreet(String partOfTheStreet){
-        return addressRepository.findByPartOfTheStreet(partOfTheStreet);
-    }
+//    public Page<Address> findByPartOfTheStreet(String partOfTheStreet){
+//        return addressRepository.findByPartOfTheStreet(partOfTheStreet);
+//    }
 
 }

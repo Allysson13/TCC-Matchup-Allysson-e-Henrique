@@ -1,13 +1,10 @@
-package service;
+package com.matchup.service;
 
-import model.Address;
-import model.User;
+import com.matchup.model.User;
+import com.matchup.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
-import repository.UserRepository;
 
 import java.time.LocalDateTime;
 
@@ -24,9 +21,9 @@ public class UserService {
         return userRepository.save(userToSave);
     }
 
-    public Page<User> findByPartOfTheName(String partOfTheName){
-        return userRepository.findByPartOfTheName(partOfTheName);
-    }
+//    public Page<User> findByPartOfTheName(String partOfTheName){
+//        return userRepository.findByPartOfTheName(partOfTheName);
+//    }
 
     public User saveUser(){
         //public User(String name, String email, LocalDateTime age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address

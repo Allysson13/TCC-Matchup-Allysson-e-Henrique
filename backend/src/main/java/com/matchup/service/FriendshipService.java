@@ -1,10 +1,10 @@
-package service;
+package com.matchup.service;
 
-import model.Friendship;
+import com.matchup.model.Friendship;
+import com.matchup.repository.FriendshipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import repository.FriendshipRepository;
+
 @Service
 public class FriendshipService {
 

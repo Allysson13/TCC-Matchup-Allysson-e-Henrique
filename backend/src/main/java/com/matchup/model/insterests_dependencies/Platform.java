@@ -1,7 +1,7 @@
-package model.insterests_dependencies;
+package com.matchup.model.insterests_dependencies;
 
 import jakarta.persistence.*;
-import model.Interest;
+import com.matchup.model.Interest;
 
 import java.util.List;
 

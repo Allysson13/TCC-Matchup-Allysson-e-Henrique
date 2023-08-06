@@ -1,10 +1,10 @@
-package service;
+package com.matchup.service;
 
-import model.Interest;
+import com.matchup.model.Interest;
+import com.matchup.repository.InterestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import repository.InterestRepository;
 
 @Service
 public class InterestService {
@@ -18,8 +18,8 @@ public class InterestService {
         return interestRepository.save(interestToSave);
     }
 
-    public Page<Interest> findByPartOfTheName(String partOfTheName){
-        return interestRepository.findByPartOfTheName(partOfTheName);
-    }
+//    public Page<Interest> findByPartOfTheName(String partOfTheName){
+//        return interestRepository.findByPartOfTheName(partOfTheName);
+//    }
 
 }

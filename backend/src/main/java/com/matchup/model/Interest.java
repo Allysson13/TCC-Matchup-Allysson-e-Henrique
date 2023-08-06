@@ -1,7 +1,8 @@
-package model;
+package com.matchup.model;
 
+import com.matchup.model.insterests_dependencies.*;
 import jakarta.persistence.*;
-import model.insterests_dependencies.*;
+import com.matchup.model.insterests_dependencies.*;
 
 import java.util.ArrayList;
 import java.util.List;

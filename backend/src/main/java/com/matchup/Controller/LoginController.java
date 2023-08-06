@@ -1,11 +1,10 @@
-package Controller;
+package com.matchup.Controller;
 
-import model.User;
+import com.matchup.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.UserService;
+import com.matchup.service.UserService;
 
 @RestController
 @RequestMapping("/api")
@@ -18,10 +17,10 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @GetMapping("/teste")
-    public ResponseEntity<User> teste() {
-        return new ResponseEntity<>(userService.saveUser(), HttpStatus.ACCEPTED);
-    }
+//    @GetMapping("/teste")
+//    public ResponseEntity<User> teste() {
+//        return new ResponseEntity<>(userService.saveUser(), HttpStatus.ACCEPTED);
+//    }
 
     @GetMapping("/hello-world")
     public String hello() {

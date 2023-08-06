@@ -1,13 +1,13 @@
-package model.insterests_dependencies;
+package com.matchup.model.insterests_dependencies;
 
+import com.matchup.model.Interest;
 import jakarta.persistence.*;
-import model.Interest;
 
 import java.util.List;
 
 @Entity
-@Table(name = "genre", schema = "matchup")
-public class Genre {
+@Table(name = "sub_genre", schema = "matchup")
+public class SubGenre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +21,15 @@ public class Genre {
 
     // <editor-fold desc="Constructors">
 
-    public Genre() {
+    public SubGenre() {
 
     }
 
-    public Genre(long id, String name) {
+    public SubGenre(long id, String name) {
         this.id = id;
         this.name = name;
     }
+
     // </editor-fold>
 
     // <editor-fold desc="Encapsulation">
@@ -52,8 +53,7 @@ public class Genre {
     public void setInterests(List<Interest> interests) {
         this.interests = interests;
     }
-
-    // </editor-fold>
+// </editor-fold>
 
     @Override
     public String toString() {
