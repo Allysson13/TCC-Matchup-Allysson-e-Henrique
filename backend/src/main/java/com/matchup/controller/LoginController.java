@@ -10,6 +10,7 @@ import com.matchup.service.UserService;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/login")
 public class LoginController {
 
