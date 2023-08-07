@@ -19,8 +19,11 @@ public class Interest {
     @ManyToOne
     private Company company;
 
-    @Column(name = "price", nullable = false)
-    private double price;
+    @Column(name = "lowest_price", nullable = false)
+    private double lowestPrice;
+
+    @Column(name = "highest_price", nullable = false)
+    private double highestPrice;
 
     @ManyToMany(mappedBy = "dubbedInterests")
     private List<Language> dubbingLanguages;
@@ -48,21 +51,23 @@ public class Interest {
     public Interest() {
     }
 
-    public Interest(String name, Company company, double price, AgeRating ageRating) {
+    public Interest(String name, Company company, double lowestPrice, double highestPrice, AgeRating ageRating) {
         this.name = name;
         this.company = company;
-        this.price = price;
+        this.lowestPrice = lowestPrice;
+        this.highestPrice = highestPrice;
         this.ageRating = ageRating;
     }
 
-    public Interest(String name, Company company, double price, List<Language> dubbingLanguages, List<Language> subtitleLanguages, List<Genre> genres, List<SubGenre> subGenre, List<Platform> platforms, AgeRating ageRating, List<User> users) {
+    public Interest(String name, Company company, double lowestPrice, double highestPrice, List<Language> dubbingLanguages, List<Language> subtitleLanguages, List<Genre> genres, List<SubGenre> subGenres, List<Platform> platforms, AgeRating ageRating, List<User> users) {
         this.name = name;
         this.company = company;
-        this.price = price;
+        this.lowestPrice = lowestPrice;
+        this.highestPrice = highestPrice;
         this.dubbingLanguages = dubbingLanguages;
         this.subtitleLanguages = subtitleLanguages;
         this.genres = genres;
-        this.subGenres = subGenre;
+        this.subGenres = subGenres;
         this.platforms = platforms;
         this.ageRating = ageRating;
         this.users = users;
@@ -90,12 +95,20 @@ public class Interest {
         this.company = company;
     }
 
-    public double getPrice() {
-        return price;
+    public double getLowestPrice() {
+        return lowestPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setLowestPrice(double lowestPrice) {
+        this.lowestPrice = lowestPrice;
+    }
+
+    public double getHighestPrice() {
+        return highestPrice;
+    }
+
+    public void setHighestPrice(double highestPrice) {
+        this.highestPrice = highestPrice;
     }
 
     public List<Language> getDubbingLanguages() {
