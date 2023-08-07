@@ -24,7 +24,7 @@ public class UserService {
     }
 
     public List<User> findByPartOfTheName(String partOfTheName){
-        return userRepository.findByPartOfTheName(partOfTheName);
+        return userRepository.findByNameContainingIgnoreCase(partOfTheName);
     }
 
     public User saveUser(){

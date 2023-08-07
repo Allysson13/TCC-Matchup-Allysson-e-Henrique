@@ -16,8 +16,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByName(String name);
     //List<Address> findByNumber(int number);
 
-    @Query("SELECT u FROM User u WHERE LOWER(u.name) LIKE %LOWER(:name)%")
-    List<User> findByPartOfTheName(@Param("name") String partOfTheName);
+    /*@Query("SELECT u FROM User u WHERE LOWER(u.name) LIKE %LOWER(:name)%")
+    List<User> findByPartOfTheName(@Param("name") String partOfTheName);*/
+
+    List<User> findByNameContainingIgnoreCase(String partOfTheName);
 
     @Query("SELECT u FROM User u WHERE u.cellphoneNumber LIKE %:cellphoneNumber%")
     List<User> findByPartOfTheCellphoneNumber(@Param("cellphoneNumber") String partOfTheCellphoneNumber);
