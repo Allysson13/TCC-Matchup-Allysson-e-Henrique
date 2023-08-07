@@ -17,7 +17,7 @@ public class AdminController {
         this.interestService = interestService;
     }
 
-    @PostMapping("/api/admin/register-interest")
+    @PostMapping("/register-interest")
     public ResponseEntity<Interest> register(@RequestBody Interest interest) {
         System.out.println(interest.getName());
         return new ResponseEntity<>(interestService.saveInterest(interest), HttpStatus.CREATED);
