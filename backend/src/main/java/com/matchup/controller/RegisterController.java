@@ -16,14 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/register")
 public class RegisterController {
 
-    private final InterestService interestService;
 
-    @Autowired
-    public RegisterController(InterestService interestService) {
-        this.interestService = interestService;
-    }
-
-    @GetMapping("/api/admin/register-interest")
-    public ResponseEntity<Interest> register(@RequestBody Interest interest) {return new ResponseEntity<>(interestService.saveInterest(interest), HttpStatus.ACCEPTED);}
 
 }
