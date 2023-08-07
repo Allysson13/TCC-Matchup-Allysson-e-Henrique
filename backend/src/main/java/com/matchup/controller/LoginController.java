@@ -1,4 +1,4 @@
-package com.matchup.Controller;
+package com.matchup.controller;
 
 import com.matchup.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.matchup.service.UserService;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/login")
 public class LoginController {
 
     private final UserService userService;
@@ -28,6 +28,11 @@ public class LoginController {
     @GetMapping("/teste2/{userId}")
     public ResponseEntity<User> teste2(@PathVariable("userId") Long userId) {
         return new ResponseEntity<>(userService.findById(Long.valueOf(userId)), HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/teste3/{partOfTheName}")
+    public ResponseEntity<List<User>> teste3(@PathVariable("partOfTheName") String partOfTheName) {
+        return new ResponseEntity<>(userService.findByPartOfTheName(partOfTheName), HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/hello-world")

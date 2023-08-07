@@ -3,6 +3,7 @@ package com.matchup.model.insterests_dependencies;
 import jakarta.persistence.*;
 import com.matchup.model.Interest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -50,6 +51,13 @@ public class Platform {
     }
 
     // </editor-fold>
+
+    public void addInterest(Interest interest){
+        if(this.interests == null){
+            this.interests = new ArrayList<>();
+        }
+        this.interests.add(interest);
+    }
 
     @Override
     public String toString() {

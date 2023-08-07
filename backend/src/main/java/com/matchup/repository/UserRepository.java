@@ -7,17 +7,19 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+    //List<User> findById(long id);
 
-//    Page<User> findById(long id);
-//    @Query("SELECT u FROM User u WHERE u.name LIKE %:name%")
-//    Page<User> findByPartOfTheName(@Param("name") String partOfTheName);
-//
-//    //Page<User> findByName(String name);
-//    //Page<Address> findByNumber(int number);
-//
-//    @Query("SELECT u FROM User u WHERE u.cellphoneNumber LIKE %:cellphoneNumber%")
-//    Page<User> findByPartOfTheCellphoneNumber(@Param("cellphoneNumber") String partOfTheCellphoneNumber);
+    List<User> findByName(String name);
+    //List<Address> findByNumber(int number);
+
+    @Query("SELECT u FROM User u WHERE u.name LIKE %:name%")
+    List<User> findByPartOfTheName(@Param("name") String partOfTheName);
+
+    @Query("SELECT u FROM User u WHERE u.cellphoneNumber LIKE %:cellphoneNumber%")
+    List<User> findByPartOfTheCellphoneNumber(@Param("cellphoneNumber") String partOfTheCellphoneNumber);
 
 }

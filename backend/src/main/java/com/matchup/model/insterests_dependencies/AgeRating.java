@@ -3,6 +3,7 @@ package com.matchup.model.insterests_dependencies;
 import com.matchup.model.Interest;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,11 +25,16 @@ public class AgeRating {
 
     }
 
+    public AgeRating(String name) {
+        this.name = name;
+    }
+
     public AgeRating(Long id, String name) {
         this.id = id;
         this.name = name;
     }
     // </editor-fold>
+
 
     // <editor-fold desc="Encapsulation">
     public Long getId() {
@@ -44,6 +50,13 @@ public class AgeRating {
     }
 
     // </editor-fold>
+
+    public void addInterest(Interest interest){
+        if(this.interests == null){
+            this.interests = new ArrayList<>();
+        }
+        this.interests.add(interest);
+    }
 
     @Override
     public String toString() {

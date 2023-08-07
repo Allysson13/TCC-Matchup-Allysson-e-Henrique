@@ -7,36 +7,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "sub_genre", schema = "matchup")
-public class SubGenre {
+@Table(name = "company", schema = "matchup")
+public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @ManyToMany
+    @OneToMany(mappedBy = "company")
     private List<Interest> interests;
 
     // <editor-fold desc="Constructors">
-    public SubGenre() {
+    public Company() {
     }
 
-    public SubGenre(String name) {
+    public Company(String name) {
         this.name = name;
     }
-
-    public SubGenre(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     // </editor-fold>
 
     // <editor-fold desc="Encapsulation">
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -55,7 +49,7 @@ public class SubGenre {
     public void setInterests(List<Interest> interests) {
         this.interests = interests;
     }
-// </editor-fold>
+    // </editor-fold>
 
     public void addInterest(Interest interest){
         if(this.interests == null){
@@ -68,4 +62,5 @@ public class SubGenre {
     public String toString() {
         return super.toString();
     }
+
 }

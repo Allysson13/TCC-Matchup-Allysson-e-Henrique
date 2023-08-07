@@ -3,6 +3,7 @@ package com.matchup.model.insterests_dependencies;
 import com.matchup.model.Interest;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,17 +11,16 @@ import java.util.List;
 public class Language {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @Column(name = "name")
     private String name;
 
     @ManyToMany
-    private List<Interest> dubbed_interests;
+    private List<Interest> dubbedInterests;
 
     @ManyToMany
-    private List<Interest> subtitled_interest;
+    private List<Interest> subtitledInterest;
 
     // <editor-fold desc="Constructors">
     public Language() {
@@ -29,10 +29,16 @@ public class Language {
     public Language(String name) {
         this.name = name;
     }
+
+    public Language(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     // </editor-fold>
 
     // <editor-fold desc="Encapsulation">
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -44,21 +50,37 @@ public class Language {
         this.name = name;
     }
 
-    public List<Interest> getDubbed_interests() {
-        return dubbed_interests;
+    public List<Interest> getDubbedInterests() {
+        return dubbedInterests;
     }
 
-    public void setDubbed_interests(List<Interest> dubbed_interests) {
-        this.dubbed_interests = dubbed_interests;
+    public void setDubbedInterests(List<Interest> dubbed_interests) {
+        this.dubbedInterests = dubbed_interests;
     }
 
-    public List<Interest> getSubtitled_interest() {
-        return subtitled_interest;
+    public List<Interest> getSubtitledInterest() {
+        return subtitledInterest;
     }
 
-    public void setSubtitled_interest(List<Interest> subtitled_interest) {
-        this.subtitled_interest = subtitled_interest;
+    public void setSubtitledInterest(List<Interest> subtitled_interest) {
+        this.subtitledInterest = subtitled_interest;
     }
 
     // </editor-fold>
+
+    public void addDubbedInterest(Interest dubbedInterest){
+        if(this.dubbedInterests == null){
+            this.dubbedInterests = new ArrayList<>();
+        }
+        this.dubbedInterests.add(dubbedInterest);
+    }
+
+    public void subtitledInterest(Interest subtitledInterest){
+        if(this.subtitledInterest == null){
+            this.subtitledInterest = new ArrayList<>();
+        }
+        this.subtitledInterest.add(subtitledInterest);
+    }
+
+
 }

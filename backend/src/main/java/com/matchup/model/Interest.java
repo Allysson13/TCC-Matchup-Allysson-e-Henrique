@@ -2,7 +2,6 @@ package com.matchup.model;
 
 import com.matchup.model.insterests_dependencies.*;
 import jakarta.persistence.*;
-import com.matchup.model.insterests_dependencies.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,23 +16,23 @@ public class Interest {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "company", nullable = false)
-    private String company;
+    @ManyToOne
+    private Company company;
 
     @Column(name = "price", nullable = false)
     private double price;
 
-    @ManyToMany(mappedBy = "dubbed_interests")
-    private List<Language> dubbingInterests;
+    @ManyToMany(mappedBy = "dubbedInterests")
+    private List<Language> dubbingLanguages;
 
-    @ManyToMany(mappedBy = "subtitled_interest")
+    @ManyToMany(mappedBy = "subtitledInterest")
     private List<Language> subtitleLanguages;
 
     @ManyToMany(mappedBy = "interests")
     private List<Genre> genres;
 
     @ManyToMany(mappedBy = "interests")
-    private List<SubGenre> subGenre;
+    private List<SubGenre> subGenres;
 
     @ManyToMany(mappedBy = "interests")
     private List<Platform> platforms;
@@ -49,25 +48,28 @@ public class Interest {
     public Interest() {
     }
 
-    public Interest(String name, String company, double price, List<Language> dubbingInterests, List<Language> subtitleLanguages, List<Genre> genres, List<SubGenre> subGenre, List<Platform> platforms, AgeRating ageRating, List<User> users) {
+    public Interest(String name, Company company, double price, AgeRating ageRating) {
         this.name = name;
         this.company = company;
         this.price = price;
-        this.dubbingInterests = dubbingInterests;
+        this.ageRating = ageRating;
+    }
+
+    public Interest(String name, Company company, double price, List<Language> dubbingLanguages, List<Language> subtitleLanguages, List<Genre> genres, List<SubGenre> subGenre, List<Platform> platforms, AgeRating ageRating, List<User> users) {
+        this.name = name;
+        this.company = company;
+        this.price = price;
+        this.dubbingLanguages = dubbingLanguages;
         this.subtitleLanguages = subtitleLanguages;
         this.genres = genres;
-        this.subGenre = subGenre;
+        this.subGenres = subGenre;
         this.platforms = platforms;
         this.ageRating = ageRating;
         this.users = users;
     }
-
-
-
     // </editor-fold>
 
     // <editor-fold desc="Encapsulation">
-
     public long getId() {
         return id;
     }
@@ -80,11 +82,11 @@ public class Interest {
         this.name = name;
     }
 
-    public String getCompany() {
+    public Company getCompany() {
         return company;
     }
 
-    public void setCompany(String company) {
+    public void setCompany(Company company) {
         this.company = company;
     }
 
@@ -96,12 +98,12 @@ public class Interest {
         this.price = price;
     }
 
-    public List<Language> getDubbingInterests() {
-        return dubbingInterests;
+    public List<Language> getDubbingLanguages() {
+        return dubbingLanguages;
     }
 
-    public void setDubbingInterests(List<Language> dubbingInterests) {
-        this.dubbingInterests = dubbingInterests;
+    public void setDubbingLanguages(List<Language> dubbingLanguages) {
+        this.dubbingLanguages = dubbingLanguages;
     }
 
     public List<Language> getSubtitleLanguages() {
@@ -120,12 +122,12 @@ public class Interest {
         this.genres = genres;
     }
 
-    public List<SubGenre> getSubGenre() {
-        return subGenre;
+    public List<SubGenre> getSubGenres() {
+        return subGenres;
     }
 
-    public void setSubGenre(List<SubGenre> subGenre) {
-        this.subGenre = subGenre;
+    public void setSubGenres(List<SubGenre> subGenre) {
+        this.subGenres = subGenre;
     }
 
     public List<Platform> getPlatforms() {
@@ -152,6 +154,41 @@ public class Interest {
         this.users = users;
     }
     // </editor-fold>
+
+    public void addDubbingLanguages(Language dubbingLanguage){
+        if(this.dubbingLanguages == null){
+            this.dubbingLanguages = new ArrayList<>();
+        }
+        this.dubbingLanguages.add(dubbingLanguage);
+    }
+
+    public void addSubtitleLanguages(Language subtitleLanguage){
+        if(this.subtitleLanguages == null){
+            this.subtitleLanguages = new ArrayList<>();
+        }
+        this.subtitleLanguages.add(subtitleLanguage);
+    }
+
+    public void addGenre(Genre genre){
+        if(this.genres == null){
+            this.genres = new ArrayList<>();
+        }
+        this.genres.add(genre);
+    }
+
+    public void addSubGenre(SubGenre subGenre){
+        if(this.subGenres == null){
+            this.subGenres = new ArrayList<>();
+        }
+        this.subGenres.add(subGenre);
+    }
+
+    public void addPlatform(Platform platform){
+        if(this.platforms == null){
+            this.platforms = new ArrayList<>();
+        }
+        this.platforms.add(platform);
+    }
 
     public void addUser(User user){
         if(this.users == null){

@@ -1,20 +1,22 @@
 package com.matchup.repository;
 
 import com.matchup.model.Friendship;
-import org.springframework.data.domain.Page;
+import com.matchup.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface FriendshipRepository extends JpaRepository<Friendship, Long> {
-//
-//    Page<Friendship> findById(long id);
-//
-//    Page<Friendship> findByStatus(String status);
-//
-//    /*@Query("SELECT f FROM Friendship f WHERE f.date LIKE %:date%")
-//    Page<Friendship> findByPartOfTheDate(@Param("date") String partOfTheDate);*/
-//
-//    Page<Friendship> findByUser(long user);
-//
-//    Page<Friendship> findByFriend(long friend);
+
+    List<Friendship> findById(long id);
+
+    List<Friendship> findByStatus(String status);
+
+    /*@Query("SELECT f FROM Friendship f WHERE f.date LIKE %:date%")
+    List<Friendship> findByPartOfTheDate(@Param("date") String partOfTheDate);*/
+
+    List<Friendship> findByUser(User user);
+
+    List<Friendship> findByFriend(User user);
 
 }

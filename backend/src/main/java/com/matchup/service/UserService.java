@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,9 +23,9 @@ public class UserService {
         return userRepository.save(userToSave);
     }
 
-//    public Page<User> findByPartOfTheName(String partOfTheName){
-//        return userRepository.findByPartOfTheName(partOfTheName);
-//    }
+    public List<User> findByPartOfTheName(String partOfTheName){
+        return userRepository.findByPartOfTheName(partOfTheName);
+    }
 
     public User saveUser(){
         //public User(String name, String email, LocalDateTime age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address
