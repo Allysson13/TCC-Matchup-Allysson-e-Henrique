@@ -4,7 +4,7 @@ function loadDropDowns(){
 
 function registerInterest(){
     document.getElementById("register-interest").addEventListener("submit", function (event) {
-        event.preventDefault(); // Impede o comportamento padrão de enviar o formulário
+        event.preventDefault(); 
     
         var formData = new FormData(document.getElementById("register-interest"));
     
@@ -12,8 +12,10 @@ function registerInterest(){
         formData.forEach(function (value, key) {
             jsonObject[key] = value;
         });
-    
-        // Realiza uma requisição AJAX para o backend em outro servidor
+
+        console.log(jsonObject)
+        
+        
         fetch("http://localhost:8080/api/admin/register-interest", {
             method: "POST",
             headers: {
@@ -24,12 +26,12 @@ function registerInterest(){
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error("Erro ao enviar dados");
+                    throw new Error("Erro ao enviar dados " + response);
                 }
                 return response.json();
             })
             .then(data => {
-                alert("Deu errado!");
+                alert("Deu certo!");
             })
             .catch(error => {
                 alert("Deu errado!");

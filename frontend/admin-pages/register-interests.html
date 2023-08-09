@@ -10,7 +10,8 @@
 
 <body onload="loadDropDowns()">
     <h2>Cadastrar Interesses</h2>
-    <form onsubmit="registerInterest()" method="post" id="register-interest">
+
+    <form method="post"id="register-interest">
         <label for="txt-name">Nome: </label><br>
         <input type="text" id="txt-name" name="name" focused><br><br>
 
@@ -23,10 +24,10 @@
         </select><br><br>
 
         <label for="txt-lowest-price">Menor preço: </label><br>
-        <input type="number" id="txt-lowest-price" name="lowestPrice" min="0" step="0.01"><br><br>
+        <input type="number" id="txt-lowest-price" name="lowestPrice" placeholder="0,00" min="0" step="0.01"><br><br>
 
         <label for="txt-highest-price">Maior preço: </label><br>
-        <input type="text" id="txt-highest-price" name="highestPrice"><br><br>
+        <input type="text" id="txt-highest-price" name="highestPrice" placeholder="0,00" min="0" step="0.01"><br><br>
 
         <label for="dd-dubbed">Dublado: </label><br>
         
