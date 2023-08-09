@@ -1,4 +1,6 @@
+function registerInterest(){
 
+}
 
 document.getElementById("register-interest").addEventListener("submit", function (event) {
     event.preventDefault(); // Impede o comportamento padrão de enviar o formulário
