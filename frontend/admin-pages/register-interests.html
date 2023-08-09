@@ -8,10 +8,18 @@
     <title>Register Interests</title>
 </head>
 
-<body onload="loadDropDowns()">
-    <h2>Cadastrar Interesses</h2>
+<body onload="onLoad()">
+    <form id="register-interest">
+        <label for="txt-name">Nome: </label><br>
+        <input type="text" id="txt-name" name="name" focused><br><br>
+        <input type="submit" id="submit" value="ENVIAR">
+    </form>
 
-    <form method="post"id="register-interest">
+
+
+    <!-- <h2>Cadastrar Interesses</h2>
+
+    <form id="register-interest">
         <label for="txt-name">Nome: </label><br>
         <input type="text" id="txt-name" name="name" focused><br><br>
 
@@ -27,27 +35,27 @@
         <input type="number" id="txt-lowest-price" name="lowestPrice" placeholder="0,00" min="0" step="0.01"><br><br>
 
         <label for="txt-highest-price">Maior preço: </label><br>
-        <input type="text" id="txt-highest-price" name="highestPrice" placeholder="0,00" min="0" step="0.01"><br><br>
+        <input type="number" id="txt-highest-price" name="highestPrice" placeholder="0,00" min="0" step="0.01"><br><br>
 
         <label for="dd-dubbed">Dublado: </label><br>
         
         <select class="form-select">
             <option value="1">pt-br</option>
-            <option value="1">en</option>
+            <option value="2">en</option>
         </select><br><br>
 
         <label for="dd-subtitled">Legendado: </label><br>
         
         <select class="form-select">
             <option value="1">pt-br</option>
-            <option value="1">en</option>
+            <option value="2">en</option>
         </select><br><br>
 
         <label for="dd-age-rating">Classificação Indicativa: </label><br>
         
         <select class="form-select">
             <option value="1">10</option>
-            <option value="1">12</option>
+            <option value="2">12</option>
         </select><br><br>
 
         <label for="checkboxes-genre">Gênero(s): </label><br>
@@ -61,11 +69,14 @@
         </div>
 
         <label for="txt-plataform">Plataforma: </label><br>
-        <input type="text" id="txt-plataform" name="plataform"><br><br>
+        <select class="form-select">
+            <option value="1">Playstation</option>
+            <option value="2">Xbox</option>
+        </select><br><br>
 
-        <input type="submit" value="ENVIAR">
+        <input type="submit" id="submit" value="ENVIAR">
 
-    </form>
+    </form> -->
 
 
 </body>
