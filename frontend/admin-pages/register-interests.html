@@ -1,38 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="style/register-interests.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Interests</title>
 </head>
+
 <body>
     <h2>Cadastrar Interesses</h2>
-    <label for="txt-name">Nome: </label><br>
-    <input type="text" id="txt-name" name="name" focused><br><br>
+    <form action="" id="register-interest">
+        <label for="txt-name">Nome: </label><br>
+        <input type="text" id="txt-name" name="name" focused><br><br>
 
-    <label for="dd-companies">Empresas: </label><br>
-    <input type="text" id="dd-companies" name="companies"><br><br>
+        <label for="dd-companies">Empresas: </label><br>
 
-    <label for="dd-age-rating">Classificação Indicativa: </label><br>
-    <input type="text" id="txt-age-rating" name="age-rating"><br><br>
+        <select class="form-select">
+            <option value="1">Sony</option>
+            <option value="2">Microsoft</option>
+            <option value="3">Nintendo</option>
+        </select><br><br>
 
-    <label for="checkboxes-genre">Gênero(s): </label><br>
-    <div id="checkboxes-genre">
-        <input type="checkbox" id="t" name="genre"><br><br>
-    </div>div!>
-    
+        <label for="txt-lowest-price">Menor preço: </label><br>
+        <input type="text" id="txt-lowest-price" name="lowestPrice"><br><br>
 
-    <label for="txt-name">Subgênero(s): </label><br>
-    <div id="checkboxes-sub-genre">
-        <input type="checkbox" id="t" name="sub-genre"><br><br>
-    </div>
+        <label for="txt-highest-price">Maior preço: </label><br>
+        <input type="text" id="txt-highest-price" name="highestPrice"><br><br>
 
-    <label for="txt-name">Gênero: </label><br>
-    <input type="text" id="txt-name" name="name"><br><br>
-    
-    <input type="submit">
-    
+        <label for="dd-dubbed">Dublado: </label><br>
+        
+        <select class="form-select">
+            <option value="1">pt-br</option>
+            <option value="1">en</option>
+        </select><br><br>
+
+        <label for="dd-subtitled">Legendado: </label><br>
+        
+        <select class="form-select">
+            <option value="1">pt-br</option>
+            <option value="1">en</option>
+        </select><br><br>
+
+        <label for="dd-age-rating">Classificação Indicativa: </label><br>
+        
+        <select class="form-select">
+            <option value="1">10</option>
+            <option value="1">12</option>
+        </select><br><br>
+
+        <label for="checkboxes-genre">Gênero(s): </label><br>
+        <div id="checkboxes-genre">
+            <input type="checkbox" id="" name="genre"><br><br>
+        </div>
+
+        <label for="checkboxes-sub-genre">Subgênero(s): </label><br>
+        <div id="checkboxes-sub-genre">
+            <input type="checkbox" id="" name="subGenre"><br><br>
+        </div>
+
+        <label for="txt-plataform">Plataforma: </label><br>
+        <input type="text" id="txt-plataform" name="plataform"><br><br>
+
+        <input type="submit" value="ENVIAR">
+
+    </form>
+
+
 </body>
+
 </html>
 <script src="script/register-interests.js"></script>
