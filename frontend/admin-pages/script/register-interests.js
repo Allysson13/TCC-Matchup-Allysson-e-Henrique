@@ -1,3 +1,7 @@
+function loadDropDowns(){
+    
+}
+
 function registerInterest(){
     document.getElementById("register-interest").addEventListener("submit", function (event) {
         event.preventDefault(); // Impede o comportamento padrão de enviar o formulário
@@ -25,11 +29,12 @@ function registerInterest(){
                 return response.json();
             })
             .then(data => {
-                // Lógica de sucesso, se necessário
+                alert("Deu errado!");
             })
             .catch(error => {
-                // Lógica de tratamento de erro, se necessário
+                alert("Deu errado!");
             });
     });
 }
+
 
