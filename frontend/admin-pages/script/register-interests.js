@@ -22,9 +22,11 @@ function registerInterest() {
     alert("teste")
 
     fetch("http://localhost:8080/api/admin/register-interest", {
+        mode:"same-origin",
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+
         },
         body: JSON.stringify(jsonObject),
         credentials: "same-origin"
