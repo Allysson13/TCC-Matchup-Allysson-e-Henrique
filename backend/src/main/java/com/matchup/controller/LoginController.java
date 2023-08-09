@@ -1,9 +1,11 @@
 package com.matchup.controller;
 
+import com.matchup.model.Interest;
 import com.matchup.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.matchup.service.UserService;
 
@@ -11,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/api/login")
 public class LoginController {
 
@@ -42,9 +43,16 @@ public class LoginController {
         return new ResponseEntity<>(userService.findByEmailAndHashedPassword(email, hashedPassword), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/hello-world")
-    public String hello() {
-        return "Hello World!";
+    @PostMapping("/teste4")
+    @PostAuthorize("true")
+    public ResponseEntity<User> register(@RequestBody User user) {
+        System.out.println(user.getName());
+        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.OK);
+    }
+
+    @GetMapping("/teste5")
+    public ResponseEntity<List<User>> teste5() {
+        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/login-route")

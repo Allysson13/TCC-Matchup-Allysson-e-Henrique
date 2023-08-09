@@ -5,6 +5,7 @@ import com.matchup.service.InterestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,6 +20,7 @@ public class AdminController {
     }
 
     @PostMapping("/register-interest")
+    @PostAuthorize("true")
     public ResponseEntity<Interest> register(@RequestBody Interest interest) {
         System.out.println(interest.getName());
         return new ResponseEntity<>(interestService.saveInterest(interest), HttpStatus.CREATED);
