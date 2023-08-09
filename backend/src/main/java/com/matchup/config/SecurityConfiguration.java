@@ -22,23 +22,23 @@ import java.util.Arrays;
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration {
 
-//    @Bean
-//    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-//        // Configure AuthenticationManagerBuilder
-//        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);// Get AuthenticationManager
-//        AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
-//        http
-//                .cors(Customizer.withDefaults())
-//                .csrf((csrf) -> csrf.disable())
-//                .authorizeHttpRequests((authz) -> authz
-//                        .requestMatchers(HttpMethod.POST).permitAll()
-//                        .anyRequest().authenticated())
-//
-//                .authenticationManager(authenticationManager)
-//                .sessionManagement((session) -> session
-//                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-//        return http.build();
-//    }
+    @Bean
+    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+        // Configure AuthenticationManagerBuilder
+        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);// Get AuthenticationManager
+        AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
+        http
+                .cors(Customizer.withDefaults())
+                .csrf((csrf) -> csrf.disable())
+                .authorizeHttpRequests((authz) -> authz
+                        .requestMatchers(HttpMethod.POST).permitAll()
+                        .anyRequest().authenticated())
+
+                .authenticationManager(authenticationManager)
+                .sessionManagement((session) -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        return http.build();
+    }
 
 
     @Bean
