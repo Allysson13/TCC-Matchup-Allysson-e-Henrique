@@ -34,7 +34,7 @@ function addOptionToDropDown(type, item) {
 }
 
 function getAll(type) {
-    return fetch(`http://localhost:8080/api/admin/get/${type}/all/"`, {
+    return fetch(`http://localhost:8080/api/admin/get/${type}/all`, {
         method: "GET",
     })
         .then(response => {
