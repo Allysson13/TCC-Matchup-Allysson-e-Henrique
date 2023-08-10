@@ -51,35 +51,23 @@
 
 
 
-
-
-
         <label for="dd-age-rating">Classificação Indicativa: </label><br>
-
-        <select class="form-select" class="select-dd-age-rating">
-            <option value="1">10</option>
-            <option value="2">12</option>
+        <select id="dd-age-rating" name="ageRating" class="form-select" class="select-dd-age-rating">
         </select><br><br>
 
-        <label for="checkboxes-genre">Gênero(s): </label><br>
+        <label for="dd-genre">Gênero(s): </label><br>
         <input type="button" value="Cadastrar" onclick="register('genre')"><br>
-        <select class="form-select" class="select-dd-genre">
-            <option value="1">RPG</option>
-            <option value="2">Open World</option>
+        <select id="dd-genre" name="genre" class="form-select" multiple>
         </select><br><br>
 
-        <label for="checkboxes-sub-genre">Subgênero(s): </label><br>
+        <label for="dd-subgenre">Subgênero(s): </label><br>
         <input type="button" value="Cadastrar" onclick="register('subgenre')"><br>
-        <select class="form-select" class="select-dd-subGenre">
-            <option value="1">Action RPG</option>
-            <option value="2">IDK</option>
+        <select id="dd-subgenre" name="subgenre" class="form-select" multiple>
         </select><br><br>
 
-        <label for="txt-plataform">Plataforma: </label><br>
+        <label for="dd-platform">Plataforma: </label><br>
         <input type="button" value="Cadastrar" onclick="register('platform')"><br>
-        <select class="form-select">
-            <option value="1">Playstation</option>
-            <option value="2">Xbox</option>
+        <select id="dd-platform" name="platform" class="form-select" multiple>
         </select><br><br>
 
         <input type="submit" id="submit" value="ENVIAR">
