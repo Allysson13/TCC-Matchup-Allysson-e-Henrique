@@ -34,21 +34,67 @@ public class InterestService {
         this.companyRepository = companyRepository;
     }
 
-
-    public Interest saveInterest(Interest interestToSave){
-        return interestRepository.save(interestToSave);
-    }
-
     public List<Interest> findByPartOfTheName(String partOfTheName){
         return interestRepository.findByPartOfTheName(partOfTheName);
+    }
+
+
+    // SAVE
+    public Interest saveInterest(Interest interestToSave){
+        return interestRepository.save(interestToSave);
     }
 
     public Company saveCompany(Company company){
         return companyRepository.save(company);
     }
 
+    public Language saveLanguage(Language language){
+        return languageRepository.save(language);
+    }
+
+    public AgeRating saveAgeRating(AgeRating ageRating){
+        return ageRatingRepository.save(ageRating);
+    }
+
+    public Genre saveGenre(Genre genre){
+        return genreRepository.save(genre);
+    }
+
+    public SubGenre saveSubGenre(SubGenre subGenre){
+        return subGenreRepository.save(subGenre);
+    }
+
+    public Platform savePlatform(Platform platform){
+        return platformRepository.save(platform);
+    }
+
+    // GET ALL
+    public List<Interest> getAllInterests(){
+        return interestRepository.findAll();
+    }
+
     public List<Company> getAllCompanies(){
         return companyRepository.findAll();
+    }
+
+    public List<Language> getAllLanguages(){
+        return languageRepository.findAll();
+    }
+
+    public List<AgeRating> getAllAgeRatings(){
+        return ageRatingRepository.findAll();
+    }
+
+    public List<Genre> getAllGenres(){
+        return genreRepository.findAll();
+    }
+
+    public List<SubGenre> getAllSubGenres(){
+        return subGenreRepository.findAll();
+    }
+
+    public List<Platform> getAllPlatforms(){
+        return platformRepository.findAll();
     }
 
 }
