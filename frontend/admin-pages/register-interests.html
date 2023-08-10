@@ -9,26 +9,17 @@
 </head>
 
 <body onload="onLoad()">
-    <form id="register-interest">
-        <label for="txt-name">Nome: </label><br>
-        <input type="text" id="txt-name" name="name" focused><br><br>
-        <input type="submit" id="submit" value="ENVIAR">
-    </form>
-
-
-
-    <!-- <h2>Cadastrar Interesses</h2>
+    <h2>Cadastrar Interesses</h2>
 
     <form id="register-interest">
         <label for="txt-name">Nome: </label><br>
         <input type="text" id="txt-name" name="name" focused><br><br>
 
-        <label for="dd-companies">Empresas: </label><br>
+        <label for="dd-companies">Empresas: </label> 
+        <input type="button" value="Cadastrar" onclick="register('company')"><br>
 
-        <select class="form-select">
-            <option value="1">Sony</option>
-            <option value="2">Microsoft</option>
-            <option value="3">Nintendo</option>
+        <select class="form-select" id="dd-company">
+            <option value="-1" disabled selected>Escolha a Empresa</option>
         </select><br><br>
 
         <label for="txt-lowest-price">Menor preço: </label><br>
@@ -76,7 +67,7 @@
 
         <input type="submit" id="submit" value="ENVIAR">
 
-    </form> -->
+    </form>
 
 
 </body>

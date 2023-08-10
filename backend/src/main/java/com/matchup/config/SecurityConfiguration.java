@@ -37,7 +37,6 @@ public class SecurityConfiguration implements WebMvcConfigurer {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);// Get AuthenticationManager
         AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
         http
-                .cors(Customizer.withDefaults())
                 .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers(HttpMethod.POST).permitAll()
@@ -59,6 +58,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
         configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("POST", "PUT", "GET", "OPTIONS", "DELETE", "PATCH")); // or simply "*"
         configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.addAllowedOrigin("http://127.0.0.1:5500");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

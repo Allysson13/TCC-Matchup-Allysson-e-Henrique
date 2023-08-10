@@ -9,10 +9,12 @@ import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.matchup.service.UserService;
 
+import javax.lang.model.util.Elements;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/login")
 public class LoginController {
 
@@ -51,6 +53,7 @@ public class LoginController {
     }
 
     @GetMapping("/teste5")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<List<User>> teste5() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.ACCEPTED);
     }
