@@ -3,7 +3,7 @@
 
 <head>
     <link rel="stylesheet" href="style/register-interests.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" /> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Interests</title>
@@ -37,6 +37,10 @@
         <select id="dd-dubbed-languages" class="form-select" name="dubbedLanguages[]" multiple>
             <option value="1">pt-br</option>
             <option value="2">en</option>
+            <option value="2">en-bt</option>
+            <option value="2">en-wt</option>
+            <option value="2">en-tf</option>
+            <option value="2">en-jp</option>
         </select><br><br>
 
         <label for="dd-subtitled">Legendado: </label><br>
@@ -59,15 +63,17 @@
 
         <label for="checkboxes-genre">Gênero(s): </label><br>
         <input type="button" value="Cadastrar" onclick="register('genre')"><br>
-        <div id="checkboxes-genre">
-            <input type="checkbox" id="genre" name="genre"><br><br>
-        </div>
+        <select class="form-select" class="select-dd-genre">
+            <option value="1">RPG</option>
+            <option value="2">Open World</option>
+        </select><br><br>
 
         <label for="checkboxes-sub-genre">Subgênero(s): </label><br>
         <input type="button" value="Cadastrar" onclick="register('subgenre')"><br>
-        <div id="checkboxes-sub-genre">
-            <input type="checkbox" id="subGenre name=" subGenre"><br><br>
-        </div>
+        <select class="form-select" class="select-dd-subGenre">
+            <option value="1">Action RPG</option>
+            <option value="2">IDK</option>
+        </select><br><br>
 
         <label for="txt-plataform">Plataforma: </label><br>
         <input type="button" value="Cadastrar" onclick="register('platform')"><br>

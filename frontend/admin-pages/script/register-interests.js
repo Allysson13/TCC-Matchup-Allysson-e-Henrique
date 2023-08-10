@@ -7,7 +7,7 @@ function onLoad() {
     loadDropDowns('company');
     loadDropDowns('language');
 
-    registerInterest();
+    searchLanguageDropDown()
 }
 
 function loadDropDowns(type) {
@@ -82,25 +82,25 @@ function register(type) {
 
 
 
-function registerInterest() {
-    document.getElementById("register-interest").addEventListener("submit", function (event) {
-        event.preventDefault();
+function registerInterest(interest) {
+    // document.getElementById("register-interest").addEventListener("submit", function (event) {
+    //     event.preventDefault();
 
-        var formData = new FormData(document.getElementById("register-interest"));
+    //     var formData = new FormData(document.getElementById("register-interest"));
 
-        var jsonObject = {};
-        formData.forEach(function (value, key) {
-            jsonObject[key] = value;
-        });
+    //     var jsonObject = {};
+    //     formData.forEach(function (value, key) {
+    //         jsonObject[key] = value;
+    //     });
 
-        console.log(jsonObject);
+    //     console.log(jsonObject);
 
         fetch("http://localhost:8080/api/admin/register/interest", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(jsonObject)
+            body: JSON.stringify(interest)
         })
             .then(response => {
                 if (!response.ok) {
@@ -114,8 +114,9 @@ function registerInterest() {
             .catch(error => {
                 alert("Deu errado! -> " + error);
             });
-    });
 }
+
+
 
 
 function searchLanguageDropDown(){
@@ -126,13 +127,39 @@ function searchLanguageDropDown(){
         $("#register-interest").submit(function(event) {
             event.preventDefault();
 
-            const legendasSelecionadas = $("#dd-dubbed-languages").val();
-            const dublagemSelecionada = $("#dd-subtitled-languages").val();
+            const formArray = $("#register-interest").serializeArray();
+            const interest = {};
+        
+            formArray.forEach(function(input) {
+                interest[input.name] = input.value;
+            });
 
-            // Aqui você pode enviar os dados para o servidor ou fazer qualquer outra ação necessária
+            interest.dubbedLanguages = $("#dd-dubbed-languages").val();
+            interest.subtitledLanguages = $("#dd-subtitled-languages").val();
+            console.log(selectedDubbed);
+            console.log(selectedSubtitles);
+
+            registerInterest(interest);
         });
     });
 }
+     
+//     $("#idiomasForm").submit(function(event) {
+//         event.preventDefault();
+
+//         const formArray = $("#idiomasForm").serializeArray();
+//         const formData = {};
+        
+//         formArray.forEach(function(input) {
+//             formData[input.name] = input.value;
+//         });
+        
+//         formData.legendas = $("#legendas").val();
+//         formData.dublagem = $("#dublagem").val();
+
+//         enviarDadosParaAPI(formData);
+//     });
+// }
 
 
 // function addDropDown(divId, selectId){
