@@ -5,6 +5,8 @@ function onLoad() {
     //     loadDropDowns(element);
     // });
     loadDropDowns('company');
+    loadDropDowns('language');
+
     registerInterest();
 }
 
@@ -114,3 +116,30 @@ function registerInterest() {
             });
     });
 }
+
+
+function searchLanguageDropDown(){
+    $(document).ready(function() {
+        $("#dd-dubbed-languages").select2();
+        $("#dd-subtitled-languages").select2();
+        
+        $("#register-interest").submit(function(event) {
+            event.preventDefault();
+
+            const legendasSelecionadas = $("#dd-dubbed-languages").val();
+            const dublagemSelecionada = $("#dd-subtitled-languages").val();
+
+            // Aqui você pode enviar os dados para o servidor ou fazer qualquer outra ação necessária
+        });
+    });
+}
+
+
+// function addDropDown(divId, selectId){
+//     let div = document.getElementById(divId);
+//     let select = document.getElementById(selectId);
+//     div.innerHTML() += document.get
+
+    
+    
+// }

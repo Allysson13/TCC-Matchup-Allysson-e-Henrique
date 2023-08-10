@@ -3,6 +3,7 @@
 
 <head>
     <link rel="stylesheet" href="style/register-interests.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Interests</title>
@@ -15,7 +16,7 @@
         <label for="txt-name">Nome: </label><br>
         <input type="text" id="txt-name" name="name" focused><br><br>
 
-        <label for="dd-companies">Empresas: </label> 
+        <label for="dd-companies">Empresas: </label>
         <input type="button" value="Cadastrar" onclick="register('company')"><br>
 
         <select class="form-select" id="dd-company">
@@ -28,23 +29,30 @@
         <label for="txt-highest-price">Maior preço: </label><br>
         <input type="number" id="txt-highest-price" name="highestPrice" placeholder="0,00" min="0" step="0.01"><br><br>
 
+
+
+
+
         <label for="dd-dubbed">Dublado: </label><br>
-        
-        <select class="form-select">
+        <select id="dd-dubbed-languages" class="form-select" name="dubbedLanguages[]" multiple>
             <option value="1">pt-br</option>
             <option value="2">en</option>
         </select><br><br>
 
         <label for="dd-subtitled">Legendado: </label><br>
-        
-        <select class="form-select">
+        <select id="dd-subtitled-languages" class="form-select" name="subtitledLanguages[]" multiple>
             <option value="1">pt-br</option>
             <option value="2">en</option>
         </select><br><br>
 
+
+
+
+
+
         <label for="dd-age-rating">Classificação Indicativa: </label><br>
-        
-        <select class="form-select">
+
+        <select class="form-select" class="select-dd-age-rating">
             <option value="1">10</option>
             <option value="2">12</option>
         </select><br><br>
@@ -58,7 +66,7 @@
         <label for="checkboxes-sub-genre">Subgênero(s): </label><br>
         <input type="button" value="Cadastrar" onclick="register('subgenre')"><br>
         <div id="checkboxes-sub-genre">
-            <input type="checkbox" id="subGenre name="subGenre"><br><br>
+            <input type="checkbox" id="subGenre name=" subGenre"><br><br>
         </div>
 
         <label for="txt-plataform">Plataforma: </label><br>
@@ -77,3 +85,5 @@
 
 </html>
 <script src="script/register-interests.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
