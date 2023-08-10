@@ -28,32 +28,31 @@ public class AdminController {
         this.interestService = interestService;
     }
 
-    @RequestMapping("/register")
-    @PostMapping("/interest")
+    @PostMapping("/register/interest")
     @PostAuthorize("true")
     public ResponseEntity<Interest> registerInterest(@RequestBody Interest interest) {
         return new ResponseEntity<>(interestService.saveInterest(interest), HttpStatus.CREATED);
     }
 
-    @PostMapping("/company")
+    @PostMapping("/register/company")
     @PostAuthorize("true")
     public ResponseEntity<Company> registerCompany(@RequestBody Company company) {
         return new ResponseEntity<>(interestService.saveCompany(company), HttpStatus.CREATED);
     }
 
-    @PostMapping("/genre")
+    @PostMapping("/register/genre")
     @PostAuthorize("true")
     public ResponseEntity<Genre> registerGenre(@RequestBody Genre genre) {
         return new ResponseEntity<>(interestService.saveGenre(genre), HttpStatus.CREATED);
     }
 
-    @PostMapping("/subGenre")
+    @PostMapping("/register/subGenre")
     @PostAuthorize("true")
     public ResponseEntity<SubGenre> registerSubGenre(@RequestBody SubGenre subGenre) {
         return new ResponseEntity<>(interestService.saveSubGenre(subGenre), HttpStatus.CREATED);
     }
 
-    @PostMapping("/platform")
+    @PostMapping("/register/platform")
     @PostAuthorize("true")
     public ResponseEntity<Platform> registerPlatform(@RequestBody Platform platform) {
         return new ResponseEntity<>(interestService.savePlatform(platform), HttpStatus.CREATED);
@@ -61,38 +60,37 @@ public class AdminController {
 
 
 
-    @RequestMapping("/get")
-    @GetMapping("/interest/all")
+    @GetMapping("/get/interest/all")
     public ResponseEntity<List<Interest>> getAllInterests() {
         return new ResponseEntity<>(interestService.getAllInterests(), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/company/all")
+    @GetMapping("/get/company/all")
     public ResponseEntity<List<Company>> getAllCompanies() {
         return new ResponseEntity<>(interestService.getAllCompanies(), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/language/all")
+    @GetMapping("/get/language/all")
     public ResponseEntity<List<Language>> getAllLanguages() {
         return new ResponseEntity<>(interestService.getAllLanguages(), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/age-rating/all")
+    @GetMapping("/get/age-rating/all")
     public ResponseEntity<List<AgeRating>> getAllAgeRatings() {
         return new ResponseEntity<>(interestService.getAllAgeRatings(), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/genre/all")
+    @GetMapping("/get/genre/all")
     public ResponseEntity<List<Genre>> getAllGenre() {
         return new ResponseEntity<>(interestService.getAllGenres(), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/sub-genre/all")
+    @GetMapping("/get/sub-genre/all")
     public ResponseEntity<List<SubGenre>> getAllSubGenre() {
         return new ResponseEntity<>(interestService.getAllSubGenres(), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/plataform/all")
+    @GetMapping("/get/plataform/all")
     public ResponseEntity<List<Platform>> getAllPlatforms() {
         return new ResponseEntity<>(interestService.getAllPlatforms(), HttpStatus.ACCEPTED);
     }
