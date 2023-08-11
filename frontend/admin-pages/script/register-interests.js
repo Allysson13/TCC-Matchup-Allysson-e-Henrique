@@ -2,8 +2,10 @@ const INTEREST_DEPENDENCIES = ['company', 'language', 'age-rating', 'genre', 'su
 
 $('#dd-dubbed-languages').multi({ 
     non_selected_header: 'Languages',
-    selected_header: 'Selected Languages'
+    selected_header: 'Selected Languages',
+    
 });
+
 
 $('#dd-subtitled-languages').multi({ 
     non_selected_header: 'Languages',
