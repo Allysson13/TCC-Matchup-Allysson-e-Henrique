@@ -85,12 +85,12 @@ public class AdminController {
         return new ResponseEntity<>(interestService.getAllGenres(), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/get/sub-genre/all")
+    @GetMapping("/get/subgenre/all")
     public ResponseEntity<List<SubGenre>> getAllSubGenre() {
         return new ResponseEntity<>(interestService.getAllSubGenres(), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/get/plataform/all")
+    @GetMapping("/get/platform/all")
     public ResponseEntity<List<Platform>> getAllPlatforms() {
         return new ResponseEntity<>(interestService.getAllPlatforms(), HttpStatus.ACCEPTED);
     }

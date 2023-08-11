@@ -1,31 +1,62 @@
 const INTEREST_DEPENDENCIES = ['company', 'language', 'age-rating', 'genre', 'subgenre', 'platform'];
 
-function onLoad() {
-    // INTEREST_DEPENDENCIES.forEach(function(element) {
-    //     loadDropDowns(element);
-    // });
-    loadDropDowns('company');
-    loadDropDowns('language');
+document.addEventListener("DOMContentLoaded", function() {
+    INTEREST_DEPENDENCIES.forEach(type => {
+        loadDropDowns(type);
+    })
+});
 
-    searchLanguageDropDown()
+document.getElementById("register-interest").addEventListener("submit", function (event) {
+    event.preventDefault();
+    registerInterest();
+});
+
+
+async function getAll(type) {
+    const response = await fetch(`http://localhost:8080/api/admin/get/${type}/all`);
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+    return response.json();
 }
 
-function loadDropDowns(type) {
-    getAll(type)
-        .then(json => {
-            console.log(json);
-            var dropdown = document.getElementById('dd-' + type);
-            json.forEach(function (item) {
-                let option = document.createElement('option');
-                option.value = item.id;
-                option.text = item.name;
-                dropdown.appendChild(option);
-            });
-        })
-        .catch(error => {
-            alert("Deu errado! (loadDropDowns) -> " + error);
-        });
+async function loadDropDowns(type) {
+    if(type=='language'){
+        loadLanguagesDropDowns();
+        return;
+    }
+    try {
+        const json = await getAll(type);
+        populateDropDown(json, document.getElementById('dd-' + type));
+    } catch (error) {
+        alert(`Deu errado! (loadDropDowns) -> ${error}`);
+    }
 }
+
+async function loadLanguagesDropDowns() {
+    try {
+        const response = await fetch('/admin-pages/script/languages.json');
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        const json = await response.json();
+        populateDropDown(json, document.getElementById('dd-dubbed-languages'));
+        populateDropDown(json, document.getElementById('dd-subtitled-languages'));
+    } catch (error) {
+        console.error('Erro ao carregar o arquivo JSON:', error);
+        throw error;
+    }
+}
+
+function populateDropDown(json, dropdown) {
+    json.forEach(function(item) {
+        let option = document.createElement('option');
+        option.value = item.id;
+        option.text = item.name;
+        dropdown.appendChild(option);
+    });
+}
+
 
 function addOptionToDropDown(type, item) {
     console.log(item);
@@ -36,9 +67,7 @@ function addOptionToDropDown(type, item) {
 }
 
 function getAll(type) {
-    return fetch(`http://localhost:8080/api/admin/get/${type}/all`, {
-        method: "GET",
-    })
+    return fetch(`http://localhost:8080/api/admin/get/${type}/all`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(response.statusText);
@@ -53,9 +82,10 @@ function getAll(type) {
 
 
 function register(type) {
-
     var jsonObject = {};
-    jsonObject['name'] = prompt("Inform the name of the " + (type + '').toUpperCase() + ":");
+    let name = prompt('Inform the name of the ' + (type).toUpperCase() + ':');
+    if(name == null || name =='') return;
+    jsonObject['name'] = name;
 
     console.log(jsonObject);
 
@@ -66,11 +96,11 @@ function register(type) {
         },
         body: JSON.stringify(jsonObject)
     })
-        .then(response => {
+        .then(async response => {
             if (!response.ok) {
                 throw new Error("Erro ao enviar dados " + response);
             }
-            addOptionToDropDown(type, response.json());
+            addOptionToDropDown(type, await response.json());
         })
         .catch(error => {
             alert("Deu errado! -> (register())" + error);
@@ -79,70 +109,65 @@ function register(type) {
 
 
 
+function registerInterest() {
+    var formData = new FormData(document.getElementById("register-interest"));
 
-
-
-function registerInterest(interest) {
-    // document.getElementById("register-interest").addEventListener("submit", function (event) {
-    //     event.preventDefault();
-
-    //     var formData = new FormData(document.getElementById("register-interest"));
-
-    //     var jsonObject = {};
-    //     formData.forEach(function (value, key) {
-    //         jsonObject[key] = value;
-    //     });
-
-    //     console.log(jsonObject);
-
-        fetch("http://localhost:8080/api/admin/register/interest", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(interest)
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Erro ao enviar dados " + response);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Deu certo!");
-            })
-            .catch(error => {
-                alert("Deu errado! -> " + error);
-            });
-}
-
-
-
-
-function searchLanguageDropDown(){
-    $(document).ready(function() {
-        $("#dd-dubbed-languages").select2();
-        $("#dd-subtitled-languages").select2();
-        
-        $("#register-interest").submit(function(event) {
-            event.preventDefault();
-
-            const formArray = $("#register-interest").serializeArray();
-            const interest = {};
-        
-            formArray.forEach(function(input) {
-                interest[input.name] = input.value;
-            });
-
-            interest.dubbedLanguages = $("#dd-dubbed-languages").val();
-            interest.subtitledLanguages = $("#dd-subtitled-languages").val();
-            console.log(selectedDubbed);
-            console.log(selectedSubtitles);
-
-            registerInterest(interest);
-        });
+    var jsonObject = {};
+    formData.forEach(function (value, key) {
+        jsonObject[key] = value;
     });
+
+    console.log(jsonObject);
+
+    fetch("http://localhost:8080/api/admin/register/interest", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(interest)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erro ao enviar dados " + response);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Deu certo!");
+        })
+        .catch(error => {
+            alert("Deu errado! -> " + error);
+        });
+    
 }
+
+
+
+
+// function searchLanguageDropDown(){
+//     $(document).ready(function() {
+//         $("#dd-dubbed-languages").select2();
+//         $("#dd-subtitled-languages").select2();
+        
+//         $("#register-interest").submit(function(event) {
+//             event.preventDefault();
+
+//             const formArray = $("#register-interest").serializeArray();
+//             const interest = {};
+        
+//             formArray.forEach(function(input) {
+//                 interest[input.name] = input.value;
+//             });
+
+//             interest.dubbedLanguages = $("#dd-dubbed-languages").val();
+//             interest.subtitledLanguages = $("#dd-subtitled-languages").val();
+//             console.log(selectedDubbed);
+//             console.log(selectedSubtitles);
+
+//             registerInterest(interest);
+//         });
+//     });
+// }
      
 //     $("#idiomasForm").submit(function(event) {
 //         event.preventDefault();

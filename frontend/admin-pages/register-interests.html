@@ -10,7 +10,7 @@
     <title>Register Interests</title>
 </head>
 
-<body onload="onLoad()">
+<body>
     <div id="main-div">
         <h2>Cadastrar Interesses</h2>
 
@@ -20,66 +20,49 @@
 
             <label for="dd-companies">Empresas: </label>
             <input type="button" value="Cadastrar" onclick="register('company')"><br>
-
             <select class="form-select" id="dd-company">
                 <option value="-1" disabled selected>Escolha a Empresa</option>
             </select><br><br>
 
             <label for="txt-lowest-price">Menor preço: </label><br>
-            <input type="number" id="txt-lowest-price" name="lowestPrice" placeholder="0,00" min="0" step="0.01"><br><br>
+            <input type="number" id="txt-lowest-price" name="lowestPrice" placeholder="0,00" min="0"
+                step="0.01"><br><br>
 
             <label for="txt-highest-price">Maior preço: </label><br>
-            <input type="number" id="txt-highest-price" name="highestPrice" placeholder="0,00" min="0" step="0.01"><br><br>
-
-
+            <input type="number" id="txt-highest-price" name="highestPrice" placeholder="0,00" min="0"
+                step="0.01"><br><br>
 
 
 
             <label for="dd-dubbed">Dublado: </label><br>
             <select id="dd-dubbed-languages" class="form-select" name="dubbedLanguages[]" multiple>
-                <option value="1">pt-br</option>
-                <option value="2">en</option>
-                <option value="2">en-bt</option>
-                <option value="2">en-wt</option>
-                <option value="2">en-tf</option>
-                <option value="2">en-jp</option>
             </select><br><br>
 
             <label for="dd-subtitled">Legendado: </label><br>
             <select id="dd-subtitled-languages" class="form-select" name="subtitledLanguages[]" multiple>
-                <option value="1">pt-br</option>
-                <option value="2">en</option>
             </select><br><br>
 
 
 
-        <label for="dd-age-rating">Classificação Indicativa: </label><br>
+            <label for="dd-age-rating">Classificação Indicativa: </label><br>
+            <select id="dd-age-rating" class="form-select select-dd-age-rating">
+                <option value="-1" disabled selected>Escolha a Classificação Indcativa</option>
+            </select><br><br>
 
-        <select class="form-select" class="select-dd-age-rating">
-            <option value="1">10</option>
-            <option value="2">12</option>
-        </select><br><br>
+            <label for="dd-genre">Gênero(s): </label>
+            <input type="button" value="Cadastrar" onclick="register('genre')"><br>
+            <select id="dd-genre" class="form-select select-dd-genre" multiple>
+            </select><br><br>
 
-        <label for="checkboxes-genre">Gênero(s): </label><br>
-        <input type="button" value="Cadastrar" onclick="register('genre')"><br>
-        <select class="form-select" class="select-dd-genre">
-            <option value="1">RPG</option>
-            <option value="2">Open World</option>
-        </select><br><br>
+            <label for="dd-subgenre">Subgênero(s): </label>
+            <input type="button" value="Cadastrar" onclick="register('subgenre')"><br>
+            <select id="dd-subgenre" class="form-select select-dd-subGenre" multiple>
+            </select><br><br>
 
-        <label for="checkboxes-sub-genre">Subgênero(s): </label><br>
-        <input type="button" value="Cadastrar" onclick="register('subgenre')"><br>
-        <select class="form-select" class="select-dd-subGenre">
-            <option value="1">Action RPG</option>
-            <option value="2">IDK</option>
-        </select><br><br>
-
-        <label for="txt-plataform">Plataforma: </label><br>
-        <input type="button" value="Cadastrar" onclick="register('platform')"><br>
-        <select class="form-select">
-            <option value="1">Playstation</option>
-            <option value="2">Xbox</option>
-        </select><br><br>
+            <label for="dd-platform">Plataforma: </label>
+            <input type="button" value="Cadastrar" onclick="register('platform')"><br>
+            <select id="dd-platform" class="form-select" multiple>
+            </select><br><br>
 
             <input type="submit" id="submit" value="ENVIAR">
 
@@ -89,5 +72,5 @@
 
 </html>
 <script src="script/register-interests.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script> -->
