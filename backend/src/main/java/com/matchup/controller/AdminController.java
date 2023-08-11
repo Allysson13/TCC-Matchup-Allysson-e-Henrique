@@ -47,7 +47,7 @@ public class AdminController {
         return new ResponseEntity<>(interestService.saveGenre(genre), HttpStatus.CREATED);
     }
 
-    @PostMapping("/register/subGenre")
+    @PostMapping("/register/subgenre")
     @PostAuthorize("true")
     public ResponseEntity<SubGenre> registerSubGenre(@RequestBody SubGenre subGenre) {
         return new ResponseEntity<>(interestService.saveSubGenre(subGenre), HttpStatus.CREATED);
