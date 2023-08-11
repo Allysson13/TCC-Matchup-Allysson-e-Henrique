@@ -6,11 +6,28 @@ $('#dd-dubbed-languages').multi({
 
 });
 
-
 $('#dd-subtitled-languages').multi({
     non_selected_header: 'Languages',
     selected_header: 'Selected Languages'
 });
+
+$('#dd-genre').multi({
+    non_selected_header: 'Genres',
+    selected_header: 'Selected Genres'
+});
+
+
+$('#dd-subgenre').multi({
+    non_selected_header: 'Subgenres',
+    selected_header: 'Selected Subgenres'
+});
+
+
+$('#dd-platform').multi({
+    non_selected_header: 'Platform',
+    selected_header: 'Selected Platform'
+});
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -50,13 +67,13 @@ async function loadLanguagesDropDowns() {
     ///frontend/admin-pages/script/languages.json
     //frontend/admin-pages/script/languages.json
     try {
-        const response = await fetch('languages.json');
+        /* const response = await fetch('/workspaces/TCC-Matchup-Allysson-e-Henrique/frontend/admin-pages/script/languages.json');
         if (!response.ok) {
             throw new Error(response.statusText);
         } 
-        console.log(response);
-        //const json = languages;
-        const json = await response.json();
+        console.log(response); */
+        const json = languages;
+        //const json = await response.json();
         populateDropDown(json, document.getElementById('dd-dubbed-languages'));
         populateDropDown(json, document.getElementById('dd-subtitled-languages'));
     } catch (error) {
@@ -127,15 +144,75 @@ function register(type) {
 
 
 function registerInterest() {
+    let idCompany = $("#dd-company").value;
+    /* let nameCompany = document.getElementById('dd-company').options[$("#dd-company").selectedIndex].text; */
+    let nameCompany = $("#dd-company option:selected").text();
     var formData = new FormData(document.getElementById("register-interest"));
-
-    var interest = {};
+    let company = { id: idCompany, name: nameCompany};
+    formData.append("company", JSON.stringify(company));
+    console.log(formData);
+    
+    let platforms = [];
+    formData.append("platform", JSON.stringify(platforms));
+    for(let option of $("#dd-platform option:selected")){
+        var platform = { id: option.value, name: option.text}; 
+        platforms.push(platform);
+    }
+    formData.append("platform", JSON.stringify(platform));
+    console.log(platforms);
+    
+    let interest = {};
     formData.forEach(function (value, key) {
         interest[key] = value;
     });
-
-
     console.log(interest);
+    /*var interest = {
+        name: txtName
+       /*  'company': {
+            'id': $('dd-company').value,
+            'name': $('dd-company').text
+        },
+        'lowestPrice': $('txt-lowest-price').text,
+        'highestPrice': $('txt-highest-price').text */
+    
+
+    /*var interest = {};
+    interest.name = $('#txt-name').val;
+    interest.company = $('#dd-company').val;
+    
+    console.log(interest);
+    /* interest.name = $('#txt-name').text;
+    interest.company.id = $('#dd-company').value;
+    interest.company.name = $('#dd-company').text;
+    interest.lowestPrice = $('txt-lowest-price').text;
+    interest.highestPrice = $('txt-highest-price').text; */
+
+    /* let selectedDubbedLanguages = $('dd-dubbed-languages').selectedOptions;
+    for(let opcao of selectedDubbedLanguages){
+        let i = 0;
+        interest.dubbingLanguages[i].
+        i++;
+    }
+    let selectedSubtitledLanguages = $('dd-dubbed-languages').selectedOptions;
+    for(let opiton of selectedDubbedLanguages){
+        interest.subtitleLanguages[];
+    }
+    interest.dubbingLanguages = $('dd-dubbed-languages')
+    interest.subtitledLanguages = $('dd-subtitles-languages') */
+    
+    /* botao.addEventListener("click", function() {
+        const opcoesSelecionadas = meuSelect.selectedOptions;
+
+        for (const opcao of opcoesSelecionadas) {
+            console.log("Opção selecionada:", opcao.value);
+        }
+    });*/
+    /* formData.forEach(function (value, key) {
+        interest[key] = value;
+    }); */
+
+
+    /*console.log(interest);*/
 
     fetch("http://localhost:8080/api/admin/register/interest", {
         method: "POST",
