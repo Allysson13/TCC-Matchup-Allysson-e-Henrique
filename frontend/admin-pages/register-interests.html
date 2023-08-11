@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <!-- <link rel="stylesheet" href="../bootstrap-5.3.0-dist/css/bootstrap.css"> -->
     <link rel="stylesheet" href="style/register-interests.css">
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" /> -->
     <meta charset="UTF-8">
@@ -10,71 +11,80 @@
 </head>
 
 <body onload="onLoad()">
-    <h2>Cadastrar Interesses</h2>
+    <div id="main-div">
+        <h2>Cadastrar Interesses</h2>
 
-    <form id="register-interest">
-        <label for="txt-name">Nome: </label><br>
-        <input type="text" id="txt-name" name="name" focused><br><br>
+        <form id="register-interest">
+            <label for="txt-name">Nome: </label><br>
+            <input type="text" id="txt-name" name="name" focused><br><br>
 
-        <label for="dd-companies">Empresas: </label>
-        <input type="button" value="Cadastrar" onclick="register('company')"><br>
+            <label for="dd-companies">Empresas: </label>
+            <input type="button" value="Cadastrar" onclick="register('company')"><br>
 
-        <select class="form-select" id="dd-company">
-            <option value="-1" disabled selected>Escolha a Empresa</option>
-        </select><br><br>
+            <select class="form-select" id="dd-company">
+                <option value="-1" disabled selected>Escolha a Empresa</option>
+            </select><br><br>
 
-        <label for="txt-lowest-price">Menor preço: </label><br>
-        <input type="number" id="txt-lowest-price" name="lowestPrice" placeholder="0,00" min="0" step="0.01"><br><br>
+            <label for="txt-lowest-price">Menor preço: </label><br>
+            <input type="number" id="txt-lowest-price" name="lowestPrice" placeholder="0,00" min="0" step="0.01"><br><br>
 
-        <label for="txt-highest-price">Maior preço: </label><br>
-        <input type="number" id="txt-highest-price" name="highestPrice" placeholder="0,00" min="0" step="0.01"><br><br>
-
-
-
+            <label for="txt-highest-price">Maior preço: </label><br>
+            <input type="number" id="txt-highest-price" name="highestPrice" placeholder="0,00" min="0" step="0.01"><br><br>
 
 
-        <label for="dd-dubbed">Dublado: </label><br>
-        <select id="dd-dubbed-languages" class="form-select" name="dubbedLanguages[]" multiple>
-            <option value="1">pt-br</option>
-            <option value="2">en</option>
-            <option value="2">en-bt</option>
-            <option value="2">en-wt</option>
-            <option value="2">en-tf</option>
-            <option value="2">en-jp</option>
-        </select><br><br>
 
-        <label for="dd-subtitled">Legendado: </label><br>
-        <select id="dd-subtitled-languages" class="form-select" name="subtitledLanguages[]" multiple>
-            <option value="1">pt-br</option>
-            <option value="2">en</option>
-        </select><br><br>
+
+
+            <label for="dd-dubbed">Dublado: </label><br>
+            <select id="dd-dubbed-languages" class="form-select" name="dubbedLanguages[]" multiple>
+                <option value="1">pt-br</option>
+                <option value="2">en</option>
+                <option value="2">en-bt</option>
+                <option value="2">en-wt</option>
+                <option value="2">en-tf</option>
+                <option value="2">en-jp</option>
+            </select><br><br>
+
+            <label for="dd-subtitled">Legendado: </label><br>
+            <select id="dd-subtitled-languages" class="form-select" name="subtitledLanguages[]" multiple>
+                <option value="1">pt-br</option>
+                <option value="2">en</option>
+            </select><br><br>
 
 
 
         <label for="dd-age-rating">Classificação Indicativa: </label><br>
-        <select id="dd-age-rating" name="ageRating" class="form-select" class="select-dd-age-rating">
+
+        <select class="form-select" class="select-dd-age-rating">
+            <option value="1">10</option>
+            <option value="2">12</option>
         </select><br><br>
 
-        <label for="dd-genre">Gênero(s): </label><br>
+        <label for="checkboxes-genre">Gênero(s): </label><br>
         <input type="button" value="Cadastrar" onclick="register('genre')"><br>
-        <select id="dd-genre" name="genre" class="form-select" multiple>
+        <select class="form-select" class="select-dd-genre">
+            <option value="1">RPG</option>
+            <option value="2">Open World</option>
         </select><br><br>
 
-        <label for="dd-subgenre">Subgênero(s): </label><br>
+        <label for="checkboxes-sub-genre">Subgênero(s): </label><br>
         <input type="button" value="Cadastrar" onclick="register('subgenre')"><br>
-        <select id="dd-subgenre" name="subgenre" class="form-select" multiple>
+        <select class="form-select" class="select-dd-subGenre">
+            <option value="1">Action RPG</option>
+            <option value="2">IDK</option>
         </select><br><br>
 
-        <label for="dd-platform">Plataforma: </label><br>
+        <label for="txt-plataform">Plataforma: </label><br>
         <input type="button" value="Cadastrar" onclick="register('platform')"><br>
-        <select id="dd-platform" name="platform" class="form-select" multiple>
+        <select class="form-select">
+            <option value="1">Playstation</option>
+            <option value="2">Xbox</option>
         </select><br><br>
 
-        <input type="submit" id="submit" value="ENVIAR">
+            <input type="submit" id="submit" value="ENVIAR">
 
-    </form>
-
-
+        </form>
+    </div>
 </body>
 
 </html>
