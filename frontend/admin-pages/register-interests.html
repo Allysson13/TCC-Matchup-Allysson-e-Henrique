@@ -4,7 +4,7 @@
 <head>
     <!-- <link rel="stylesheet" href="../bootstrap-5.3.0-dist/css/bootstrap.css"> -->
     <link rel="stylesheet" href="style/register-interests.css">
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="./plugins/Dual-List-Box-Plugin-jQuery-Multi/dist/multi.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Interests</title>
@@ -20,7 +20,7 @@
 
             <label for="dd-companies">Empresas: </label>
             <input type="button" value="Cadastrar" onclick="register('company')"><br>
-            <select class="form-select" id="dd-company">
+            <select id="dd-company" class="form-select" name="company" >
                 <option value="-1" disabled selected>Escolha a Empresa</option>
             </select><br><br>
 
@@ -34,11 +34,11 @@
 
 
 
-            <label for="dd-dubbed">Dublado: </label><br>
+            <label for="dd-dubbed-languages">Dublado: </label><br>
             <select id="dd-dubbed-languages" class="form-select" name="dubbedLanguages[]" multiple>
             </select><br><br>
 
-            <label for="dd-subtitled">Legendado: </label><br>
+            <label for="dd-subtitled-languages">Legendado: </label><br>
             <select id="dd-subtitled-languages" class="form-select" name="subtitledLanguages[]" multiple>
             </select><br><br>
 
@@ -71,6 +71,9 @@
 </body>
 
 </html>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+    crossorigin="anonymous">
+</script>
+<script src="./plugins/Dual-List-Box-Plugin-jQuery-Multi/dist/multi.min.js"></script>
 <script src="script/register-interests.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script> -->

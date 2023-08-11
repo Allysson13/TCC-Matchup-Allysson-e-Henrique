@@ -1,5 +1,15 @@
 const INTEREST_DEPENDENCIES = ['company', 'language', 'age-rating', 'genre', 'subgenre', 'platform'];
 
+$('#dd-dubbed-languages').multi({ 
+    non_selected_header: 'Languages',
+    selected_header: 'Selected Languages'
+});
+
+$('#dd-subtitled-languages').multi({ 
+    non_selected_header: 'Languages',
+    selected_header: 'Selected Languages'
+});
+
 document.addEventListener("DOMContentLoaded", function() {
     INTEREST_DEPENDENCIES.forEach(type => {
         loadDropDowns(type);
@@ -112,12 +122,12 @@ function register(type) {
 function registerInterest() {
     var formData = new FormData(document.getElementById("register-interest"));
 
-    var jsonObject = {};
+    var interest = {};
     formData.forEach(function (value, key) {
-        jsonObject[key] = value;
+        interest[key] = value;
     });
 
-    console.log(jsonObject);
+    console.log(interest);
 
     fetch("http://localhost:8080/api/admin/register/interest", {
         method: "POST",
