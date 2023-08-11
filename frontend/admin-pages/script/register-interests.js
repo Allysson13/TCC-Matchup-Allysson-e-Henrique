@@ -126,7 +126,8 @@ function registerInterest() {
     formData.forEach(function (value, key) {
         interest[key] = value;
     });
-
+    
+    
     console.log(interest);
 
     fetch("http://localhost:8080/api/admin/register/interest", {
