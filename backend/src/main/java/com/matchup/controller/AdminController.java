@@ -32,7 +32,7 @@ public class AdminController {
     @PostAuthorize("true")
     public ResponseEntity<Interest> registerInterest(@RequestBody Interest interest) {
         System.out.println(interest.getName());
-        System.out.println(interest);
+        System.out.println(interest.toString());
         return new ResponseEntity<>(interestService.saveInterest(interest), HttpStatus.ACCEPTED);
     }
 
