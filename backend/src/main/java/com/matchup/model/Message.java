@@ -3,6 +3,7 @@ package com.matchup.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "Message", schema = "matchup")
@@ -117,4 +118,16 @@ public class Message {
         this.status = "VIEWED";
     }
 
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", hashedContent=" + Arrays.toString(hashedContent) +
+                ", date=" + date +
+                ", extension='" + extension + '\'' +
+                ", sender=" + sender +
+                ", receiver=" + receiver +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

@@ -212,7 +212,20 @@ public class Interest {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Interest{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", company=" + company +
+                ", lowestPrice=" + lowestPrice +
+                ", highestPrice=" + highestPrice +
+                ", dubbingLanguages=" + dubbingLanguages +
+                ", subtitleLanguages=" + subtitleLanguages +
+                ", genres=" + genres +
+                ", subGenres=" + subGenres +
+                ", platforms=" + platforms +
+                ", ageRating=" + ageRating +
+                ", users=" + users +
+                '}';
     }
 
 }
