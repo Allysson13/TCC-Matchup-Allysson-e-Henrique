@@ -18,7 +18,6 @@ public class Interest {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonManagedReference
     private Company company;
 
     @Column(name = "lowest_price", nullable = false)
@@ -216,8 +215,8 @@ public class Interest {
     public String toString() {
         return "Interest{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", company=" + company +
+*/                ", name='" + name + '\'' +
+              ", company=" + company +
                 ", lowestPrice=" + lowestPrice +
                 ", highestPrice=" + highestPrice +
                 ", dubbingLanguages=" + dubbingLanguages +
