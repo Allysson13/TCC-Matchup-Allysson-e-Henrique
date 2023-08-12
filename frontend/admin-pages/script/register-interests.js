@@ -144,11 +144,12 @@ function register(type) {
 
 
 function registerInterest() {
-    let idCompany = $("#dd-company").value;
+    let idCompany = parseInt(document.getElementById('dd-company').value);
+    //let idCompany = $("#dd-company option:selected").value;
     /* let nameCompany = document.getElementById('dd-company').options[$("#dd-company").selectedIndex].text; */
     let nameCompany = $("#dd-company option:selected").text();
     var formData = new FormData(document.getElementById("register-interest"));
-    let company = { id: idCompany, name: nameCompany};
+    let company = { id: idCompany };
     formData.append("company", JSON.stringify(company));
     console.log(formData);
     
