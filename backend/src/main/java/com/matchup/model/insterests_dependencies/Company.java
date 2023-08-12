@@ -1,5 +1,6 @@
 package com.matchup.model.insterests_dependencies;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.matchup.model.Interest;
 import jakarta.persistence.*;
 
@@ -18,6 +19,7 @@ public class Company {
     private String name;
 
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Interest> interests;
 
     // <editor-fold desc="Constructors">

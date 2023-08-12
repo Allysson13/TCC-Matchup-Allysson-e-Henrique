@@ -1,5 +1,6 @@
 package com.matchup.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.matchup.model.insterests_dependencies.*;
 import jakarta.persistence.*;
 
@@ -17,6 +18,7 @@ public class Interest {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Company company;
 
     @Column(name = "lowest_price", nullable = false)
