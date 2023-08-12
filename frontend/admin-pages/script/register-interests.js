@@ -144,35 +144,41 @@ function register(type) {
 
 
 function registerInterest() {
-    let nameGame = $("#txt-name").text();
+    let nameGame = document.getElementById('txt-name').text;
     let idCompany = document.getElementById('dd-company').value;
     //let idCompany = $("#dd-company option:selected").value;
     /* let nameCompany = document.getElementById('dd-company').options[$("#dd-company").selectedIndex].text; */
     let nameCompany = $("#dd-company option:selected").text();
+    let idAgeRating = document.getElementById("dd-age-rating").value;
+    let nameAgeRating = $("#dd-age-rating option:selected").text();
     var formData = new FormData(document.getElementById("register-interest"));
     let company = { "id": parseInt(idCompany), "name": nameCompany};
     formData.append("company", JSON.stringify(company));
     console.log(formData);
 
-    let game = {
-        "name": nameGame,
-        "company":{
-            "id": idCompany,
-            "name": nameCompany
-        }
-    }
-    
-    /* let idAgeRating = $("#dd-age-rating").value;
-    let nameAgeRating = $("#dd-age-rating option:selected").text();
-    let ageRating = { id: idAgeRating, name: nameAgeRating};
-    formData.append("age-rating", JSON.stringify(ageRating));
-    console.log(formData);
-    
     let platforms = [];
     for(let option of $("#dd-platform option:selected")){
         var platform = { id: option.value, name: option.text}; 
         platforms.push(platform);
     }
+    let game = {
+        "name": nameGame,
+        "company":{
+            "id": idCompany,
+            "name": nameCompany
+        },
+        /*"platform": platforms,*/
+        "ageRating":{
+            "id": idAgeRating,
+            "name": nameAgeRating
+        },
+        /* "dubbingLanguages": dubbingLanguages,
+        "subtitleLanguages": subtitleLanguages, */
+    }
+    /*let ageRating = { id: idAgeRating, name: nameAgeRating};
+    formData.append("age-rating", JSON.stringify(ageRating));
+    console.log(formData);
+
     formData.append("platform", JSON.stringify(platforms));
     console.log(platforms); */
     
