@@ -210,7 +210,7 @@ public class Interest {
         this.users.add(user);
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Interest{" +
                 "id=" + id +
@@ -226,6 +226,6 @@ public class Interest {
                 ", ageRating=" + ageRating +
                 ", users=" + users +
                 '}';
-    }
+    }*/
 
 }
