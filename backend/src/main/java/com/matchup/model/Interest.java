@@ -175,7 +175,6 @@ public class Interest {
         }
         this.dubbingLanguages.add(dubbingLanguage);
     }
-
     public void addSubtitleLanguages(Language subtitleLanguage){
         if(this.subtitleLanguages == null){
             this.subtitleLanguages = new ArrayList<>();

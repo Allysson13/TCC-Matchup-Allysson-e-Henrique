@@ -164,7 +164,7 @@ function registerInterest() {
             "id": idCompany,
             "name": nameCompany
         },
-        "platform": platforms,
+        "platforms": platforms,
         "ageRating":{
             "id": idAgeRating,
             "name": nameAgeRating
