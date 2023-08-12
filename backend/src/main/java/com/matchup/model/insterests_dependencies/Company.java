@@ -58,12 +58,12 @@ public class Company {
         this.interests.add(interest);
     }
 
-    @Override
+    /*Override
     public String toString() {
         return "Company{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", interests=" + interests +
                 '}';
-    }
+    }*/
 }
