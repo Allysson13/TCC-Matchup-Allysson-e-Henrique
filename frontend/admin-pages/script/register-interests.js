@@ -144,12 +144,12 @@ function register(type) {
 
 
 function registerInterest() {
-    let idCompany = parseInt(document.getElementById('dd-company').value);
+    let idCompany = document.getElementById('dd-company').value;
     //let idCompany = $("#dd-company option:selected").value;
     /* let nameCompany = document.getElementById('dd-company').options[$("#dd-company").selectedIndex].text; */
     let nameCompany = $("#dd-company option:selected").text();
     var formData = new FormData(document.getElementById("register-interest"));
-    let company = { id: idCompany };
+    let company = { "id": parseInt(idCompany), "name": nameCompany};
     formData.append("company", JSON.stringify(company));
     console.log(formData);
     
@@ -226,7 +226,7 @@ function registerInterest() {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(interest)
     })
         .then(response => {
             if (!response.ok) {
