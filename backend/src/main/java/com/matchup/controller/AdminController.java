@@ -34,31 +34,31 @@ public class AdminController {
         System.out.println(interest.getCompany().getName());
         System.out.println(interest.getCompany().getId());
         System.out.println(interest.getCompany().toString());
-        return new ResponseEntity<>(interestService.saveInterest(interest), HttpStatus.CREATED);
+        return new ResponseEntity<>(interestService.saveInterest(interest), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/register/company")
     @PostAuthorize("true")
     public ResponseEntity<Company> registerCompany(@RequestBody Company company) {
-        return new ResponseEntity<>(interestService.saveCompany(company), HttpStatus.CREATED);
+        return new ResponseEntity<>(interestService.saveCompany(company), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/register/genre")
     @PostAuthorize("true")
     public ResponseEntity<Genre> registerGenre(@RequestBody Genre genre) {
-        return new ResponseEntity<>(interestService.saveGenre(genre), HttpStatus.CREATED);
+        return new ResponseEntity<>(interestService.saveGenre(genre), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/register/subgenre")
     @PostAuthorize("true")
     public ResponseEntity<SubGenre> registerSubGenre(@RequestBody SubGenre subGenre) {
-        return new ResponseEntity<>(interestService.saveSubGenre(subGenre), HttpStatus.CREATED);
+        return new ResponseEntity<>(interestService.saveSubGenre(subGenre), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/register/platform")
     @PostAuthorize("true")
     public ResponseEntity<Platform> registerPlatform(@RequestBody Platform platform) {
-        return new ResponseEntity<>(interestService.savePlatform(platform), HttpStatus.CREATED);
+        return new ResponseEntity<>(interestService.savePlatform(platform), HttpStatus.ACCEPTED);
     }
 
 
