@@ -144,6 +144,7 @@ function register(type) {
 
 
 function registerInterest() {
+    let nameGame = $("#txt-name").text();
     let idCompany = document.getElementById('dd-company').value;
     //let idCompany = $("#dd-company option:selected").value;
     /* let nameCompany = document.getElementById('dd-company').options[$("#dd-company").selectedIndex].text; */
@@ -152,6 +153,14 @@ function registerInterest() {
     let company = { "id": parseInt(idCompany), "name": nameCompany};
     formData.append("company", JSON.stringify(company));
     console.log(formData);
+
+    let game = {
+        "name": nameGame,
+        "company":{
+            "id": idCompany,
+            "name": nameCompany
+        }
+    }
     
     /* let idAgeRating = $("#dd-age-rating").value;
     let nameAgeRating = $("#dd-age-rating option:selected").text();
@@ -226,7 +235,7 @@ function registerInterest() {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(interest)
+        body: JSON.stringify(game)
     })
         .then(response => {
             if (!response.ok) {
