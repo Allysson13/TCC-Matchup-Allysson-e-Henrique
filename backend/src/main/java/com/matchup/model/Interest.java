@@ -16,7 +16,7 @@ public class Interest {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
 
     @Column(name = "lowest_price", nullable = false)
