@@ -144,17 +144,14 @@ function register(type) {
 
 
 function registerInterest() {
-    let nameGame = document.getElementById('txt-name').text;
+    let nameGame = document.getElementById('txt-name').value;
+    console.log
+    console.log(nameGame);
     let idCompany = document.getElementById('dd-company').value;
-    //let idCompany = $("#dd-company option:selected").value;
-    /* let nameCompany = document.getElementById('dd-company').options[$("#dd-company").selectedIndex].text; */
     let nameCompany = $("#dd-company option:selected").text();
     let idAgeRating = document.getElementById("dd-age-rating").value;
     let nameAgeRating = $("#dd-age-rating option:selected").text();
-    var formData = new FormData(document.getElementById("register-interest"));
-    let company = { "id": parseInt(idCompany), "name": nameCompany};
-    formData.append("company", JSON.stringify(company));
-    console.log(formData);
+    
 
     let platforms = [];
     for(let option of $("#dd-platform option:selected")){
@@ -167,7 +164,7 @@ function registerInterest() {
             "id": idCompany,
             "name": nameCompany
         },
-        /*"platform": platforms,*/
+        "platform": platforms,
         "ageRating":{
             "id": idAgeRating,
             "name": nameAgeRating
@@ -175,19 +172,14 @@ function registerInterest() {
         /* "dubbingLanguages": dubbingLanguages,
         "subtitleLanguages": subtitleLanguages, */
     }
-    /*let ageRating = { id: idAgeRating, name: nameAgeRating};
-    formData.append("age-rating", JSON.stringify(ageRating));
-    console.log(formData);
+    console.log(game);
 
-    formData.append("platform", JSON.stringify(platforms));
-    console.log(platforms); */
     
-    console.log(formData);
+/*     console.log(formData);
     let interest = {};
     formData.forEach(function (value, key) {
         interest[key] = value;
-    });
-    console.log(interest);
+    }); */
     /*var interest = {
         name: txtName
        /*  'company': {
@@ -202,33 +194,8 @@ function registerInterest() {
     interest.name = $('#txt-name').val;
     interest.company = $('#dd-company').val;
     
-    console.log(interest);
-    /* interest.name = $('#txt-name').text;
-    interest.company.id = $('#dd-company').value;
-    interest.company.name = $('#dd-company').text;
-    interest.lowestPrice = $('txt-lowest-price').text;
-    interest.highestPrice = $('txt-highest-price').text; */
 
-    /* let selectedDubbedLanguages = $('dd-dubbed-languages').selectedOptions;
-    for(let opcao of selectedDubbedLanguages){
-        let i = 0;
-        interest.dubbingLanguages[i].
-        i++;
-    }
-    let selectedSubtitledLanguages = $('dd-dubbed-languages').selectedOptions;
-    for(let opiton of selectedDubbedLanguages){
-        interest.subtitleLanguages[];
-    }
-    interest.dubbingLanguages = $('dd-dubbed-languages')
-    interest.subtitledLanguages = $('dd-subtitles-languages') */
-    
-    /* botao.addEventListener("click", function() {
-        const opcoesSelecionadas = meuSelect.selectedOptions;
 
-        for (const opcao of opcoesSelecionadas) {
-            console.log("Opção selecionada:", opcao.value);
-        }
-    });*/
     /* formData.forEach(function (value, key) {
         interest[key] = value;
     }); */
