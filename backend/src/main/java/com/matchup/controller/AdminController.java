@@ -70,7 +70,6 @@ public class AdminController {
 
     @GetMapping("/get/company/all")
     public ResponseEntity<List<Company>> getAllCompanies() {
-        System.out.println(interestService.getAllCompanies().get(0).getInterests().get(0).getName());
         return new ResponseEntity<>(interestService.getAllCompanies(), HttpStatus.ACCEPTED);
     }
 
