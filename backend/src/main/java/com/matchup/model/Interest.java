@@ -210,5 +210,9 @@ public class Interest {
         this.users.add(user);
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 
 }

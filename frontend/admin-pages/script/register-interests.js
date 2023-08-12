@@ -226,7 +226,7 @@ function registerInterest() {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(interest)
+        body: JSON.stringify(formData)
     })
         .then(response => {
             if (!response.ok) {
