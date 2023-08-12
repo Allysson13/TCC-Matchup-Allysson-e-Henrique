@@ -1,5 +1,6 @@
 package com.matchup.model.insterests_dependencies;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.matchup.model.Interest;
 import jakarta.persistence.*;
 
@@ -17,9 +18,11 @@ public class Language {
     private String name;
 
     @ManyToMany
+    @JsonIgnore
     private List<Interest> dubbedInterests;
 
     @ManyToMany
+    @JsonIgnore
     private List<Interest> subtitledInterest;
 
     // <editor-fold desc="Constructors">

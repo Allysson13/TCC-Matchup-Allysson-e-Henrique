@@ -1,6 +1,8 @@
 package com.matchup.model.insterests_dependencies;
 
 import jakarta.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.matchup.model.Interest;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class Genre {
     private String name;
 
     @ManyToMany
+    @JsonIgnore
     private List<Interest> interests;
 
     // <editor-fold desc="Constructors">
