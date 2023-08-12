@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,6 +42,13 @@ public class InterestService {
 
     // SAVE
     public Interest saveInterest(Interest interestToSave){
+        interestToSave.setCompany(companyRepository.findById(interestToSave.getCompany().getId()).get());
+        // List<Platform> platforms = new ArrayList<>();
+        // for(Platform platform : interestToSave.getPlatforms()){
+        //     platforms.add(platformRepository.findById(platform.getId()).get());
+        // }
+        // interestToSave.setPlatforms(platforms);
+        // interestToSave.setAgeRating(ageRatingRepository.findById(interestToSave.getAgeRating().getId()).get());
         return interestRepository.save(interestToSave);
     }
 

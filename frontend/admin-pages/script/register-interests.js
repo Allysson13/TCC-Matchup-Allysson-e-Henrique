@@ -152,15 +152,21 @@ function registerInterest() {
     formData.append("company", JSON.stringify(company));
     console.log(formData);
     
+    /* let idAgeRating = $("#dd-age-rating").value;
+    let nameAgeRating = $("#dd-age-rating option:selected").text();
+    let ageRating = { id: idAgeRating, name: nameAgeRating};
+    formData.append("age-rating", JSON.stringify(ageRating));
+    console.log(formData);
+    
     let platforms = [];
-    formData.append("platform", JSON.stringify(platforms));
     for(let option of $("#dd-platform option:selected")){
         var platform = { id: option.value, name: option.text}; 
         platforms.push(platform);
     }
-    formData.append("platform", JSON.stringify(platform));
-    console.log(platforms);
+    formData.append("platform", JSON.stringify(platforms));
+    console.log(platforms); */
     
+    console.log(formData);
     let interest = {};
     formData.forEach(function (value, key) {
         interest[key] = value;
