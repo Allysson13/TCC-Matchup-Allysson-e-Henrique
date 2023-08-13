@@ -2,8 +2,8 @@
 const USER_DEPENDENCIES = ['interest'];
 
 $('#dd-interest').multi({
-    non_selected_header: 'Games',
-    selected_header: 'Selected Games',
+    non_selected_header: 'Jogos',
+    selected_header: 'Jogos Selecionados',
 
 });
 
