@@ -19,7 +19,7 @@ document.getElementById("register").addEventListener("submit", function (event) 
 });
 
 async function getAll(type) {
-    const response = await fetch(`http://localhost:8080/api/user/get/${type}/all`);
+    const response = await fetch(`http://localhost:8080/api/register/get/${type}/all`);
     if (!response.ok) {
         throw new Error(response.statusText);
     }
@@ -68,7 +68,7 @@ function addOptionToDropDown(type, item) {
 }
 
 function getAll(type) {
-    return fetch(`http://localhost:8080/api/user/get/${type}/all`)
+    return fetch(`http://localhost:8080/api/register/get/${type}/all`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(response.statusText);
@@ -90,7 +90,7 @@ function register(type) {
 
     console.log(jsonObject);
 
-    fetch("http://localhost:8080/api/user/register/" + type, {
+    fetch("http://localhost:8080/api/register/" + type, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -136,7 +136,7 @@ function register(type) {
         "zipcode": zipcode
     }
 
-    fetch("http://localhost:8080/api/user/register/address", {
+    fetch("http://localhost:8080/api/register/address", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

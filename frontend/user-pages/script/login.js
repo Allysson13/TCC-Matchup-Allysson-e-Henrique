@@ -1,6 +1,7 @@
 function login() {
 
     /*let email = document.getElementById('txt-email').value;
+    //requires verification //requires verification regarding the password format
     let password = document.getElementById('txt-password').value;
 
     let user = {
@@ -9,7 +10,7 @@ function login() {
         "hashedPassword": password,
     }
 
-    fetch("http://localhost:8080/api/user/login", {
+    fetch("http://localhost:8080/api/login/${email}/${password}", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
