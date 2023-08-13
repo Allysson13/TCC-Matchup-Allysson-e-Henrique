@@ -160,6 +160,7 @@ function register(type) {
         "name": name,
         "email": email,
         "birthDate": birthDate,
+        //requires verification
         "hashedPassword": password,
         //requires verification
         "cellphoneNumber": cellphoneNumber,
