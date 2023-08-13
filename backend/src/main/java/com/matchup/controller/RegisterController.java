@@ -1,12 +1,15 @@
 package com.matchup.controller;
 
+import com.matchup.model.Address;
 import com.matchup.model.Interest;
 import com.matchup.model.User;
+import com.matchup.service.AddressService;
 import com.matchup.service.InterestService;
 import com.matchup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,6 +17,26 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/register")
 public class RegisterController {
 
+    private final UserService userService;
+    private final AddressService addressService;
 
+    @Autowired
+    public RegisterController(UserService userService, AddressService addressService) {
+        this.userService = userService;
+        this.addressService = addressService;
+    }
+
+    @PostMapping("/address")
+    @PostAuthorize("true")
+    public ResponseEntity<Address> registerAddress(@RequestBody Address address) {
+        return new ResponseEntity<>(addressService.saveAddress(address), HttpStatus.OK);
+    }
+
+    @PostMapping("")
+    @PostAuthorize("true")
+    public ResponseEntity<User> register(@RequestBody User user) {
+        System.out.println(user.getName());
+        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.OK);
+    }
 
 }

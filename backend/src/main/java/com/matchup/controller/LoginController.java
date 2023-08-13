@@ -40,17 +40,18 @@ public class LoginController {
         return new ResponseEntity<>(userService.findByPartOfTheName(partOfTheName), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/login-teste/{email}/{password}")
-    public ResponseEntity<Boolean> teste4(@PathVariable("email") String email, @PathVariable("password") String hashedPassword) {
+    @GetMapping("/{email}/{password}")
+    public ResponseEntity<Boolean> login(@PathVariable("email") String email, @PathVariable("password") String hashedPassword) {
         return new ResponseEntity<>(userService.findByEmailAndHashedPassword(email, hashedPassword), HttpStatus.ACCEPTED);
     }
 
-    @PostMapping("/teste4")
+    //copied to RegisterController
+    /*@PostMapping("/teste4")
     @PostAuthorize("true")
     public ResponseEntity<User> register(@RequestBody User user) {
         System.out.println(user.getName());
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.OK);
-    }
+    }*/
 
     @GetMapping("/teste5")
     @CrossOrigin(origins = "*")

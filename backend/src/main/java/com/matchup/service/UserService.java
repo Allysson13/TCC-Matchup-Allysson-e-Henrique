@@ -20,6 +20,7 @@ public class UserService {
     }
 
     public User saveUser(User userToSave){
+        //requires password verification
         return userRepository.save(userToSave);
     }
 
