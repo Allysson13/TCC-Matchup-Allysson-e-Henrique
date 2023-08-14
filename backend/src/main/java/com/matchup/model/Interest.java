@@ -29,8 +29,8 @@ public class Interest {
     @ManyToMany
     @JoinTable(
             name = "interest_dubbing_languages",
-            joinColumns = @JoinColumn(name = "game_id"),
-            inverseJoinColumns = @JoinColumn(name = "plataforma_id")
+            joinColumns = @JoinColumn(name = "interestid"),
+            inverseJoinColumns = @JoinColumn(name = "language.id")
     )
     private List<Language> dubbingLanguages;
 
