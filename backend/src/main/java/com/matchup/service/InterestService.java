@@ -50,6 +50,10 @@ public class InterestService {
                 languageRepository.findByIdIn(interestToSave.getDubbingLanguagesIdList()));
         interestToSave.setSubtitleLanguages(
                 languageRepository.findByIdIn(interestToSave.getSubtitleLanguagesIdList()));
+        interestToSave.setGenres(
+                genreRepository.findAllById(interestToSave.getGenresIdList()));
+        interestToSave.setSubGenres(
+                subGenreRepository.findAllById(interestToSave.getSubGenresIdList()));
         interestToSave.setPlatforms(
                 platformRepository.findAllById(interestToSave.getPlatformsIdList()));
 

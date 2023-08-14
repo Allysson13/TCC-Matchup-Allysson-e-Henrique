@@ -164,16 +164,14 @@ function generateInterestJSON() {
     for (let option of $("#dd-subtitled-languages option:selected")) {
         subtitleLanguagesIdList.push(option.value);
     }
-/*     let genres = [];
+    let genresIdList = [];
     for (let option of $("#dd-genre option:selected")) {
-        let genre = { id: option.value };
-        genres.push(genre);
+        genresIdList.push(option.value);
     }
-    let subgenres = [];
+    let subGenresIdList = [];
     for (let option of $("#dd-subgenre option:selected")) {
-        let subgenre = { id: option.value };
-        subgenres.push(subgenre);
-    } */
+        subGenresIdList.push(option.value);
+    }
     let platformsIdList = [];
     for (let option of $("#dd-platform option:selected")) {
         platformsIdList.push(parseInt(option.value));
@@ -191,8 +189,8 @@ function generateInterestJSON() {
         },
         "dubbingLanguagesIdList": dubbingLanguagesIdList,
         "subtitleLanguagesIdList": subtitleLanguagesIdList,
-        /* "genres": genres,
-        "subGenres": subgenres, */
+        "genresIdList": genresIdList,
+        "subGenresIdList": subGenresIdList,
         "platformsIdList": platformsIdList
     }
 

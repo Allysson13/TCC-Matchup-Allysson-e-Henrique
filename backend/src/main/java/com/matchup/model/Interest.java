@@ -42,10 +42,10 @@ public class Interest {
     )
     private List<Language> subtitleLanguages;
 
-    @ManyToMany(mappedBy = "interests")
+    @ManyToMany
     private List<Genre> genres;
 
-    @ManyToMany(mappedBy = "interests")
+    @ManyToMany
     private List<SubGenre> subGenres;
 
     @ManyToMany
@@ -65,6 +65,12 @@ public class Interest {
 
     @Transient
     private List<String> subtitleLanguagesIdList;
+
+    @Transient
+    private List<Long> genresIdList;
+
+    @Transient
+    private List<Long> subGenresIdList;
 
 
     // <editor-fold desc="Constructors">
@@ -209,6 +215,22 @@ public class Interest {
 
     public void setSubtitleLanguagesIdList(List<String> subtitleLanguagesIdList) {
         this.subtitleLanguagesIdList = subtitleLanguagesIdList;
+    }
+
+    public List<Long> getGenresIdList() {
+        return genresIdList;
+    }
+
+    public void setGenresIdList(List<Long> genresIdList) {
+        this.genresIdList = genresIdList;
+    }
+
+    public List<Long> getSubGenresIdList() {
+        return subGenresIdList;
+    }
+
+    public void setSubGenresIdList(List<Long> subGenresIdList) {
+        this.subGenresIdList = subGenresIdList;
     }
 
     // </editor-fold>

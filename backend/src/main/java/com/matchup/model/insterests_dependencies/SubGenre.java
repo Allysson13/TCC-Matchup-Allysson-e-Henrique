@@ -18,7 +18,7 @@ public class SubGenre {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "subGenres")
     @JsonIgnore
     private List<Interest> interests;
 
