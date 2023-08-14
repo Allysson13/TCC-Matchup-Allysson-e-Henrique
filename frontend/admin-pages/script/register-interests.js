@@ -93,7 +93,7 @@ function populateDropDown(json, dropdown) {
 
 
 function addOptionToDropDown(type, item) {
-    if(typy == 'interest') return;
+    if(type == 'interest') return;
     let option = document.createElement('option');
     option.value = item.id;
     option.text = item.name;
