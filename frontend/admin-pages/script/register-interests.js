@@ -115,13 +115,7 @@ function getAll(type) {
 }
 
 
-function register(type) {
-    var jsonObject = {};
-    let name = prompt('Inform the name of the ' + (type).toUpperCase() + ':');
-    if (name == null || name == '') return;
-    jsonObject['name'] = name;
-
-    console.log(jsonObject);
+function register(type, jsonObject) {
 
     fetch("http://localhost:8080/api/admin/register/" + type, {
         method: "POST",
@@ -141,89 +135,73 @@ function register(type) {
         });
 }
 
+function registerInterestDependency(type) {
+    var jsonObject = {};
+    let name = prompt('Inform the name of the ' + (type).toUpperCase() + ':');
+    if (name == null || name == '') return;
+    jsonObject['name'] = name;
+    register(type, jsonObject);
+}
 
+async function registerInterest() {
+    let game = await generateInterestJSON();
+    console.log(game);
+    register('interest', game);
+}
 
-function registerInterest() {
+function generateInterestJSON() {
     let nameGame = document.getElementById('txt-name').value;
-    console.log
-    console.log(nameGame);
     let idCompany = document.getElementById('dd-company').value;
-    let nameCompany = $("#dd-company option:selected").text();
     let idAgeRating = document.getElementById("dd-age-rating").value;
-    let nameAgeRating = $("#dd-age-rating option:selected").text();
-    
+    let lowestPrice = document.getElementById('txt-lowest-price').value;
+    let highestPrice = document.getElementById('txt-highest-price').value;
 
+    /* let dubbingLanguages = [];
+    for (let option of $("#dd-dubbingLanguages option:selected")) {
+        let dubbingLanguage = { id: option.value };
+        dubbingLanguages.push(dubbingLanguage);
+    }
+    let subtitleLanguages = [];
+    for (let option of $("#dd-subtitleLanguages option:selected")) {
+        let subtitleLanguage = { id: option.value };
+        subtitleLanguages.push(subtitleLanguage);
+    }
+    let genres = [];
+    for (let option of $("#dd-genre option:selected")) {
+        let genre = { id: option.value };
+        genres.push(genre);
+    }
+    let subgenres = [];
+    for (let option of $("#dd-subgenre option:selected")) {
+        let subgenre = { id: option.value };
+        subgenres.push(subgenre);
+    } */
     let platforms = [];
-    for(let option of $("#dd-platform option:selected")){
-        var platform = { id: option.value, name: option.text}; 
+    for (let option of $("#dd-platform option:selected")) {
+        let platform = { id: option.value };
         platforms.push(platform);
     }
-    let game = {
+
+    return game = {
         "name": nameGame,
-        "company":{
+        "company": {
             "id": idCompany,
             "name": nameCompany
         },
-        "platforms": platforms,
-        "ageRating":{
+        "lowestPrice": lowestPrice,
+        "highestPrice": highestPrice,
+        "ageRating": {
             "id": idAgeRating,
             "name": nameAgeRating
         },
         /* "dubbingLanguages": dubbingLanguages,
-        "subtitleLanguages": subtitleLanguages, */
+        "subtitleLanguages": subtitleLanguages,
+        "genres": genres,
+        "subGenres": subgenres, */
+        "platformsIdList": platforms
     }
-    console.log(game);
-
-    
-/*     console.log(formData);
-    let interest = {};
-    formData.forEach(function (value, key) {
-        interest[key] = value;
-    }); */
-    /*var interest = {
-        name: txtName
-       /*  'company': {
-            'id': $('dd-company').value,
-            'name': $('dd-company').text
-        },
-        'lowestPrice': $('txt-lowest-price').text,
-        'highestPrice': $('txt-highest-price').text */
-    
-
-    /*var interest = {};
-    interest.name = $('#txt-name').val;
-    interest.company = $('#dd-company').val;
-    
-
-
-    /* formData.forEach(function (value, key) {
-        interest[key] = value;
-    }); */
-
-
-    /*console.log(interest);*/
-
-    fetch("http://localhost:8080/api/admin/register/interest", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(game)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erro ao enviar dados " + response);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Deu certo!");
-        })
-        .catch(error => {
-            alert("Deu errado! -> " + error);
-        });
-
 }
+
 
 
 
