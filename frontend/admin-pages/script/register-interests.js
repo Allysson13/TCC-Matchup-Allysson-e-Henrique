@@ -93,7 +93,7 @@ function populateDropDown(json, dropdown) {
 
 
 function addOptionToDropDown(type, item) {
-    console.log(item);
+    if(typy == 'interest') return;
     let option = document.createElement('option');
     option.value = item.id;
     option.text = item.name;
@@ -151,22 +151,20 @@ async function registerInterest() {
 
 function generateInterestJSON() {
     let nameGame = document.getElementById('txt-name').value;
-    let idCompany = document.getElementById('dd-company').value;
-    let idAgeRating = document.getElementById("dd-age-rating").value;
-    let lowestPrice = document.getElementById('txt-lowest-price').value;
-    let highestPrice = document.getElementById('txt-highest-price').value;
+    let idCompany = parseInt(document.getElementById('dd-company').value);
+    let idAgeRating = parseInt(document.getElementById("dd-age-rating").value);
+    let lowestPrice = parseFloat(document.getElementById('txt-lowest-price').value); 
+    let highestPrice = parseFloat(document.getElementById('txt-highest-price').value);
 
-    /* let dubbingLanguages = [];
-    for (let option of $("#dd-dubbingLanguages option:selected")) {
-        let dubbingLanguage = { id: option.value };
-        dubbingLanguages.push(dubbingLanguage);
+    let dubbingLanguagesIdList = [];
+    for (let option of $("#dd-dubbed-languages option:selected")) {
+        dubbingLanguagesIdList.push(option.value);
     }
-    let subtitleLanguages = [];
-    for (let option of $("#dd-subtitleLanguages option:selected")) {
-        let subtitleLanguage = { id: option.value };
-        subtitleLanguages.push(subtitleLanguage);
+    let subtitleLanguagesIdList = [];
+    for (let option of $("#dd-subtitled-languages option:selected")) {
+        subtitleLanguagesIdList.push(option.value);
     }
-    let genres = [];
+/*     let genres = [];
     for (let option of $("#dd-genre option:selected")) {
         let genre = { id: option.value };
         genres.push(genre);
@@ -176,30 +174,29 @@ function generateInterestJSON() {
         let subgenre = { id: option.value };
         subgenres.push(subgenre);
     } */
-    let platforms = [];
+    let platformsIdList = [];
     for (let option of $("#dd-platform option:selected")) {
-        let platform = { id: option.value };
-        platforms.push(platform);
+        platformsIdList.push(parseInt(option.value));
     }
 
-    return game = {
+    game = {
         "name": nameGame,
         "company": {
             "id": idCompany,
-            "name": nameCompany
         },
         "lowestPrice": lowestPrice,
         "highestPrice": highestPrice,
         "ageRating": {
             "id": idAgeRating,
-            "name": nameAgeRating
         },
-        /* "dubbingLanguages": dubbingLanguages,
-        "subtitleLanguages": subtitleLanguages,
-        "genres": genres,
+        "dubbingLanguagesIdList": dubbingLanguagesIdList,
+        "subtitleLanguagesIdList": subtitleLanguagesIdList,
+        /* "genres": genres,
         "subGenres": subgenres, */
-        "platformsIdList": platforms
+        "platformsIdList": platformsIdList
     }
+
+    return game;
 }
 
 

@@ -42,13 +42,17 @@ public class InterestService {
 
     // SAVE
     public Interest saveInterest(Interest interestToSave){
-        interestToSave.setCompany(companyRepository.findById(interestToSave.getCompany().getId()).get());
-        List<Platform> platforms = new ArrayList<>();
-        for(Platform platform : interestToSave.getPlatforms()){
-            platforms.add(platformRepository.findById(platform.getId()).get());
-        } 
-        interestToSave.setPlatforms(platforms);
-        interestToSave.setAgeRating(ageRatingRepository.findById(interestToSave.getAgeRating().getId()).get());
+        interestToSave.setAgeRating(
+                ageRatingRepository.findById(interestToSave.getAgeRating().getId()).get());
+        interestToSave.setCompany(
+                companyRepository.findById(interestToSave.getCompany().getId()).get());
+        interestToSave.setDubbingLanguages(
+                languageRepository.findByIdIn(interestToSave.getDubbingLanguagesIdList()));
+        interestToSave.setSubtitleLanguages(
+                languageRepository.findByIdIn(interestToSave.getSubtitleLanguagesIdList()));
+        interestToSave.setPlatforms(
+                platformRepository.findAllById(interestToSave.getPlatformsIdList()));
+
         return interestRepository.save(interestToSave);
     }
 

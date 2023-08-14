@@ -17,11 +17,11 @@ public class Language {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "dubbingLanguages")
     @JsonIgnore
     private List<Interest> dubbedInterests;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "subtitleLanguages")
     @JsonIgnore
     private List<Interest> subtitledInterest;
 

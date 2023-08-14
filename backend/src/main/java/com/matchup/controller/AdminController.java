@@ -31,8 +31,6 @@ public class AdminController {
     @PostMapping("/register/interest")
     @PostAuthorize("true")
     public ResponseEntity<Interest> registerInterest(@RequestBody Interest interest) {
-        System.out.println(interest.getName());
-        System.out.println(interest.toString());
         return new ResponseEntity<>(interestService.saveInterest(interest), HttpStatus.ACCEPTED);
     }
 

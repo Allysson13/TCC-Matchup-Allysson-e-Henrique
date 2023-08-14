@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "interests", schema = "matchup")
+@Table(name = "interest", schema = "matchup")
 public class Interest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +26,20 @@ public class Interest {
     @Column(name = "highest_price", nullable = false)
     private double highestPrice;
 
-    @ManyToMany(mappedBy = "dubbedInterests")
+    @ManyToMany
+    @JoinTable(
+            name = "interest_dubbing_languages",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "plataforma_id")
+    )
     private List<Language> dubbingLanguages;
 
-    @ManyToMany(mappedBy = "subtitledInterest")
+    @ManyToMany
+    @JoinTable(
+            name = "interest_subtitle_languages",
+            joinColumns = @JoinColumn(name = "interest.id"),
+            inverseJoinColumns = @JoinColumn(name = "language.id")
+    )
     private List<Language> subtitleLanguages;
 
     @ManyToMany(mappedBy = "interests")
@@ -38,7 +48,7 @@ public class Interest {
     @ManyToMany(mappedBy = "interests")
     private List<SubGenre> subGenres;
 
-    @ManyToMany(mappedBy = "interests")
+    @ManyToMany
     private List<Platform> platforms;
 
     @ManyToOne
@@ -46,6 +56,15 @@ public class Interest {
 
     @ManyToMany(mappedBy = "interests")
     private List<User> users;
+
+    @Transient
+    private List<Long> platformsIdList;
+
+    @Transient
+    private List<String> dubbingLanguagesIdList;
+
+    @Transient
+    private List<String> subtitleLanguagesIdList;
 
 
     // <editor-fold desc="Constructors">
@@ -167,6 +186,31 @@ public class Interest {
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
+    public List<Long> getPlatformsIdList() {
+        return platformsIdList;
+    }
+
+    public void setPlatformsIdList(List<Long> platformsIdList) {
+        this.platformsIdList = platformsIdList;
+    }
+
+    public List<String> getDubbingLanguagesIdList() {
+        return dubbingLanguagesIdList;
+    }
+
+    public void setDubbingLanguagesIdList(List<String> dubbingLanguagesIdList) {
+        this.dubbingLanguagesIdList = dubbingLanguagesIdList;
+    }
+
+    public List<String> getSubtitleLanguagesIdList() {
+        return subtitleLanguagesIdList;
+    }
+
+    public void setSubtitleLanguagesIdList(List<String> subtitleLanguagesIdList) {
+        this.subtitleLanguagesIdList = subtitleLanguagesIdList;
+    }
+
     // </editor-fold>
 
     public void addDubbingLanguages(Language dubbingLanguage){

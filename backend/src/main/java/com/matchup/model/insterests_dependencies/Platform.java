@@ -19,7 +19,7 @@ public class Platform {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "platforms")
     @JsonIgnore
     private List<Interest> interests;
 
