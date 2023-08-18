@@ -1,5 +1,6 @@
 package com.matchup.controller;
 
+import com.matchup.dto.UserDto;
 import com.matchup.model.Interest;
 import com.matchup.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class LoginController {
     }
 
 //    @PostMapping("/auth")
-//    public ResponseEntity<User> login(@PathVariable("email") String email, @PathVariable("password") String hashedPassword) {
+//    public ResponseEntity<User> login(@RequestBody UserDto userDto) {
 //        return new ResponseEntity<>(userService.findByEmailAndHashedPassword(email, hashedPassword), HttpStatus.ACCEPTED);
 //    }
 
