@@ -18,7 +18,10 @@ public class User {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
+    private String username;
+
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "birth_date", nullable = false, updatable = false)
@@ -83,30 +86,6 @@ public class User {
         this.receivedMessages = receivedMessages;
     }
 
-    public User(String name, String email, LocalDateTime age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address address) {
-        this.name = name;
-        this.email = email;
-        this.birthDate = age;
-        this.hashedPassword = hashedPassword;
-        this.cellphoneNumber = cellphoneNumber;
-        this.profilePicture = profilePicture;
-        this.address = address;
-    }
-
-    public User(long id, String name, String email, LocalDateTime age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.birthDate = age;
-        this.hashedPassword = hashedPassword;
-        this.cellphoneNumber = cellphoneNumber;
-        this.profilePicture = profilePicture;
-        this.address = address;
-        this.friends = friends;
-        this.interests = interests;
-        this.sentMessages = sentMessages;
-        this.receivedMessages = receivedMessages;
-    }
     // </editor-fold>
 
     // <editor-fold desc="Encapsulation">
@@ -279,4 +258,5 @@ public class User {
                 ", receivedMessages=" + receivedMessages +
                 '}';
     }
+
 }

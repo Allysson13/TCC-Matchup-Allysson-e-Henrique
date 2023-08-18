@@ -40,10 +40,10 @@ public class LoginController {
         return new ResponseEntity<>(userService.findByPartOfTheName(partOfTheName), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/{email}/{password}")
-    public ResponseEntity<Boolean> login(@PathVariable("email") String email, @PathVariable("password") String hashedPassword) {
-        return new ResponseEntity<>(userService.findByEmailAndHashedPassword(email, hashedPassword), HttpStatus.ACCEPTED);
-    }
+//    @PostMapping("/auth")
+//    public ResponseEntity<User> login(@PathVariable("email") String email, @PathVariable("password") String hashedPassword) {
+//        return new ResponseEntity<>(userService.findByEmailAndHashedPassword(email, hashedPassword), HttpStatus.ACCEPTED);
+//    }
 
     //copied to RegisterController
     /*@PostMapping("/teste4")

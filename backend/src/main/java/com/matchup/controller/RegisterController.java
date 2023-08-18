@@ -1,5 +1,6 @@
 package com.matchup.controller;
 
+import com.matchup.dto.UserDto;
 import com.matchup.model.Address;
 import com.matchup.model.Interest;
 import com.matchup.model.User;
@@ -34,9 +35,9 @@ public class RegisterController {
 
     @PostMapping("")
     @PostAuthorize("true")
-    public ResponseEntity<User> register(@RequestBody User user) {
-        System.out.println(user.getName());
-        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.OK);
+    public ResponseEntity<User> register(@RequestBody UserDto userDto) {
+        System.out.println(userDto.getName());
+        return new ResponseEntity<>(userService.registerUser(userDto), HttpStatus.OK);
     }
 
 }
