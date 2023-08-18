@@ -25,10 +25,10 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @GetMapping("/teste")
+    /*@GetMapping("/teste")
     public ResponseEntity<User> teste() {
         return new ResponseEntity<>(userService.saveUser(), HttpStatus.ACCEPTED);
-    }
+    }*/
 
     @GetMapping("/teste2/{userId}")
     public ResponseEntity<Optional<User>> teste2(@PathVariable("userId") Long userId) {

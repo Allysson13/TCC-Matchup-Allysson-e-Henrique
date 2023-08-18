@@ -56,6 +56,33 @@ public class User {
 
     }
 
+    public User(long id, String name, String username, String email, LocalDateTime birthDate, String hashedPassword, String cellphoneNumber, Byte[] profilePicture) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.birthDate = birthDate;
+        this.hashedPassword = hashedPassword;
+        this.cellphoneNumber = cellphoneNumber;
+        this.profilePicture = profilePicture;
+    }
+
+    public User(long id, String name, String username, String email, LocalDateTime birthDate, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.birthDate = birthDate;
+        this.hashedPassword = hashedPassword;
+        this.cellphoneNumber = cellphoneNumber;
+        this.profilePicture = profilePicture;
+        this.address = address;
+        this.friends = friends;
+        this.interests = interests;
+        this.sentMessages = sentMessages;
+        this.receivedMessages = receivedMessages;
+    }
+
     public User(String name, String email, LocalDateTime age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address address) {
         this.name = name;
         this.email = email;
@@ -95,6 +122,9 @@ public class User {
         this.name = name;
     }
 
+    public String getUsername() {return username;}
+
+    public void setUsername(String username) {this.username = username;}
     public String getEmail() {
         return email;
     }
