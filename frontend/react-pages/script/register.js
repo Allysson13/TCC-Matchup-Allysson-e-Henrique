@@ -1,3 +1,45 @@
+/* import React from 'react';
+
+function Input(props) {
+    return (
+        <div className="form-group">
+            <input
+                type={props.type}
+                id={props.id}
+                className={props.className}
+                name={props.name}
+                placeholder={props.placeholder}
+                focused={props.focused}
+            />
+            <br />
+            <br />
+        </div>
+    );
+}
+
+function App() {
+    return (
+        <div>
+            <Input
+                type="text"
+                id="txt-name"
+                className="form-control form-control-user bg-dark-subtle"
+                name="name"
+                placeholder="Nome completo..."
+                focused
+            />
+            <Input
+                type="text"
+                id="txt-email"
+                className="form-control form-control-user bg-dark-subtle"
+                name="email"
+                placeholder="Email... exemplo@gmail.com"
+                focused
+            />
+        </div>
+    );
+} */
+
 //const USER_DEPENDENCIES = ['address', 'friendship', 'interest', 'message'];
 const USER_DEPENDENCIES = ['interest'];
 
@@ -193,7 +235,8 @@ function register(type) {
 
 function onLoad() {
     dateConfig();
-    //zipcode
+    //zipcode();
+    ReactDOM.render(<App />, document.getElementById("root"));
 }
 
 function dateConfig() {

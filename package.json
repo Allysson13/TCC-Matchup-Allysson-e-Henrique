@@ -1,0 +1,26 @@
+{
+  "name": "tcc-matchup",
+  "version": "1.0.1",
+  "description": "a final course project from two ti students",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Allysson13/TCC-Matchup-Allysson-e-Henrique.git"
+  },
+  "keywords": [
+    "matchup",
+    "tcc"
+  ],
+  "author": "allysson-and-henrique",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Allysson13/TCC-Matchup-Allysson-e-Henrique/issues"
+  },
+  "homepage": "https://github.com/Allysson13/TCC-Matchup-Allysson-e-Henrique#readme",
+  "dependencies": {
+    "react": "^18.2.0"
+  }
+}
