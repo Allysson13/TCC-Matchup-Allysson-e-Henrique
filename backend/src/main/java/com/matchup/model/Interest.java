@@ -57,20 +57,6 @@ public class Interest {
     @ManyToMany(mappedBy = "interests")
     private List<User> users;
 
-    @Transient
-    private List<Long> platformsIdList;
-
-    @Transient
-    private List<String> dubbingLanguagesIdList;
-
-    @Transient
-    private List<String> subtitleLanguagesIdList;
-
-    @Transient
-    private List<Long> genresIdList;
-
-    @Transient
-    private List<Long> subGenresIdList;
 
 
     // <editor-fold desc="Constructors">
@@ -191,46 +177,6 @@ public class Interest {
 
     public void setUsers(List<User> users) {
         this.users = users;
-    }
-
-    public List<Long> getPlatformsIdList() {
-        return platformsIdList;
-    }
-
-    public void setPlatformsIdList(List<Long> platformsIdList) {
-        this.platformsIdList = platformsIdList;
-    }
-
-    public List<String> getDubbingLanguagesIdList() {
-        return dubbingLanguagesIdList;
-    }
-
-    public void setDubbingLanguagesIdList(List<String> dubbingLanguagesIdList) {
-        this.dubbingLanguagesIdList = dubbingLanguagesIdList;
-    }
-
-    public List<String> getSubtitleLanguagesIdList() {
-        return subtitleLanguagesIdList;
-    }
-
-    public void setSubtitleLanguagesIdList(List<String> subtitleLanguagesIdList) {
-        this.subtitleLanguagesIdList = subtitleLanguagesIdList;
-    }
-
-    public List<Long> getGenresIdList() {
-        return genresIdList;
-    }
-
-    public void setGenresIdList(List<Long> genresIdList) {
-        this.genresIdList = genresIdList;
-    }
-
-    public List<Long> getSubGenresIdList() {
-        return subGenresIdList;
-    }
-
-    public void setSubGenresIdList(List<Long> subGenresIdList) {
-        this.subGenresIdList = subGenresIdList;
     }
 
     // </editor-fold>

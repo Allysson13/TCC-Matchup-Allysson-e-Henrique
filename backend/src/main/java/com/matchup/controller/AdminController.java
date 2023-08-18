@@ -1,5 +1,6 @@
 package com.matchup.controller;
 
+import com.matchup.dto.InterestDto;
 import com.matchup.model.Interest;
 import com.matchup.model.User;
 import com.matchup.model.insterests_dependencies.AgeRating;
@@ -30,8 +31,8 @@ public class AdminController {
 
     @PostMapping("/register/interest")
     @PostAuthorize("true")
-    public ResponseEntity<Interest> registerInterest(@RequestBody Interest interest) {
-        return new ResponseEntity<>(interestService.saveInterest(interest), HttpStatus.ACCEPTED);
+    public ResponseEntity<Interest> registerInterest(@RequestBody InterestDto interestDto) {
+        return new ResponseEntity<>(interestService.saveInterest(interestDto), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/register/company")

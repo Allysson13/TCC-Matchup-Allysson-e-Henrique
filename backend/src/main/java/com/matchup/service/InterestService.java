@@ -1,5 +1,6 @@
 package com.matchup.service;
 
+import com.matchup.dto.InterestDto;
 import com.matchup.model.Interest;
 import com.matchup.model.insterests_dependencies.*;
 import com.matchup.model.insterests_dependencies.Company;
@@ -41,21 +42,24 @@ public class InterestService {
 
 
     // SAVE
-    public Interest saveInterest(Interest interestToSave){
-        interestToSave.setAgeRating(
-                ageRatingRepository.findById(interestToSave.getAgeRating().getId()).get());
+    public Interest saveInterest(InterestDto interestDto){
+        Interest interestToSave = new Interest();
+
+        interestToSave.setName(interestDto.getName());
         interestToSave.setCompany(
-                companyRepository.findById(interestToSave.getCompany().getId()).get());
+                companyRepository.findById(interestDto.getCompanyId()).get());
+        interestToSave.setAgeRating(
+                ageRatingRepository.findById(interestDto.getAgeRatingId()).get());
         interestToSave.setDubbingLanguages(
-                languageRepository.findByIdIn(interestToSave.getDubbingLanguagesIdList()));
+                languageRepository.findByIdIn(interestDto.getDubbingLanguagesIdList()));
         interestToSave.setSubtitleLanguages(
-                languageRepository.findByIdIn(interestToSave.getSubtitleLanguagesIdList()));
+                languageRepository.findByIdIn(interestDto.getSubtitleLanguagesIdList()));
         interestToSave.setGenres(
-                genreRepository.findAllById(interestToSave.getGenresIdList()));
+                genreRepository.findAllById(interestDto.getGenresIdList()));
         interestToSave.setSubGenres(
-                subGenreRepository.findAllById(interestToSave.getSubGenresIdList()));
+                subGenreRepository.findAllById(interestDto.getSubGenresIdList()));
         interestToSave.setPlatforms(
-                platformRepository.findAllById(interestToSave.getPlatformsIdList()));
+                platformRepository.findAllById(interestDto.getPlatformsIdList()));
 
         return interestRepository.save(interestToSave);
     }
