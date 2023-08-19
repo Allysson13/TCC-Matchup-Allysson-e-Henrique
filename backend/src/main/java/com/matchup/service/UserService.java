@@ -55,6 +55,10 @@ public class UserService {
         return userRepository.findByEmailAndHashedPassword(email, hashedPassword).isEmpty();
     }
 
+    public boolean existsByEmail(String email){
+        return userRepository.existsByEmail(email);
+    }
+
     public User registerUser(UserDto userDto){
         User userToRegister = new User();
         Address addressToRegister = new Address();

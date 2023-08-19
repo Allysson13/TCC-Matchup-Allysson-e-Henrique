@@ -1,4 +1,4 @@
-function confirmEmail() {
+/* function confirmEmail() {
 
     var code;
 
@@ -30,4 +30,4 @@ function confirmEmail() {
             alert("Erro com o código! -> " + error);
         });
 
-}
+} */

@@ -11,7 +11,7 @@ function resetPassowrd() {
 
     }
 
-    fetch("http://localhost:8080/api/login/reset${password}/${confirmedPassword}", {
+    fetch("http://localhost:8080/api/login/${password}/${confirmedPassword}", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

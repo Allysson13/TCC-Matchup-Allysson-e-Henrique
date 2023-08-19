@@ -60,13 +60,35 @@ public class LoginController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.ACCEPTED);
     }
 
-    @PostMapping("/login-route")
-    public ResponseEntity<String> receiveFormData(@RequestBody User user){
+    /*@GetMapping("/{code}")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<String> confirmEmailByCode(@PathVariable String code) {
+        return new ResponseEntity<>(, HttpStatus.ACCEPTED);
+    }*/
 
-        return ResponseEntity.ok("Data received successfully!");
-
+    @GetMapping("/{email}")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<Boolean> verifyEmail(@PathVariable String email) {
+        if (userService.existsByEmail(email)){
+            //send verification code to the verified email
+        }
+        return new ResponseEntity<>(userService.existsByEmail(email), HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/{password}/{confirmedPassword}")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<Boolean> resetPassword(@PathVariable String password, String confirmedPassword) {
+        //verify password format
+        //encodings...
+        if (password == confirmedPassword){
+            //send confirmation to the user's email
+        }
+        return new ResponseEntity<>((password == confirmedPassword), HttpStatus.ACCEPTED);
+    }
 
+    @PostMapping("/login-route")
+    public ResponseEntity<String> receiveFormData(@RequestBody User user){
+        return ResponseEntity.ok("Data received successfully!");
+    }
 
 }
