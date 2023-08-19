@@ -8,6 +8,7 @@ $('#dd-interest').multi({
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+    dateConfig();
     USER_DEPENDENCIES.forEach(type => {
         loadDropDowns(type);
     })
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.getElementById("register").addEventListener("submit", function (event) {
     event.preventDefault();
-    register();
+    registerUser();
 });
 
 async function getAll(type) {
@@ -82,13 +83,7 @@ function getAll(type) {
 }
 
 
-function register(type) {
-    var jsonObject = {};
-    let name = prompt('Inform the name of the ' + (type).toUpperCase() + ':');
-    if (name == null || name == '') return;
-    jsonObject['name'] = name;
-
-    console.log(jsonObject);
+function register(type, jsonObject){
 
     fetch("http://localhost:8080/api/register/" + type, {
         method: "POST",
@@ -108,8 +103,9 @@ function register(type) {
         });
 }
 
-/*function registerUser() {
+async function registerUser() {
     let name = document.getElementById('txt-name').value;
+    let username = document.getElementById('txt-username').value;
     let email = document.getElementById('txt-email').value;
     let password = document.getElementById('txt-password').value;
     let confirmedPassword = document.getElementById('txt-confirmed-password').value;
@@ -128,36 +124,14 @@ function register(type) {
         interests.push(interest);
     }
 
-    let address = {
-        "street": street,
-        "number": number,
-        "neighborhood": neighborhood,
-        "state": state,
-        "zipcode": zipcode
+    if(!await validateEmail(email)){
+        console.log("Email inválido!");
     }
-
-    fetch("http://localhost:8080/api/register/address", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(address)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erro ao enviar dados " + response);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Deu certo!");
-        })
-        .catch(error => {
-            alert("Deu errado! -> " + error);
-        });
+    validateUsername(username);
 
     let user = {
         "name": name,
+        "username" : username,
         "email": email,
         "birthDate": birthDate,
         //requires verification
@@ -167,34 +141,27 @@ function register(type) {
         //"profilePicture": profilePicture,
         //address
         //interest
+        "addressStreet": street,
+        "addressNumber": number,
+        "addressNeighborhood": neighborhood,
+        "addressState": state,
+        "addressZipcode": zipcode
     }
 
-    fetch("http://localhost:8080/api/user/register", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erro ao enviar dados " + response);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Deu certo!");
-        })
-        .catch(error => {
-            alert("Deu errado! -> " + error);
-        });
 
-} */
-
-function onLoad() {
-    dateConfig();
-    //zipcode
+    register('user', user);
 }
+
+const validator = require('validator');
+
+function validateEmail(email){
+    if (validator.isEmail(email)) {
+        return
+    } else {
+        // Email inválido
+    }
+}
+
 
 function dateConfig() {
     var today = new Date();
