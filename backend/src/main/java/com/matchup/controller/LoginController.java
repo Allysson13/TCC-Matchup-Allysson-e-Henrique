@@ -89,13 +89,13 @@ public class LoginController {
 
     @GetMapping("/{password}/{confirmedPassword}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<Boolean> resetPassword(@PathVariable String password, String confirmedPassword) {
+    public ResponseEntity<Boolean> resetPassword(@PathVariable String password, @PathVariable String confirmedPassword) {
         //verify password format
         //encodings...
-        if (password == confirmedPassword){
+        if (password.equals(confirmedPassword)){
             //send confirmation to the user's email
         }
-        return new ResponseEntity<>((password == confirmedPassword), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(password.equals(confirmedPassword), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/login-route")
