@@ -104,10 +104,10 @@ function register(type, jsonObject){
 }
 
 async function registerUser() {
-    let name = document.getElementById('txt-name').value;
+    //let name = document.getElementById('txt-name').value;
     let username = document.getElementById('txt-username').value;
     let email = document.getElementById('txt-email').value;
-    let password = document.getElementById('txt-password').value;
+    /* let password = document.getElementById('txt-password').value;
     let confirmedPassword = document.getElementById('txt-confirmed-password').value;
     let birthDate = document.getElementById('date-birth-date').value;
     //let profilePicture = document.getElementById('file-profile-picture').value;
@@ -122,14 +122,17 @@ async function registerUser() {
         //requires change
         var interest = { id: option.value, name: option.text}; 
         interests.push(interest);
-    }
+    } */
 
-    if(!await validateEmail(email)){
-        console.log("Email inválido!");
+    if(!(await validateUsername(username))){
+        console.log("USERNAME INVÁLIDO!!");
     }
-    validateUsername(username);
+    if(!(await validator.isEmail(email))){
+        console.log("EMAIL INVÁLIDO!!");
+    }
+    
 
-    let user = {
+/*     let user = {
         "name": name,
         "username" : username,
         "email": email,
@@ -146,21 +149,18 @@ async function registerUser() {
         "addressNeighborhood": neighborhood,
         "addressState": state,
         "addressZipcode": zipcode
-    }
+    } 
 
 
     register('user', user);
+    */
 }
 
-const validator = require('validator');
-
-function validateEmail(email){
-    if (validator.isEmail(email)) {
-        return
-    } else {
-        // Email inválido
-    }
+function validateUsername(username){
+    return (username.length < 5 || username.length > 16) || (validator.matches(username, /^[a-zA-Z0-9_.-]+$/));
 }
+
+
 
 
 function dateConfig() {
