@@ -1,7 +1,7 @@
 function login() {
 
     /*let email = document.getElementById('txt-email').value;
-    //requires verification //requires verification regarding the password format
+    //requires verification regarding the password format
     let password = document.getElementById('txt-password').value;
 
     let user = {
@@ -30,4 +30,4 @@ function login() {
             alert("Deu errado! -> " + error);
         });*/
 
-}    
+}
