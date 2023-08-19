@@ -1,6 +1,11 @@
 //const USER_DEPENDENCIES = ['address', 'friendship', 'interest', 'message'];
 const USER_DEPENDENCIES = ['interest'];
 
+var validEmail = false;
+var validUsername = false;
+var validPassword = false;
+var bothPasswordsEqual = false;
+
 $('#dd-interest').multi({
     non_selected_header: 'Jogos',
     selected_header: 'Jogos Selecionados',
@@ -14,10 +19,44 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 });
 
+
 document.getElementById("register").addEventListener("submit", function (event) {
     event.preventDefault();
     registerUser();
 });
+
+
+document.getElementById("txt-username").addEventListener("input", function (event) {
+    validUsername = validateUsername(this.value);
+    changeInputBorder(validUsername, this);  
+});
+
+document.getElementById("txt-email").addEventListener("input", function (event) {
+    validEmail = validator.isEmail(this.value);
+    changeInputBorder(validEmail, this);  
+});
+
+document.getElementById("txt-password").addEventListener("input", function (event) {
+    validPassword = validatePassword(this.value);
+    changeInputBorder(validPassword, this);  
+});
+
+document.getElementById("txt-confirmed-password").addEventListener("input", function (event) {
+    bothPasswordsEqual = (document.getElementById("txt-password").value == document.getElementById("txt-confirmed-password").value);
+    changeInputBorder(bothPasswordsEqual, this); 
+});
+
+
+
+function changeInputBorder(validValue, element){
+    if(!validValue){
+        element.classList.add('is-invalid');
+    }else{
+        element.classList.remove('is-invalid');
+    }
+}
+
+
 
 async function getAll(type) {
     const response = await fetch(`http://localhost:8080/api/register/get/${type}/all`);
@@ -104,6 +143,15 @@ function register(type, jsonObject){
 }
 
 async function registerUser() {
+    if(!validEmail || !validUsername || !validPassword){
+        alert("Todos os campos precisam ser preenchidos corretamente!");
+        return;
+    }
+
+    if(!bothPasswordsEqual){
+        alert("A senha precisa ser a mesma em ambos os campos");
+        return;
+    }
     //let name = document.getElementById('txt-name').value;
     let username = document.getElementById('txt-username').value;
     let email = document.getElementById('txt-email').value;
@@ -124,12 +172,12 @@ async function registerUser() {
         interests.push(interest);
     } */
 
-    if(!(await validateUsername(username))){
-        console.log("USERNAME INVÁLIDO!!");
+/*     if(!(await validateUsername(username))){ // invalid Username
+        document.getElementById('txt-username').classList.add('is-invalid');
     }
     if(!(await validator.isEmail(email))){
         console.log("EMAIL INVÁLIDO!!");
-    }
+    } */
     
 
 /*     let user = {
@@ -157,7 +205,11 @@ async function registerUser() {
 }
 
 function validateUsername(username){
-    return (username.length < 5 || username.length > 16) || (validator.matches(username, /^[a-zA-Z0-9_.-]+$/));
+    return (validator.matches(username, /^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]{5,20}$/));
+}
+
+function validatePassword(password){
+    return (validator.matches(password, /^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/));
 }
 
 
