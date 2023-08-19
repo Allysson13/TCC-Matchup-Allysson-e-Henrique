@@ -59,6 +59,14 @@ public class UserService {
         return userRepository.existsByEmail(email);
     }
 
+    public boolean existsByUsername(String username){
+        return userRepository.existsByEmail(username);
+    }
+
+    public boolean existsByEmailOrUsername(String email, String username){
+        return userRepository.existsByEmailOrUsername(email, username);
+    }
+
     public User registerUser(UserDto userDto){
         User userToRegister = new User();
         Address addressToRegister = new Address();

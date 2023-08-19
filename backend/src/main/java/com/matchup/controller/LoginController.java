@@ -75,6 +75,18 @@ public class LoginController {
         return new ResponseEntity<>(userService.existsByEmail(email), HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/{username}")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<Boolean> verifyUsername(@PathVariable String username) {
+        return new ResponseEntity<>(userService.existsByUsername(username), HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/{emailOrUsername}")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<Boolean> verifyEmailOrUsername(@PathVariable String emailOrUsername) {
+        return new ResponseEntity<>(userService.existsByEmailOrUsername(emailOrUsername, emailOrUsername), HttpStatus.ACCEPTED);
+    }
+
     @GetMapping("/{password}/{confirmedPassword}")
     @CrossOrigin(origins = "*")
     public ResponseEntity<Boolean> resetPassword(@PathVariable String password, String confirmedPassword) {
