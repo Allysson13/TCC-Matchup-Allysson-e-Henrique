@@ -62,11 +62,17 @@ txtEmail.addEventListener("input", function(event) {
     validEmail = validator.isEmail(this.value);
     changeInputBorder(validEmail, this);
 });
+var lastEmailTyped;
 txtEmail.addEventListener("blur", async function(event) {
+    console.log((lastEmailTyped == this.value));
+
+    if(lastEmailTyped == this.value) return;
+    lastEmailTyped = this.value;
+
     response = await checkAvailability('email', this.value);
-    console.log(response.body);
+    console.log(response.status);
     if(response.status === 409){
-        console.log(response.body);
+        console.log(response);
     }
 }); 
 
@@ -83,7 +89,6 @@ txtConfirmedPassword.addEventListener("input", function(event) {
 });
 
 
-
 function changeInputBorder(validValue, element) {
     if (!validValue) {
         element.classList.add('is-invalid');
@@ -92,6 +97,22 @@ function changeInputBorder(validValue, element) {
     }
 }
 
+txtZipcode.addEventListener("blur", async function(event) {
+    configureAddressByCep(this.value);
+    
+}); 
+
+async function configureAddressByCep(cep){
+    let address = (await fetch(`https://viacep.com.br/ws/${cep}/json/`));
+    address = await address.json();
+    txtState.value = address.uf;
+    txtState.disabled = true;
+    //txtCity.value = address.localidade
+    txtNeighborhood.value = address.bairro;
+    txtNeighborhood.disabled = true;
+    txtStreet.value = address.logradouro;
+    txtStreet.disabled = true;
+}
 
 
 async function getAll(type) {
@@ -235,14 +256,16 @@ function validatePassword(password) {
     return (validator.matches(password, /^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/));
 }
 
-function checkAvailability(type, data){
+async function checkAvailability(type, data){
     fetch(`http://localhost:8080/api/data-verification/${type}/check-availability/${data}`)
-        .then(async response => {
-            console.log(response.statusText);
-            return response;
+        .then(response => {
+
+            response.json().then(json => {
+                return json;
+            });
         })
         .catch(error => {
-            alert("Deu errado! -> (register())" + error);
+            alert("Deu errado! -> (checkAvailability)" + error);
         });
 }
 
