@@ -1,6 +1,25 @@
 //const USER_DEPENDENCIES = ['address', 'friendship', 'interest', 'message'];
 const USER_DEPENDENCIES = ['interest'];
 
+var form = document.getElementById("register");
+
+var txtName = document.getElementById("txt-name");
+var txtUsername = document.getElementById("txt-username");
+var txtEmail = document.getElementById("txt-email");
+var txtPassword = document.getElementById("txt-password");
+var txtConfirmedPassword = document.getElementById("txt-confirmed-password");
+
+var dateBirthDate = document.getElementById('date-birth-date');
+var ddInterest = document.getElementById('dd-interest');
+var fileProfilePicture = document.getElementById('file-profile-picture');
+
+var txtZipcode = document.getElementById('txt-zipcode');
+var txtState = document.getElementById('txt-state');
+var txtNeighborhood = document.getElementById('txt-neighborhood');
+var txtStreet = document.getElementById('txt-street');
+var txtNumber = document.getElementById('number-number');
+
+
 var validEmail = false;
 var validUsername = false;
 var validPassword = false;
@@ -20,38 +39,44 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-document.getElementById("register").addEventListener("submit", function (event) {
+form.addEventListener("submit", function (event) {
     event.preventDefault();
     registerUser();
 });
 
 
-document.getElementById("txt-username").addEventListener("input", function (event) {
+txtUsername.addEventListener("input", function (event) {
     validUsername = validateUsername(this.value);
-    changeInputBorder(validUsername, this);  
+    changeInputBorder(validUsername, this);
+});
+txtUsername.addEventListener("blur", function (event) {
+    console.log("verificar disponibilidade de username");
 });
 
-document.getElementById("txt-email").addEventListener("input", function (event) {
+
+txtEmail.addEventListener("input", function (event) {
     validEmail = validator.isEmail(this.value);
-    changeInputBorder(validEmail, this);  
+    changeInputBorder(validEmail, this);
 });
 
-document.getElementById("txt-password").addEventListener("input", function (event) {
+
+txtPassword.addEventListener("input", function (event) {
     validPassword = validatePassword(this.value);
-    changeInputBorder(validPassword, this);  
-});
-
-document.getElementById("txt-confirmed-password").addEventListener("input", function (event) {
-    bothPasswordsEqual = (document.getElementById("txt-password").value == document.getElementById("txt-confirmed-password").value);
-    changeInputBorder(bothPasswordsEqual, this); 
+    changeInputBorder(validPassword, this);
 });
 
 
+txtConfirmedPassword.addEventListener("input", function (event) {
+    bothPasswordsEqual = (txtPassword.value == txtConfirmedPassword.value);
+    changeInputBorder(bothPasswordsEqual, this);
+});
 
-function changeInputBorder(validValue, element){
-    if(!validValue){
+
+
+function changeInputBorder(validValue, element) {
+    if (!validValue) {
         element.classList.add('is-invalid');
-    }else{
+    } else {
         element.classList.remove('is-invalid');
     }
 }
@@ -82,7 +107,7 @@ async function loadDropDowns(type) {
 async function loadInterestDropDown() {
     try {
         const json = interests;
-        populateDropDown(json, document.getElementById('dd-interest'));
+        populateDropDown(json, ddInterest);
     } catch (error) {
         console.error('Erro ao carregar o arquivo JSON:', error);
         throw error;
@@ -122,9 +147,9 @@ function getAll(type) {
 }
 
 
-function register(type, jsonObject){
+function register(type, jsonObject) {
 
-    fetch("http://localhost:8080/api/register/" + type, {
+    fetch(`http://localhost:8080/api/register/${type}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -143,73 +168,66 @@ function register(type, jsonObject){
 }
 
 async function registerUser() {
-    if(!validEmail || !validUsername || !validPassword){
-        alert("Todos os campos precisam ser preenchidos corretamente!");
-        return;
-    }
+    if(!(await validateFields())) return;
 
-    if(!bothPasswordsEqual){
-        alert("A senha precisa ser a mesma em ambos os campos");
-        return;
-    }
-    //let name = document.getElementById('txt-name').value;
-    let username = document.getElementById('txt-username').value;
-    let email = document.getElementById('txt-email').value;
-    /* let password = document.getElementById('txt-password').value;
-    let confirmedPassword = document.getElementById('txt-confirmed-password').value;
-    let birthDate = document.getElementById('date-birth-date').value;
-    //let profilePicture = document.getElementById('file-profile-picture').value;
-    let street = document.getElementById('txt-street').value;
-    let number = document.getElementById('number-number').value;
-    let neighborhood = document.getElementById('txt-neighborhood').value;
-    let state = document.getElementById('txt-state').value;
-    let zipcode = document.getElementById('txt-zipcode').value;
-
-    let interests = [];
-    for(let option of $("#dd-interest option:selected")){
-        //requires change
-        var interest = { id: option.value, name: option.text}; 
+    /* let interests = [];
+    for (let option of $("#dd-interest option:selected")) {
+        var interest = { id: option.value };
         interests.push(interest);
     } */
 
-/*     if(!(await validateUsername(username))){ // invalid Username
-        document.getElementById('txt-username').classList.add('is-invalid');
-    }
-    if(!(await validator.isEmail(email))){
-        console.log("EMAIL INVÁLIDO!!");
-    } */
-    
-
-/*     let user = {
-        "name": name,
-        "username" : username,
-        "email": email,
-        "birthDate": birthDate,
-        //requires verification
-        "hashedPassword": password,
-        //requires verification
+    let user = {
+        "name": txtName.value,
+        "username": txtUsername.value,
+        "email": txtEmail.value,
+        "birthDate": dateBirthDate.value,
+        "rawPassword": txtPassword.value,
         "cellphoneNumber": cellphoneNumber,
         //"profilePicture": profilePicture,
+        //"interests": interests,
         //address
-        //interest
-        "addressStreet": street,
-        "addressNumber": number,
-        "addressNeighborhood": neighborhood,
-        "addressState": state,
-        "addressZipcode": zipcode
-    } 
+        "addressStreet": txtStreet.value,
+        "addressNumber": txtNumber.value,
+        "addressNeighborhood": txtNeighborhood.value,
+        "addressState": txtState.value,
+        "addressZipcode": txtZipcode.value
+    }
 
 
     register('user', user);
-    */
 }
 
-function validateUsername(username){
+function validateFields(){
+    if (!validEmail || !validUsername || !validPassword) {
+        alert("Todos os campos precisam ser preenchidos corretamente!");
+        return false;
+    }
+
+    if (!bothPasswordsEqual) {
+        alert("A senha precisa ser a mesma em ambos os campos");
+        return false;
+    }
+
+    return true;
+}
+
+function validateUsername(username) {
     return (validator.matches(username, /^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]{5,20}$/));
 }
 
-function validatePassword(password){
+function validatePassword(password) {
     return (validator.matches(password, /^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/));
+}
+
+function checkAvailability(type, data){
+    ///email/check-availability/{email}
+    fetch(`http://localhost:8080/api/validate/${type}/check-availability/${data}`)
+        .then(async response => {
+            return response;
+        })
+        .catch(error => {
+            alert("Deu errado! -> (register())" + error);
+        });
 }
 
 
