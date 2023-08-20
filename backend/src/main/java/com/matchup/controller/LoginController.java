@@ -55,7 +55,7 @@ public class LoginController {
     }*/
 
     @GetMapping("/teste5")
-    @CrossOrigin(origins = "*")
+
     public ResponseEntity<List<User>> teste5() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.ACCEPTED);
     }
@@ -65,27 +65,6 @@ public class LoginController {
     public ResponseEntity<String> confirmEmailByCode(@PathVariable String code) {
         return new ResponseEntity<>(, HttpStatus.ACCEPTED);
     }*/
-
-    @GetMapping("/{email}")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<Boolean> verifyEmail(@PathVariable String email) {
-        if (userService.existsByEmail(email)){
-            //send verification code to the verified email
-        }
-        return new ResponseEntity<>(userService.existsByEmail(email), HttpStatus.ACCEPTED);
-    }
-
-    @GetMapping("/{username}")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<Boolean> verifyUsername(@PathVariable String username) {
-        return new ResponseEntity<>(userService.existsByUsername(username), HttpStatus.ACCEPTED);
-    }
-
-    @GetMapping("/{emailOrUsername}")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<Boolean> verifyEmailOrUsername(@PathVariable String emailOrUsername) {
-        return new ResponseEntity<>(userService.existsByEmailOrUsername(emailOrUsername, emailOrUsername), HttpStatus.ACCEPTED);
-    }
 
     @GetMapping("/{password}/{confirmedPassword}")
     @CrossOrigin(origins = "*")

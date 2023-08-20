@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,14 +73,16 @@ public class UserService {
         Address addressToRegister = new Address();
 
         userToRegister.setName(userDto.getName());
+        userToRegister.setUsername(userDto.getUsername());
         userToRegister.setEmail(userDto.getEmail());
-        userToRegister.setBirthDate(userDto.getBirthDate());
+        userToRegister.setBirthDate(LocalDateTime.now());
         userToRegister.setHashedPassword(
                 passwordEncoder.encode(userDto.getRawPassword()));
+        System.out.println(userDto.getRawPassword() + "\n" +userToRegister.getHashedPassword());
         userToRegister.setCellphoneNumber(userDto.getCellphoneNumber());
-        userToRegister.setProfilePicture(userDto.getProfilePicture());
+        /*userToRegister.setProfilePicture(userDto.getProfilePicture());
         userToRegister.setInterests(
-                interestRepository.findAllById(userDto.getInterests()));
+                interestRepository.findAllById(userDto.getInterests()));*/
 
         addressToRegister.setNumber(userDto.getAddressNumber());
         addressToRegister.setStreet(userDto.getAddressStreet());

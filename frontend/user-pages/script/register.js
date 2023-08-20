@@ -39,34 +39,45 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", function(event) {
     event.preventDefault();
     registerUser();
 });
 
 
-txtUsername.addEventListener("input", function (event) {
+txtUsername.addEventListener("input", function(event) {
     validUsername = validateUsername(this.value);
     changeInputBorder(validUsername, this);
 });
-txtUsername.addEventListener("blur", function (event) {
-    console.log("verificar disponibilidade de username");
-});
+/* txtUsername.addEventListener("blur", async event => {
+    response = await checkAvailability('username', this.value);
+    if(response.status === 409){
+        console.log(response.body);
+    }
+
+}); */
 
 
-txtEmail.addEventListener("input", function (event) {
+txtEmail.addEventListener("input", function(event) {
     validEmail = validator.isEmail(this.value);
     changeInputBorder(validEmail, this);
 });
+txtEmail.addEventListener("blur", async function(event) {
+    response = await checkAvailability('email', this.value);
+    console.log(response.body);
+    if(response.status === 409){
+        console.log(response.body);
+    }
+}); 
 
 
-txtPassword.addEventListener("input", function (event) {
+txtPassword.addEventListener("input", function(event) {
     validPassword = validatePassword(this.value);
     changeInputBorder(validPassword, this);
 });
 
 
-txtConfirmedPassword.addEventListener("input", function (event) {
+txtConfirmedPassword.addEventListener("input", function(event) {
     bothPasswordsEqual = (txtPassword.value == txtConfirmedPassword.value);
     changeInputBorder(bothPasswordsEqual, this);
 });
@@ -180,9 +191,9 @@ async function registerUser() {
         "name": txtName.value,
         "username": txtUsername.value,
         "email": txtEmail.value,
-        "birthDate": dateBirthDate.value,
+        //"birthDate": dateBirthDate.value,
         "rawPassword": txtPassword.value,
-        "cellphoneNumber": cellphoneNumber,
+        //"cellphoneNumber": cellphoneNumber,
         //"profilePicture": profilePicture,
         //"interests": interests,
         //address
@@ -198,6 +209,10 @@ async function registerUser() {
 }
 
 function validateFields(){
+    console.log(validEmail);
+    console.log(validUsername);
+    console.log(validPassword);
+
     if (!validEmail || !validUsername || !validPassword) {
         alert("Todos os campos precisam ser preenchidos corretamente!");
         return false;
@@ -212,7 +227,8 @@ function validateFields(){
 }
 
 function validateUsername(username) {
-    return (validator.matches(username, /^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]{5,20}$/));
+    console.log(validator.matches(username, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]{5,20}$"));
+    return (validator.matches(username, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]{5,20}$"));
 }
 
 function validatePassword(password) {
@@ -220,9 +236,9 @@ function validatePassword(password) {
 }
 
 function checkAvailability(type, data){
-    ///email/check-availability/{email}
-    fetch(`http://localhost:8080/api/validate/${type}/check-availability/${data}`)
+    fetch(`http://localhost:8080/api/data-verification/${type}/check-availability/${data}`)
         .then(async response => {
+            console.log(response.statusText);
             return response;
         })
         .catch(error => {

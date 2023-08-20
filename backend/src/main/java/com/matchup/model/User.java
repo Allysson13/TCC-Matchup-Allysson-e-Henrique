@@ -30,7 +30,7 @@ public class User {
     @Column(name = "hashed_password", length = 455, nullable = false, updatable = true)
     private String hashedPassword;
 
-    @Column(name = "cellphone_number", length = 455, nullable = false)
+    @Column(name = "cellphone_number", nullable = false,length = 455)
     private String cellphoneNumber;
 
     @Lob

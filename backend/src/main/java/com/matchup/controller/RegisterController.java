@@ -33,10 +33,9 @@ public class RegisterController {
         return new ResponseEntity<>(addressService.saveAddress(address), HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping("/user")
     @PostAuthorize("true")
     public ResponseEntity<User> register(@RequestBody UserDto userDto) {
-        System.out.println(userDto.getName());
         return new ResponseEntity<>(userService.registerUser(userDto), HttpStatus.OK);
     }
 
