@@ -26,7 +26,7 @@ public class DataVerificationController {
 
     @GetMapping("/username/check-availability/{username}")
     public ResponseEntity<String> verifyUsername(@PathVariable String username) {
-        if (userService.existsByEmail(username)) {
+        if (userService.existsByUsername(username)) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already in use");
         }
         return ResponseEntity.ok("Username is available");

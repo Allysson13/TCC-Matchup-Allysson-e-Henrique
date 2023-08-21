@@ -5,7 +5,9 @@ var form = document.getElementById("register");
 
 var txtName = document.getElementById("txt-name");
 var txtUsername = document.getElementById("txt-username");
+var errorUsername = document.getElementById("usernameError");
 var txtEmail = document.getElementById("txt-email");
+var errorEmail = document.getElementById("emailError");
 var txtPassword = document.getElementById("txt-password");
 var txtConfirmedPassword = document.getElementById("txt-confirmed-password");
 
@@ -49,13 +51,23 @@ txtUsername.addEventListener("input", function(event) {
     validUsername = validateUsername(this.value);
     changeInputBorder(validUsername, this);
 });
-/* txtUsername.addEventListener("blur", async event => {
-    response = await checkAvailability('username', this.value);
-    if(response.status === 409){
-        console.log(response.body);
-    }
+var lastUsernameTyped;
+txtUsername.addEventListener("blur", async function(event) {
+    if(lastUsernameTyped == this.value) return;
+    lastUsernameTyped = this.value;
 
-}); */
+    response = await checkAvailability('username', this.value);
+    console.log(response.status);
+    console.log(response.text());
+
+    if(response.status == 409){
+        validUsername = false;
+        changeInputBorder(validUsername, txtUsername);
+        errorUsername.textContent = await response.text();
+    }else{
+        errorUsername.textContent = '';
+    }
+}); 
 
 
 txtEmail.addEventListener("input", function(event) {
@@ -64,17 +76,30 @@ txtEmail.addEventListener("input", function(event) {
 });
 var lastEmailTyped;
 txtEmail.addEventListener("blur", async function(event) {
-    console.log((lastEmailTyped == this.value));
-
     if(lastEmailTyped == this.value) return;
     lastEmailTyped = this.value;
 
     response = await checkAvailability('email', this.value);
     console.log(response.status);
-    if(response.status === 409){
-        console.log(response);
+
+    if(response.status == 409){
+        validEmail = false;
+        changeInputBorder(validEmail, txtEmail);
+        errorEmail.textContent = await response.text();
+    }else{
+        errorEmail.textContent = '';
     }
 }); 
+
+
+async function checkAvailability(type, data){
+    response = await fetch(`http://localhost:8080/api/data-verification/${type}/check-availability/${data}`)
+        .catch(error => {
+            alert("Deu errado! -> (checkAvailability)" + error);
+        });
+    return response;
+}
+
 
 
 txtPassword.addEventListener("input", function(event) {
@@ -249,24 +274,11 @@ function validateFields(){
 
 function validateUsername(username) {
     console.log(validator.matches(username, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]{5,20}$"));
-    return (validator.matches(username, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]{5,20}$"));
+    return (username.length >= 5 && username.length <= 20) || (validator.matches(username, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$"));
 }
 
 function validatePassword(password) {
     return (validator.matches(password, /^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/));
-}
-
-async function checkAvailability(type, data){
-    fetch(`http://localhost:8080/api/data-verification/${type}/check-availability/${data}`)
-        .then(response => {
-
-            response.json().then(json => {
-                return json;
-            });
-        })
-        .catch(error => {
-            alert("Deu errado! -> (checkAvailability)" + error);
-        });
 }
 
 
