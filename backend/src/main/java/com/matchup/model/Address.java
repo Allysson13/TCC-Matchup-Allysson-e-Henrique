@@ -17,6 +17,9 @@ public class Address {
     @Column(name = "street", nullable = false)
     private String street;
 
+    @Column(name = "city", nullable = false)
+    private String city;
+
     @Column(name = "neighborhood", nullable = false)
     private String neighborhood;
 
@@ -35,9 +38,11 @@ public class Address {
 
     }
 
-    public Address(int number, String street, String neighborhood, String state, int zipcode) {
+    public Address(long id, int number, String street, String city, String neighborhood, String state, int zipcode) {
+        this.id = id;
         this.number = number;
         this.street = street;
+        this.city = city;
         this.neighborhood = neighborhood;
         this.state = state;
         this.zipcode = zipcode;
@@ -63,6 +68,14 @@ public class Address {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getNeighborhood() {
