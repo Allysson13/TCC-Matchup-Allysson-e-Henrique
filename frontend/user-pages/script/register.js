@@ -305,9 +305,6 @@ function validatePhonenumber(phoneNumber){
     
 }
 
-
-
-
 function dateConfig() {
     var today = new Date();
     var minDate = new Date(today.getFullYear() - 120, today.getMonth(), today.getDate());
