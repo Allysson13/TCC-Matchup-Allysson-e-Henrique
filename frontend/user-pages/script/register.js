@@ -136,7 +136,7 @@ async function configureAddressByCep(cep) {
     address = await address.json();
     txtState.value = address.uf;
     txtState.disabled = true;
-    //txtCity.value = address.localidade
+    txtCity.value = address.localidade
     txtNeighborhood.value = address.bairro;
     txtNeighborhood.disabled = true;
     txtStreet.value = address.logradouro;
@@ -301,6 +301,7 @@ function validatePassword(password) {
     return (validator.matches(password, /^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/));
 }
 
+<<<<<<< HEAD
 function validatePhonenumber(phoneNumber){
     
 }
@@ -308,6 +309,8 @@ function validatePhonenumber(phoneNumber){
 
 
 
+=======
+>>>>>>> d6d7a12 (starting to implement the forgot password function)
 function dateConfig() {
     var today = new Date();
     var minDate = new Date(today.getFullYear() - 120, today.getMonth(), today.getDate());
