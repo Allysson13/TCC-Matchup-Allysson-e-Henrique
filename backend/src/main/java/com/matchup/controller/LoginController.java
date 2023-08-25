@@ -41,10 +41,10 @@ public class LoginController {
         return new ResponseEntity<>(userService.findByPartOfTheName(partOfTheName), HttpStatus.ACCEPTED);
     }
 
-//    @PostMapping("/auth")
-//    public ResponseEntity<User> login(@RequestBody UserDto userDto) {
-//        return new ResponseEntity<>(userService.findByEmailAndHashedPassword(email, hashedPassword), HttpStatus.ACCEPTED);
-//    }
+    /*@PostMapping("/auth")
+    public ResponseEntity<Boolean> login(@PathVariable String email, @PathVariable String hashedPassword) {
+        return new ResponseEntity<>(userService.findByEmailAndHashedPassword(email, hashedPassword), HttpStatus.ACCEPTED);
+    }*/
 
     //copied to RegisterController
     /*@PostMapping("/teste4")
@@ -55,7 +55,6 @@ public class LoginController {
     }*/
 
     @GetMapping("/teste5")
-
     public ResponseEntity<List<User>> teste5() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.ACCEPTED);
     }
