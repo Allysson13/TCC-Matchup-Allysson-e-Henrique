@@ -10,6 +10,7 @@ var txtEmail = document.getElementById("txt-email");
 var errorEmail = document.getElementById("emailError");
 var txtPassword = document.getElementById("txt-password");
 var txtConfirmedPassword = document.getElementById("txt-confirmed-password");
+var txtPhonenumber = document.getElementById("txt-phonenumber");
 
 var dateBirthDate = document.getElementById('date-birth-date');
 var ddInterest = document.getElementById('dd-interest');
@@ -17,6 +18,7 @@ var fileProfilePicture = document.getElementById('file-profile-picture');
 
 var txtZipcode = document.getElementById('txt-zipcode');
 var txtState = document.getElementById('txt-state');
+var txtCity = document.getElementById('txt-city');
 var txtNeighborhood = document.getElementById('txt-neighborhood');
 var txtStreet = document.getElementById('txt-street');
 var txtNumber = document.getElementById('number-number');
@@ -139,6 +141,30 @@ async function configureAddressByCep(cep){
     txtStreet.disabled = true;
 }
 
+phoneNumber.addEventListener("input", function() {
+    const phoneNumber = input.value.replace(/\D/g, ""); // Remove não dígitos
+    
+    let formattedNumber = phoneNumber;
+    
+    if (phoneNumber.length >= 2) {
+      formattedNumber = `(${phoneNumber.substring(0, 2)}) `;
+    }
+    
+    if (phoneNumber.length > 2) {
+      formattedNumber += `${phoneNumber.substring(2)}`;
+    }
+    
+    if (phoneNumber.length >= 7) {
+      formattedNumber = formattedNumber.replace(/(\d{7})/, "$1-");
+    }
+    
+    if (phoneNumber.length > 11) {
+      formattedNumber = formattedNumber.slice(0, 15);
+    }
+
+    input.value = formattedNumber;
+  });
+
 
 async function getAll(type) {
     const response = await fetch(`http://localhost:8080/api/register/get/${type}/all`);
@@ -239,13 +265,14 @@ async function registerUser() {
         "email": txtEmail.value,
         //"birthDate": dateBirthDate.value,
         "rawPassword": txtPassword.value,
-        //"cellphoneNumber": cellphoneNumber,
+        "cellphoneNumber": txtPhonenumber,
         //"profilePicture": profilePicture,
         //"interests": interests,
         //address
         "addressStreet": txtStreet.value,
         "addressNumber": txtNumber.value,
         "addressNeighborhood": txtNeighborhood.value,
+        "addressCity": txtCity.value,
         "addressState": txtState.value,
         "addressZipcode": txtZipcode.value
     }
