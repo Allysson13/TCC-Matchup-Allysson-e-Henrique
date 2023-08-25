@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/api/data-verification")
 @CrossOrigin(origins = "*")
@@ -36,4 +38,10 @@ public class DataVerificationController {
     public ResponseEntity<Boolean> verifyEmailOrUsername(@PathVariable String emailOrUsername) {
         return new ResponseEntity<>(userService.existsByEmailOrUsername(emailOrUsername, emailOrUsername), HttpStatus.ACCEPTED);
     }
+
+    @GetMapping("/{date}")
+    public ResponseEntity<Boolean> verifyDate(@PathVariable LocalDateTime date) {
+        return new ResponseEntity<>(userService.verifyDate(date), HttpStatus.ACCEPTED);
+    }
+
 }

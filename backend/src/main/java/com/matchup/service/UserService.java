@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,6 +67,13 @@ public class UserService {
 
     public boolean existsByEmailOrUsername(String email, String username){
         return userRepository.existsByEmailOrUsername(email, username);
+    }
+
+    public boolean verifyDate(LocalDateTime date){
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime minDate = now.minus(120, ChronoUnit.YEARS);
+        LocalDateTime maxDate = now.minus(13, ChronoUnit.YEARS);
+        return date.isAfter(minDate) && date.isBefore(maxDate);
     }
 
     public User registerUser(UserDto userDto){
