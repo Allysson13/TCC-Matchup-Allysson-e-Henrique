@@ -134,9 +134,10 @@ txtZipcode.addEventListener("blur", async function (event) {
 async function configureAddressByCep(cep) {
     let address = (await fetch(`https://viacep.com.br/ws/${cep}/json/`));
     address = await address.json();
+    console.log(address.bairro);
     txtState.value = address.uf;
     txtState.disabled = true;
-    txtCity.value = address.localidade
+    txtCity.value = address.localidade;
     txtNeighborhood.value = address.bairro;
     txtNeighborhood.disabled = true;
     txtStreet.value = address.logradouro;
