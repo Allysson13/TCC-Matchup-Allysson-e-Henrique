@@ -28,6 +28,7 @@ var validEmail = false;
 var validUsername = false;
 var validPassword = false;
 var bothPasswordsEqual = false;
+var validPhonenumber = false;
 
 $('#dd-interest').multi({
     non_selected_header: 'Jogos',
@@ -141,7 +142,7 @@ async function configureAddressByCep(cep){
     txtStreet.disabled = true;
 }
 
-txtPhoneNumber.addEventListener("input", function() {
+txtPhonenumber.addEventListener("input", function() {
     const phoneNumber = this.value.replace(/\D/g, ""); // Remove não dígitos
     
     let formattedNumber = phoneNumber;
@@ -154,11 +155,11 @@ txtPhoneNumber.addEventListener("input", function() {
       formattedNumber += `${phoneNumber.substring(2)}`;
     }
     
-    if (phoneNumber.length >= 7) {
-      formattedNumber = formattedNumber.replace(/(\d{7})/, "$1-");
+    if (phoneNumber.length >= 5) {
+      formattedNumber = formattedNumber.replace(/(\d{5})/, "$1-");
     }
     
-    if (phoneNumber.length > 11) {
+    if (phoneNumber.length > 10) {
       formattedNumber = formattedNumber.slice(0, 15);
     }
 
