@@ -136,7 +136,7 @@ async function configureAddressByCep(cep) {
     address = await address.json();
     txtState.value = address.uf;
     txtState.disabled = true;
-    txtCity.value = address.localidade
+    txtCity.value = address.localidade;
     txtNeighborhood.value = address.bairro;
     txtNeighborhood.disabled = true;
     txtStreet.value = address.logradouro;
