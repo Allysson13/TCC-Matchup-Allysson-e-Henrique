@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.DateTimeException;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/register")
@@ -36,6 +38,11 @@ public class RegisterController {
     @PostMapping("/user")
     @PostAuthorize("true")
     public ResponseEntity<User> register(@RequestBody UserDto userDto) {
+
+        if (userService.verifyDate(userDto.getBirthDate())){
+            throw new DateTimeException(userDto.getBirthDate().toString());
+        }
+
         return new ResponseEntity<>(userService.registerUser(userDto), HttpStatus.OK);
     }
 
