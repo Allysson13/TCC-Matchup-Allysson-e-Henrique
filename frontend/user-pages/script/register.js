@@ -44,58 +44,58 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-form.addEventListener("submit", function(event) {
+form.addEventListener("submit", function (event) {
     event.preventDefault();
     registerUser();
 });
 
 
-txtUsername.addEventListener("input", function(event) {
+txtUsername.addEventListener("input", function (event) {
     validUsername = validateUsername(this.value);
     changeInputBorder(validUsername, this);
 });
 var lastUsernameTyped;
-txtUsername.addEventListener("blur", async function(event) {
-    if(lastUsernameTyped == this.value) return;
+txtUsername.addEventListener("blur", async function (event) {
+    if (lastUsernameTyped == this.value) return;
     lastUsernameTyped = this.value;
 
     response = await checkAvailability('username', this.value);
     console.log(response.status);
     console.log(response.text());
 
-    if(response.status == 409){
+    if (response.status == 409) {
         validUsername = false;
         changeInputBorder(validUsername, txtUsername);
         errorUsername.textContent = await response.text();
-    }else{
+    } else {
         errorUsername.textContent = '';
     }
-}); 
+});
 
 
-txtEmail.addEventListener("input", function(event) {
+txtEmail.addEventListener("input", function (event) {
     validEmail = validator.isEmail(this.value);
     changeInputBorder(validEmail, this);
 });
 var lastEmailTyped;
-txtEmail.addEventListener("blur", async function(event) {
-    if(lastEmailTyped == this.value) return;
+txtEmail.addEventListener("blur", async function (event) {
+    if (lastEmailTyped == this.value) return;
     lastEmailTyped = this.value;
 
     response = await checkAvailability('email', this.value);
     console.log(response.status);
 
-    if(response.status == 409){
+    if (response.status == 409) {
         validEmail = false;
         changeInputBorder(validEmail, txtEmail);
         errorEmail.textContent = await response.text();
-    }else{
+    } else {
         errorEmail.textContent = '';
     }
-}); 
+});
 
 
-async function checkAvailability(type, data){
+async function checkAvailability(type, data) {
     response = await fetch(`http://localhost:8080/api/data-verification/${type}/check-availability/${data}`)
         .catch(error => {
             alert("Deu errado! -> (checkAvailability)" + error);
@@ -105,13 +105,13 @@ async function checkAvailability(type, data){
 
 
 
-txtPassword.addEventListener("input", function(event) {
+txtPassword.addEventListener("input", function (event) {
     validPassword = validatePassword(this.value);
     changeInputBorder(validPassword, this);
 });
 
 
-txtConfirmedPassword.addEventListener("input", function(event) {
+txtConfirmedPassword.addEventListener("input", function (event) {
     bothPasswordsEqual = (txtPassword.value == txtConfirmedPassword.value);
     changeInputBorder(bothPasswordsEqual, this);
 });
@@ -125,12 +125,12 @@ function changeInputBorder(validValue, element) {
     }
 }
 
-txtZipcode.addEventListener("blur", async function(event) {
+txtZipcode.addEventListener("blur", async function (event) {
     configureAddressByCep(this.value);
-    
-}); 
 
-async function configureAddressByCep(cep){
+});
+
+async function configureAddressByCep(cep) {
     let address = (await fetch(`https://viacep.com.br/ws/${cep}/json/`));
     address = await address.json();
     txtState.value = address.uf;
@@ -142,17 +142,20 @@ async function configureAddressByCep(cep){
     txtStreet.disabled = true;
 }
 
-txtPhonenumber.addEventListener("input", function() {
-    const inputPhonenumber = document.querySelector("#txt-phonenumber");
-        inputPhonenumber.addEventListener("input", function(event) {
-            let value = event.target.value;
-            value = value.replace(/\D/g, "");
-            value = value.replace(/^(\d{2})(\d)/g, "($1) $2");
-            value = value.replace(/(\d)(\d{4})$/, "$1-$2");
-            event.target.value = value;
-        });
-  });
+txtPhonenumber.addEventListener("input", function (event) {
+    let value = event.target.value;
+    value = value.replace(/\D/g, "");
+    value = value.replace(/^(\d{2})(\d)/g, "($1) $2");
+    value = value.replace(/(\d)(\d{4})$/, "$1-$2");
+    event.target.value = value;
+});
 
+txtZipcode.addEventListener("input", function (event) {
+    let value = event.target.value;
+    value = value.replace(/\D/g, "");
+    value = value.replace(/^(\d{5})(\d)/, "$1-$2");
+    event.target.value = value;
+});
 
 async function getAll(type) {
     const response = await fetch(`http://localhost:8080/api/register/get/${type}/all`);
@@ -239,7 +242,7 @@ function register(type, jsonObject) {
 }
 
 async function registerUser() {
-    if(!(await validateFields())) return;
+    if (!(await validateFields())) return;
 
     /* let interests = [];
     for (let option of $("#dd-interest option:selected")) {
@@ -269,7 +272,7 @@ async function registerUser() {
     register('user', user);
 }
 
-function validateFields(){
+function validateFields() {
     console.log(validEmail);
     console.log(validUsername);
     console.log(validPassword);
