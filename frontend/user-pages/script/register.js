@@ -136,7 +136,7 @@ async function configureAddressByCep(cep) {
     address = await address.json();
     txtState.value = address.uf;
     txtState.disabled = true;
-    //txtCity.value = address.localidade
+    txtCity.value = address.localidade
     txtNeighborhood.value = address.bairro;
     txtNeighborhood.disabled = true;
     txtStreet.value = address.logradouro;
@@ -181,7 +181,7 @@ async function loadDropDowns(type) {
 
 async function loadInterestDropDown() {
     try {
-        const json = getAll('interest');
+        const json = await getAll('interest');
         console.log(json);
         populateDropDown(json, ddInterest);
     } catch (error) {
