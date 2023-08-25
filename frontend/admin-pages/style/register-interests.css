@@ -33,7 +33,6 @@ input {
     background-color: #E4CCFF;
     margin: 8px 0;
     border: none;
-    cursor: pointer;
     border-radius: 8px;
 }
 input:hover {

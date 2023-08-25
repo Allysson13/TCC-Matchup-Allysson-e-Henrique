@@ -179,14 +179,10 @@ function generateInterestJSON() {
 
     game = {
         "name": nameGame,
-        "company": {
-            "id": idCompany,
-        },
+        "companyId": idCompany,
         "lowestPrice": lowestPrice,
         "highestPrice": highestPrice,
-        "ageRating": {
-            "id": idAgeRating,
-        },
+        "ageRatingId": idAgeRating,
         "dubbingLanguagesIdList": dubbingLanguagesIdList,
         "subtitleLanguagesIdList": subtitleLanguagesIdList,
         "genresIdList": genresIdList,

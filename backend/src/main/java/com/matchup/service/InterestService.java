@@ -48,6 +48,7 @@ public class InterestService {
         interestToSave.setName(interestDto.getName());
         interestToSave.setCompany(
                 companyRepository.findById(interestDto.getCompanyId()).get());
+        System.out.println(companyRepository.findById(interestDto.getCompanyId()).get().getName());
         interestToSave.setAgeRating(
                 ageRatingRepository.findById(interestDto.getAgeRatingId()).get());
         interestToSave.setDubbingLanguages(

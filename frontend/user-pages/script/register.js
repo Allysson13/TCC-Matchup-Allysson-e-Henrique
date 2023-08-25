@@ -38,9 +38,10 @@ $('#dd-interest').multi({
 
 document.addEventListener("DOMContentLoaded", function () {
     dateConfig();
-    USER_DEPENDENCIES.forEach(type => {
+    loadInterestDropDown();
+/*     USER_DEPENDENCIES.forEach(type => {
         loadDropDowns(type);
-    })
+    }) */
 });
 
 
@@ -180,7 +181,8 @@ async function loadDropDowns(type) {
 
 async function loadInterestDropDown() {
     try {
-        const json = interests;
+        const json = getAll('interest');
+        console.log(json);
         populateDropDown(json, ddInterest);
     } catch (error) {
         console.error('Erro ao carregar o arquivo JSON:', error);
@@ -207,7 +209,7 @@ function addOptionToDropDown(type, item) {
 }
 
 function getAll(type) {
-    return fetch(`http://localhost:8080/api/register/get/${type}/all`)
+    return fetch(`http://localhost:8080/api/admin/get/${type}/all`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(response.statusText);
@@ -297,6 +299,10 @@ function validateUsername(username) {
 
 function validatePassword(password) {
     return (validator.matches(password, /^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/));
+}
+
+function validatePhonenumber(phoneNumber){
+    
 }
 
 
