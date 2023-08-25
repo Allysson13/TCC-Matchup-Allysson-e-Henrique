@@ -143,27 +143,14 @@ async function configureAddressByCep(cep){
 }
 
 txtPhonenumber.addEventListener("input", function() {
-    const phoneNumber = this.value.replace(/\D/g, ""); // Remove não dígitos
-    
-    let formattedNumber = phoneNumber;
-    
-    if (phoneNumber.length >= 2) {
-      formattedNumber = `(${phoneNumber.substring(0, 2)}) `;
-    }
-    
-    if (phoneNumber.length > 2) {
-      formattedNumber += `${phoneNumber.substring(2)}`;
-    }
-    
-    if (phoneNumber.length >= 5) {
-      formattedNumber = formattedNumber.replace(/(\d{5})/, "$1-");
-    }
-    
-    if (phoneNumber.length > 10) {
-      formattedNumber = formattedNumber.slice(0, 15);
-    }
-
-    this.value = formattedNumber;
+    const inputPhonenumber = document.querySelector("#txt-phonenumber");
+        inputPhonenumber.addEventListener("input", function(event) {
+            let value = event.target.value;
+            value = value.replace(/\D/g, "");
+            value = value.replace(/^(\d{2})(\d)/g, "($1) $2");
+            value = value.replace(/(\d)(\d{4})$/, "$1-$2");
+            event.target.value = value;
+        });
   });
 
 

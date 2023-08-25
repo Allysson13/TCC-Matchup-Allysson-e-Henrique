@@ -89,18 +89,6 @@
             </div>
         </div>
     </div>
-    <input type="text" id="telefone" placeholder="Insira o número de telefone" >
-    <script>
-        const inputTelefone = document.querySelector("#telefone");
-        inputTelefone.addEventListener("input", function(event) {
-            let value = event.target.value;
-            value = value.replace(/\D/g, "");
-            value = value.replace(/^(\d{2})(\d)/g, "($1) $2");
-            value = value.replace(/(\d)(\d{4})$/, "$1-$2");
-            event.target.value = value;
-        });
-    </script>
-
 </body>
 
 </html>
