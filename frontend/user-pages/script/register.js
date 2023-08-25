@@ -141,8 +141,8 @@ async function configureAddressByCep(cep){
     txtStreet.disabled = true;
 }
 
-phoneNumber.addEventListener("input", function() {
-    const phoneNumber = input.value.replace(/\D/g, ""); // Remove não dígitos
+txtPhoneNumber.addEventListener("input", function() {
+    const phoneNumber = this.value.replace(/\D/g, ""); // Remove não dígitos
     
     let formattedNumber = phoneNumber;
     
@@ -162,7 +162,7 @@ phoneNumber.addEventListener("input", function() {
       formattedNumber = formattedNumber.slice(0, 15);
     }
 
-    input.value = formattedNumber;
+    this.value = formattedNumber;
   });
 
 
