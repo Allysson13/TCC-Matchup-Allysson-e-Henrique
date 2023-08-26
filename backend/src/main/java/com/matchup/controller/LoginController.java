@@ -43,7 +43,10 @@ public class LoginController {
     }
 
     @PostMapping("/{email}/{hashedPassword}")
-    public ResponseEntity<Boolean> login(@PathVariable String email, @PathVariable String hashedPassword) {
+    public ResponseEntity<Optional<User>> login(@PathVariable String email, @PathVariable String hashedPassword) {
+        if (userService.findByEmailAndHashedPassword(email, hashedPassword).isEmpty()){
+            throw new NullPointerException();
+        }
         return new ResponseEntity<>(userService.findByEmailAndHashedPassword(email, hashedPassword), HttpStatus.ACCEPTED);
     }
 
