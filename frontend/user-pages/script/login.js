@@ -3,7 +3,6 @@ var form = document.getElementById("login");
 var txtEmailOrUsername = document.getElementById("txt-email-or-username");
 var errorEmailOrUsername = document.getElementById("email-or-username-error");
 var txtPassword = document.getElementById("txt-password");
-var txtConfirmedPassword = document.getElementById("txt-confirmed-password");
 
 var validEmailOrUsername = false;
 var isEmail = false;
@@ -92,12 +91,27 @@ function loginRequisition(jsonObject) {
 async function login() {
     if (!(await validateFields())) return;
 
+    let user = {};
     let exists;
     if (isEmail) {
         exists = !checkAvailability('email', txtEmailOrUsername.value);
+        user = {
+            "email": txtEmailOrUsername.value,
+        }
     } else if (isUsername) {
         exists = !checkAvailability('username', txtEmailOrUsername.value);
+        user = {
+            "email": txtEmailOrUsername.value,
+        }
     }
+
+    user.password = txtCo
+
+    if(!exists){
+        return;
+    }
+
+
 
 
 
