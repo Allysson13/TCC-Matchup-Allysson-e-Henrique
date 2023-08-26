@@ -40,7 +40,7 @@ public class RegisterController {
     public ResponseEntity<User> register(@RequestBody UserDto userDto) {
         System.out.println("register-user");
         System.out.println(userDto.getBirthDate());
-        if (userService.verifyDate(userDto.getBirthDate())){
+        if (!userService.verifyDate(userDto.getBirthDate())){
             throw new DateTimeException(userDto.getBirthDate().toString());
         }
 

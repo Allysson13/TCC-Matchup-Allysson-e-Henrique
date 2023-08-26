@@ -237,7 +237,7 @@ function register(type, jsonObject) {
             if (!response.ok) {
                 throw new Error("Erro ao enviar dados " + response);
             }
-            addOptionToDropDown(type, await response.json());
+            window.location.href = 'home.html';
         })
         .catch(error => {
             alert("Deu errado! -> (register())" + error);
