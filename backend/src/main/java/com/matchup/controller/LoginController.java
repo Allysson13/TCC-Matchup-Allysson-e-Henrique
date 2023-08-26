@@ -13,6 +13,7 @@ import com.matchup.service.UserService;
 import javax.lang.model.util.Elements;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -20,6 +21,9 @@ import java.util.Optional;
 public class LoginController {
 
     private final UserService userService;
+
+    private boolean isValid = true;
+    private String code = "";
 
     @Autowired
     public LoginController(UserService userService) {
@@ -41,10 +45,15 @@ public class LoginController {
         return new ResponseEntity<>(userService.findByPartOfTheName(partOfTheName), HttpStatus.ACCEPTED);
     }
 
-    /*@PostMapping("/auth")
+    @PostMapping("/{email}/{hashedPassword}")
     public ResponseEntity<Boolean> login(@PathVariable String email, @PathVariable String hashedPassword) {
         return new ResponseEntity<>(userService.findByEmailAndHashedPassword(email, hashedPassword), HttpStatus.ACCEPTED);
-    }*/
+    }
+
+    @PostMapping("/{email}")
+    public ResponseEntity<String> forgotPassword(@PathVariable String email) {
+        return new ResponseEntity<>(sendCode(email), HttpStatus.ACCEPTED);
+    }
 
     //copied to RegisterController
     /*@PostMapping("/teste4")
@@ -59,11 +68,11 @@ public class LoginController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.ACCEPTED);
     }
 
-    /*@GetMapping("/{code}")
+    @GetMapping("/{inputCode}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<String> confirmEmailByCode(@PathVariable String code) {
-        return new ResponseEntity<>(, HttpStatus.ACCEPTED);
-    }*/
+    public ResponseEntity<Boolean> confirmEmailByCode(@PathVariable String inputCode) {
+        return new ResponseEntity<>((inputCode == code && isValid), HttpStatus.ACCEPTED);
+    }
 
     @GetMapping("/{password}/{confirmedPassword}")
     @CrossOrigin(origins = "*")
@@ -79,6 +88,34 @@ public class LoginController {
     @PostMapping("/login-route")
     public ResponseEntity<String> receiveFormData(@RequestBody User user){
         return ResponseEntity.ok("Data received successfully!");
+    }
+
+    public String sendCode(String email){
+        if (userService.findByEmail(email)){
+            Random generator = new Random();
+            int codes;
+            for(int i = 0; i < 6; i++){
+                codes = generator.nextInt(10);
+                code += codes + "";
+            }
+            Thread invalidateCodeThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(120000); // Waits 2 minutes (120000 miliseconds)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    isValid = false;
+                    System.out.println("O código de verificação expirou!");
+                }
+            });
+            invalidateCodeThread.start();
+            //send the code by email
+            return code;
+        }else{
+            return "Email não cadastrado!";
+        }
     }
 
 }

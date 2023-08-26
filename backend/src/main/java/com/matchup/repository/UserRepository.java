@@ -17,6 +17,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByEmailAndHashedPassword(String email, String hashedPassword);
 
+    Optional<User> findByEmail(String email);
+
     List<User> findByName(String name);
     //List<Address> findByNumber(int number);
 

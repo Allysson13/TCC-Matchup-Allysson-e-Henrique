@@ -50,11 +50,11 @@ public class UserService {
     }
 
     public boolean findByEmailAndHashedPassword(String email, String hashedPassword){
-        Optional<User> user = userRepository.findByEmailAndHashedPassword(email, hashedPassword);
-        if(user.isEmpty()){
-
-        }
         return userRepository.findByEmailAndHashedPassword(email, hashedPassword).isEmpty();
+    }
+
+    public boolean findByEmail(String email){
+        return userRepository.findByEmail(email).isEmpty();
     }
 
     public boolean existsByEmail(String email){
