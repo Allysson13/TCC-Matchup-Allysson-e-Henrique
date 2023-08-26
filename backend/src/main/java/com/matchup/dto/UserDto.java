@@ -3,6 +3,7 @@ package com.matchup.dto;
 import com.matchup.model.*;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class UserDto {
     private String username;
     private String name;
     private String email;
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
     private String rawPassword;
     private String cellphoneNumber;
     private Byte[] profilePicture;
@@ -27,8 +28,9 @@ public class UserDto {
     private int addressNumber;
     private String addressStreet;
     private String addressNeighborhood;
+    private String addressCity;
     private String addressState;
-    private int addressZipcode;
+    private String addressZipcode;
 
 
     public UserDto() {
@@ -50,9 +52,9 @@ public class UserDto {
 
     public void setEmail(String email) {this.email = email;}
 
-    public LocalDateTime getBirthDate() {return birthDate;}
+    public LocalDate getBirthDate() {return birthDate;}
 
-    public void setBirthDate(LocalDateTime birthDate) {this.birthDate = birthDate;}
+    public void setBirthDate(LocalDate birthDate) {this.birthDate = birthDate;}
 
     public String getRawPassword() {return rawPassword;}
 
@@ -98,11 +100,19 @@ public class UserDto {
 
     public void setAddressNeighborhood(String addressNeighborhood) {this.addressNeighborhood = addressNeighborhood;}
 
+    public String getAddressCity() {
+        return addressCity;
+    }
+
+    public void setAddressCity(String addressCity) {
+        this.addressCity = addressCity;
+    }
+
     public String getAddressState() {return addressState;}
 
     public void setAddressState(String addressState) {this.addressState = addressState;}
 
-    public int getAddressZipcode() {return addressZipcode;}
+    public String getAddressZipcode() {return addressZipcode;}
 
-    public void setAddressZipcode(int addressZipcode) {this.addressZipcode = addressZipcode;}
+    public void setAddressZipcode(String addressZipcode) {this.addressZipcode = addressZipcode;}
 }

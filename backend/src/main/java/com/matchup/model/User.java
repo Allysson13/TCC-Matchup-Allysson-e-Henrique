@@ -2,6 +2,7 @@ package com.matchup.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +26,7 @@ public class User {
     private String email;
 
     @Column(name = "birth_date", nullable = false, updatable = false)
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
 
     @Column(name = "hashed_password", length = 455, nullable = false, updatable = true)
     private String hashedPassword;
@@ -59,7 +60,7 @@ public class User {
 
     }
 
-    public User(long id, String name, String username, String email, LocalDateTime birthDate, String hashedPassword, String cellphoneNumber, Byte[] profilePicture) {
+    public User(long id, String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, Byte[] profilePicture) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -70,7 +71,7 @@ public class User {
         this.profilePicture = profilePicture;
     }
 
-    public User(long id, String name, String username, String email, LocalDateTime birthDate, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages) {
+    public User(long id, String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -112,11 +113,11 @@ public class User {
         this.email = email;
     }
 
-    public LocalDateTime getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDateTime age) {
+    public void setBirthDate(LocalDate age) {
         this.birthDate = age;
     }
 
@@ -202,7 +203,7 @@ public class User {
     }
 
     public void solicitate(User friendToBeAdded){
-        Friendship friendship = new Friendship("PENDING", LocalDateTime.now(), this, friendToBeAdded);//String status, LocalDateTime date, User user, User friend) {
+        Friendship friendship = new Friendship("PENDING", LocalDateTime.now(), this, friendToBeAdded);//String status, LocalDate date, User user, User friend) {
         addFriendship(friendship);
     }
 

@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @RestController
@@ -40,7 +41,7 @@ public class DataVerificationController {
     }
 
     @GetMapping("/{date}")
-    public ResponseEntity<Boolean> verifyDate(@PathVariable LocalDateTime date) {
+    public ResponseEntity<Boolean> verifyDate(@PathVariable LocalDate date) {
         return new ResponseEntity<>(userService.verifyDate(date), HttpStatus.ACCEPTED);
     }
 

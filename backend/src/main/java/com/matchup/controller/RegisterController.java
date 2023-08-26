@@ -38,8 +38,9 @@ public class RegisterController {
     @PostMapping("/user")
     @PostAuthorize("true")
     public ResponseEntity<User> register(@RequestBody UserDto userDto) {
-
-        if (userService.verifyDate(userDto.getBirthDate())){
+        System.out.println("register-user");
+        System.out.println(userDto.getBirthDate());
+        if (!userService.verifyDate(userDto.getBirthDate())){
             throw new DateTimeException(userDto.getBirthDate().toString());
         }
 

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -74,10 +75,10 @@ public class UserService {
         return userRepository.existsByEmailOrUsername(email, username);
     }
 
-    public boolean verifyDate(LocalDateTime date){
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime minDate = now.minus(120, ChronoUnit.YEARS);
-        LocalDateTime maxDate = now.minus(13, ChronoUnit.YEARS);
+    public boolean verifyDate(LocalDate date){
+        LocalDate now = LocalDate.now();
+        LocalDate minDate = now.minusYears(120);
+        LocalDate maxDate = now.minusYears(13);
         return date.isAfter(minDate) && date.isBefore(maxDate);
     }
 
@@ -88,15 +89,14 @@ public class UserService {
         userToRegister.setName(userDto.getName());
         userToRegister.setUsername(userDto.getUsername());
         userToRegister.setEmail(userDto.getEmail());
-        userToRegister.setBirthDate(LocalDateTime.now());
+        userToRegister.setBirthDate(userDto.getBirthDate());
         userToRegister.setHashedPassword(
                 passwordEncoder.encode(userDto.getRawPassword()));
-        System.out.println(userDto.getRawPassword() + "\n" +userToRegister.getHashedPassword());
         userToRegister.setCellphoneNumber(userDto.getCellphoneNumber());
         /*userToRegister.setProfilePicture(userDto.getProfilePicture());
         userToRegister.setInterests(
                 interestRepository.findAllById(userDto.getInterests()));*/
-
+        addressToRegister.setCity(userDto.getAddressCity());
         addressToRegister.setNumber(userDto.getAddressNumber());
         addressToRegister.setStreet(userDto.getAddressStreet());
         addressToRegister.setNeighborhood(userDto.getAddressNeighborhood());
