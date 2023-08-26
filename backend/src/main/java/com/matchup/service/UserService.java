@@ -111,7 +111,7 @@ public class UserService {
     }
 
     public String sendCode(String email){
-        if (userService.findByEmail(email)){
+        if (findByEmail(email)){
             Random generator = new Random();
             int codes;
             for(int i = 0; i < 6; i++){
