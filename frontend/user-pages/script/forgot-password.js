@@ -1,6 +1,8 @@
 var form = document.getElementById("forgot-password");
 var txtEmail = document.getElementById("txt-email");
 
+var validEmail = false;
+
 form.addEventListener("submit", function (event) {
     event.preventDefault();
     forgotPassword();
@@ -27,20 +29,20 @@ txtEmail.addEventListener("blur", async function (event) {
     }
 });
 
-function changeInputBorder(validValue, element) {
-    if (!validValue) {
-        element.classList.add('is-invalid');
-    } else {
-        element.classList.remove('is-invalid');
-    }
-}
-
 async function checkAvailability(type, data) {
     response = await fetch(`http://localhost:8080/api/data-verification/${type}/check-availability/${data}`)
         .catch(error => {
             alert("Deu errado! -> (checkAvailability)" + error);
         });
     return response;
+}
+
+function changeInputBorder(validValue, element) {
+    if (!validValue) {
+        element.classList.add('is-invalid');
+    } else {
+        element.classList.remove('is-invalid');
+    }
 }
 
 function forgotPasswordRequisition(jsonObject) {
@@ -64,6 +66,7 @@ function forgotPasswordRequisition(jsonObject) {
 }
 
 async function forgotPassword() {
+    if (!(await validateFields())) return;
     console.log(txtEmail);
     forgotPasswordRequisition(txtEmail);
 }
@@ -94,3 +97,14 @@ async function forgotPassword() {
         }); 
 
 } */
+
+function validateFields() {
+    console.log(validEmail);
+
+    if (!validEmail) {
+        alert("O campo de email precisa ser preenchido corretamente!");
+        return false;
+    }
+
+    return true;
+}
