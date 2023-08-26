@@ -54,9 +54,9 @@ public class UserService {
         return userRepository.findByNameContainingIgnoreCase(partOfTheName);
     }
 
-    public boolean findByEmailAndHashedPassword(String email, String hashedPassword){
+    public Optional<User> findByEmailAndHashedPassword(String email, String hashedPassword){
         //encode password
-        return userRepository.findByEmailAndHashedPassword(email, hashedPassword).isEmpty();
+        return userRepository.findByEmailAndHashedPassword(email, hashedPassword);
     }
 
     public boolean findByEmail(String email){

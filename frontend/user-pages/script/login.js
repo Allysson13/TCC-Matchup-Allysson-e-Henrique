@@ -1,4 +1,4 @@
-var form = document.getElementById("register");
+var form = document.getElementById("login");
 
 var txtEmailOrUsername = document.getElementById("txt-email-or-username");
 var errorEmailOrUsername = document.getElementById("email-or-username-error");
@@ -6,35 +6,44 @@ var txtPassword = document.getElementById("txt-password");
 var txtConfirmedPassword = document.getElementById("txt-confirmed-password");
 
 var validEmailOrUsername = false;
+var isEmail = false;
+var isUsername = false;
 var validPassword = false;
+
+// document.addEventListener("DOMContentLoaded", function () {
+
+// });
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
     login();
 });
 
-txtEmailOrUsername.addEventListener("input", function (event) {
-    console.log('foi')
-    console.log("Email or Username" + txtEmailOrUsername.value);
-    validEmailOrUsername = validateEmailOrUsername(this.value);
-    changeInputBorder(validEmailOrUsername, this);
-});
-var lastEmailOrUsernameTyped;
+
+//var lastEmailOrUsernameTyped;
 txtEmailOrUsername.addEventListener("blur", async function (event) {
-    if (lastEmailOrUsernameTyped == this.value) return;
-    lastEmailOrUsernameTyped = this.value;
-
-    response = await checkAvailability('emailOrUsername', this.value);
-    console.log(response.status);
-    console.log(response.text());
-
-    if (response.status == 409) {
-        validEmailOrUsername = false;
-        changeInputBorder(validEmailOrUsername, txtEmailOrUsername);
-        validEmailOrUsername.textContent = await response.text();
+    validateEmailOrUsername(this.value);
+    validEmailOrUsername = isEmail || isUsername;
+    changeInputBorder(validEmailOrUsername, txtEmailOrUsername);
+    if (!validEmailOrUsername) {
+        errorEmailOrUsername.textContent = "Email ou nome de usuário inválido!";
     } else {
-        errorUsername.textContent = '';
+        errorEmailOrUsername.textContent = "";
     }
+    //if (lastEmailOrUsernameTyped == this.value) return;
+    //lastEmailOrUsernameTyped = this.value;
+
+    /*     response = await checkAvailability('emailOrUsername', this.value);
+        console.log(response.status);
+        console.log(response.text());
+    
+        if (response.status == 409) {
+            validEmailOrUsername = false;
+            changeInputBorder(validEmailOrUsername, txtEmailOrUsername);
+            validEmailOrUsername.textContent = await response.text();
+        } else {
+            errorUsername.textContent = '';
+        } */
 });
 
 async function checkAvailability(type, data) {
@@ -70,7 +79,7 @@ function loginRequisition(jsonObject) {
         .then(async response => {
             if (!response.ok) {
                 throw new Error("Informações incompatíveis com qualquer usuário cadastrado! " + response);
-            }else{
+            } else {
                 window.location.href = 'home.html';
             }
             addOptionToDropDown(type, await response.json());
@@ -82,9 +91,22 @@ function loginRequisition(jsonObject) {
 
 async function login() {
     if (!(await validateFields())) return;
+
+    let exists;
+    if (isEmail) {
+        exists = !checkAvailability('email', txtEmailOrUsername.value);
+    } else if (isUsername) {
+        exists = !checkAvailability('username', txtEmailOrUsername.value);
+    }
+
+
+
     console.log(txtEmailOrUsername.value);
     loginRequisition(txtEmailOrUsername.value);
+
 }
+
+
 
 /* function login() {
 
@@ -132,8 +154,9 @@ function validateFields() {
 }
 
 function validateEmailOrUsername(emailOrUsername) {
-    console.log(validator.matches(emailOrUsername, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]{5,20}$"));
-    return ((emailOrUsername.length >= 5 && emailOrUsername.length <= 20) || (validator.matches(emailOrUsername, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$")) && validator.isEmail(emailOrUsername));
+    isEmail = validator.isEmail(emailOrUsername);
+    if (isEmail) return;
+    isUsername = (emailOrUsername.length >= 5 && emailOrUsername.length <= 20) && (validator.matches(emailOrUsername, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$"));
 }
 
 function validatePassword(password) {

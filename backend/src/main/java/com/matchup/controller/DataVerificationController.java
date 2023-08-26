@@ -35,10 +35,10 @@ public class DataVerificationController {
         return ResponseEntity.ok("Username is available");
     }
 
-    @GetMapping("/{emailOrUsername}")
+    /*@GetMapping("/{emailOrUsername}")
     public ResponseEntity<Boolean> verifyEmailOrUsername(@PathVariable String emailOrUsername) {
         return new ResponseEntity<>(userService.existsByEmailOrUsername(emailOrUsername, emailOrUsername), HttpStatus.ACCEPTED);
-    }
+    }*/
 
     @GetMapping("/{date}")
     public ResponseEntity<Boolean> verifyDate(@PathVariable LocalDate date) {
