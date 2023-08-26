@@ -14,6 +14,8 @@ form.addEventListener("submit", function (event) {
 });
 
 txtEmailOrUsername.addEventListener("input", function (event) {
+    console.log('foi')
+    console.log("Email or Username" + txtEmailOrUsername.value);
     validEmailOrUsername = validateEmailOrUsername(this.value);
     changeInputBorder(validEmailOrUsername, this);
 });
@@ -47,8 +49,6 @@ txtPassword.addEventListener("input", function (event) {
     validPassword = validatePassword(this.value);
     changeInputBorder(validPassword, this);
 });
-
-
 
 function changeInputBorder(validValue, element) {
     if (!validValue) {

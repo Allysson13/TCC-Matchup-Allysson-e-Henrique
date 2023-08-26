@@ -1,9 +1,19 @@
-function resetPassowrd() {
+var form = document.getElementById("register");
 
-    /* let password = document.getElementById('txt-password').value;
+var txtPassword = document.getElementById("txt-password");
+var txtConfirmedPassword = document.getElementById("txt-confirmed-password");
+
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    resetPassword();
+});
+
+/* function resetPassowrd() {
+
+    let password = document.getElementById('txt-password').value;
     let confirmedPassword = document.getElementById('txt-confirmed-password').value;
 
-    if(password != confirmedPassword){
+    if (password != confirmedPassword) {
 
         //fazer uma mensagem de erro melhor e criar um laço que impeça que o usuário
         //prossiga sem informar duas senhas iguais
@@ -29,6 +39,6 @@ function resetPassowrd() {
         })
         .catch(error => {
             alert("Deu erro! -> " + error);
-        }); */
+        });
 
-}
+} */
