@@ -1,5 +1,6 @@
 var form = document.getElementById("forgot-password");
 var txtEmail = document.getElementById("txt-email");
+var errorEmail = document.getElementById("email-error");
 
 var validEmail = false;
 
@@ -47,7 +48,7 @@ function changeInputBorder(validValue, element) {
 
 function forgotPasswordRequisition(jsonObject) {
 
-    fetch("http://localhost:8080/api/admin/login/", {
+    fetch('http://localhost:8080/api/login/', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -56,19 +57,21 @@ function forgotPasswordRequisition(jsonObject) {
     })
         .then(async response => {
             if (!response.ok) {
-                throw new Error("Erro ao enviar dados " + response);
+                throw new Error("Email não cadastrado! " + response);
+            }else{
+                window.location.href = 'confirm-email.html';
             }
             addOptionToDropDown(type, await response.json());
         })
         .catch(error => {
-            alert("Deu errado! -> (register())" + error);
+            alert("Deu errado! -> (forgot-password())" + error);
         });
 }
 
 async function forgotPassword() {
     if (!(await validateFields())) return;
-    console.log(txtEmail);
-    forgotPasswordRequisition(txtEmail);
+    console.log(txtEmail.value);
+    forgotPasswordRequisition(txtEmail.value);
 }
 
 /* function forgotPassword() {

@@ -21,20 +21,21 @@
                 </div>
                 <form id="login" class="user">
                     <div class="form-group">
-                        <input type="text" id="txt-email" class="form-control form-control-user bg-dark-subtle"
-                            name="email" placeholder="Email ou nome do usuário" focused><br><br>
+                        <input type="text" id="txt-email-or-username" class="form-control form-control-user bg-dark-subtle"
+                            name="email-or-username" placeholder="Email ou nome do usuário" focused><br>
+                        <div id="email-or-username-error" class="invalid-feedback"></div><br>
                     </div>
                     <div class="form-group input-container">
                         <input type="text" id="txt-password" class="form-control form-control-user bg-dark-subtle"
                             name="password" placeholder="Senha..." focused>
                         <span
-                            title="A senha tem pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.">?</span><br>
+                            title="A senha tem pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.">?</span>
                     </div>
                     <div class="form-group">
                         <div class="custom-control custom-checkbox small">
                             <input type="checkbox" class="custom-control-input" id="customCheck">
                             <label id="checkbox" class="custom-control-label" for="customCheck">Permanecer
-                                Logado</label><br><br>
+                                Logado</label><br>
                         </div>
                     </div>
                     <div class="text-center">
@@ -69,4 +70,5 @@
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
 <script src="./plugins/Dual-List-Box-Plugin-jQuery-Multi/dist/multi.min.js"></script>
+<script src="https://unpkg.com/validator@latest/validator.min.js"></script>
 <script src="script/login.js"></script>

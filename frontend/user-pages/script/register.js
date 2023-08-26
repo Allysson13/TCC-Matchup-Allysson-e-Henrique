@@ -5,9 +5,9 @@ var form = document.getElementById("register");
 
 var txtName = document.getElementById("txt-name");
 var txtUsername = document.getElementById("txt-username");
-var errorUsername = document.getElementById("usernameError");
+var errorUsername = document.getElementById("username-error");
 var txtEmail = document.getElementById("txt-email");
-var errorEmail = document.getElementById("emailError");
+var errorEmail = document.getElementById("email-error");
 var txtPassword = document.getElementById("txt-password");
 var txtConfirmedPassword = document.getElementById("txt-confirmed-password");
 var txtPhonenumber = document.getElementById("txt-phonenumber");

@@ -54,6 +54,7 @@ public class UserService {
     }
 
     public boolean findByEmailAndHashedPassword(String email, String hashedPassword){
+        //encode password
         return userRepository.findByEmailAndHashedPassword(email, hashedPassword).isEmpty();
     }
 
