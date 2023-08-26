@@ -15,7 +15,7 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
 
     List<Address> findByNumber(int number);
 
-    List<Address> findByZipcode(int zipcode);
+    List<Address> findByZipcode(String zipcode);
 
     @Query("SELECT a FROM Address a WHERE a.street LIKE %:street%")
     List<Address> findByPartOfTheStreet(@Param("street") String partOfTheStreet);

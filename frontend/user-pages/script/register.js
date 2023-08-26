@@ -37,7 +37,7 @@ $('#dd-interest').multi({
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    dateConfig();
+    //dateConfig();
     loadInterestDropDown();
 /*     USER_DEPENDENCIES.forEach(type => {
         loadDropDowns(type);
@@ -257,9 +257,9 @@ async function registerUser() {
         "name": txtName.value,
         "username": txtUsername.value,
         "email": txtEmail.value,
-        //"birthDate": dateBirthDate.value,
+        "birthDate": dateBirthDate.value,
         "rawPassword": txtPassword.value,
-        "cellphoneNumber": txtPhonenumber,
+        "cellphoneNumber": txtPhonenumber.value,
         //"profilePicture": profilePicture,
         //"interests": interests,
         //address

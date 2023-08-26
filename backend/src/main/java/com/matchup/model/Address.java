@@ -27,7 +27,7 @@ public class Address {
     private String state;
 
     @Column(name = "zipcode", nullable = false, length = 12)
-    private int zipcode;
+    private String zipcode;
 
     @OneToOne(mappedBy = "address")
     private User user;
@@ -38,7 +38,7 @@ public class Address {
 
     }
 
-    public Address(long id, int number, String street, String city, String neighborhood, String state, int zipcode) {
+    public Address(long id, int number, String street, String city, String neighborhood, String state, String zipcode) {
         this.id = id;
         this.number = number;
         this.street = street;
@@ -94,11 +94,11 @@ public class Address {
         this.state = state;
     }
 
-    public int getZipcode() {
+    public String getZipcode() {
         return zipcode;
     }
 
-    public void setZipcode(int zipcode) {
+    public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
 
