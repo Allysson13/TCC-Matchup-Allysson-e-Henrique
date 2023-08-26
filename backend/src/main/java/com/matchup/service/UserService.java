@@ -93,9 +93,9 @@ public class UserService {
         userToRegister.setHashedPassword(
                 passwordEncoder.encode(userDto.getRawPassword()));
         userToRegister.setCellphoneNumber(userDto.getCellphoneNumber());
-        /*userToRegister.setProfilePicture(userDto.getProfilePicture());
+        //userToRegister.setProfilePicture(userDto.getProfilePicture());
         userToRegister.setInterests(
-                interestRepository.findAllById(userDto.getInterests()));*/
+                interestRepository.findAllById(userDto.getInterests()));
         addressToRegister.setCity(userDto.getAddressCity());
         addressToRegister.setNumber(userDto.getAddressNumber());
         addressToRegister.setStreet(userDto.getAddressStreet());

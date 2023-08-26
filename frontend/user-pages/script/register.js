@@ -247,11 +247,10 @@ function register(type, jsonObject) {
 async function registerUser() {
     if (!(await validateFields())) return;
 
-    /* let interests = [];
+    let interests = [];
     for (let option of $("#dd-interest option:selected")) {
-        var interest = { id: option.value };
-        interests.push(interest);
-    } */
+        interests.push(option.value);
+    } 
 
     let user = {
         "name": txtName.value,
@@ -261,7 +260,7 @@ async function registerUser() {
         "rawPassword": txtPassword.value,
         "cellphoneNumber": txtPhonenumber.value,
         //"profilePicture": profilePicture,
-        //"interests": interests,
+        "interests": interests,
         //address
         "addressStreet": txtStreet.value,
         "addressNumber": txtNumber.value,
@@ -295,7 +294,7 @@ function validateFields() {
 
 function validateUsername(username) {
     console.log(validator.matches(username, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]{5,20}$"));
-    return (username.length >= 5 && username.length <= 20) || (validator.matches(username, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$"));
+    return (username.length >= 5 && username.length <= 20) && (validator.matches(username, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$"));
 }
 
 function validatePassword(password) {

@@ -156,6 +156,9 @@ function generateInterestJSON() {
     let lowestPrice = parseFloat(document.getElementById('txt-lowest-price').value); 
     let highestPrice = parseFloat(document.getElementById('txt-highest-price').value);
 
+    console.log(lowestPrice);
+    console.log(highestPrice);
+
     let dubbingLanguagesIdList = [];
     for (let option of $("#dd-dubbed-languages option:selected")) {
         dubbingLanguagesIdList.push(option.value);
