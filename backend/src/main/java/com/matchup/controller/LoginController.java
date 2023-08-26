@@ -22,9 +22,6 @@ public class LoginController {
 
     private final UserService userService;
 
-    private boolean isValid = true;
-    private String code = "";
-
     @Autowired
     public LoginController(UserService userService) {
         this.userService = userService;
@@ -52,7 +49,7 @@ public class LoginController {
 
     @PostMapping("/{email}")
     public ResponseEntity<String> forgotPassword(@PathVariable String email) {
-        return new ResponseEntity<>(sendCode(email), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(userService.sendCode(email), HttpStatus.ACCEPTED);
     }
 
     //copied to RegisterController
@@ -71,7 +68,7 @@ public class LoginController {
     @GetMapping("/{inputCode}")
     @CrossOrigin(origins = "*")
     public ResponseEntity<Boolean> confirmEmailByCode(@PathVariable String inputCode) {
-        return new ResponseEntity<>((inputCode == code && isValid), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(userService.verifyCode(inputCode), HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/{password}/{confirmedPassword}")
@@ -88,34 +85,6 @@ public class LoginController {
     @PostMapping("/login-route")
     public ResponseEntity<String> receiveFormData(@RequestBody User user){
         return ResponseEntity.ok("Data received successfully!");
-    }
-
-    public String sendCode(String email){
-        if (userService.findByEmail(email)){
-            Random generator = new Random();
-            int codes;
-            for(int i = 0; i < 6; i++){
-                codes = generator.nextInt(10);
-                code += codes + "";
-            }
-            Thread invalidateCodeThread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(120000); // Waits 2 minutes (120000 miliseconds)
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    isValid = false;
-                    System.out.println("O código de verificação expirou!");
-                }
-            });
-            invalidateCodeThread.start();
-            //send the code by email
-            return code;
-        }else{
-            return "Email não cadastrado!";
-        }
     }
 
 }

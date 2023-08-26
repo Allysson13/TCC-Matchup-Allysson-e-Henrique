@@ -45,7 +45,7 @@ async function checkAvailability(type, data) {
 
 function forgotPasswordRequisition(jsonObject) {
 
-    fetch("http://localhost:8080/api/admin/register/", {
+    fetch("http://localhost:8080/api/admin/login/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

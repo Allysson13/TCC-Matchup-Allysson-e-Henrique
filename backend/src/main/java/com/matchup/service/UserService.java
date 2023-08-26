@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class UserService {
@@ -21,6 +22,9 @@ public class UserService {
     private final InterestRepository interestRepository;
 
     private final PasswordEncoder passwordEncoder;
+
+    private boolean isValid = true;
+    private String code = "";
 
     @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, InterestRepository interestRepository) {
@@ -102,10 +106,40 @@ public class UserService {
         return userRepository.save(userToRegister);
     }
 
-
-
     public List<User> getAllUsers(){
         return userRepository.findAll();
+    }
+
+    public String sendCode(String email){
+        if (userService.findByEmail(email)){
+            Random generator = new Random();
+            int codes;
+            for(int i = 0; i < 6; i++){
+                codes = generator.nextInt(10);
+                code += codes + "";
+            }
+            Thread invalidateCodeThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(120000); // Waits 2 minutes (120000 miliseconds)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    isValid = false;
+                    System.out.println("O código de verificação expirou!");
+                }
+            });
+            invalidateCodeThread.start();
+            //send the code by email
+            return code;
+        }else{
+            return "Email não cadastrado!";
+        }
+    }
+
+    public boolean verifyCode(String inputCode) {
+        return inputCode.equals(code) && isValid;
     }
 
 }
