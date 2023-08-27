@@ -23,8 +23,6 @@ txtEmail.addEventListener("input", function (event) {
 });
 
 btnCloseErrorMessage.addEventListener("click", function (event) {
-    //event.preventDefault();
-    console.log("onclick");
     showEmailDoesntExistMessage(false);
 });
 
