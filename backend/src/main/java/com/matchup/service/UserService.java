@@ -176,4 +176,5 @@ public class UserService {
         //must encode password first
         return userRepository.updatePassword(id, rawPassword);
     }
+
 }
