@@ -10,10 +10,10 @@ form.addEventListener("submit", function (event) {
 });
 
 //perhaps we should change validation to input as well
-txtEmail.addEventListener("input", function (event) {
+/* txtEmail.addEventListener("input", function (event) {
     validEmail = validator.isEmail(this.value);
     changeInputBorder(validEmail, this);
-});
+}); */
 /* var lastEmailTyped;
 txtEmail.addEventListener("blur", async function (event) {
     if (lastEmailTyped == this.value) return;
@@ -33,7 +33,7 @@ txtEmail.addEventListener("blur", async function (event) {
 
 async function checkAvailability(type, data) {
     //requires chnge to new method
-    response = await fetch(`http://localhost:8080/api/data-verification/${type}/check-availability/${data}`)
+    response = await fetch(`http://localhost:8080/api/${type}/exists/${data}`)
         .catch(error => {
             alert("Deu errado! -> (checkAvailability)" + error);
         });
@@ -105,6 +105,8 @@ async function forgotPassword() {
 } */
 
 function validateFields() {
+    validEmail = validator.isEmail(this.value);
+    changeInputBorder(validEmail, this);
     console.log(validEmail);
 
     if (!validEmail) {
