@@ -5,6 +5,7 @@ import com.matchup.model.Address;
 import com.matchup.model.User;
 import com.matchup.repository.InterestRepository;
 import com.matchup.repository.UserRepository;
+import com.sun.jdi.InvalidCodeIndexException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -140,6 +141,14 @@ public class UserService {
     }
 
     public boolean verifyCode(String inputCode) {
+        if (inputCode.length() != 6) {
+            //throw new InvalidCodeException();
+        }
+        for (int i = 0; i < inputCode.length(); i++) {
+            if (!Character.isDigit(inputCode.charAt(i))) {
+                //throw new InvalidCodeException();
+            }
+        }
         return inputCode.equals(code) && isValid;
     }
 

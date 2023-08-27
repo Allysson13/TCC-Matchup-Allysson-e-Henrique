@@ -69,12 +69,6 @@ public class LoginController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/{inputCode}")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<Boolean> confirmEmailByCode(@PathVariable String inputCode) {
-        return new ResponseEntity<>(userService.verifyCode(inputCode), HttpStatus.ACCEPTED);
-    }
-
     @GetMapping("/{password}/{confirmedPassword}")
     @CrossOrigin(origins = "*")
     public ResponseEntity<Boolean> resetPassword(@PathVariable String password, @PathVariable String confirmedPassword) {
