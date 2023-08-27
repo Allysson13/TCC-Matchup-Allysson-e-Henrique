@@ -46,4 +46,10 @@ public class DataVerificationController {
         return new ResponseEntity<>(userService.verifyDate(date), HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/code/{inputCode}")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<Boolean> confirmEmailByCode(@PathVariable String inputCode) {
+        return new ResponseEntity<>(userService.verifyCode(inputCode), HttpStatus.ACCEPTED);
+    }
+
 }

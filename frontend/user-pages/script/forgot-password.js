@@ -9,11 +9,12 @@ form.addEventListener("submit", function (event) {
     forgotPassword();
 });
 
+//perhaps we should change validation to input as well
 txtEmail.addEventListener("input", function (event) {
     validEmail = validator.isEmail(this.value);
     changeInputBorder(validEmail, this);
 });
-var lastEmailTyped;
+/* var lastEmailTyped;
 txtEmail.addEventListener("blur", async function (event) {
     if (lastEmailTyped == this.value) return;
     lastEmailTyped = this.value;
@@ -28,9 +29,10 @@ txtEmail.addEventListener("blur", async function (event) {
     } else {
         errorEmail.textContent = '';
     }
-});
+}); */
 
 async function checkAvailability(type, data) {
+    //requires chnge to new method
     response = await fetch(`http://localhost:8080/api/data-verification/${type}/check-availability/${data}`)
         .catch(error => {
             alert("Deu errado! -> (checkAvailability)" + error);
@@ -71,6 +73,7 @@ function forgotPasswordRequisition(jsonObject) {
 async function forgotPassword() {
     if (!(await validateFields())) return;
     console.log(txtEmail.value);
+    //perhaps we could send the user instead of the email
     forgotPasswordRequisition(txtEmail.value);
 }
 
