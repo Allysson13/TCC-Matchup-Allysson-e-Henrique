@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style/login.css">
     <link rel="stylesheet" href="style/basics.css">
     <link rel="stylesheet" href="./plugins/Dual-List-Box-Plugin-jQuery-Multi/dist/multi.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
@@ -19,17 +20,23 @@
                 <div class="text-center">
                     <h2 id="main-title" class="h4 mb-4">Bem-vindo de volta ao MatchUp!</h2>
                 </div>
+                <div id="credentials-error" class="error-message">
+                    <span>Nome de usuário ou senha incorretos</span>
+                    <button id="close-message-error"><i class="bi bi-x-lg"></i></button>
+                </div><br>
                 <form id="login" class="user">
                     <div class="form-group">
-                        <input type="text" id="txt-email-or-username" class="form-control form-control-user bg-dark-subtle"
-                            name="email-or-username" placeholder="Email ou nome do usuário" focused>
+                        <input type="text" id="txt-email-or-username"
+                            class="form-control form-control-user bg-dark-subtle" name="email-or-username"
+                            placeholder="Email ou nome do usuário" focused>
                         <div id="email-or-username-error" class="invalid-feedback"></div><br>
                     </div>
                     <div class="form-group input-container">
-                        <input type="text" id="txt-password" class="form-control form-control-user bg-dark-subtle"
-                            name="password" placeholder="Senha..." focused>
+                        <input type="password" id="txt-password" class="form-control form-control-user bg-dark-subtle"
+                            name="password" placeholder="Senha...">
                         <span
                             title="A senha tem pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.">?</span>
+                        <div id="password-error" class="invalid-feedback"></div><br>
                     </div><br>
                     <div class="form-group">
                         <div class="custom-control custom-checkbox small">

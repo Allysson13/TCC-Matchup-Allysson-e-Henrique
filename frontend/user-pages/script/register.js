@@ -37,7 +37,7 @@ $('#dd-interest').multi({
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    //dateConfig();
+    dateConfig();
     loadInterestDropDown();
 /*     USER_DEPENDENCIES.forEach(type => {
         loadDropDowns(type);

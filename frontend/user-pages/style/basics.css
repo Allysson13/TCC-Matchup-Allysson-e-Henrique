@@ -1,23 +1,31 @@
-body{
+body {
     background-color: #1E1E1E;
 }
-#card{
+
+#card {
     background-color: rgb(50, 50, 50);
+    max-width: 600px;
+    margin: auto;
 }
-#main-title{
+
+#main-title {
     color: #9747FF;
 }
-.label{
+
+.label {
     color: #9747FF;
     font-size: large;
     font-weight: 400;
 }
-.input-container{
+
+.input-container {
     position: relative;
 }
+
 .input-container input {
     padding-right: 20px;
 }
+
 .input-container span {
     font-weight: bolder;
     position: absolute;

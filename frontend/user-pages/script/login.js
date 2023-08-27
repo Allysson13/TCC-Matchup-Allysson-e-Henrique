@@ -3,6 +3,10 @@ var form = document.getElementById("login");
 var txtEmailOrUsername = document.getElementById("txt-email-or-username");
 var errorEmailOrUsername = document.getElementById("email-or-username-error");
 var txtPassword = document.getElementById("txt-password");
+var errorPassword= document.getElementById("password-error");
+
+var errorCredentials = document.getElementById("credentials-error");
+var btnCloseErrorMessage = document.getElementById("close-message-error");
 
 var validEmailOrUsername = false;
 var isEmail = false;
@@ -11,17 +15,46 @@ var validPassword = false;
 
 
 
-// document.addEventListener("DOMContentLoaded", function () {
-
-// });
+document.addEventListener("DOMContentLoaded", function () {
+    errorCredentials.style.display = "none";
+});
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
     login();
 });
 
+txtEmailOrUsername.addEventListener("blur", function (event) {
+    if(txtEmailOrUsername.value == "") return;
+    errorEmailOrUsername.textContent = "";
+    changeInputBorder(true, txtEmailOrUsername);
+});
+
+txtPassword.addEventListener("blur", function (event) {
+    if(txtPassword.value == "") return;
+    errorPassword.textContent = "";
+    changeInputBorder(true, txtPassword);
+});
+
+
+btnCloseErrorMessage.addEventListener("click", function (event) {
+    //event.preventDefault();
+    console.log("onclick");
+    configureInputs(true);
+});
 
 function validateFields() {
+    if(txtEmailOrUsername.value == ""){
+        changeInputBorder(false, txtEmailOrUsername);
+        errorEmailOrUsername.textContent = "Informe um email ou nome de usuário!";
+        return;
+    }
+    if(txtPassword.value == ""){
+        changeInputBorder(false, txtPassword);
+        errorPassword.textContent = "Informe uma senha!";
+        return;
+    }
+    
     validateEmailOrUsername(txtEmailOrUsername.value);
     validEmailOrUsername = isEmail || isUsername;
     changeInputBorder(validEmailOrUsername, txtEmailOrUsername);
@@ -42,10 +75,6 @@ async function checkUnavailability(type, data) {
     return response;
 }
 
-txtPassword.addEventListener("input", function (event) {
-    validPassword = validatePassword(this.value);
-    changeInputBorder(validPassword, this);
-});
 
 function changeInputBorder(validValue, element) {
     if (!validValue) {
@@ -53,6 +82,17 @@ function changeInputBorder(validValue, element) {
     } else {
         element.classList.remove('is-invalid');
     }
+}
+
+function configureInputs (valid){
+    changeInputBorder(valid, txtEmailOrUsername);
+    changeInputBorder(valid, txtPassword);
+    if(valid){
+        errorCredentials.style.display = "none";
+    }else{
+        errorCredentials.style.display = "flex";
+    }
+    
 }
 
 
@@ -72,7 +112,10 @@ async function login() {
 
     console.log(exists.status);
     if(exists.status == 409){
+        configureInputs(false, "Credenciais inválidas");
         return;
+    } else if(exists.status == 200){
+        configureInputs(true, "");
     }
 
     user.rawPassword = txtPassword.value;
@@ -92,7 +135,7 @@ function loginRequisition(jsonObject) {
     })
         .then(async response => {
             if (!response.ok) {
-                throw new Error("Informações incompatíveis com qualquer usuário cadastrado! " + response);
+                configureInputs(false, "Credenciais inválidas");
             } else {
                 //Session.setLoggedUser(await response.json());  
                 window.location.href = 'home.html';
