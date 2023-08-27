@@ -4,24 +4,35 @@ const USER_DEPENDENCIES = ['interest'];
 var form = document.getElementById("register");
 
 var txtName = document.getElementById("txt-name");
+var errorName = document.getElementById("name-error");
 var txtUsername = document.getElementById("txt-username");
 var errorUsername = document.getElementById("username-error");
 var txtEmail = document.getElementById("txt-email");
 var errorEmail = document.getElementById("email-error");
 var txtPassword = document.getElementById("txt-password");
+var errorPassword = document.getElementById("password-error");
 var txtConfirmedPassword = document.getElementById("txt-confirmed-password");
+var errorConfirmedPassword = document.getElementById("confirmed-password-error");
 var txtPhonenumber = document.getElementById("txt-phonenumber");
+var errorPhonenumber = document.getElementById("phonenumber-error");
 
 var dateBirthDate = document.getElementById('date-birth-date');
+var errorBirthDate = document.getElementById("birth-date--error");
 var ddInterest = document.getElementById('dd-interest');
 var fileProfilePicture = document.getElementById('file-profile-picture');
 
 var txtZipcode = document.getElementById('txt-zipcode');
+var errorZipcode = document.getElementById("zipcode-error");
 var txtState = document.getElementById('txt-state');
+var errorState = document.getElementById("state-error");
 var txtCity = document.getElementById('txt-city');
+var errorCity = document.getElementById("city-error");
 var txtNeighborhood = document.getElementById('txt-neighborhood');
+var errorNeighborhood = document.getElementById("neighborhood-error");
 var txtStreet = document.getElementById('txt-street');
+var errorStreet = document.getElementById("street-error");
 var txtNumber = document.getElementById('number-number');
+var errorNumber = document.getElementById("number-error");
 
 
 var validEmail = false;
@@ -114,6 +125,73 @@ txtPassword.addEventListener("input", function (event) {
 txtConfirmedPassword.addEventListener("input", function (event) {
     bothPasswordsEqual = (txtPassword.value == txtConfirmedPassword.value);
     changeInputBorder(bothPasswordsEqual, this);
+});
+
+txtName.addEventListener("blur", function (event) {
+    if(txtName.value == "") return;
+    errorName.textContent = "";
+    changeInputBorder(true, txtName);
+});
+
+txtPassword.addEventListener("blur", function (event) {
+    if(txtPassword.value == "") return;
+    errorPassword.textContent = "";
+    changeInputBorder(true, txtPassword);
+});
+
+txtConfirmedPassword.addEventListener("blur", function (event) {
+    if(txtConfirmedPassword.value == "") return;
+    errorConfirmedPassword.textContent = "";
+    changeInputBorder(true, txtConfirmedPassword);
+});
+
+txtPhonenumber.addEventListener("blur", function (event) {
+    if(txtPhonenumber.value == "") return;
+    errorPhonenumber.textContent = "";
+    changeInputBorder(true, txtPhonenumber);
+});
+
+dateBirthDate.addEventListener("blur", function (event) {
+    if(dateBirthDate.value == "") return;
+    errorBirthDate.textContent = "";
+    changeInputBorder(true, dateBirthDate);
+});
+
+txtZipcode.addEventListener("blur", function (event) {
+    if(txtZipcode.value == "") return;
+    errorZipcode.textContent = "";
+    changeInputBorder(true, txtZipcode);
+});
+
+txtState.addEventListener("blur", function (event) {
+    if(txtState.value == "") return;
+    errorState.textContent = "";
+    changeInputBorder(true, txtState);
+});
+
+txtCity.addEventListener("blur", function (event) {
+    if(txtCity.value == "") return;
+    errorCity.textContent = "";
+    changeInputBorder(true, txtCity);
+});
+
+txtNeighborhood.addEventListener("blur", function (event) {
+    if(txtNeighborhood.value == "") return;
+    errorNeighborhood.textContent = "";
+    changeInputBorder(true, txtNeighborhood);
+});
+
+txtStreet.addEventListener("blur", function (event) {
+    if(txtStreet.value == "") return;
+    errorStreet.textContent = "";
+    changeInputBorder(true, txtStreet);
+});
+
+txtNumber.addEventListener("blur", function (event) {
+    if(txtNumber.value == "") return;
+    //perhaps value?
+    txtNumber.textContent = "";
+    changeInputBorder(true, txtNumber);
 });
 
 
