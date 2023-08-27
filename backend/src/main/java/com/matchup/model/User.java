@@ -21,9 +21,12 @@ public class User {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Size(min = 5, max = 20)
+    @Pattern(regexp = "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$")
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
+    @Email
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 

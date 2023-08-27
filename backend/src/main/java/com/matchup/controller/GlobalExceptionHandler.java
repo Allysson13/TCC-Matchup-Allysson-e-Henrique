@@ -43,4 +43,14 @@ public class GlobalExceptionHandler {
 //        return new ResponseEntity<>("Código inválido!", HttpStatus.BAD_REQUEST);
 //    }
 
+    @ExceptionHandler(InvalidPasswordException.class)
+    public ResponseEntity<Object> handleInvalidPassword(IllegalArgumentException ex) {
+        return new ResponseEntity<>("Senha inválida!", HttpStatus.BAD_REQUEST);
+    }
+
+//    @ExceptionHandler(InvalidCodeException.class)
+//    public ResponseEntity<Object> handleInvalidCode(InvalidCodeException ex) {
+//        return new ResponseEntity<>("Código inválido!", HttpStatus.BAD_REQUEST);
+//    }
+
 }

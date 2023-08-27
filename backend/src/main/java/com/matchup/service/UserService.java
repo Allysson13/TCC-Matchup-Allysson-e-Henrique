@@ -16,6 +16,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 @Service
 public class UserService {
@@ -74,9 +75,9 @@ public class UserService {
         return userRepository.existsByEmail(username);
     }
 
-    public boolean existsByEmailOrUsername(String email, String username){
-        return userRepository.existsByEmailOrUsername(email, username);
-    }
+//    public boolean existsByEmailOrUsername(String email, String username){
+//        return userRepository.existsByEmailOrUsername(email, username);
+//    }
 
     public boolean verifyDate(LocalDate date){
         LocalDate now = LocalDate.now();
@@ -152,6 +153,14 @@ public class UserService {
             }
         }
         return inputCode.equals(code) && isValid;
+    }
+
+    public boolean verifyPassword(String password) {
+        if (password.length() < 8 || password.length() > 255) {
+            return false;
+        }
+        String pattern = "^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\\d]{8,255}$";
+        return Pattern.matches(pattern, password);
     }
 
 }

@@ -23,7 +23,7 @@ public class DataVerificationController {
     @GetMapping("/email/check-availability/{email}")
     public ResponseEntity<String> verifyEmail(@PathVariable String email) {
         if (userService.existsByEmail(email)) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already in use");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already in use!");
         }
         return ResponseEntity.ok("Email is available");
     }
@@ -31,9 +31,33 @@ public class DataVerificationController {
     @GetMapping("/username/check-availability/{username}")
     public ResponseEntity<String> verifyUsername(@PathVariable String username) {
         if (userService.existsByUsername(username)) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already in use");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already in use!");
         }
         return ResponseEntity.ok("Username is available");
+    }
+
+    @GetMapping("/email/exists/{email}")
+    public ResponseEntity<String> verifyEmailNotRegistered(@PathVariable String email) {
+        if (!userService.existsByEmail(email)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email not registered yet!");
+        }
+        return ResponseEntity.ok("Email is available");
+    }
+
+    @GetMapping("/username/exists/{username}")
+    public ResponseEntity<String> verifyUsernameNotRegistered(@PathVariable String username) {
+        if (!userService.existsByUsername(username)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username not registered yet!");
+        }
+        return ResponseEntity.ok("Username is available");
+    }
+
+    @GetMapping("/password/check-pattern/{password}")
+    public ResponseEntity<String> verifyPassword(@PathVariable String password) throws InvalidPasswordException {
+        if (!userService.verifyPassword(password)) {
+            throw new InvalidPasswordException();
+        }
+        return ResponseEntity.ok("Password is valid!");
     }
 
     /*@GetMapping("/{emailOrUsername}")
