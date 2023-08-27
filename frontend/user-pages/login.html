@@ -31,11 +31,11 @@
                             placeholder="Email ou nome do usuário" focused>
                         <div id="email-or-username-error" class="invalid-feedback"></div><br>
                     </div>
-                    <div class="form-group input-container">
+                    <div class="form-group input-container password-container">
                         <input type="password" id="txt-password" class="form-control form-control-user bg-dark-subtle"
                             name="password" placeholder="Senha...">
-                        <span
-                            title="A senha tem pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.">?</span>
+                        <span title="A senha tem pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos."><i class="bi bi-question-lg"></i></span>
+                        <button id="toggle-password"><i class="bi bi-eye-slash-fill"></i></button>
                         <div id="password-error" class="invalid-feedback"></div><br>
                     </div><br>
                     <div class="form-group">
@@ -78,5 +78,88 @@
     </script>
 <script src="./plugins/Dual-List-Box-Plugin-jQuery-Multi/dist/multi.min.js"></script>
 <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="script/Session.js"></script>
 <script src="script/login.js"></script>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .password-container {
+            position: relative;
+        }
+        .password-container input[type="password"] {
+            padding-right: 30px;
+        }
+        .password-container .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="password-container">
+        <label for="password">Senha:</label>
+        <input type="password" id="password">
+        <span class="toggle-password">👁️</span>
+    </div>
+
+    <script>
+        document.querySelector('.toggle-password').addEventListener('click', function() {
+            var passwordInput = document.querySelector('#password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        });
+    </script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .password-container {
+            position: relative;
+        }
+        .password-container input[type="password"] {
+            padding-right: 30px;
+        }
+        .password-container .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="password-container">
+        <label for="password">Senha:</label>
+        <input type="password" id="password">
+        <i class="glyphicon glyphicon-eye-open toggle-password"></i>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $('.toggle-password').on('click', function() {
+            var passwordInput = $('#password');
+            if (passwordInput.attr('type') === 'password') {
+                passwordInput.attr('type', 'text');
+                $(this).removeClass('glyphicon-eye-open').addClass('glyphicon-eye-close');
+            } else {
+                passwordInput.attr('type', 'password');
+                $(this).removeClass('glyphicon-eye-close').addClass('glyphicon-eye-open');
+            }
+        });
+    </script>
+</body>
+</html> -->

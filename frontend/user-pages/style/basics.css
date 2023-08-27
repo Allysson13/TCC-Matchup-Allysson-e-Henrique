@@ -31,6 +31,23 @@ body {
     border: none;
 }
 
+.password-container {
+    position: relative;
+}
+
+.password-container #toggle-password {
+    position: absolute;
+    top: 32%;
+    right: 15px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+}
+
+.password-container #toggle-password i {
+    color: inherit;
+}
+
 .label {
     color: #9747FF;
     font-size: large;
@@ -49,7 +66,7 @@ body {
     font-weight: bolder;
     position: absolute;
     right: 5px;
-    top: 5px;
+    top: 8px;
     color: rgb(50, 50, 50);
     cursor: pointer;
 }
