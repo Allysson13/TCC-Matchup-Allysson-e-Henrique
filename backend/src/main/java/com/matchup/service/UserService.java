@@ -172,7 +172,8 @@ public class UserService {
         return Pattern.matches(pattern, password);
     }
 
-    public boolean resetPassword(String password) {
-        userRepository.ubdatePassword(password);
+    public boolean resetPassword(Long id, String rawPassword) {
+        //must encode password first
+        return userRepository.updatePassword(id, rawPassword);
     }
 }

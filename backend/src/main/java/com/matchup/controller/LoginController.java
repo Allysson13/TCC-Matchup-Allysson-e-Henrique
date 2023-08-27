@@ -76,9 +76,9 @@ public class LoginController {
     @CrossOrigin(origins = "*")
     public ResponseEntity<Boolean> resetPassword(@RequestBody String password) {
         //verify password format
-        //encodings...
         //send confirmation to the user's email
-        return new ResponseEntity<>(userService.resetPassword, HttpStatus.ACCEPTED);
+        //get id by user sent somewhere
+        return new ResponseEntity<>(userService.resetPassword(Long id, password), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/login-route")
