@@ -9,27 +9,11 @@ form.addEventListener("submit", function (event) {
     forgotPassword();
 });
 
-//perhaps we should change validation to input as well
-/* txtEmail.addEventListener("input", function (event) {
-    validEmail = validator.isEmail(this.value);
-    changeInputBorder(validEmail, this);
-}); */
-/* var lastEmailTyped;
-txtEmail.addEventListener("blur", async function (event) {
-    if (lastEmailTyped == this.value) return;
-    lastEmailTyped = this.value;
 
-    response = await checkAvailability('email', this.value);
-    console.log(response.status);
-
-    if (response.status == 409) {
-        validEmail = false;
-        changeInputBorder(validEmail, txtEmail);
-        errorEmail.textContent = await response.text();
-    } else {
-        errorEmail.textContent = '';
-    }
-}); */
+txtEmail.addEventListener("blur", function (event) {
+    event.preventDefault();
+    isEmailInputEmpty();
+});
 
 async function checkUnavailability(type, data) {
     //requires chnge to new method
@@ -82,43 +66,33 @@ async function forgotPassword() {
     }
 
     console.log(txtEmail.value);
+    //perhaps we could send the user instead of the email
+    
     forgotPasswordRequisition(txtEmail.value);
 }
 
-/* function forgotPassword() {
 
-    //requires verification regarding the email format
-    let email = document.getElementById('txt-email').value;
 
-    fetch("http://localhost:8080/api/login/${email}", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erro ao enviar dados " + response);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Email já cadastrado, prossiga!");
-        })
-        .catch(error => {
-            alert("Email não cadastrado, cadastre-se primeiro! -> " + error);
-        }); 
+function isEmailInputEmpty(){
+    if(txtEmail.value == ""){
+        errorEmail.textContent = "Informe um email!";
+        changeInputBorder(false, txtEmail);
+    }else{
+        errorEmail.textContent = "";
+        changeInputBorder(true, txtEmail);
+    }
 
-} */
+    return (txtEmail.value == "");
+}
 
 function validateFields() {
-    validEmail = validator.isEmail(this.value);
-    changeInputBorder(validEmail, this);
+    if(isEmailInputEmpty()) return;
+    validEmail = validator.isEmail(txtEmail.value);
+    changeInputBorder(validEmail, txtEmail);
     console.log(validEmail);
 
     if (!validEmail) {
-        alert("O campo de email precisa ser preenchido corretamente!");
+        errorEmail.textContent = "Informe um email válido!";
         return false;
     }
 
