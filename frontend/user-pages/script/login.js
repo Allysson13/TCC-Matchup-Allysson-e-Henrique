@@ -60,20 +60,20 @@ async function login() {
     if (!(await validateFields())) return;
     let user = {};
 
-    let exists;
-    user.email = txtEmailOrUsername.value;
+    let exists = {};
     if (isEmail) {
         console.log("email");
-        exists = checkUnavailability('email', txtEmailOrUsername.value);
+        exists = await checkUnavailability('email', txtEmailOrUsername.value);
         user.email = txtEmailOrUsername.value;
     } else if (isUsername) {
-        exists = exists('username', txtEmailOrUsername.value);
+        exists = await checkUnavailability('username', txtEmailOrUsername.value);
         user.username = txtEmailOrUsername.value;
     }
 
-    // if(!exists){
-    //     return;
-    // }
+    console.log(exists.status);
+    if(exists.status == 409){
+        return;
+    }
 
     user.rawPassword = txtPassword.value;
     console.log(user);
@@ -94,7 +94,7 @@ function loginRequisition(jsonObject) {
             if (!response.ok) {
                 throw new Error("Informações incompatíveis com qualquer usuário cadastrado! " + response);
             } else {
-                Session.setLoggedUser(await response.json());  
+                //Session.setLoggedUser(await response.json());  
                 window.location.href = 'home.html';
             }
         })
@@ -109,6 +109,7 @@ function validateEmailOrUsername(emailOrUsername) {
     console.log(isEmail);
     if (isEmail) return;
     isUsername = (emailOrUsername.length >= 5 && emailOrUsername.length <= 20) && (validator.matches(emailOrUsername, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$"));
+    console.log(isUsername);
 }
 
 function validatePassword(password) {

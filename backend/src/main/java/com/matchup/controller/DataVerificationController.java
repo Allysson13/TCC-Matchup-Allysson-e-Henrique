@@ -23,33 +23,33 @@ public class DataVerificationController {
     @GetMapping("/email/check-availability/{email}")
     public ResponseEntity<String> verifyEmail(@PathVariable String email) {
         if (userService.existsByEmail(email)) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already in use!");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email já cadastrado!");
         }
-        return ResponseEntity.ok("Email is available");
+        return ResponseEntity.ok("Email disponível");
     }
 
     @GetMapping("/username/check-availability/{username}")
     public ResponseEntity<String> verifyUsername(@PathVariable String username) {
         if (userService.existsByUsername(username)) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already in use!");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Nome de usuário já cadastrado!");
         }
-        return ResponseEntity.ok("Username is available");
+        return ResponseEntity.ok("Nome de usuário disponível");
     }
 
     @GetMapping("/email/exists/{email}")
     public ResponseEntity<String> verifyEmailNotRegistered(@PathVariable String email) {
         if (!userService.existsByEmail(email)) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email not registered yet!");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email não está em uso!");
         }
-        return ResponseEntity.ok("Email is available");
+        return ResponseEntity.ok("Há um usuário cadastrado com esse email");
     }
 
     @GetMapping("/username/exists/{username}")
     public ResponseEntity<String> verifyUsernameNotRegistered(@PathVariable String username) {
         if (!userService.existsByUsername(username)) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username not registered yet!");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Nome de usuário não está em uso!");
         }
-        return ResponseEntity.ok("Username is available");
+        return ResponseEntity.ok("Há um usuário cadastrado com esse nome de usuário");
     }
 
     @GetMapping("/password/check-pattern/{password}")

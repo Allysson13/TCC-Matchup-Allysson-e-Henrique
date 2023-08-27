@@ -1,9 +1,9 @@
 var loggedUser = null;
 
-function setLoggedUser(user){
+export function setLoggedUser(user){
     loggedUser = user;
 }
 
-function getLoggedUser(){
+export function getLoggedUser(){
     return loggedUser;
 }

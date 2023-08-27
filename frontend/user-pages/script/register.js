@@ -61,8 +61,6 @@ txtUsername.addEventListener("blur", async function (event) {
     lastUsernameTyped = this.value;
 
     response = await checkAvailability('username', this.value);
-    console.log(response.status);
-    console.log(response.text());
 
     if (response.status == 409) {
         validUsername = false;
