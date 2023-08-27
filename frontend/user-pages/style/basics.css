@@ -37,9 +37,8 @@ body {
 
 .password-container #toggle-password {
     position: absolute;
-    top: 32%;
+    top: 10%;
     right: 15px;
-    transform: translateY(-50%);
     background-color: transparent;
     border: none;
 }

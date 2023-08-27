@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="style/register.css">
     <link rel="stylesheet" href="style/basics.css">
     <link rel="stylesheet" href="./plugins/Dual-List-Box-Plugin-jQuery-Multi/dist/multi.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
@@ -26,8 +27,7 @@
                     <div class="form-group input-container">
                         <input type="text" id="txt-username" class="form-control form-control-user bg-dark-subtle"
                             name="username" placeholder="Nome de usuário..." required>
-                        <span
-                            title="O nome de usuário deve ter pelo menos 5 caracteres, no máximo 16, podendo incluir letras maiúsculas, minúsculas, números, hífem, ponto e underline.">?</span>
+                        <span title="O nome de usuário deve ter pelo menos 5 caracteres, no máximo 16, podendo incluir letras maiúsculas, minúsculas, números, hífem, ponto e underline."><i class="bi bi-question-lg"></i></span>
                         <div id="username-error" class="invalid-feedback"></div><br><br>
                     </div>
                     <div class="form-group">
@@ -35,18 +35,18 @@
                             name="email" placeholder="Email... exemplo@gmail.com" required>
                         <div id="email-error" class="invalid-feedback"></div><br><br>
                     </div>
-                    <div class="form-group input-container">
+                    <div class="form-group input-container password-container">
                         <input type="password" id="txt-password" class="form-control form-control-user bg-dark-subtle"
                             name="password" placeholder="Senha..." required>
-                        <span
-                            title="A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.">?</span><br><br>
+                        <span title="A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos."><i class="bi bi-question-lg"></i></span><br><br>
+                        <button id="toggle-password"><i class="bi bi-eye-slash-fill"></i></button>
                     </div>
-                    <div class="form-group input-container">
+                    <div class="form-group input-container password-container">
                         <input type="password" id="txt-confirmed-password"
                             class="form-control form-control-user bg-dark-subtle" name="confirmed-password"
                             placeholder="Confirmar senha..." required>
-                        <span
-                            title="A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.">?</span><br><br>
+                        <span title="A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos."><i class="bi bi-question-lg"></i></span><br><br>
+                        <button id="toggle-password"><i class="bi bi-eye-slash-fill"></i></button>
                     </div>
                     <div class="form-group">
                         <input type="text" id="txt-phonenumber" class="form-control form-control-user bg-dark-subtle"
@@ -101,4 +101,5 @@
     </script>
 <script src="./plugins/Dual-List-Box-Plugin-jQuery-Multi/dist/multi.min.js"></script>
 <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+<script src="script/toggle-password.js"></script>
 <script src="script/register.js"></script>
