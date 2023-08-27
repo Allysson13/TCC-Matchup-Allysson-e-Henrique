@@ -1,5 +1,6 @@
 package com.matchup.controller;
 
+import com.matchup.exceptions.InvalidCodeException;
 import com.matchup.exceptions.InvalidPasswordException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,19 +39,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>("Usuário não encontrado", HttpStatus.BAD_REQUEST);
     }
 
-//    @ExceptionHandler(InvalidCodeException.class)
-//    public ResponseEntity<Object> handleInvalidCode(InvalidCodeException ex) {
-//        return new ResponseEntity<>("Código inválido!", HttpStatus.BAD_REQUEST);
-//    }
-
     @ExceptionHandler(InvalidPasswordException.class)
     public ResponseEntity<Object> handleInvalidPassword(IllegalArgumentException ex) {
         return new ResponseEntity<>("Senha inválida!", HttpStatus.BAD_REQUEST);
     }
 
-//    @ExceptionHandler(InvalidCodeException.class)
-//    public ResponseEntity<Object> handleInvalidCode(InvalidCodeException ex) {
-//        return new ResponseEntity<>("Código inválido!", HttpStatus.BAD_REQUEST);
-//    }
+    @ExceptionHandler(InvalidCodeException.class)
+    public ResponseEntity<Object> handleInvalidCode(InvalidCodeException ex) {
+        return new ResponseEntity<>("Código inválido!", HttpStatus.BAD_REQUEST);
+    }
 
 }

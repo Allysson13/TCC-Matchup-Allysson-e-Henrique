@@ -57,9 +57,14 @@ public class UserService {
     }
 
     public Optional<User> findByEmailAndHashedPassword(UserDto userDto){
-        System.out.println(passwordEncoder.encode(userDto.getRawPassword()));
         Optional<User> user = userRepository.findByEmail(userDto.getEmail());
-        System.out.println(passwordEncoder.matches(userDto.getRawPassword(), user.get().getHashedPassword()));
+        if(user.isEmpty()){
+            user = userRepository.findByUsername(userDto.getUsername());
+        }
+        if(user.isPresent() && !passwordEncoder.matches(userDto.getRawPassword(), user.get().getHashedPassword())){
+            user = null;
+        }
+        //System.out.println(passwordEncoder.matches(userDto.getRawPassword(), user.get().getHashedPassword()));
         return user;
     }
 
@@ -72,7 +77,7 @@ public class UserService {
     }
 
     public boolean existsByUsername(String username){
-        return userRepository.existsByEmail(username);
+        return userRepository.existsByUsername(username);
     }
 
 //    public boolean existsByEmailOrUsername(String email, String username){
