@@ -52,7 +52,7 @@ function confirmEmailRequest(jsonObject) {
 
 }
 
-//use direrent requests to verify de code?
+//use diferent requests to verify de code?
 /* function verifyCodeRequest(jsonObject) {
 
     fetch("http://localhost:8080/api/data-verification/code/", {
@@ -79,7 +79,7 @@ function confirmEmailRequest(jsonObject) {
 
 async function confirmEmail() {
     if (!(await validateFields())) return;
-    console.log(txtEmail.value);
+    console.log(code);
     confirmEmailRequest(code);
 }
 

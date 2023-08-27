@@ -31,11 +31,11 @@ txtEmail.addEventListener("blur", async function (event) {
     }
 }); */
 
-async function checkAvailability(type, data) {
+async function checkUnavailability(type, data) {
     //requires chnge to new method
     response = await fetch(`http://localhost:8080/api/${type}/exists/${data}`)
         .catch(error => {
-            alert("Deu errado! -> (checkAvailability)" + error);
+            alert("Deu errado! -> (checkUnavailability)" + error);
         });
     return response;
 }
@@ -60,7 +60,7 @@ function forgotPasswordRequisition(jsonObject) {
         .then(async response => {
             if (!response.ok) {
                 throw new Error("Email não cadastrado! " + response);
-            }else{
+            } else {
                 window.location.href = 'confirm-email.html';
             }
             addOptionToDropDown(type, await response.json());
@@ -72,8 +72,16 @@ function forgotPasswordRequisition(jsonObject) {
 
 async function forgotPassword() {
     if (!(await validateFields())) return;
+
+    let exists = {};
+    exists = await checkUnavailability('email', txtEmail.value);
+
+    console.log(exists.status);
+    if (exists.status == 409) {
+        return;
+    }
+
     console.log(txtEmail.value);
-    //perhaps we could send the user instead of the email
     forgotPasswordRequisition(txtEmail.value);
 }
 

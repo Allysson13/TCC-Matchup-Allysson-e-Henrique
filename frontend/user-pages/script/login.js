@@ -37,7 +37,7 @@ function validateFields() {
 async function checkUnavailability(type, data) {
     response = await fetch(`http://localhost:8080/api/data-verification/${type}/exists/${data}`)
         .catch(error => {
-            alert("Deu errado! -> (checkAvailability)" + error);
+            alert("Deu errado! -> (checkUnavailability)" + error);
         });
     return response;
 }

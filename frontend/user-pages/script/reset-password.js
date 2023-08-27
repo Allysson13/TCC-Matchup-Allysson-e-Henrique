@@ -1,4 +1,4 @@
-var form = document.getElementById("register");
+var form = document.getElementById("reset-password");
 
 var txtPassword = document.getElementById("txt-password");
 var txtConfirmedPassword = document.getElementById("txt-confirmed-password");
@@ -12,7 +12,7 @@ form.addEventListener("submit", function (event) {
 });
 
 async function checkAvailability(type, data) {
-    response = await fetch(`http://localhost:8080/api/data-verification/${type}/check-availability/${data}`)
+    response = await fetch(`http://localhost:8080/api/${type}/check-pattern/${data}`)
         .catch(error => {
             alert("Deu errado! -> (checkAvailability)" + error);
         });
@@ -20,16 +20,16 @@ async function checkAvailability(type, data) {
 }
 
 //perhaps we should change validation to input as well
-txtPassword.addEventListener("input", function (event) {
+/* txtPassword.addEventListener("input", function (event) {
     validPassword = validatePassword(this.value);
     changeInputBorder(validPassword, this);
-});
+}); */
 
 //perhaps we should change validation to input as well
-txtConfirmedPassword.addEventListener("input", function (event) {
+/* txtConfirmedPassword.addEventListener("input", function (event) {
     bothPasswordsEqual = (txtPassword.value == txtConfirmedPassword.value);
     changeInputBorder(bothPasswordsEqual, this);
-});
+}); */
 
 function changeInputBorder(validValue, element) {
     if (!validValue) {
@@ -41,7 +41,7 @@ function changeInputBorder(validValue, element) {
 
 function resetPassowrdRequest(jsonObject, jsonObject2) {
 
-    fetch('http://localhost:8080/api/login/', {
+    fetch('http://localhost:8080/api/login/reset-password/', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -105,6 +105,11 @@ async function resetPassword() {
 
 function validateFields() {
     console.log(validPassword);
+
+    validPassword = validatePassword(this.value);
+    changeInputBorder(validPassword, this);
+    bothPasswordsEqual = (txtPassword.value == txtConfirmedPassword.value);
+    changeInputBorder(bothPasswordsEqual, this);
 
     if (!validPassword) {
         alert("As senhas precisam ser preenchidas corretamente!");
