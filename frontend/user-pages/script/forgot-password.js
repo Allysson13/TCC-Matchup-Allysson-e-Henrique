@@ -1,8 +1,15 @@
 var form = document.getElementById("forgot-password");
 var txtEmail = document.getElementById("txt-email");
 var errorEmail = document.getElementById("email-error");
+var errorEmailDoesntExist = document.getElementById("email-doesnt-exist-error");
 
+var btnCloseErrorMessage = document.getElementById("close-message-error");
 var validEmail = false;
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    showEmailDoesntExistMessage(false);
+});
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -10,14 +17,19 @@ form.addEventListener("submit", function (event) {
 });
 
 
-txtEmail.addEventListener("blur", function (event) {
+txtEmail.addEventListener("input", function (event) {
     event.preventDefault();
     isEmailInputEmpty();
 });
 
+btnCloseErrorMessage.addEventListener("click", function (event) {
+    //event.preventDefault();
+    console.log("onclick");
+    showEmailDoesntExistMessage(false);
+});
+
 async function checkUnavailability(type, data) {
-    //requires chnge to new method
-    response = await fetch(`http://localhost:8080/api/${type}/exists/${data}`)
+    response = await fetch(`http://localhost:8080/api/data-verification/${type}/exists/${data}`)
         .catch(error => {
             alert("Deu errado! -> (checkUnavailability)" + error);
         });
@@ -32,8 +44,43 @@ function changeInputBorder(validValue, element) {
     }
 }
 
-function forgotPasswordRequisition(jsonObject) {
+function showEmailDoesntExistMessage(boolean){
+    if(boolean){
+        errorEmailDoesntExist.style.display = "flex";
+        changeInputBorder(false, txtEmail);
+    }else{
+        errorEmailDoesntExist.style.display = "none";
+        changeInputBorder(true, txtEmail);
+    }
+}
 
+function configureTxtEmail(value, text){
+    changeInputBorder(value, txtEmail);
+    errorEmail.textContent = text;
+}
+
+async function forgotPassword() {
+    if (!(await validateFields())) return;
+
+    let exists = {};
+    exists = await checkUnavailability('email', txtEmail.value);
+
+    console.log(exists.status);
+    if (exists.status == 409) {
+        showEmailDoesntExistMessage(true);
+        return;
+    }else if(exists.status == 200){
+        showEmailDoesntExistMessage(false);
+    }
+
+    console.log(txtEmail.value);
+    //perhaps we could send the user instead of the email
+    
+    forgotPasswordRequisition(txtEmail.value);
+}
+
+
+function forgotPasswordRequisition(jsonObject) {
     fetch('http://localhost:8080/api/login/', {
         method: "POST",
         headers: {
@@ -54,47 +101,21 @@ function forgotPasswordRequisition(jsonObject) {
         });
 }
 
-async function forgotPassword() {
-    if (!(await validateFields())) return;
-
-    let exists = {};
-    exists = await checkUnavailability('email', txtEmail.value);
-
-    console.log(exists.status);
-    if (exists.status == 409) {
-        return;
-    }
-
-    console.log(txtEmail.value);
-    //perhaps we could send the user instead of the email
-    
-    forgotPasswordRequisition(txtEmail.value);
-}
-
-
 
 function isEmailInputEmpty(){
     if(txtEmail.value == ""){
-        errorEmail.textContent = "Informe um email!";
-        changeInputBorder(false, txtEmail);
+        configureTxtEmail(false, "Informe um email!");
     }else{
-        errorEmail.textContent = "";
-        changeInputBorder(true, txtEmail);
+        configureTxtEmail(true, "");
     }
-
     return (txtEmail.value == "");
 }
 
 function validateFields() {
     if(isEmailInputEmpty()) return;
     validEmail = validator.isEmail(txtEmail.value);
-    changeInputBorder(validEmail, txtEmail);
-    console.log(validEmail);
-
     if (!validEmail) {
-        errorEmail.textContent = "Informe um email válido!";
-        return false;
+        configureTxtEmail(false, "Informe um emai válido!");
     }
-
-    return true;
+    return validEmail;
 }

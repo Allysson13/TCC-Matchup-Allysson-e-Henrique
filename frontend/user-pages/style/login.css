@@ -6,21 +6,4 @@
     display: none;
 } */
 
-.error-message {
-    border: 2px solid red;
-    background-color: rgba(255, 0, 0, 0.20);
-    color: lightgray;
-    padding: 5px 10px;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 15px;
-}
 
-
-.error-message button {  
-    font-family: 'Courier New', Courier, monospace;
-    background-color: rgba(255, 0, 0, 0);
-    color: lightgray;
-    padding: 3px 2px 0px 0px;
-    border: none;
-}
