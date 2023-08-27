@@ -72,7 +72,7 @@ public class LoginController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/{password}/{confirmedPassword}")
+    @GetMapping("/reset-password/{password}/{confirmedPassword}")
     @CrossOrigin(origins = "*")
     public ResponseEntity<Boolean> resetPassword(@PathVariable String password, @PathVariable String confirmedPassword) {
         //verify password format
