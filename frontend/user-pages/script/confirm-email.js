@@ -1,13 +1,13 @@
 var form = document.getElementById("confirm-email");
 
-var code;
+var code = "";
 
 var validCode = false;
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
-    for (var i = 1; i <= 6; i++) {
-        code += document.getElementById("code" + i).textContent;
+    for (let i = 1; i <= 6; i++) {
+        code += document.getElementById("code" + i).value;
     }
     console.log("Código: " + code)
     validCode = validateCode(code);
@@ -26,56 +26,7 @@ function changeInputBorder(validValue) {
     }
 }
 
-function confirmEmailRequest(jsonObject) {
 
-    //checks if the code is valid and if its equivalent to the one in the backend thread
-    fetch("http://localhost:8080/api/data-verification/code/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(jsonObject)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erro ao enviar dados " + response);
-            }
-            window.location.href = 'reset-password.html';
-            return response.json();
-        })
-        .then(data => {
-            console.log("Código válido e equivalente!");
-        })
-        .catch(error => {
-            alert("Código inválido! -> " + error);
-        });
-
-}
-
-//use diferent requests to verify de code?
-/* function verifyCodeRequest(jsonObject) {
-
-    fetch("http://localhost:8080/api/data-verification/code/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(jsonObject)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erro ao enviar dados " + response);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Código válido!");
-        })
-        .catch(error => {
-            alert("Código inválido! -> " + error);
-        });
-
-} */
 
 async function confirmEmail() {
     if (!(await validateFields())) return;
@@ -97,6 +48,30 @@ function validateFields() {
     return true;
 }
 
+function confirmEmailRequest(code) {
+    //checks if the code is valid and if its equivalent to the one in the backend thread
+    fetch("http://localhost:8080/api/data-verification/code", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: code
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erro ao enviar dados " + response);
+            }
+            window.location.href = 'reset-password.html';
+            return response.json();
+        })
+        .then(data => {
+            console.log("Código válido e equivalente!");
+        })
+        .catch(error => {
+            alert("Código inválido! -> " + error);
+        });
+}
+//690156
 function validateCode(code) {
     if (code.length !== 6) {
         changeInputBorder(validCode)
