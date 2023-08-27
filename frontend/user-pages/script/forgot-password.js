@@ -78,18 +78,21 @@ async function forgotPassword() {
 }
 
 
-function forgotPasswordRequisition(jsonObject) {
-    fetch('http://localhost:8080/api/login/', {
+
+function forgotPasswordRequisition(email) {
+    fetch(`http://localhost:8080/api/login/forgot-password`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(jsonObject)
+        body: JSON.stringify(email)
     })
         .then(async response => {
             if (!response.ok) {
                 throw new Error("Email não cadastrado! " + response);
             } else {
+                response = await response.json();
+                alert(response);
                 window.location.href = 'confirm-email.html';
             }
             addOptionToDropDown(type, await response.json());

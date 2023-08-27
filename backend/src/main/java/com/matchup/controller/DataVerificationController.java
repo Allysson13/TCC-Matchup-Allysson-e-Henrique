@@ -1,5 +1,6 @@
 package com.matchup.controller;
 
+import com.matchup.exceptions.InvalidCodeException;
 import com.matchup.exceptions.InvalidPasswordException;
 import com.matchup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,9 +71,10 @@ public class DataVerificationController {
         return new ResponseEntity<>(userService.verifyDate(date), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/code/{inputCode}")
+    @PostMapping("/code")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<Boolean> confirmEmailByCode(@PathVariable String inputCode) {
+    public ResponseEntity<Boolean> confirmEmailByCode(@RequestBody String inputCode) throws InvalidCodeException {
+        System.out.println("confirmCode");
         return new ResponseEntity<>(userService.verifyCode(inputCode), HttpStatus.ACCEPTED);
     }
 

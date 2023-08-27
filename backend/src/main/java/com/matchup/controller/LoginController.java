@@ -54,8 +54,8 @@ public class LoginController {
         return new ResponseEntity<>(user.get(), HttpStatus.ACCEPTED);
     }
 
-    @PostMapping("/{email}")
-    public ResponseEntity<String> forgotPassword(@PathVariable String email) {
+    @PostMapping("/forgot-password")
+    public ResponseEntity<String> forgotPassword(@RequestBody String email) {
         return new ResponseEntity<>(userService.sendCode(email), HttpStatus.ACCEPTED);
     }
 
@@ -72,15 +72,13 @@ public class LoginController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/reset-password/{password}/{confirmedPassword}")
+    @PostMapping("/reset-password/{password}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<Boolean> resetPassword(@PathVariable String password, @PathVariable String confirmedPassword) {
+    public ResponseEntity<Boolean> resetPassword(@RequestBody String password) {
         //verify password format
         //encodings...
-        if (password.equals(confirmedPassword)){
-            //send confirmation to the user's email
-        }
-        return new ResponseEntity<>(password.equals(confirmedPassword), HttpStatus.ACCEPTED);
+        //send confirmation to the user's email
+        return new ResponseEntity<>(userService.resetPassword, HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/login-route")

@@ -1,6 +1,7 @@
 package com.matchup.service;
 
 import com.matchup.dto.UserDto;
+import com.matchup.exceptions.InvalidCodeException;
 import com.matchup.model.Address;
 import com.matchup.model.User;
 import com.matchup.repository.InterestRepository;
@@ -121,6 +122,7 @@ public class UserService {
     }
 
     public String sendCode(String email){
+        code = "";
         if (findByEmail(email)){
             Random generator = new Random();
             int codes;
@@ -142,19 +144,21 @@ public class UserService {
             });
             invalidateCodeThread.start();
             //send the code by email
+            System.out.println("Código: " + code);
             return code;
         }else{
             return "Email não cadastrado!";
         }
     }
 
-    public boolean verifyCode(String inputCode) {
+    public boolean verifyCode(String inputCode) throws InvalidCodeException {
+        System.out.println("Código a ser verificado: " + code);
         if (inputCode.length() != 6) {
-            //throw new InvalidCodeException();
+            throw new InvalidCodeException();
         }
         for (int i = 0; i < inputCode.length(); i++) {
             if (!Character.isDigit(inputCode.charAt(i))) {
-                //throw new InvalidCodeException();
+                throw new InvalidCodeException();
             }
         }
         return inputCode.equals(code) && isValid;
@@ -168,4 +172,7 @@ public class UserService {
         return Pattern.matches(pattern, password);
     }
 
+    public boolean resetPassword(String password) {
+        userRepository.ubdatePassword(password);
+    }
 }
