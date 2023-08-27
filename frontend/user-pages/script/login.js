@@ -9,6 +9,8 @@ var isEmail = false;
 var isUsername = false;
 var validPassword = false;
 
+
+
 // document.addEventListener("DOMContentLoaded", function () {
 
 // });
@@ -19,34 +21,21 @@ form.addEventListener("submit", function (event) {
 });
 
 
-//var lastEmailOrUsernameTyped;
-txtEmailOrUsername.addEventListener("blur", async function (event) {
-    validateEmailOrUsername(this.value);
+function validateFields() {
+    validateEmailOrUsername(txtEmailOrUsername.value);
     validEmailOrUsername = isEmail || isUsername;
     changeInputBorder(validEmailOrUsername, txtEmailOrUsername);
     if (!validEmailOrUsername) {
         errorEmailOrUsername.textContent = "Email ou nome de usuário inválido!";
+        return false;
     } else {
         errorEmailOrUsername.textContent = "";
+        return true;
     }
-    //if (lastEmailOrUsernameTyped == this.value) return;
-    //lastEmailOrUsernameTyped = this.value;
+};
 
-    /*     response = await checkAvailability('emailOrUsername', this.value);
-        console.log(response.status);
-        console.log(response.text());
-    
-        if (response.status == 409) {
-            validEmailOrUsername = false;
-            changeInputBorder(validEmailOrUsername, txtEmailOrUsername);
-            validEmailOrUsername.textContent = await response.text();
-        } else {
-            errorUsername.textContent = '';
-        } */
-});
-
-async function checkAvailability(type, data) {
-    response = await fetch(`http://localhost:8080/api/data-verification/${type}/check-availability/${data}`)
+async function checkUnavailability(type, data) {
+    response = await fetch(`http://localhost:8080/api/data-verification/${type}/exists/${data}`)
         .catch(error => {
             alert("Deu errado! -> (checkAvailability)" + error);
         });
@@ -66,8 +55,34 @@ function changeInputBorder(validValue, element) {
     }
 }
 
-function loginRequisition(jsonObject) {
 
+async function login() {
+    if (!(await validateFields())) return;
+    let user = {};
+
+    let exists;
+    user.email = txtEmailOrUsername.value;
+    if (isEmail) {
+        console.log("email");
+        exists = checkUnavailability('email', txtEmailOrUsername.value);
+        user.email = txtEmailOrUsername.value;
+    } else if (isUsername) {
+        exists = exists('username', txtEmailOrUsername.value);
+        user.username = txtEmailOrUsername.value;
+    }
+
+    // if(!exists){
+    //     return;
+    // }
+
+    user.rawPassword = txtPassword.value;
+    console.log(user);
+    loginRequisition(user);
+
+}
+
+function loginRequisition(jsonObject) {
+    console.log("loginRequest");
     fetch('http://localhost:8080/api/login/', {
         method: "POST",
         headers: {
@@ -79,96 +94,19 @@ function loginRequisition(jsonObject) {
             if (!response.ok) {
                 throw new Error("Informações incompatíveis com qualquer usuário cadastrado! " + response);
             } else {
+                Session.setLoggedUser(await response.json());  
                 window.location.href = 'home.html';
             }
-            addOptionToDropDown(type, await response.json());
         })
         .catch(error => {
             alert("Deu errado! -> (login())" + error);
         });
 }
 
-async function login() {
-    if (!(await validateFields())) return;
-
-    let user = {};
-    let exists;
-    if (isEmail) {
-        exists = !checkAvailability('email', txtEmailOrUsername.value);
-        user = {
-            "email": txtEmailOrUsername.value,
-        }
-    } else if (isUsername) {
-        exists = !checkAvailability('username', txtEmailOrUsername.value);
-        user = {
-            "email": txtEmailOrUsername.value,
-        }
-    }
-
-    user.password = txtCo
-
-    if(!exists){
-        return;
-    }
-
-
-
-
-
-    console.log(txtEmailOrUsername.value);
-    loginRequisition(txtEmailOrUsername.value);
-
-}
-
-
-
-/* function login() {
-
-    let email = document.getElementById('txt-email').value;
-    //requires verification regarding the password format
-    let password = document.getElementById('txt-password').value;
-
-    let user = {
-        "email": email,
-        //requires verification
-        "hashedPassword": password,
-    }
-
-    fetch("http://localhost:8080/api/login/${email}/${password}", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erro ao enviar dados " + response);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Deu certo!");
-        })
-        .catch(error => {
-            alert("Deu errado! -> " + error);
-        });
-
-} */
-
-function validateFields() {
-    console.log(validEmailOrUsername);
-
-    if (!validEmailOrUsername && !validPassword) {
-        alert("Todos os campos precisam ser preenchidos corretamente!");
-        return false;
-    }
-
-    return true;
-}
 
 function validateEmailOrUsername(emailOrUsername) {
     isEmail = validator.isEmail(emailOrUsername);
+    console.log(isEmail);
     if (isEmail) return;
     isUsername = (emailOrUsername.length >= 5 && emailOrUsername.length <= 20) && (validator.matches(emailOrUsername, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$"));
 }

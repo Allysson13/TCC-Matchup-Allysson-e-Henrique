@@ -43,13 +43,16 @@ public class LoginController {
         return new ResponseEntity<>(userService.findByPartOfTheName(partOfTheName), HttpStatus.ACCEPTED);
     }
 
-//    @PostMapping("/{email}/{hashedPassword}")
-//    public ResponseEntity<Optional<User>> login(@RequestBody UserDto userDto) {
-//        if (userService.findByEmailAndHashedPassword(userDto., hashedPassword).isEmpty()){
-//            throw new NullPointerException();
-//        }
-//        return new ResponseEntity<>(userService.findByEmailAndHashedPassword(email, hashedPassword), HttpStatus.ACCEPTED);
-//    }
+    @PostMapping("/")
+    public ResponseEntity<User> login(@RequestBody UserDto userDto) {
+        System.out.println(userDto.getEmail());
+        System.out.println(userDto.getRawPassword());
+        Optional<User> user = userService.findByEmailAndHashedPassword(userDto);
+        if (user.isEmpty()){
+            throw new NullPointerException();
+        }
+        return new ResponseEntity<>(user.get(), HttpStatus.ACCEPTED);
+    }
 
     @PostMapping("/{email}")
     public ResponseEntity<String> forgotPassword(@PathVariable String email) {

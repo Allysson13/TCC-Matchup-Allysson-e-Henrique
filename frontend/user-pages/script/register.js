@@ -69,6 +69,7 @@ txtUsername.addEventListener("blur", async function (event) {
         changeInputBorder(validUsername, txtUsername);
         errorUsername.textContent = await response.text();
     } else {
+        validUsername = true;
         errorUsername.textContent = '';
     }
 });
@@ -275,8 +276,8 @@ async function registerUser() {
 }
 
 function validateFields() {
-    console.log(validEmail);
     console.log(validUsername);
+    console.log(validEmail);
     console.log(validPassword);
 
     if (!validEmail || !validUsername || !validPassword) {
@@ -293,8 +294,9 @@ function validateFields() {
 }
 
 function validateUsername(username) {
-    console.log(validator.matches(username, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]{5,20}$"));
-    return (username.length >= 5 && username.length <= 20) && (validator.matches(username, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$"));
+    let condition = (username.length >= 5 && username.length <= 20) && (validator.matches(username, "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$"));
+    console.log(condition);
+    return condition;
 }
 
 function validatePassword(password) {

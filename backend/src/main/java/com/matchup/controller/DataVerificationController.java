@@ -1,5 +1,6 @@
 package com.matchup.controller;
 
+import com.matchup.exceptions.InvalidPasswordException;
 import com.matchup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

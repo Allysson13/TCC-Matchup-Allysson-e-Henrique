@@ -54,9 +54,11 @@ public class UserService {
         return userRepository.findByNameContainingIgnoreCase(partOfTheName);
     }
 
-    public Optional<User> findByEmailAndHashedPassword(String email, String hashedPassword){
-        //encode password
-        return userRepository.findByEmailAndHashedPassword(email, hashedPassword);
+    public Optional<User> findByEmailAndHashedPassword(UserDto userDto){
+        System.out.println(passwordEncoder.encode(userDto.getRawPassword()));
+        Optional<User> user = userRepository.findByEmail(userDto.getEmail());
+        System.out.println(passwordEncoder.matches(userDto.getRawPassword(), user.get().getHashedPassword()));
+        return user;
     }
 
     public boolean findByEmail(String email){

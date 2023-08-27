@@ -1,5 +1,6 @@
 package com.matchup.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.matchup.model.insterests_dependencies.*;
 import jakarta.persistence.*;
@@ -54,6 +55,7 @@ public class Interest {
     @ManyToOne
     private AgeRating ageRating;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "interests")
     private List<User> users;
 
