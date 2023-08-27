@@ -3,6 +3,9 @@ var form = document.getElementById("register");
 var txtPassword = document.getElementById("txt-password");
 var txtConfirmedPassword = document.getElementById("txt-confirmed-password");
 
+var validPassword = false;
+var bothPasswordsEqual = false;
+
 form.addEventListener("submit", function (event) {
     event.preventDefault();
     resetPassword();
@@ -16,12 +19,13 @@ async function checkAvailability(type, data) {
     return response;
 }
 
+//perhaps we should change validation to input as well
 txtPassword.addEventListener("input", function (event) {
     validPassword = validatePassword(this.value);
     changeInputBorder(validPassword, this);
 });
 
-
+//perhaps we should change validation to input as well
 txtConfirmedPassword.addEventListener("input", function (event) {
     bothPasswordsEqual = (txtPassword.value == txtConfirmedPassword.value);
     changeInputBorder(bothPasswordsEqual, this);
@@ -35,7 +39,7 @@ function changeInputBorder(validValue, element) {
     }
 }
 
-function resetPassowrdRequisition(jsonObject, jsonObject2) {
+function resetPassowrdRequest(jsonObject, jsonObject2) {
 
     fetch('http://localhost:8080/api/login/', {
         method: "POST",
@@ -57,10 +61,11 @@ function resetPassowrdRequisition(jsonObject, jsonObject2) {
         });
 }
 
-async function resetPassowrd() {
+async function resetPassword() {
     if (!(await validateFields())) return;
     console.log(txtEmailOrUsername.value);
-    resetPassowrdRequisition(txtPassword.value, txtConfirmedPassword.value);
+    //perhaps we could send the user instead of the passwords
+    resetPassowrdRequest(txtPassword.value, txtConfirmedPassword.value);
 }
 
 /* function resetPassowrd() {
@@ -97,3 +102,23 @@ async function resetPassowrd() {
         });
 
 } */
+
+function validateFields() {
+    console.log(validPassword);
+
+    if (!validPassword) {
+        alert("As senhas precisam ser preenchidas corretamente!");
+        return false;
+    }
+
+    if (!bothPasswordsEqual) {
+        alert("A senha precisa ser a mesma em ambos os campos");
+        return false;
+    }
+
+    return true;
+}
+
+function validatePassword(password) {
+    return (validator.matches(password, /^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/));
+}
