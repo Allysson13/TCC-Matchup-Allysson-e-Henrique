@@ -12,6 +12,12 @@
     <title>Cadastro</title>
 </head>
 
+<style>
+    .password-container #toggle-password {
+        top: 8%;
+    }
+</style>
+
 <body class="register-user">
     <div class=" container">
         <div id="card" class="card o-hidden border-0 shadow-lg my-5">
@@ -27,7 +33,9 @@
                     <div class="form-group input-container">
                         <input type="text" id="txt-username" class="form-control form-control-user bg-dark-subtle"
                             name="username" placeholder="Nome de usuário..." required>
-                        <span title="O nome de usuário deve ter pelo menos 5 caracteres, no máximo 16, podendo incluir letras maiúsculas, minúsculas, números, hífem, ponto e underline."><i class="bi bi-question-lg"></i></span>
+                        <span
+                            title="O nome de usuário deve ter pelo menos 5 caracteres, no máximo 16, podendo incluir letras maiúsculas, minúsculas, números, hífem, ponto e underline."><i
+                                class="bi bi-question-lg"></i></span>
                         <div id="username-error" class="invalid-feedback"></div><br><br>
                     </div>
                     <div class="form-group">
@@ -38,14 +46,18 @@
                     <div class="form-group input-container password-container">
                         <input type="password" id="txt-password" class="form-control form-control-user bg-dark-subtle"
                             name="password" placeholder="Senha..." required>
-                        <span title="A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos."><i class="bi bi-question-lg"></i></span><br><br>
+                        <span
+                            title="A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos."><i
+                                class="bi bi-question-lg"></i></span><br><br>
                         <button id="toggle-password"><i class="bi bi-eye-slash-fill"></i></button>
                     </div>
                     <div class="form-group input-container password-container">
                         <input type="password" id="txt-confirmed-password"
                             class="form-control form-control-user bg-dark-subtle" name="confirmed-password"
                             placeholder="Confirmar senha..." required>
-                        <span title="A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos."><i class="bi bi-question-lg"></i></span><br><br>
+                        <span
+                            title="A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos."><i
+                                class="bi bi-question-lg"></i></span><br><br>
                         <button id="toggle-password"><i class="bi bi-eye-slash-fill"></i></button>
                     </div>
                     <div class="form-group">
