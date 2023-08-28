@@ -1,38 +1,26 @@
-//const USER_DEPENDENCIES = ['address', 'friendship', 'interest', 'message'];
 const USER_DEPENDENCIES = ['interest'];
 
 var form = document.getElementById("register");
 
 var txtName = document.getElementById("txt-name");
-var errorName = document.getElementById("name-error");
 var txtUsername = document.getElementById("txt-username");
 var errorUsername = document.getElementById("username-error");
 var txtEmail = document.getElementById("txt-email");
 var errorEmail = document.getElementById("email-error");
 var txtPassword = document.getElementById("txt-password");
-var errorPassword = document.getElementById("password-error");
 var txtConfirmedPassword = document.getElementById("txt-confirmed-password");
-var errorConfirmedPassword = document.getElementById("confirmed-password-error");
 var txtPhonenumber = document.getElementById("txt-phonenumber");
-var errorPhonenumber = document.getElementById("phonenumber-error");
 
 var dateBirthDate = document.getElementById('date-birth-date');
-var errorBirthDate = document.getElementById("birth-date--error");
 var ddInterest = document.getElementById('dd-interest');
 var fileProfilePicture = document.getElementById('file-profile-picture');
 
 var txtZipcode = document.getElementById('txt-zipcode');
-var errorZipcode = document.getElementById("zipcode-error");
 var txtState = document.getElementById('txt-state');
-var errorState = document.getElementById("state-error");
 var txtCity = document.getElementById('txt-city');
-var errorCity = document.getElementById("city-error");
 var txtNeighborhood = document.getElementById('txt-neighborhood');
-var errorNeighborhood = document.getElementById("neighborhood-error");
 var txtStreet = document.getElementById('txt-street');
-var errorStreet = document.getElementById("street-error");
 var txtNumber = document.getElementById('number-number');
-var errorNumber = document.getElementById("number-error");
 
 
 var validEmail = false;
@@ -41,13 +29,18 @@ var validPassword = false;
 var bothPasswordsEqual = false;
 var validPhonenumber = false;
 
+$('#dd-interest').multi({
+    non_selected_header: 'Jogos',
+    selected_header: 'Jogos Selecionados',
+
+});
 
 document.addEventListener("DOMContentLoaded", function () {
     dateConfig();
     loadInterestDropDown();
-    /*     USER_DEPENDENCIES.forEach(type => {
-            loadDropDowns(type);
-        }) */
+/*     USER_DEPENDENCIES.forEach(type => {
+        loadDropDowns(type);
+    }) */
 });
 
 
@@ -63,10 +56,6 @@ txtUsername.addEventListener("input", function (event) {
 });
 var lastUsernameTyped;
 txtUsername.addEventListener("blur", async function (event) {
-    if (txtUsername.value == "") return;
-    errorUsername.textContent = "";
-    changeInputBorder(true, txtUsername);
-
     if (lastUsernameTyped == this.value) return;
     lastUsernameTyped = this.value;
 
@@ -89,10 +78,6 @@ txtEmail.addEventListener("input", function (event) {
 });
 var lastEmailTyped;
 txtEmail.addEventListener("blur", async function (event) {
-    if (txtEmail.value == "") return;
-    errorEmail.textContent = "";
-    changeInputBorder(true, txtEmail);
-
     if (lastEmailTyped == this.value) return;
     lastEmailTyped = this.value;
 
@@ -129,26 +114,6 @@ txtConfirmedPassword.addEventListener("input", function (event) {
     bothPasswordsEqual = (txtPassword.value == txtConfirmedPassword.value);
     changeInputBorder(bothPasswordsEqual, this);
 });
-
-function handleBlur(element, errorElement) {
-    element.addEventListener("blur", function (event) {
-        if (element.value == "") return;
-        errorElement.textContent = "";
-        changeInputBorder(true, element);
-    });
-}
-
-handleBlur(txtName, errorName);
-handleBlur(txtPassword, errorPassword);
-handleBlur(txtConfirmedPassword, errorConfirmedPassword);
-handleBlur(txtPhonenumber, errorPhonenumber);
-handleBlur(dateBirthDate, errorBirthDate);
-handleBlur(txtZipcode, errorZipcode);
-handleBlur(txtState, errorState);
-handleBlur(txtCity, errorCity);
-handleBlur(txtNeighborhood, errorNeighborhood);
-handleBlur(txtStreet, errorStreet);
-handleBlur(txtNumber, txtNumber);
 
 
 function changeInputBorder(validValue, element) {
@@ -218,10 +183,6 @@ async function loadInterestDropDown() {
         const json = await getAll('interest');
         console.log(json);
         populateDropDown(json, ddInterest);
-        $('#dd-interest').multi({
-            non_selected_header: 'Jogos',
-            selected_header: 'Jogos Selecionados',
-        });
     } catch (error) {
         console.error('Erro ao carregar o arquivo JSON:', error);
         throw error;
@@ -287,7 +248,7 @@ async function registerUser() {
     let interests = [];
     for (let option of $("#dd-interest option:selected")) {
         interests.push(option.value);
-    }
+    } 
 
     let user = {
         "name": txtName.value,
@@ -311,34 +272,10 @@ async function registerUser() {
     register('user', user);
 }
 
-function validateInput(element, errorElement, errorMessage) {
-    if (element.value == "") {
-        changeInputBorder(false, element);
-        errorElement.textContent = errorMessage;
-        return false;
-    }
-    return true;
-}
-
 function validateFields() {
     console.log(validUsername);
     console.log(validEmail);
     console.log(validPassword);
-
-    if (!validateInput(txtName, errorName, "Informe o seu nome!")) return;
-    if (!validateInput(txtUsername, errorUsername, "Informe o nome de usuário!")) return;
-    if (!validateInput(txtEmail, errorEmail, "Informe o email!")) return;
-    if (!validateInput(txtPassword, errorPassword, "Informe uma senha!")) return;
-    if (!validateInput(txtConfirmedPassword, errorConfirmedPassword, "Informe a confirmação da senha!")) return;
-    if (!validateInput(txtPhonenumber, errorEmail, "Informe uma senha!")) return;
-    if (!validateInput(dateBirthDate, errorPhonenumber, "Informe o email!")) return;
-    if (!validateInput(txtEmail, errorEerrorBirthDatemail, "Informe a data de nascimento!")) return;
-    if (!validateInput(txtZipcode, errorZipcode, "Informe o CEP!")) return;
-    if (!validateInput(txtState, errorState, "Informe o estado!")) return;
-    if (!validateInput(txtCity, errorCity, "Informe a cidade!")) return;
-    if (!validateInput(txtStreet, errorStreet, "Informe a rua/avenida!")) return;
-    if (!validateInput(txtNumber, errorNumber, "Informe o número!")) return;
-
 
     if (!validEmail || !validUsername || !validPassword) {
         alert("Todos os campos precisam ser preenchidos corretamente!");
@@ -363,8 +300,8 @@ function validatePassword(password) {
     return (validator.matches(password, /^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/));
 }
 
-function validatePhonenumber(phoneNumber) {
-
+function validatePhonenumber(phoneNumber){
+    
 }
 
 function dateConfig() {

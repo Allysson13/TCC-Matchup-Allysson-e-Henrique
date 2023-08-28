@@ -44,9 +44,6 @@ document.getElementById("register-interest").addEventListener("submit", function
     registerInterest();
 });
 
-document.getElementById("txt-name").addEventListener("blur", function (event) {
-    event.preventDefault();
-});
 
 async function getAll(type) {
     const response = await fetch(`http://localhost:8080/api/admin/get/${type}/all`);
