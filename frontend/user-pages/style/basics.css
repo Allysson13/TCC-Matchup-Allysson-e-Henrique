@@ -38,8 +38,8 @@ body {
 
 .password-container #toggle-password {
     position: absolute;
-    top: 10%;
-    right: 15px;
+    top: 9%;
+    right: 23px;
     background-color: transparent;
     border: none;
 }
@@ -65,8 +65,8 @@ body {
 .input-container span {
     font-weight: bolder;
     position: absolute;
-    right: 5px;
+    left: 430px;
     top: 8px;
-    color: rgb(50, 50, 50);
+    color: #9747FF;
     cursor: pointer;
 }
