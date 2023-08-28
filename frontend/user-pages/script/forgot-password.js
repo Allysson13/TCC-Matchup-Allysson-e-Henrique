@@ -98,6 +98,7 @@ function forgotPasswordRequisition(email) {
         })
         .catch(error => {
             alert(`Deu errado! -> (forgot-password(${email}))` + error);
+            //Deu errado! -> (forgot-password(assuncaoallyssonbruno@gmail.com))SyntaxError: Unexpected token 'E', "Email não "... is not valid JSON
             console.log(error);
         });
 }
