@@ -41,11 +41,6 @@ var validPassword = false;
 var bothPasswordsEqual = false;
 var validPhonenumber = false;
 
-$('#dd-interest').multi({
-    non_selected_header: 'Jogos',
-    selected_header: 'Jogos Selecionados',
-
-});
 
 document.addEventListener("DOMContentLoaded", function () {
     dateConfig();
@@ -223,6 +218,10 @@ async function loadInterestDropDown() {
         const json = await getAll('interest');
         console.log(json);
         populateDropDown(json, ddInterest);
+        $('#dd-interest').multi({
+            non_selected_header: 'Jogos',
+            selected_header: 'Jogos Selecionados',
+        });
     } catch (error) {
         console.error('Erro ao carregar o arquivo JSON:', error);
         throw error;

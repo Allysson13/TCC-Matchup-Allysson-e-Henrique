@@ -1,32 +1,35 @@
 const INTEREST_DEPENDENCIES = ['company', 'language', 'age-rating', 'genre', 'subgenre', 'platform'];
 
-$('#dd-dubbed-languages').multi({
-    non_selected_header: 'Languages',
-    selected_header: 'Selected Languages',
-
-});
-
-$('#dd-subtitled-languages').multi({
-    non_selected_header: 'Languages',
-    selected_header: 'Selected Languages'
-});
-
-$('#dd-genre').multi({
-    non_selected_header: 'Genres',
-    selected_header: 'Selected Genres'
-});
-
-
-$('#dd-subgenre').multi({
-    non_selected_header: 'Subgenres',
-    selected_header: 'Selected Subgenres'
-});
-
-
-$('#dd-platform').multi({
-    non_selected_header: 'Platform',
-    selected_header: 'Selected Platform'
-});
+function configureDropDown(){
+    $('#dd-dubbed-languages').multi({
+        non_selected_header: 'Languages',
+        selected_header: 'Selected Languages',
+    
+    });
+    
+    $('#dd-subtitled-languages').multi({
+        non_selected_header: 'Languages',
+        selected_header: 'Selected Languages'
+    });
+    
+    $('#dd-genre').multi({
+        non_selected_header: 'Genres',
+        selected_header: 'Selected Genres'
+    });
+    
+    
+    $('#dd-subgenre').multi({
+        non_selected_header: 'Subgenres',
+        selected_header: 'Selected Subgenres'
+    });
+    
+    
+    $('#dd-platform').multi({
+        non_selected_header: 'Platform',
+        selected_header: 'Selected Platform'
+    });
+    
+}
 
 
 
@@ -41,6 +44,9 @@ document.getElementById("register-interest").addEventListener("submit", function
     registerInterest();
 });
 
+document.getElementById("txt-name").addEventListener("blur", function (event) {
+    event.preventDefault();
+});
 
 async function getAll(type) {
     const response = await fetch(`http://localhost:8080/api/admin/get/${type}/all`);
@@ -58,6 +64,7 @@ async function loadDropDowns(type) {
     try {
         const json = await getAll(type);
         populateDropDown(json, document.getElementById('dd-' + type));
+        configureDropDown();
     } catch (error) {
         alert(`Deu errado! (loadDropDowns) -> ${error}`);
     }
@@ -76,6 +83,7 @@ async function loadLanguagesDropDowns() {
         //const json = await response.json();
         populateDropDown(json, document.getElementById('dd-dubbed-languages'));
         populateDropDown(json, document.getElementById('dd-subtitled-languages'));
+
     } catch (error) {
         console.error('Erro ao carregar o arquivo JSON:', error);
         throw error;

@@ -80,12 +80,12 @@ async function forgotPassword() {
 
 
 function forgotPasswordRequisition(email) {
-    fetch(`http://localhost:8080/api/login/forgot-password`, {
+    fetch("http://localhost:8080/api/login/forgot-password", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(email)
+        body: JSON.stringify( email )
     })
         .then(async response => {
             if (!response.ok) {
@@ -95,10 +95,10 @@ function forgotPasswordRequisition(email) {
                 alert(response);
                 window.location.href = 'confirm-email.html';
             }
-            addOptionToDropDown(type, await response.json());
         })
         .catch(error => {
-            alert("Deu errado! -> (forgot-password())" + error);
+            alert(`Deu errado! -> (forgot-password(${email}))` + error);
+            console.log(error);
         });
 }
 

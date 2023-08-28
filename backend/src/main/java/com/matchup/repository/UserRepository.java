@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Modifying
     @Transactional
-    @Query("update User u set u.hashedPassword = :password where u.id = :id")
+    @Query("update User u set u.hashedPassword = :hashedPassword where u.id = :id")
     boolean updatePassword(@Param("id") Long id, @Param("hashedPassword") String hashedPassword);
 
     Optional<User> findById(long id);

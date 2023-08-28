@@ -29,6 +29,7 @@ public class UserService {
 
     private boolean isValid = true;
     private String code = "";
+    private Long id;
 
     @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, InterestRepository interestRepository) {
@@ -69,8 +70,8 @@ public class UserService {
         return user;
     }
 
-    public boolean findByEmail(String email){
-        return userRepository.findByEmail(email).isEmpty();
+    public Optional<User> findByEmail(String email){
+        return userRepository.findByEmail(email);
     }
 
     public boolean existsByEmail(String email){
@@ -123,7 +124,13 @@ public class UserService {
 
     public String sendCode(String email){
         code = "";
-        if (findByEmail(email)){
+        if (existsByEmail(email)){
+            if (findByEmail(email).isEmpty()){
+                Optional<User> userID = findByEmail(email);
+                id = userID.get().getId();
+            }else {
+                return "Email não cadastrado!";
+            }
             Random generator = new Random();
             int codes;
             for(int i = 0; i < 6; i++){
@@ -172,7 +179,7 @@ public class UserService {
         return Pattern.matches(pattern, password);
     }
 
-    public boolean resetPassword(Long id, String rawPassword) {
+    public boolean resetPassword(String rawPassword) {
         //must encode password first
         return userRepository.updatePassword(id, rawPassword);
     }
