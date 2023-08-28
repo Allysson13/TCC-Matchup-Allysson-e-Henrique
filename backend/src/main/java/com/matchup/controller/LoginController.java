@@ -56,6 +56,7 @@ public class LoginController {
 
     @PostMapping("/forgot-password")
     public ResponseEntity<String> forgotPassword(@RequestBody String email) {
+        System.out.println("forgot-password");
         return new ResponseEntity<>(userService.sendCode(email), HttpStatus.ACCEPTED);
     }
 

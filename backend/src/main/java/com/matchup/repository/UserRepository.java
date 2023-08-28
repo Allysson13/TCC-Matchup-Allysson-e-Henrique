@@ -41,6 +41,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE u.cellphoneNumber LIKE %:cellphoneNumber%")
     List<User> findByPartOfTheCellphoneNumber(@Param("cellphoneNumber") String partOfTheCellphoneNumber);
 
+    @Transactional
     boolean existsByEmail(String email);
 
     boolean existsByUsername(String username);

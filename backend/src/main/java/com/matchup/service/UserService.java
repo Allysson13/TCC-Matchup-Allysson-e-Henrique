@@ -7,6 +7,7 @@ import com.matchup.model.User;
 import com.matchup.repository.InterestRepository;
 import com.matchup.repository.UserRepository;
 import com.sun.jdi.InvalidCodeIndexException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -123,12 +124,18 @@ public class UserService {
     }
 
     public String sendCode(String email){
+        System.out.println("Send code: " + email);
+        System.out.println("Valid email? " + userRepository.existsByEmail(email));
+        System.out.println("Usuário do email: " + userRepository.findByEmail(email));
         code = "";
-        if (existsByEmail(email)){
-            if (findByEmail(email).isEmpty()){
+        if (userRepository.existsByEmail(email)){
+            System.out.println("existsByEmail(email) = " + existsByEmail(email));
+            if (findByEmail(email).isPresent()){
+                System.out.println("Email cadastrado!");
                 Optional<User> userID = findByEmail(email);
                 id = userID.get().getId();
             }else {
+                System.out.println("Email não cadastrado!");
                 return "Email não cadastrado!";
             }
             Random generator = new Random();
