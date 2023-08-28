@@ -3,6 +3,8 @@ body{
 }
 #card{
     background-color: rgb(50, 50, 50);
+    max-width: 700px;
+    margin: auto;
 }
 #main-title{
     color: #9747FF;

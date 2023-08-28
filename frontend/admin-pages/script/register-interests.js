@@ -1,48 +1,43 @@
 const INTEREST_DEPENDENCIES = ['company', 'language', 'age-rating', 'genre', 'subgenre', 'platform'];
 
-function configureDropDown(){
-    $('#dd-dubbed-languages').multi({
-        non_selected_header: 'Languages',
-        selected_header: 'Selected Languages',
-    
+var ddDubbedLanguages = $('#dd-dubbed-languages');
+var ddSubtitledLanguages = $('#dd-subtitled-languages');
+var ddGenres = $('#dd-genre');
+var ddSubgenres = $('#dd-subgenre');
+var ddPlatforms = $('#dd-platform');
+
+function configureDropDown(dropdown, nonSelectHeader, selected_header) {
+    dropdown.multi({
+        non_selected_header: nonSelectHeader,
+        selected_header: selected_header,
     });
-    
-    $('#dd-subtitled-languages').multi({
-        non_selected_header: 'Languages',
-        selected_header: 'Selected Languages'
-    });
-    
-    $('#dd-genre').multi({
-        non_selected_header: 'Genres',
-        selected_header: 'Selected Genres'
-    });
-    
-    
-    $('#dd-subgenre').multi({
-        non_selected_header: 'Subgenres',
-        selected_header: 'Selected Subgenres'
-    });
-    
-    
-    $('#dd-platform').multi({
-        non_selected_header: 'Platform',
-        selected_header: 'Selected Platform'
-    });
-    
 }
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
-    INTEREST_DEPENDENCIES.forEach(type => {
-        loadDropDowns(type);
-    })
+    const allDropdownsLoaded = Promise.all(INTEREST_DEPENDENCIES.map(type => loadDropDowns(type)));
+
+    allDropdownsLoaded.then(() => {
+        configureDropDown(ddDubbedLanguages, 'Languages', 'Selected Languages');
+        configureDropDown(ddSubtitledLanguages, 'Languages', 'Selected Languages');
+        configureDropDown(ddGenres, 'Genres', 'Selected Genres');
+        configureDropDown(ddSubgenres, 'Subgenres', 'Selected Subgenres');
+        configureDropDown(ddPlatforms, 'Platform', 'Selected Platform');
+    });
 });
+
 
 document.getElementById("register-interest").addEventListener("submit", function (event) {
     event.preventDefault();
     registerInterest();
 });
+
+document.getElementById('txt-name').addEventListener("blur", function () {
+    console.log("blur");
+    configureDropDown(ddGenres, 'Genres', 'Selected Genres');
+
+});
+
 
 
 async function getAll(type) {
@@ -60,8 +55,9 @@ async function loadDropDowns(type) {
     }
     try {
         const json = await getAll(type);
+        console.log(json);
         populateDropDown(json, document.getElementById('dd-' + type));
-        configureDropDown();
+
     } catch (error) {
         alert(`Deu errado! (loadDropDowns) -> ${error}`);
     }
@@ -98,7 +94,7 @@ function populateDropDown(json, dropdown) {
 
 
 function addOptionToDropDown(type, item) {
-    if(type == 'interest') return;
+    if (type == 'interest') return;
     let option = document.createElement('option');
     option.value = item.id;
     option.text = item.name;
@@ -121,7 +117,6 @@ function getAll(type) {
 
 
 function register(type, jsonObject) {
-
     fetch("http://localhost:8080/api/admin/register/" + type, {
         method: "POST",
         headers: {
@@ -158,7 +153,7 @@ function generateInterestJSON() {
     let nameGame = document.getElementById('txt-name').value;
     let idCompany = parseInt(document.getElementById('dd-company').value);
     let idAgeRating = parseInt(document.getElementById("dd-age-rating").value);
-    let lowestPrice = parseFloat(document.getElementById('txt-lowest-price').value); 
+    let lowestPrice = parseFloat(document.getElementById('txt-lowest-price').value);
     let highestPrice = parseFloat(document.getElementById('txt-highest-price').value);
 
     console.log(lowestPrice);
