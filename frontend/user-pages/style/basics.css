@@ -36,7 +36,7 @@ body {
     position: relative;
 }
 
-.password-container #toggle-password {
+.password-container #btn-toggle-password, #btn-toggle-confirmed-password{
     position: absolute;
     top: 9%;
     right: 23px;

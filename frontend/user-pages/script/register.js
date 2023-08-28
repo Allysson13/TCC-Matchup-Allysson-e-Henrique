@@ -122,7 +122,6 @@ function changeInputBorder(validValue, element) {
 
 txtZipcode.addEventListener("blur", async function (event) {
     configureAddressByCep(this.value);
-
 });
 
 async function configureAddressByCep(cep) {
