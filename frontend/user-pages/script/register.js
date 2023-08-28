@@ -50,9 +50,9 @@ $('#dd-interest').multi({
 document.addEventListener("DOMContentLoaded", function () {
     dateConfig();
     loadInterestDropDown();
-/*     USER_DEPENDENCIES.forEach(type => {
-        loadDropDowns(type);
-    }) */
+    /*     USER_DEPENDENCIES.forEach(type => {
+            loadDropDowns(type);
+        }) */
 });
 
 
@@ -68,6 +68,10 @@ txtUsername.addEventListener("input", function (event) {
 });
 var lastUsernameTyped;
 txtUsername.addEventListener("blur", async function (event) {
+    if (txtUsername.value == "") return;
+    errorUsername.textContent = "";
+    changeInputBorder(true, txtUsername);
+
     if (lastUsernameTyped == this.value) return;
     lastUsernameTyped = this.value;
 
@@ -90,6 +94,10 @@ txtEmail.addEventListener("input", function (event) {
 });
 var lastEmailTyped;
 txtEmail.addEventListener("blur", async function (event) {
+    if (txtEmail.value == "") return;
+    errorEmail.textContent = "";
+    changeInputBorder(true, txtEmail);
+
     if (lastEmailTyped == this.value) return;
     lastEmailTyped = this.value;
 
@@ -127,72 +135,25 @@ txtConfirmedPassword.addEventListener("input", function (event) {
     changeInputBorder(bothPasswordsEqual, this);
 });
 
-txtName.addEventListener("blur", function (event) {
-    if(txtName.value == "") return;
-    errorName.textContent = "";
-    changeInputBorder(true, txtName);
-});
+function handleBlur(element, errorElement) {
+    element.addEventListener("blur", function (event) {
+        if (element.value == "") return;
+        errorElement.textContent = "";
+        changeInputBorder(true, element);
+    });
+}
 
-txtPassword.addEventListener("blur", function (event) {
-    if(txtPassword.value == "") return;
-    errorPassword.textContent = "";
-    changeInputBorder(true, txtPassword);
-});
-
-txtConfirmedPassword.addEventListener("blur", function (event) {
-    if(txtConfirmedPassword.value == "") return;
-    errorConfirmedPassword.textContent = "";
-    changeInputBorder(true, txtConfirmedPassword);
-});
-
-txtPhonenumber.addEventListener("blur", function (event) {
-    if(txtPhonenumber.value == "") return;
-    errorPhonenumber.textContent = "";
-    changeInputBorder(true, txtPhonenumber);
-});
-
-dateBirthDate.addEventListener("blur", function (event) {
-    if(dateBirthDate.value == "") return;
-    errorBirthDate.textContent = "";
-    changeInputBorder(true, dateBirthDate);
-});
-
-txtZipcode.addEventListener("blur", function (event) {
-    if(txtZipcode.value == "") return;
-    errorZipcode.textContent = "";
-    changeInputBorder(true, txtZipcode);
-});
-
-txtState.addEventListener("blur", function (event) {
-    if(txtState.value == "") return;
-    errorState.textContent = "";
-    changeInputBorder(true, txtState);
-});
-
-txtCity.addEventListener("blur", function (event) {
-    if(txtCity.value == "") return;
-    errorCity.textContent = "";
-    changeInputBorder(true, txtCity);
-});
-
-txtNeighborhood.addEventListener("blur", function (event) {
-    if(txtNeighborhood.value == "") return;
-    errorNeighborhood.textContent = "";
-    changeInputBorder(true, txtNeighborhood);
-});
-
-txtStreet.addEventListener("blur", function (event) {
-    if(txtStreet.value == "") return;
-    errorStreet.textContent = "";
-    changeInputBorder(true, txtStreet);
-});
-
-txtNumber.addEventListener("blur", function (event) {
-    if(txtNumber.value == "") return;
-    //perhaps value?
-    txtNumber.textContent = "";
-    changeInputBorder(true, txtNumber);
-});
+handleBlur(txtName, errorName);
+handleBlur(txtPassword, errorPassword);
+handleBlur(txtConfirmedPassword, errorConfirmedPassword);
+handleBlur(txtPhonenumber, errorPhonenumber);
+handleBlur(dateBirthDate, errorBirthDate);
+handleBlur(txtZipcode, errorZipcode);
+handleBlur(txtState, errorState);
+handleBlur(txtCity, errorCity);
+handleBlur(txtNeighborhood, errorNeighborhood);
+handleBlur(txtStreet, errorStreet);
+handleBlur(txtNumber, txtNumber);
 
 
 function changeInputBorder(validValue, element) {
@@ -327,7 +288,7 @@ async function registerUser() {
     let interests = [];
     for (let option of $("#dd-interest option:selected")) {
         interests.push(option.value);
-    } 
+    }
 
     let user = {
         "name": txtName.value,
@@ -351,10 +312,34 @@ async function registerUser() {
     register('user', user);
 }
 
+function validateInput(element, errorElement, errorMessage) {
+    if (element.value == "") {
+        changeInputBorder(false, element);
+        errorElement.textContent = errorMessage;
+        return false;
+    }
+    return true;
+}
+
 function validateFields() {
     console.log(validUsername);
     console.log(validEmail);
     console.log(validPassword);
+
+    if (!validateInput(txtName, errorName, "Informe o seu nome!")) return;
+    if (!validateInput(txtUsername, errorUsername, "Informe o nome de usuário!")) return;
+    if (!validateInput(txtEmail, errorEmail, "Informe o email!")) return;
+    if (!validateInput(txtPassword, errorPassword, "Informe uma senha!")) return;
+    if (!validateInput(txtConfirmedPassword, errorConfirmedPassword, "Informe a confirmação da senha!")) return;
+    if (!validateInput(txtPhonenumber, errorEmail, "Informe uma senha!")) return;
+    if (!validateInput(dateBirthDate, errorPhonenumber, "Informe o email!")) return;
+    if (!validateInput(txtEmail, errorEerrorBirthDatemail, "Informe a data de nascimento!")) return;
+    if (!validateInput(txtZipcode, errorZipcode, "Informe o CEP!")) return;
+    if (!validateInput(txtState, errorState, "Informe o estado!")) return;
+    if (!validateInput(txtCity, errorCity, "Informe a cidade!")) return;
+    if (!validateInput(txtStreet, errorStreet, "Informe a rua/avenida!")) return;
+    if (!validateInput(txtNumber, errorNumber, "Informe o número!")) return;
+
 
     if (!validEmail || !validUsername || !validPassword) {
         alert("Todos os campos precisam ser preenchidos corretamente!");
@@ -379,8 +364,8 @@ function validatePassword(password) {
     return (validator.matches(password, /^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/));
 }
 
-function validatePhonenumber(phoneNumber){
-    
+function validatePhonenumber(phoneNumber) {
+
 }
 
 function dateConfig() {
