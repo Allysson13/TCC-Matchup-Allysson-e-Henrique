@@ -118,11 +118,11 @@ async function login() {
 
     user.rawPassword = txtPassword.value;
     console.log(user);
-    loginRequisition(user);
+    loginRequest(user);
 
 }
 
-function loginRequisition(jsonObject) {
+function loginRequest(jsonObject) {
     console.log("loginRequest");
     fetch('http://localhost:8080/api/login/', {
         method: "POST",

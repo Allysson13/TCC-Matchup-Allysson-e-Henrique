@@ -70,36 +70,34 @@ async function forgotPassword() {
     }else if(exists.status == 200){
         showEmailDoesntExistMessage(false);
     }
-
-    console.log(txtEmail.value);
-    //perhaps we could send the user instead of the email
-    
-    forgotPasswordRequisition(txtEmail.value);
+    forgotPasswordRequest(txtEmail.value);
+    //forgotPasswordRequest({ "email": txtEmail.value });
 }
 
 
 
-function forgotPasswordRequisition(email) {
+function forgotPasswordRequest(jsonObject) {
     fetch("http://localhost:8080/api/login/forgot-password", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify( email )
+        body: JSON.stringify(jsonObject)
     })
         .then(async response => {
-            if (!response.ok) {
-                throw new Error("Email não cadastrado! " + response);
+            response = await response.json();
+            console.log(response);
+            alert("Copie o código no console");
+            /* if (!response.ok) {
+                throw new Error("Email não cadastrado!");
             } else {
-                response = await response.json();
-                alert(response);
                 window.location.href = 'confirm-email.html';
-            }
+            } */
+            window.location.href = 'confirm-email.html';
         })
         .catch(error => {
-            alert(`Deu errado! -> (forgot-password(${email}))` + error);
-            //Deu errado! -> (forgot-password(assuncaoallyssonbruno@gmail.com))SyntaxError: Unexpected token 'E', "Email não "... is not valid JSON
             console.log(error);
+            alert(`Deu errado! -> (forgot-password(${jsonObject}))` + error);
         });
 }
 
