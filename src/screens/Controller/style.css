@@ -1,0 +1,28 @@
+.controller {
+  height: 128px;
+  width: 128px;
+}
+
+.controller .overlap-group {
+  height: 92px;
+  left: 3px;
+  position: relative;
+  top: 17px;
+  width: 122px;
+}
+
+.controller .vector {
+  height: 24px;
+  left: 25px;
+  position: absolute;
+  top: 27px;
+  width: 72px;
+}
+
+.controller .img {
+  height: 92px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 122px;
+}
