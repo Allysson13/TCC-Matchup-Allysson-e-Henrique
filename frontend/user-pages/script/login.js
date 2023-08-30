@@ -155,4 +155,4 @@ function validateEmailOrUsername(emailOrUsername) {
 
 function validatePassword(password) {
     return (validator.matches(password, /^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/));
-}
+} 
