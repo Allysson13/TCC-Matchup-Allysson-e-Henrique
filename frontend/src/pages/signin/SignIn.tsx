@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 /*import LockOutlinedIcon from '@mui/icons-material/';*/
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright(props: any) {
@@ -39,8 +40,8 @@ export default function SignIn() {
     };
 
     return (
-        <ThemeProvider theme={defaultTheme}>
-            <Container component="main" maxWidth="xs" color="black">
+        /*<ThemeProvider theme={defaultTheme}>*/
+            <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
                     sx={{
@@ -48,6 +49,7 @@ export default function SignIn() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
+
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -65,6 +67,7 @@ export default function SignIn() {
                             label="Email Address"
                             name="email"
                             autoComplete="email"
+                            variant="standard"
                             autoFocus
                         />
                         <TextField
@@ -73,7 +76,7 @@ export default function SignIn() {
                             fullWidth
                             name="password"
                             label="Password"
-                            type="standard"
+                            type="password"
                             variant="standard"
 
                             id="password"
@@ -108,6 +111,6 @@ export default function SignIn() {
                 </Box>
                 <Copyright sx={{ mt: 8, mb: 4 }} />
             </Container>
-        </ThemeProvider>
+        /*</ThemeProvider>*/
     );
 }
