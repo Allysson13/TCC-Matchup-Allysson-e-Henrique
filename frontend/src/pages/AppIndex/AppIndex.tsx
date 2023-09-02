@@ -7,7 +7,7 @@ const AppIndex: React.FC = () => {
     return (
         <div>
             <h1>MATCHUP</h1>
-            <Button variant='contained' color="primary" onClick={theme.palette.mode = "light";}>
+            <Button variant='contained' color="primary">
                 Hello World!
             </Button>
             <SignIn />
