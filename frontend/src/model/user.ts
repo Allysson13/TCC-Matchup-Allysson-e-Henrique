@@ -30,3 +30,5 @@ export type SignInPayload = {
     emailOrUsername?: undefined;
     remember?: undefined;
 };
+
+export type SignUpPayload = Pick<User, "username" | "hashedPassword" | "name">;
