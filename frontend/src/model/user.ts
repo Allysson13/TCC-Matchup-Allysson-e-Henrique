@@ -25,6 +25,8 @@ export interface User {
     receivedMessages: Array<Message>;
 }
 
-export type SignInPayload = Pick<User, "username" | "hashedPassword"> & {
-    remember?: Boolean;
+export type SignInPayload = {
+    password?: undefined;
+    emailOrUsername?: undefined;
+    remember?: undefined;
 };

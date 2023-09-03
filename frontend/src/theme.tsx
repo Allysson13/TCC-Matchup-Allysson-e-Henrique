@@ -9,8 +9,8 @@ const theme = createTheme({
                 main: purple[700],
             },
             background: {
-                default: grey[900],
-                paper: grey[900],
+                // default: grey[900],
+                // paper: grey[900],
             },
         },
 

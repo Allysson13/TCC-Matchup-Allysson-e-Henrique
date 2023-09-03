@@ -61,6 +61,7 @@ public class UserService {
 
     public Optional<User> findByEmailAndHashedPassword(UserDto userDto){
         Optional<User> user = userRepository.findByEmail(userDto.getEmail());
+
         if(user.isEmpty()){
             user = userRepository.findByUsername(userDto.getUsername());
         }

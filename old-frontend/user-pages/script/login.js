@@ -136,7 +136,7 @@ function loginRequest(jsonObject) {
                 configureInputs(false, "Credenciais inválidas");
             } else {
                 //Session.setLoggedUser(await response.json());  
-                window.location.href = 'home.html';
+               // window.location.href = 'home.html';
             }
         })
         .catch(error => {
