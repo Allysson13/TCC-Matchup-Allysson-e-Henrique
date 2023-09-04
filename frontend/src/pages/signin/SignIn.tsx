@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 import { emailExists, login, usernameExists, ValidationResponse } from '../../api/login_requests/login';
 import { SignInPayload } from '../../model/user';
-import { isEmail, validationLogin } from '../../utils/validation/UserValidation';
+import {isEmail, validateEmail, validationLogin} from '../../utils/validation/UserValidation';
 
 const SignIn = () => {
     const [valid, setValid] = useState(true);
@@ -29,6 +29,7 @@ const SignIn = () => {
     };
 
     const handleSubmit = async (values: SignInPayload, { setSubmitting }) => {
+        if(isEmail){
         try {
             let validationResponse: ValidationResponse;
 
@@ -59,10 +60,20 @@ const SignIn = () => {
             <CssBaseline />
             <Box
                 sx={{
-                    marginTop: 8,
+                    position: 'absolute',
+                    top: '40%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    minWidth: 450,
+                    maxWidth: 550,
+                    width: 'auto',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
+                    border: '1px solid purple',
+                    padding: '50px 5%',
+                    borderRadius: '16px',
+                    backgroundColor: '9c27b0',
                 }}
             >
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -96,7 +107,7 @@ const SignIn = () => {
                                         required
                                         fullWidth
                                         id="emailOrUsername"
-                                        label="Email Address or Username"
+                                        label="Email ou Nome de Usuário"
                                         variant="outlined"
                                         error={!valid || (meta.touched && !!meta.error)}
                                         helperText={meta.touched && meta.error}
@@ -111,7 +122,7 @@ const SignIn = () => {
                                         required
                                         fullWidth
                                         name="password"
-                                        label="Password"
+                                        label="Senha"
                                         type="password"
                                         autoComplete="current-password"
                                         variant="outlined"
@@ -137,12 +148,12 @@ const SignIn = () => {
                             <Grid container>
                                 <Grid item xs>
                                     <Link href="#" variant="body2">
-                                        Forgot password?
+                                        Esqueceu a senha?
                                     </Link>
                                 </Grid>
                                 <Grid item>
                                     <Link href="#" variant="body2">
-                                        Don't have an account? Sign Up
+                                        Não tem uma conta? Cadastre-se
                                     </Link>
                                 </Grid>
                             </Grid>

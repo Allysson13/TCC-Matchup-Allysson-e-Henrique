@@ -9,13 +9,13 @@ export const validationLogin = Yup.object().shape({
             return validateEmail(value) || validateUsername(value);
         }),
     password: Yup.string()
-        .min(8, 'A senha deve ter no mínimo 8 caracteres!')
+        //.min(8, 'A senha deve ter no mínimo 8 caracteres!')
         //.matches(/^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/, 'A senha deve conter letras maiúsculas, minúsculas e símbolos!')
         .required('É necessário preencher o campo de senha!'),
 });
 
 
-const validateEmail = (email: string | undefined) => {
+export const validateEmail = (email: string | undefined) => {
     isEmail = Yup.string()
         .matches(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
         /*.test('emailOrUsername', 'Email ou nome de usuário está inválido!', (value) => {
@@ -24,10 +24,10 @@ const validateEmail = (email: string | undefined) => {
         .isValidSync(email);
     //isEmail = Yup.string().email().isValidSync(email)
 
-    return isEmail;
+    return true;
 };
 
-const validateUsername = (username: string | undefined) => {
+export const validateUsername = (username: string | undefined) => {
     isEmail = !Yup.string()
         .matches(/^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$/, 'Nome de usuário inválido!')
         .isValidSync(username);
