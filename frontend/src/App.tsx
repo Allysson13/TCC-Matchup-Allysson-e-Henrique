@@ -10,6 +10,7 @@ import AppIndex from './pages/AppIndex/AppIndex';
 import SignIn from "./pages/signin/SignIn";
 import SignUp from "./pages/signup/Signup";
 import Home from "./pages/home/home";
+import Profile from "./pages/profile/profile";
 /*
 /!*import { BrowserRouter as Router, Route, Switch } f*!/rom 'react-router-dom';import {Sign} from "crypto";
 */
@@ -44,14 +45,21 @@ import Home from "./pages/home/home";
     );
 }*/
 
+export const ROUTE_INDEX= '/';
+export const ROUTE_HOME = '/home';
+export const ROUTE_SIGN_IN = '/login';
+export const ROUTE_SIGN_UP = '/cadastro';
+export const ROUTE_PROFILE = '/perfil';
+
 const router = createBrowserRouter(
     createRoutesFromElements(
 
             <Route>
-                <Route path="/" index element={<AppIndex />} />
-                <Route path="/login" index element={<SignIn />} />
-                <Route path="/home" index element={<Home />} />
-                <Route path="/register" index element={<SignUp />} />
+                <Route path={ROUTE_INDEX} index element={<AppIndex />} />
+                <Route path={ROUTE_SIGN_IN} element={<SignIn />} />
+                <Route path={ROUTE_SIGN_UP} element={<SignUp />} />
+                <Route path={ROUTE_HOME} element={<Home />} />
+                <Route path={ROUTE_PROFILE} element={<Profile />} />
             </Route>
 
 

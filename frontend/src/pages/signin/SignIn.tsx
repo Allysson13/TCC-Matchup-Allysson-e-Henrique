@@ -20,6 +20,7 @@ import {SignInPayload, User} from '../../model/user';
 import {isEmail, validateEmail, validationLogin} from '../../utils/validation/UserValidation';
 import {useNavigate} from "react-router-dom";
 import theme from "../../theme";
+import {ROUTE_HOME, ROUTE_SIGN_UP} from "../../App";
 
 const SignIn = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,8 +28,8 @@ const SignIn = () => {
     const [valid, setValid] = useState(true);
 
     const initialValues = {
-        emailOrUsername: '',
-        password: '',
+        emailOrUsername: 'liceki',
+        password: 'Senha123#',
         remember: false,
     };
 
@@ -62,7 +63,7 @@ const SignIn = () => {
         setSubmitting(false);
         setIsLoggedIn(true);
         localStorage.setItem('user', JSON.stringify(userData));
-        history('/home');
+        history(ROUTE_HOME);
 
     }
 
@@ -88,11 +89,10 @@ const SignIn = () => {
                     backgroundColor: '9c27b0',
                 }}
             >
-                <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
-                    {/* Your avatar/icon */}
+                <Avatar sx={{m: 1, bgcolor: 'secondary.main'}} src='/src/assets/brand/logo-matchup.jpeg'>
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in
+                    Fazer Login
                 </Typography>
                 <Alert
                     id="alert-invalid-credentials"
@@ -121,8 +121,8 @@ const SignIn = () => {
                                         id="emailOrUsername"
                                         label="Email ou Nome de Usuário"
                                         variant="outlined"
-                                        error={!valid || (meta.touched && !!meta.error)}
-                                        helperText={meta.touched && meta.error}
+                                        error={!valid /*|| (meta.touched && !!meta.error)*/}
+                                        //helperText={/*meta.touched && meta.error*/}
                                     />
                                 )}
                             </Field>
@@ -138,8 +138,8 @@ const SignIn = () => {
                                         type="password"
                                         autoComplete="current-password"
                                         variant="outlined"
-                                        error={!valid || (meta.touched && !!meta.error)}
-                                        helperText={meta.touched && meta.error}
+                                        error={!valid /*|| (meta.touched && !!meta.error)*/}
+                                        //helperText={meta.touched && meta.error}
                                     />
                                 )}
                             </Field>
@@ -155,7 +155,7 @@ const SignIn = () => {
                                 sx={{mt: 3, mb: 2}}
                                 disabled={!isValid || isSubmitting}
                             >
-                                Sign In
+                                ENTRAR
                             </Button>
                             <Grid container>
                                 <Grid item xs>
@@ -164,7 +164,7 @@ const SignIn = () => {
                                     </Link>
                                 </Grid>
                                 <Grid item>
-                                    <Link href="#" variant="body2">
+                                    <Link href={ROUTE_SIGN_UP} variant="body2">
                                         Não tem uma conta? Cadastre-se
                                     </Link>
                                 </Grid>

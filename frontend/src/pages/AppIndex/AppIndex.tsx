@@ -10,7 +10,7 @@ const AppIndex: React.FC = () => {
             <h1>BEM-VINDO(A) AO MATCHUP!</h1>
             <Button
                 variant="contained"
-                onClick={history("/login")}
+                onClick={() => history("/login")}
             >
                 LOGIN
             </Button>

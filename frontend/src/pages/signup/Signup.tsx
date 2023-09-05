@@ -14,6 +14,7 @@ import {
     Alert,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import {ROUTE_SIGN_IN} from "../../App";
 
 const SignUp = () => {
 
@@ -104,7 +105,7 @@ const SignUp = () => {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href={ROUTE_SIGN_IN} variant="body2">
                                     Already have an account? Sign in
                                 </Link>
                             </Grid>
