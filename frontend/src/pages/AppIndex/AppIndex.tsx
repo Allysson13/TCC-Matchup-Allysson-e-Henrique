@@ -7,7 +7,6 @@ const AppIndex: React.FC = () => {
         <div>
             <h1>HELLOOOOO</h1>
         </div>
-
     );
 }
 
