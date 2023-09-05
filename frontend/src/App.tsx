@@ -1,18 +1,18 @@
 import React from 'react';
 import './App.css';
 import AppIndex from './pages/AppIndex/AppIndex';
+import SignIn from "./pages/signin/SignIn";
+import SignUp from "./pages/signup/Signup";
 /*
 /!*import { BrowserRouter as Router, Route, Switch } f*!/rom 'react-router-dom';import {Sign} from "crypto";
 */
-import SignIn from "./pages/signin/SignIn";
 
-const App: React.FC = () => {
+/*const App: React.FC = () => {
     return (
         <div className="App">
-
             <SignIn></SignIn>
         </div>
-        /*<Router>
+        /!*<Router>
             <div>
                 <nav>
                     <ul>
@@ -33,7 +33,27 @@ const App: React.FC = () => {
                     <Route path="/signin" component={SignIn}/>
                 </Switch>
             </div>
-        </Router>*/
+        </Router>*!/
+    );
+}*/
+
+const router = createBrowserRouter(
+    createRoutesFromElements(
+
+            <Route>
+                <Route path="/" index element={<AppIndex />} />
+                <Route path="/login" index element={<SignIn />} />
+                <Route path="/register" index element={<SignUp />} />
+            </Route>
+
+
+
+    )
+)
+
+const App: React.FC = () => {
+    return (
+        <RouterProvider router={router} />
     );
 }
 

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Formik, Form, Field, FieldProps } from 'formik';
+import React, {useState} from 'react';
+import {Formik, Form, Field, FieldProps} from 'formik';
 import * as Yup from 'yup';
 import {
     Container,
@@ -15,11 +15,14 @@ import {
     Link,
     Alert,
 } from '@mui/material';
-import { emailExists, login, usernameExists, ValidationResponse } from '../../api/login_requests/login';
-import { SignInPayload } from '../../model/user';
+import {emailExists, login, usernameExists, ValidationResponse} from '../../api/login_requests/login';
+import {SignInPayload} from '../../model/user';
 import {isEmail, validateEmail, validationLogin} from '../../utils/validation/UserValidation';
+import {useNavigate} from "react-router-dom";
 
 const SignIn = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const history = useNavigate();
     const [valid, setValid] = useState(true);
 
     const initialValues = {
@@ -28,8 +31,7 @@ const SignIn = () => {
         remember: false,
     };
 
-    const handleSubmit = async (values: SignInPayload, { setSubmitting }) => {
-        if(isEmail){
+    const handleSubmit = async (values: SignInPayload, {setSubmitting}) => {
         try {
             let validationResponse: ValidationResponse;
 
@@ -43,40 +45,47 @@ const SignIn = () => {
 
             if (validationResponse.status === 409) {
                 setValid(false);
+                return;
             } else {
                 const userData = await login(isEmail, values.emailOrUsername, values.password, values.remember);
                 // Handle the logged-in user here, e.g., update authentication state.
+                console.log(userData);
             }
         } catch (error) {
             setValid(false);
+            return;
             // Handle login errors here, e.g., set error messages.
-        } finally {
-            setSubmitting(false);
         }
-    };
+
+        setSubmitting(false);
+        setIsLoggedIn(true);
+        history('/');
+
+    }
+
 
     return (
         <Container component="main" maxWidth="xs">
-            <CssBaseline />
+            <CssBaseline/>
             <Box
                 sx={{
                     position: 'absolute',
                     top: '40%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    minWidth: 450,
                     maxWidth: 550,
+                    minWidth: 450,
                     width: 'auto',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     border: '1px solid purple',
-                    padding: '50px 5%',
+                    padding: '40px',
                     borderRadius: '16px',
                     backgroundColor: '9c27b0',
                 }}
             >
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
                     {/* Your avatar/icon */}
                 </Avatar>
                 <Typography component="h1" variant="h5">
@@ -88,7 +97,7 @@ const SignIn = () => {
                     onClose={() => {
                         setValid(true);
                     }}
-                    style={{ display: valid ? 'none' : 'flex' }}
+                    style={{display: valid ? 'none' : 'flex'}}
                 >
                     Credenciais inválidas!
                 </Alert>
@@ -97,10 +106,10 @@ const SignIn = () => {
                     validationSchema={validationLogin}
                     onSubmit={handleSubmit}
                 >
-                    {({ isValid, isSubmitting }) => (
+                    {({isValid, isSubmitting}) => (
                         <Form noValidate>
                             <Field name="emailOrUsername">
-                                {({ field, meta }: FieldProps) => (
+                                {({field, meta}: FieldProps) => (
                                     <TextField
                                         {...field}
                                         margin="normal"
@@ -115,7 +124,7 @@ const SignIn = () => {
                                 )}
                             </Field>
                             <Field name="password">
-                                {({ field, meta }: FieldProps) => (
+                                {({field, meta}: FieldProps) => (
                                     <TextField
                                         {...field}
                                         margin="normal"
@@ -132,7 +141,7 @@ const SignIn = () => {
                                 )}
                             </Field>
                             <FormControlLabel
-                                control={<Checkbox name="remember" color="primary" />}
+                                control={<Checkbox name="remember" color="primary"/>}
                                 label="Manter conectado"
                             />
                             <Button
@@ -140,7 +149,7 @@ const SignIn = () => {
                                 fullWidth
                                 variant="contained"
                                 color="primary"
-                                sx={{ mt: 3, mb: 2 }}
+                                sx={{mt: 3, mb: 2}}
                                 disabled={!isValid || isSubmitting}
                             >
                                 Sign In
@@ -164,5 +173,6 @@ const SignIn = () => {
         </Container>
     );
 };
+
 
 export default SignIn;
