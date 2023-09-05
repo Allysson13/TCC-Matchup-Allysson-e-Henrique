@@ -1,5 +1,6 @@
 package com.matchup.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -29,6 +30,7 @@ public class Address {
     @Column(name = "zipcode", nullable = false, length = 12)
     private String zipcode;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "address")
     private User user;
 

@@ -16,9 +16,10 @@ import {
     Alert,
 } from '@mui/material';
 import {emailExists, login, usernameExists, ValidationResponse} from '../../api/login_requests/login';
-import {SignInPayload} from '../../model/user';
+import {SignInPayload, User} from '../../model/user';
 import {isEmail, validateEmail, validationLogin} from '../../utils/validation/UserValidation';
 import {useNavigate} from "react-router-dom";
+import theme from "../../theme";
 
 const SignIn = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,6 +32,7 @@ const SignIn = () => {
         remember: false,
     };
 
+    let userData: User;
     const handleSubmit = async (values: SignInPayload, {setSubmitting}) => {
         try {
             let validationResponse: ValidationResponse;
@@ -47,7 +49,7 @@ const SignIn = () => {
                 setValid(false);
                 return;
             } else {
-                const userData = await login(isEmail, values.emailOrUsername, values.password, values.remember);
+                userData = await login(isEmail, values.emailOrUsername, values.password, values.remember);
                 // Handle the logged-in user here, e.g., update authentication state.
                 console.log(userData);
             }
@@ -59,7 +61,8 @@ const SignIn = () => {
 
         setSubmitting(false);
         setIsLoggedIn(true);
-        history('/');
+        localStorage.setItem('user', JSON.stringify(userData));
+        history('/home');
 
     }
 
@@ -79,7 +82,7 @@ const SignIn = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    border: '1px solid purple',
+                    border: `1px solid${theme.palette.primary.main}`,
                     padding: '40px',
                     borderRadius: '16px',
                     backgroundColor: '9c27b0',

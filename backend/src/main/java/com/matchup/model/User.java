@@ -1,5 +1,6 @@
 package com.matchup.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
@@ -33,6 +34,7 @@ public class User {
     @Column(name = "birth_date", nullable = false, updatable = false)
     private LocalDate birthDate;
 
+    @JsonIgnore
     @Column(name = "hashed_password", length = 455, nullable = false, updatable = true)
     private String hashedPassword;
 

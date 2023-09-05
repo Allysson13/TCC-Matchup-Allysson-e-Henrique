@@ -9,6 +9,7 @@ import './App.css';
 import AppIndex from './pages/AppIndex/AppIndex';
 import SignIn from "./pages/signin/SignIn";
 import SignUp from "./pages/signup/Signup";
+import Home from "./pages/home/home";
 /*
 /!*import { BrowserRouter as Router, Route, Switch } f*!/rom 'react-router-dom';import {Sign} from "crypto";
 */
@@ -49,6 +50,7 @@ const router = createBrowserRouter(
             <Route>
                 <Route path="/" index element={<AppIndex />} />
                 <Route path="/login" index element={<SignIn />} />
+                <Route path="/home" index element={<Home />} />
                 <Route path="/register" index element={<SignUp />} />
             </Route>
 
