@@ -73,8 +73,18 @@ public class Interest {
         this.ageRating = ageRating;
     }
 
-    public Interest(String name, Company company, double lowestPrice, double highestPrice, List<Language> dubbingLanguages, List<Language> subtitleLanguages, List<Genre> genres, List<SubGenre> subGenres, List<Platform> platforms, AgeRating ageRating, List<User> users) {
+    public Interest(String name, String description, Company company, double lowestPrice, double highestPrice, AgeRating ageRating) {
         this.name = name;
+        this.description = description;
+        this.company = company;
+        this.lowestPrice = lowestPrice;
+        this.highestPrice = highestPrice;
+        this.ageRating = ageRating;
+    }
+
+    public Interest(String name, String description, Company company, double lowestPrice, double highestPrice, List<Language> dubbingLanguages, List<Language> subtitleLanguages, List<Genre> genres, List<SubGenre> subGenres, List<Platform> platforms, AgeRating ageRating, List<User> users) {
+        this.name = name;
+        this.description = description;
         this.company = company;
         this.lowestPrice = lowestPrice;
         this.highestPrice = highestPrice;
@@ -86,6 +96,7 @@ public class Interest {
         this.ageRating = ageRating;
         this.users = users;
     }
+
     // </editor-fold>
 
     // <editor-fold desc="Encapsulation">
@@ -107,6 +118,14 @@ public class Interest {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public double getLowestPrice() {

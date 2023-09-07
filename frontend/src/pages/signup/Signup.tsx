@@ -1,120 +1,144 @@
-import React from "react";
-import {
-    Container,
-    CssBaseline,
-    Box,
-    Avatar,
-    Typography,
-    TextField,
-    FormControlLabel,
-    Checkbox,
-    Button,
-    Grid,
-    Link,
-    Alert,
-} from '@mui/material';
+import React, {useState} from 'react';
+import {Stepper, Step, StepLabel, Button, Typography, Grid, CssBaseline, Box, CardHeader} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {ROUTE_SIGN_IN} from "../../App";
+import SignUpStep1 from "../../components/form/SignUpStep1";
+import {Form, Formik} from "formik";
 
 const SignUp = () => {
+    const [etapaAtual, setEtapaAtual] = useState(0);
+    const [dados, setDados] = useState({
+        nome: '',
+        email: '',
+        senha: '',
+        // ...outros campos
+    });
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+    const etapas = ['Pessoais', 'Endereço', 'Interesses', 'Conclusão'];
+
+    const handleNext = () => {
+        if (etapaAtual < etapas.length - 1) {
+            setEtapaAtual(etapaAtual + 1);
+        }
+    };
+
+    const handleBack = () => {
+        if (etapaAtual > 0) {
+            setEtapaAtual(etapaAtual - 1);
+        }
+    };
+
+    const handleChange = (campo: any, valor: any) => {
+        setDados({...dados, [campo]: valor});
     };
 
     return (
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
+        <Grid container justifyContent="center">
+            <CssBaseline/>
+            <Box
+                sx={{
+                    marginTop: 10,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <Grid item xs={12}>
+                    <Stepper activeStep={etapaAtual}>
+                        {etapas.map((etapa, index) => (
+                            <Step key={index}>
+                                <StepLabel>{etapa}</StepLabel>
+                            </Step>
+                        ))}
+                    </Stepper>
+                </Grid>
+
+                <Formik
+                    initialValues={{
+                        nome: '',
+                        email: '',
+                        senha: '',
+                        // ...outros campos
+                    }}
+                    validationSchema={schemaEtapa1}
+                    onSubmit={(values, { setSubmitting }) => {
+                        // Lógica de envio para a primeira etapa
+                        // Chame handleNext() para avançar para a próxima etapa
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign up
-                    </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    autoComplete="given-name"
-                                    name="firstName"
-                                    required
-                                    fullWidth
-                                    id="firstName"
-                                    label="First Name"
-                                    autoFocus
-                                />
+                    {(formikProps) => (
+                        <Form onSubmit={formikProps.handleSubmit}>
+                            {/* Campos de entrada e feedback de erro */}
+                            {/* Exemplo: */}
+                            <input
+                                type="text"
+                                name="nome"
+                                onChange={formikProps.handleChange}
+                                onBlur={formikProps.handleBlur}
+                                value={formikProps.values.nome}
+                            />
+                            {formikProps.touched.nome && formikProps.errors.nome && (
+                                <div>{formikProps.errors.nome}</div>
+                            )}
+                            {/* ...outros campos */}
+                            <button type="submit">Próximo</button>
+                        </Form>
+                    )}
+                </Formik>
+                <Grid item xs={12}>
+                    <Grid container>
+                        {etapaAtual === 0 && (
+                            <SignUpStep1></SignUpStep1>
+                        )}
+                        {etapaAtual === 1 && (
+                            <Typography>Componente de Informações de Contato</Typography>
+                        )}
+                        {etapaAtual === 2 && (
+                            <Typography>Componente de Conclusão</Typography>
+                        )}
+                    </Grid>
+
+
+                    {/*<div style={{ marginTop: '30px' }}></div>*/}
+                    <CardHeader
+                        actAsExpander={true}
+                        showExpandableButton={true}
+                    />
+
+                    <Grid item xs={12}>
+
+                        <Grid container justifyContent="space-between">
+                            <Grid item>
+                                <Button onClick={handleBack} disabled={etapaAtual === 0}>Anterior</Button>
                             </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="family-name"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="email"
-                                    label="Email Address"
-                                    name="email"
-                                    autoComplete="email"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="new-password"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormControlLabel
-                                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                    label="I want to receive inspiration, marketing promotions and updates via email."
-                                />
+                            <Grid item>
+                                <Button onClick={handleNext} disabled={etapaAtual === etapas.length - 1}
+                                        variant="contained">Próximo</Button>
                             </Grid>
                         </Grid>
-                        <Button
+                    </Grid>
+                </Grid>
+            </Box>
+        </Grid>
+    )
+}
+
+{/*
+ <Button
                             type="submit"
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Sign Up
+                            Cadastrar
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
                                 <Link href={ROUTE_SIGN_IN} variant="body2">
-                                    Already have an account? Sign in
+                                    Já tem uma conta? Faça login
                                 </Link>
                             </Grid>
-                        </Grid>
-                    </Box>
-                </Box>
-            </Container>
-    );
-
-};
+                        </Grid>*/
+}
 
 export default SignUp;
