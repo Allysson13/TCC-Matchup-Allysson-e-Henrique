@@ -89,8 +89,8 @@ const SignIn = () => {
                     backgroundColor: '9c27b0',
                 }}
             >
-                <Avatar sx={{m: 1, bgcolor: 'secondary.main'}} src='/src/assets/brand/logo-matchup.jpeg'>
-                </Avatar>
+                <Avatar alt='Matchup' src='https://www.flaticon.com/br/icone-gratis/controlador-de-videogame_75524?term=videogame&page=1&position=4&origin=search&related_id=75524' />
+
                 <Typography component="h1" variant="h5">
                     Fazer Login
                 </Typography>

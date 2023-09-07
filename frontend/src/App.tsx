@@ -11,6 +11,7 @@ import SignIn from "./pages/signin/SignIn";
 import SignUp from "./pages/signup/Signup";
 import Home from "./pages/home/home";
 import Profile from "./pages/profile/profile";
+import {User} from "./model/user";
 /*
 /!*import { BrowserRouter as Router, Route, Switch } f*!/rom 'react-router-dom';import {Sign} from "crypto";
 */
@@ -51,6 +52,11 @@ export const ROUTE_SIGN_IN = '/login';
 export const ROUTE_SIGN_UP = '/cadastro';
 export const ROUTE_PROFILE = '/perfil';
 
+export const LOGGED_USER = (userData: User) => {
+
+}
+
+
 const router = createBrowserRouter(
     createRoutesFromElements(
 
@@ -59,7 +65,7 @@ const router = createBrowserRouter(
                 <Route path={ROUTE_SIGN_IN} element={<SignIn />} />
                 <Route path={ROUTE_SIGN_UP} element={<SignUp />} />
                 <Route path={ROUTE_HOME} element={<Home />} />
-                <Route path={ROUTE_PROFILE} element={<Profile />} />
+                {/*<Route path={ROUTE_PROFILE} element={<Profile />} />*/}
             </Route>
 
 
