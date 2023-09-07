@@ -45,6 +45,9 @@ public class User {
     @Column(name = "profile_picture", length = 455, updatable = true)
     private Byte[] profilePicture;
 
+    @Column(name = "bio", length = 2000, updatable = true)
+    private String bio;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;

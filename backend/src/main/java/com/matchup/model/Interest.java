@@ -18,6 +18,9 @@ public class Interest {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "description", length = 2000)
+    private String description;
+
     @ManyToOne
     private Company company;
 
@@ -63,14 +66,6 @@ public class Interest {
 
     // <editor-fold desc="Constructors">
     public Interest() {
-    }
-
-    public Interest(String name, Company company, double lowestPrice, double highestPrice, AgeRating ageRating) {
-        this.name = name;
-        this.company = company;
-        this.lowestPrice = lowestPrice;
-        this.highestPrice = highestPrice;
-        this.ageRating = ageRating;
     }
 
     public Interest(String name, String description, Company company, double lowestPrice, double highestPrice, AgeRating ageRating) {
