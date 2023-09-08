@@ -1,5 +1,6 @@
 import axios, {AxiosError, AxiosResponse} from 'axios';
 import {Interest} from "../../model/interest";
+import {User} from "../../model/user";
 
 const API_BASE_URL = 'http://localhost:8080/api/';
 
@@ -21,6 +22,18 @@ export const getAllInterests = async (): Promise<Array<Interest>> => {
             throw error;
         }
     }
+};
+
+
+export const register = async (userToRegister: User): Promise<User> => {
+    try {
+        let response: AxiosResponse<User, any>;
+        response = await axios.post<User>(`${API_BASE_URL}register/user`, userToRegister);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+
 };
 
 

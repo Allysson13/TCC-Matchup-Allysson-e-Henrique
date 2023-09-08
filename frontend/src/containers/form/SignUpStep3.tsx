@@ -1,3 +1,4 @@
+/*
 import React, { useEffect, useState } from 'react';
 import {
     Container,
@@ -56,7 +57,7 @@ const SignUpStep3 = () => {
                     Faça Cadastro
                 </Typography>
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
+                    <Grid container height={496} spacing={2}>
                         <Grid item xs={12}>
                             <Autocomplete
                                 multiple
@@ -86,3 +87,30 @@ const SignUpStep3 = () => {
 };
 
 export default SignUpStep3;
+*/
+
+import React from 'react';
+import { FormControlLabel, Checkbox, Button } from '@mui/material';
+import { Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
+const SignUpStep3: React.FC = () => {
+    return (
+        <div>
+            {/*<Field
+                name="termsAndConditions"
+                type="checkbox"
+                as={FormControlLabel}
+                label="Aceito os termos e condições"
+            />
+            <ErrorMessage name="termsAndConditions" component="div" />*/}
+
+            <Button variant="contained" color="primary" type="submit">
+                Cadastrar
+            </Button>
+        </div>
+    );
+};
+
+export default SignUpStep3;
+

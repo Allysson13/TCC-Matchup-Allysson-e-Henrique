@@ -1,3 +1,4 @@
+/*
 import React from "react";
 import {
     Container,
@@ -19,10 +20,14 @@ import {DatePicker, DesktopDatePicker, LocalizationProvider} from "@mui/x-date-p
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import {useFormik} from "formik";
-import {validateSignUpStep1} from "../../utils/validation/UserValidation";
+import {User} from "../../model/user";
 
-const SignUpStep2 = () => {
-    /*const formik = useFormik({
+interface SignUpProps {
+    user: User;
+}
+const SignUpStep2: React.FC<SignUpProps> = ({user}) => {
+    var userToRegister = {user}.user;
+    /!*const formik = useFormik({
         initialValues: {
             zipcode: '',
             state: '',
@@ -32,7 +37,7 @@ const SignUpStep2 = () => {
             number: '',
         },
 
-    };*/
+    };*!/
 
 
 
@@ -58,6 +63,7 @@ return (
         >
             <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
                 <LockOutlinedIcon/>
+                <h1>{user.name}</h1>
             </Avatar>
             <Typography component="h1" variant="h5">
                 Faça Cadastro

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Container,
     CssBaseline,
@@ -14,9 +14,11 @@ import {
     Alert, CardHeader,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import InputMask from 'react-input-mask';
 
 
 const SignUpStep4 = () => {
+    const [value, setValue] = useState();
     /*const formik = useFormik({
         initialValues: {
             name: '',

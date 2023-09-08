@@ -1,3 +1,4 @@
+/*
 import React, {useState} from 'react';
 import {Stepper, Step, StepLabel, Button, Typography, Grid, CssBaseline, Box, CardHeader} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -17,9 +18,9 @@ const SignUp = () => {
         // ...outros campos
     });
 
-    const etapas = ['Pessoais', 'Endereço', 'Interesses', 'Conclusão'];
 
     const handleNext = () => {
+
         if (etapaAtual < etapas.length - 1) {
             setEtapaAtual(etapaAtual + 1);
         }
@@ -65,7 +66,7 @@ const SignUp = () => {
                 <Grid item xs={12}>
                     <Grid container>
                         {etapaAtual === 0 && (
-                            <SignUpStep1></SignUpStep1>
+                            <SignUpStep1 user={userToRegister}></SignUpStep1>
                         )}
                         {etapaAtual === 1 && (
                             <SignUpStep2></SignUpStep2>
@@ -79,7 +80,7 @@ const SignUp = () => {
                     </Grid>
 
 
-                    {/*<div style={{ marginTop: '30px' }}></div>*/}
+                    {/!*<div style={{ marginTop: '30px' }}></div>*!/}
                     <CardHeader
                         actAsExpander={true}
                         showExpandableButton={true}
@@ -104,7 +105,7 @@ const SignUp = () => {
     )
 }
 
-{/*
+{/!*
  <Button
                             type="submit"
                             fullWidth
@@ -119,7 +120,7 @@ const SignUp = () => {
                                     Já tem uma conta? Faça login
                                 </Link>
                             </Grid>
-                        </Grid>*/
+                        </Grid>*!/
 }
 
 export default SignUp;
