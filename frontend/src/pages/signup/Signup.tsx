@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import {Stepper, Step, StepLabel, Button, Typography, Grid, CssBaseline, Box, CardHeader} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {ROUTE_SIGN_IN} from "../../App";
-import SignUpStep1 from "../../components/form/SignUpStep1";
-import {Form, Formik} from "formik";
+import SignUpStep1 from "../../containers/form/SignUpStep1";
+import {Formik} from "formik";
+import SignUpStep2 from "../../containers/form/SignUpStep2";
+import SignUpStep4 from "../../containers/form/SignUpStep4";
+import SignUpStep3 from "../../containers/form/SignUpStep3";
 
 const SignUp = () => {
     const [etapaAtual, setEtapaAtual] = useState(0);
@@ -27,6 +30,11 @@ const SignUp = () => {
             setEtapaAtual(etapaAtual - 1);
         }
     };
+
+    const handleFinish= () => {
+        console.log("Finished");
+    };
+
 
     const handleChange = (campo: any, valor: any) => {
         setDados({...dados, [campo]: valor});
@@ -53,48 +61,20 @@ const SignUp = () => {
                     </Stepper>
                 </Grid>
 
-                <Formik
-                    initialValues={{
-                        nome: '',
-                        email: '',
-                        senha: '',
-                        // ...outros campos
-                    }}
-                    validationSchema={schemaEtapa1}
-                    onSubmit={(values, { setSubmitting }) => {
-                        // Lógica de envio para a primeira etapa
-                        // Chame handleNext() para avançar para a próxima etapa
-                    }}
-                >
-                    {(formikProps) => (
-                        <Form onSubmit={formikProps.handleSubmit}>
-                            {/* Campos de entrada e feedback de erro */}
-                            {/* Exemplo: */}
-                            <input
-                                type="text"
-                                name="nome"
-                                onChange={formikProps.handleChange}
-                                onBlur={formikProps.handleBlur}
-                                value={formikProps.values.nome}
-                            />
-                            {formikProps.touched.nome && formikProps.errors.nome && (
-                                <div>{formikProps.errors.nome}</div>
-                            )}
-                            {/* ...outros campos */}
-                            <button type="submit">Próximo</button>
-                        </Form>
-                    )}
-                </Formik>
+
                 <Grid item xs={12}>
                     <Grid container>
                         {etapaAtual === 0 && (
                             <SignUpStep1></SignUpStep1>
                         )}
                         {etapaAtual === 1 && (
-                            <Typography>Componente de Informações de Contato</Typography>
+                            <SignUpStep2></SignUpStep2>
                         )}
                         {etapaAtual === 2 && (
-                            <Typography>Componente de Conclusão</Typography>
+                            <SignUpStep3></SignUpStep3>
+                        )}
+                        {etapaAtual === 3 && (
+                            <SignUpStep4></SignUpStep4>
                         )}
                     </Grid>
 
@@ -112,8 +92,9 @@ const SignUp = () => {
                                 <Button onClick={handleBack} disabled={etapaAtual === 0}>Anterior</Button>
                             </Grid>
                             <Grid item>
-                                <Button onClick={handleNext} disabled={etapaAtual === etapas.length - 1}
-                                        variant="contained">Próximo</Button>
+                                <Button onClick={etapaAtual === 3 ? handleFinish : handleNext}
+                                        variant="contained">
+                                        {etapaAtual === 3 ? 'Concluir' : 'Próximo'}</Button>
                             </Grid>
                         </Grid>
                     </Grid>

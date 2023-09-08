@@ -33,3 +33,14 @@ export const validateUsername = (username: string | undefined) => {
         .isValidSync(username);
     return !isEmail;
 }
+
+
+/*export const validateSignUpStep1 = Yup.object().shape({
+    name: Yup.string().required('Campo obrigatório'),
+    username: Yup.string().required('Campo obrigatório'),
+    email: Yup.string().email('Email inválido').required('Campo obrigatório'),
+    password: Yup.string().min(6, 'A senha deve ter pelo menos 6 caracteres').required('Campo obrigatório'),
+    confirmPassword: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'As senhas devem coincidir')
+        .required('Campo obrigatório'),
+});*/
