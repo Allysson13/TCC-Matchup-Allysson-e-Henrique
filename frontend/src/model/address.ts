@@ -10,3 +10,12 @@ export interface Address {
     zipcode: string;
     user: User;
 }
+
+export type SignUpStep2Payload = {
+    number?: undefined;
+    street?: undefined;
+    city?: undefined;
+    neighborhood?: undefined;
+    state?: undefined;
+    zipcode?: undefined;
+};

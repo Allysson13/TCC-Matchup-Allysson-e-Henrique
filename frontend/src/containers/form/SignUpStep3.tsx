@@ -7,7 +7,7 @@ import {
     Avatar,
     Typography,
     TextField,
-    Grid,
+    Grid, Button,
 } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -74,12 +74,26 @@ const SignUpStep3 = () => {
                                         {...params}
                                         label="Interesses"
                                         placeholder="Selecione seus interesses"
+                                        sx={{ minWidth: '420px' }}
                                     />
                                 )}
                             />
                         </Grid>
                     </Grid>
-                    {/* Outros campos do formulário */}
+                    <Grid item xs={12}>
+
+                        <Grid container justifyContent="space-between">
+                            <Grid item>
+                                <Button onClick={handleBack} disabled={etapaAtual === 0}>Anterior</Button>
+                            </Grid>
+                            <Grid item>
+                                <Button onClick={etapaAtual === 3 ? handleFinish : handleNext}
+                                        variant="contained">
+                                    {etapaAtual === 3 ? 'Concluir' : 'Próximo'}</Button>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    {/!* Outros campos do formulário *!/}
                 </Box>
             </Box>
         </Container>

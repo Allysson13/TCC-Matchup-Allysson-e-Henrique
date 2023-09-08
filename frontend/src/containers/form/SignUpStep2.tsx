@@ -144,6 +144,19 @@ return (
                     actAsExpander={true}
                     showExpandableButton={true}
                 />
+                <Grid item xs={12}>
+
+                    <Grid container justifyContent="space-between">
+                        <Grid item>
+                            <Button onClick={handleBack} disabled={etapaAtual === 0}>Anterior</Button>
+                        </Grid>
+                        <Grid item>
+                            <Button onClick={etapaAtual === 3 ? handleFinish : handleNext}
+                                    variant="contained">
+                                {etapaAtual === 3 ? 'Concluir' : 'Próximo'}</Button>
+                        </Grid>
+                    </Grid>
+                </Grid>
             </Box>
         </Box>
     </Container>
@@ -152,3 +165,37 @@ return (
 };
 
 export default SignUpStep2;
+*/
+
+import React from 'react';
+import { TextField } from '@mui/material';
+import { Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
+const SignUpStep2: React.FC = () => {
+    return (
+        <div>
+            <Field
+                name="email"
+                as={TextField}
+                label="Email"
+                variant="outlined"
+                fullWidth
+            />
+            <ErrorMessage name="email" component="div" />
+
+            <Field
+                name="password"
+                as={TextField}
+                type="password"
+                label="Senha"
+                variant="outlined"
+                fullWidth
+            />
+            <ErrorMessage name="password" component="div" />
+        </div>
+    );
+};
+
+export default SignUpStep2;
+
