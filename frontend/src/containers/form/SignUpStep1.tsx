@@ -19,25 +19,6 @@ import DatePickerField from "../../components/form/DatePickerField";
 
 const SignUpStep1: React.FC = () => {
     return (
-        /*<div>
-            <Field
-                name="firstName"
-                as={TextField}
-                label="Nome"
-                variant="outlined"
-                fullWidth
-            />
-            <ErrorMessage name="firstName" component="div" />
-
-            <Field
-                name="lastName"
-                as={TextField}
-                label="Sobrenome"
-                variant="outlined"
-                fullWidth
-            />
-            <ErrorMessage name="lastName" component="div" />
-        </div>*/
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
             <Box

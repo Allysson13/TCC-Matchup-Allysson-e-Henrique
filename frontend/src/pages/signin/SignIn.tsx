@@ -34,7 +34,14 @@ const SignIn = () => {
     };
 
     let userData: User;
-    const handleSubmit = async (values: SignInPayload, {setSubmitting}) => {
+    const handleSubmit = async (values: SignInPayload, formikProps: FormikProps<SignInPayload>) => {
+
+        if(!valid){
+            return;
+        }
+        if(formikProps.isValid){
+
+        }
         try {
             let validationResponse: ValidationResponse;
 

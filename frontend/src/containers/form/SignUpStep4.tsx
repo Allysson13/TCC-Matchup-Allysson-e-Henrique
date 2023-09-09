@@ -93,37 +93,6 @@ const SignUpStep4:  React.FC = () => {
                         />
                     )}
                 </Field>
-                {/*<Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <Field name="cellphoneNumber">
-                            {({field}) => (
-                                <TextField
-                                    {...field}
-                                    autoComplete="given-name"
-                                    fullWidth
-                                    id="cellphone-number"
-                                    label="Número de Celular (Opcional)"
-                                />
-                            )}
-                        </Field>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Field name="bio">
-                            {({field}) => (
-                                <TextField
-                                    {...field}
-                                    autoComplete="given-bio"
-                                    fullWidth
-                                    id="bio"
-                                    label="Bio (Opcional)"
-                                    multiline
-                                    rows={15}
-                                />
-                            )}
-                        </Field>
-                    </Grid>
-                </Grid>*/}
-
                 <div style={{marginTop: '30px'}}></div>
             </Box>
         </Container>

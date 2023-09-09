@@ -74,6 +74,15 @@ import {register} from "../../api/login_requests/register";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_HOME} from "../../App";
 import {User} from "../../model/user";
+import {string} from "yup";
+import {format} from 'date-fns';
+import {
+    validateSignUpStep1,
+    validateSignUpStep2,
+    validateSignUpStep3,
+    validateSignUpStep4
+} from "../../utils/validation/UserValidation";
+
 
 const steps = ['Pessoais', 'Endereço', 'Interesses', 'Conclusão'];
 
