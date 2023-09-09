@@ -41,8 +41,7 @@ public class RegisterController {
     @PostAuthorize("true")
     public ResponseEntity<User> register(@RequestBody UserDto userDto) {
         System.out.println("register-user");
-        LocalDate date = LocalDate.now().minusYears(120);
-        userDto.setBirthDate(date);
+        System.out.println(userDto.getBirthDate());
 
         /*if (!userService.verifyDate(userDto.getBirthDate())){
             throw new DateTimeException(userDto.getBirthDate().toString());

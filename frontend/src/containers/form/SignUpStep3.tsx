@@ -122,15 +122,15 @@ import {Interest} from "../../model/interest";
 import {getAllInterests} from "../../api/login_requests/register";
 
 const SignUpStep3: React.FC = () => {
-    const [interests, setInterests] = useState([]);
-    const [interest, setSelectedInterests] = useState([]);
+    const [notSelectedInterests, setNotSelectedInterests] = useState([]);
+    const [interests, setSelectedInterests] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 // Simule uma função de busca assíncrona (substitua por sua própria lógica)
                 const response: Interest[] = await getAllInterests();
-                setInterests(response); // Define os interesses quando a busca estiver completa
+                setNotSelectedInterests(response); // Define os interesses quando a busca estiver completa
             } catch (error) {
                 console.error('Erro ao buscar interesses', error);
             }
@@ -158,16 +158,17 @@ const SignUpStep3: React.FC = () => {
                 </Typography>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <Field name="interest">
+                        <Field name="interests">
                             {({field, form}) => (
                                 <Autocomplete
                                     {...field}
                                     multiple
                                     fullWidth
                                     id="tags-outlined"
-                                    options={interests}
-                                    getOptionLabel={(interest) => interest.name}
-                                    onChange={(_, newValue) => form.setFieldValue('interest', newValue.map((interest) => interest.id))}
+                                    name="interests"
+                                    options={notSelectedInterests}
+                                    getOptionLabel={(interest: Interest) => interest.name}
+                                    onChange={(_, newValue) => form.setFieldValue('interests', newValue.map((interest) => interest.id))}
                                     filterSelectedOptions
                                     renderInput={(params) => (
                                         <TextField
@@ -180,7 +181,7 @@ const SignUpStep3: React.FC = () => {
                                 />
                             )}
                         </Field>
-                        <ErrorMessage name="interest" component="div"/>
+                        <ErrorMessage name="interests" component="div"/>
                     </Grid>
                 </Grid>
             </Box>

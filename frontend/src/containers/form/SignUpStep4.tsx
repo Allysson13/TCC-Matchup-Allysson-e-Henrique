@@ -18,8 +18,8 @@ import InputMask from 'react-input-mask';
 import {Field, FieldProps} from "formik";
 
 
-const SignUpStep4 = () => {
-    const [value, setValue] = useState();
+const SignUpStep4:  React.FC = () => {
+    //const [value, setValue] = useState();
     /*const formik = useFormik({
         initialValues: {
             name: '',
@@ -67,6 +67,7 @@ const SignUpStep4 = () => {
                             margin="normal"
                             fullWidth
                             id="cellphoneNumber"
+                            name="cellphoneNumber"
                             label="Número de Celular (Opcional)"
                             autoFocus
                             variant="outlined"
@@ -82,6 +83,7 @@ const SignUpStep4 = () => {
                             margin="normal"
                             fullWidth
                             id="bio"
+                            name="bio"
                             label="Bio (Opcional)"
                             variant="outlined"
                             multiline

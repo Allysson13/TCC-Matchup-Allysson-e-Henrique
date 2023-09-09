@@ -81,20 +81,19 @@ const SignUp: React.FC = () => {
     const history = useNavigate();
     const [activeStep, setActiveStep] = useState(0);
     const [formValues, setFormValues] = useState({
-        name: String,
-        username: String,
-        email: String,
-        rawPassword: String,
-        //birthDate: String,
+        name: '',
+        username: '',
+        email: '',
+        rawPassword: '',
+        birthDate: '',
         addressZipcode: 0,
-        addressState: String,
-        addressCity: String,
-        addressNeighborhood: String,
-        addressStreet: String,
+        addressState: '',
+        addressCity: '',
+        addressNeighborhood: '',
+        addressStreet: '',
         addressNumber: 0,
-        interests: Array<Interest>,
-        cellphoneNumber: String,
-        bio: String,
+        cellphoneNumber: '',
+        bio: '',
 
     });
 
@@ -112,7 +111,10 @@ const SignUp: React.FC = () => {
         if (activeStep < steps.length - 1) {
             handleNext();
         } else {
-            console.log(formValues); // Dados do usuário
+            const formattedBirthDate = format(Date.parse(formValues.birthDate), 'yyyy-MM-dd');
+            formValues.birthDate = formattedBirthDate;
+            console.log(formValues);
+
             let user = register({user: formValues});
             actions.setSubmitting(false);
             localStorage.setItem('user', JSON.stringify(user));
@@ -130,6 +132,21 @@ const SignUp: React.FC = () => {
                 return <SignUpStep3/>;
             case 3:
                 return <SignUpStep4/>;
+            default:
+                return 'Erro: Etapa desconhecida';
+        }
+    };
+
+    const getValidationSchema =  (step: number) => {
+        switch (step) {
+            case 0:
+                return validateSignUpStep1;
+            case 1:
+                return validateSignUpStep2;
+            case 2:
+                return validateSignUpStep3;
+            case 3:
+                return validateSignUpStep4;
             default:
                 return 'Erro: Etapa desconhecida';
         }
@@ -155,49 +172,65 @@ const SignUp: React.FC = () => {
                         ))}
                     </Stepper>
                     <Formik
-                        initialValues={{
-                            name: 'Jorge',
+                        /*initialValues={{
+                            name: '',
                             username: 'Jorge1959',
-                            email: 'jorge59@gmail.com',
+                            email: '',
                             rawPassword: 'jorge123',
                             confirmPassword: 'jorge123',
-                            //birthDate: '',
+                            birthDate: '',
                             addressZipcode: 36444555,
                             addressState: 'qweqweweq',
                             addressCity: 'qweqweqwe',
                             addressNeighborhood: 'qweeqwqwe',
                             addressStreet: 'weqweqwe',
                             addressNumber: 50,
-                            //interests: Array<Interest>,
+                            cellphoneNumber: '381763734',
+                            bio: 'aaaaaaaaaaaaaaa',
+                        }}*/
+                        initialValues={{
+                            name: '',
+                            username: '',
+                            email: '',
+                            rawPassword: '',
+                            confirmPassword: '',
+                            birthDate: '',
+                            addressZipcode: 0,
+                            addressState: '',
+                            addressCity: '',
+                            addressNeighborhood: '',
+                            addressStreet: '',
+                            addressNumber: 50,
                             cellphoneNumber: '',
                             bio: '',
                         }}
-                        validationSchema={Yup.object().shape({
-                            name: Yup.string().required('Campo obrigatório'),
-                            addressZipcode: Yup.string().required('Campo obrigatório'),
-                            /*email: Yup.string().email('Email inválido').required('Campo obrigatório'),
-                            password: Yup.string().min(6, 'A senha deve ter pelo menos 6 caracteres').required('Campo obrigatório'),*/
-                        })}
+                        validationSchema={getValidationSchema(activeStep)}
+                        validateOnBlur={false}
+                        validateOnChange={true}
                         onSubmit={(values, actions) => handleSubmit(values, actions)}
                     >
-                        <Form>
-                            <Grid>{getStepContent(activeStep)}</Grid>
-                            <Grid justifyContent="space-between">
-                                {activeStep !== 0 && (
-                                    <Button variant="text" color="primary" onClick={handleBack}>
-                                        Voltar
+                        {(formikProps) => (
+                            <Form>
+
+                                <Grid item>{getStepContent(activeStep)}</Grid>
+                                <Grid item justifyContent="space-between">
+                                    {activeStep !== 0 && (
+                                        <Button variant="text" color="primary" onClick={handleBack}>
+                                            Voltar
+                                        </Button>
+                                    )}
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        type="submit"
+                                        disabled={!formikProps.isValid}
+                                        //onClick={activeStep === steps.length - 1 ? undefined : handleNext}
+                                    >
+                                        {activeStep === steps.length - 1 ? 'Cadastrar' : 'Próximo'}
                                     </Button>
-                                )}
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    type="submit"
-                                    //onClick={activeStep === steps.length - 1 ? undefined : handleNext}
-                                >
-                                    {activeStep === steps.length - 1 ? 'Cadastrar' : 'Próximo'}
-                                </Button>
-                            </Grid>
-                        </Form>
+                                </Grid>
+                            </Form>
+                        )}
                     </Formik>
                 </Grid>
             </Box>

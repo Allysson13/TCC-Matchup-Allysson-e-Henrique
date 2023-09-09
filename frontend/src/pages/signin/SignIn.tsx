@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Formik, Form, Field, FieldProps} from 'formik';
+import {Formik, Form, Field, FieldProps, FormikProps} from 'formik';
 import * as Yup from 'yup';
 import {
     Container,
@@ -60,7 +60,7 @@ const SignIn = () => {
             // Handle login errors here, e.g., set error messages.
         }
 
-        setSubmitting(false);
+        formikProps.setSubmitting(false);
         setIsLoggedIn(true);
         localStorage.setItem('user', JSON.stringify(userData));
         history(ROUTE_HOME);
@@ -108,8 +108,10 @@ const SignIn = () => {
                     initialValues={initialValues}
                     validationSchema={validationLogin}
                     onSubmit={handleSubmit}
+                    validateOnBlur={false}
+
                 >
-                    {({isValid, isSubmitting}) => (
+                    {(formikProps) => (
                         <Form noValidate>
                             <Field name="emailOrUsername">
                                 {({field, meta}: FieldProps) => (
@@ -121,7 +123,7 @@ const SignIn = () => {
                                         id="emailOrUsername"
                                         label="Email ou Nome de Usuário"
                                         variant="outlined"
-                                        error={!valid /*|| (meta.touched && !!meta.error)*/}
+                                        error={!valid/*|| (meta.touched && !!meta.error)*/}
                                         //helperText={/*meta.touched && meta.error*/}
                                     />
                                 )}
@@ -138,7 +140,7 @@ const SignIn = () => {
                                         type="password"
                                         autoComplete="current-password"
                                         variant="outlined"
-                                        error={!valid /*|| (meta.touched && !!meta.error)*/}
+                                        error={!valid/*|| (meta.touched && !!meta.error)*/}
                                         //helperText={meta.touched && meta.error}
                                     />
                                 )}
@@ -153,7 +155,7 @@ const SignIn = () => {
                                 variant="contained"
                                 color="primary"
                                 sx={{mt: 3, mb: 2}}
-                                disabled={!isValid || isSubmitting}
+                                disabled={!formikProps.isValid || formikProps.isSubmitting}
                             >
                                 ENTRAR
                             </Button>
