@@ -107,6 +107,7 @@ public class UserService {
                 passwordEncoder.encode(userDto.getRawPassword()));
         userToRegister.setCellphoneNumber(userDto.getCellphoneNumber());
         //userToRegister.setProfilePicture(userDto.getProfilePicture());
+        //userDto.getInterests().forEach(System.out::println);
         userToRegister.setInterests(
                 interestRepository.findAllById(userDto.getInterests()));
         addressToRegister.setCity(userDto.getAddressCity());
