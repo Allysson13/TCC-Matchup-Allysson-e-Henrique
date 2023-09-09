@@ -168,32 +168,143 @@ export default SignUpStep2;
 */
 
 import React from 'react';
-import { TextField } from '@mui/material';
-import { Field, ErrorMessage } from 'formik';
+import {
+    Avatar,
+    Box,
+    Checkbox,
+    Container,
+    CssBaseline,
+    FormControlLabel,
+    Grid,
+    TextField,
+    Typography
+} from '@mui/material';
+import {Field, ErrorMessage, FieldProps} from 'formik';
 import * as Yup from 'yup';
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 
 const SignUpStep2: React.FC = () => {
     return (
-        <div>
-            <Field
-                name="email"
-                as={TextField}
-                label="Email"
-                variant="outlined"
-                fullWidth
-            />
-            <ErrorMessage name="email" component="div" />
+        <Container component="main" maxWidth="xs">
+            <CssBaseline/>
+            <Box
+                sx={{
+                    marginTop: 4,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
+                    <LockOutlinedIcon/>
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Faça Cadastro
+                </Typography>
 
-            <Field
-                name="password"
-                as={TextField}
-                type="password"
-                label="Senha"
-                variant="outlined"
-                fullWidth
-            />
-            <ErrorMessage name="password" component="div" />
-        </div>
+                {/*
+                private int addressNumber;
+                private String addressStreet;
+                private String addressNeighborhood;
+                private String addressCity;
+                private String addressState;
+                private String addressZipcode;
+                */}
+
+                <Field name="addressZipcode">
+                    {({field, meta}: FieldProps) => (
+                        <TextField
+                            {...field}
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="zipcode"
+                            label="CEP"
+                            autoFocus
+                            variant="outlined"
+                            error={(meta.touched && !!meta.error)}
+                            helperText={(meta.touched && meta.error)}
+                        />
+                    )}
+                </Field>
+                <Field name="addressState">
+                    {({field, meta}: FieldProps) => (
+                        <TextField
+                            {...field}
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="state"
+                            label="Estado"
+                            variant="outlined"
+                            error={(meta.touched && !!meta.error)}
+                            helperText={(meta.touched && meta.error)}
+                        />
+                    )}
+                </Field>
+                <Field name="addressCity">
+                    {({field, meta}: FieldProps) => (
+                        <TextField
+                            {...field}
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="city"
+                            label="Cidade"
+                            variant="outlined"
+                            error={(meta.touched && !!meta.error)}
+                            helperText={(meta.touched && meta.error)}
+                        />
+                    )}
+                </Field>
+                <Field name="addressNeighborhood">
+                    {({field, meta}: FieldProps) => (
+                        <TextField
+                            {...field}
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="addressNeighborhood"
+                            label="Bairro"
+                            variant="outlined"
+                            error={(meta.touched && !!meta.error)}
+                        />
+                    )}
+                </Field>
+                <Field name="addressStreet">
+                    {({field, meta}: FieldProps) => (
+                        <TextField
+                            {...field}
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="addressStreet"
+                            label="Rua / Avenida"
+                            variant="outlined"
+                            error={(meta.touched && !!meta.error)}
+                        />
+                    )}
+                </Field>
+                <Field name="addressNumber">
+                    {({field, meta}: FieldProps) => (
+                        <TextField
+                            {...field}
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="addressNumber"
+                            label="Número"
+                            variant="outlined"
+                            error={(meta.touched && !!meta.error)}
+                        />
+                    )}
+                </Field>
+
+
+            </Box>
+        </Container>
     );
 };
 

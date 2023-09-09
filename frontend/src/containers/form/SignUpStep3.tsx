@@ -103,26 +103,88 @@ const SignUpStep3 = () => {
 export default SignUpStep3;
 */
 
-import React from 'react';
-import { FormControlLabel, Checkbox, Button } from '@mui/material';
-import { Field, ErrorMessage } from 'formik';
+import React, {useEffect, useState} from 'react';
+import {
+    FormControlLabel,
+    Checkbox,
+    Button,
+    Avatar,
+    Autocomplete,
+    Grid,
+    Container,
+    CssBaseline,
+    Box, TextField, Typography
+} from '@mui/material';
+import {Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import {Interest} from "../../model/interest";
+import {getAllInterests} from "../../api/login_requests/register";
 
 const SignUpStep3: React.FC = () => {
-    return (
-        <div>
-            {/*<Field
-                name="termsAndConditions"
-                type="checkbox"
-                as={FormControlLabel}
-                label="Aceito os termos e condições"
-            />
-            <ErrorMessage name="termsAndConditions" component="div" />*/}
+    const [interests, setInterests] = useState([]);
+    const [interest, setSelectedInterests] = useState([]);
 
-            <Button variant="contained" color="primary" type="submit">
-                Cadastrar
-            </Button>
-        </div>
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Simule uma função de busca assíncrona (substitua por sua própria lógica)
+                const response: Interest[] = await getAllInterests();
+                setInterests(response); // Define os interesses quando a busca estiver completa
+            } catch (error) {
+                console.error('Erro ao buscar interesses', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    return (
+        <Container component="main" maxWidth="xs">
+            <CssBaseline/>
+            <Box
+                sx={{
+                    marginTop: 4,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
+                    <LockOutlinedIcon/>
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Faça Cadastro
+                </Typography>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Field name="interest">
+                            {({field, form}) => (
+                                <Autocomplete
+                                    {...field}
+                                    multiple
+                                    fullWidth
+                                    id="tags-outlined"
+                                    options={interests}
+                                    getOptionLabel={(interest) => interest.name}
+                                    onChange={(_, newValue) => form.setFieldValue('interest', newValue.map((interest) => interest.id))}
+                                    filterSelectedOptions
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            label="Interesses"
+                                            placeholder="Selecione seus interesses"
+                                            sx={{minWidth: '420px'}}
+                                        />
+                                    )}
+                                />
+                            )}
+                        </Field>
+                        <ErrorMessage name="interest" component="div"/>
+                    </Grid>
+                </Grid>
+            </Box>
+        </Container>
     );
 };
 

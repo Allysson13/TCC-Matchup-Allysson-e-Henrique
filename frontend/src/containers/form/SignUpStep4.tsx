@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import InputMask from 'react-input-mask';
+import {Field, FieldProps} from "formik";
 
 
 const SignUpStep4 = () => {
@@ -34,11 +35,13 @@ const SignUpStep4 = () => {
     });*/
 
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
+    /*
+        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            const data = new FormData(event.currentTarget);
 
-    };
+        };
+    */
 
     return (
         <Container component="main" maxWidth="xs">
@@ -57,33 +60,69 @@ const SignUpStep4 = () => {
                 <Typography component="h1" variant="h5">
                     Faça Cadastro
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                autoComplete="given-name"
-                                name="cellphoneNumber"
-                                fullWidth
-                                id="cellphone-number"
-                                label="Número de Celular (Opicional)"
-                                autoFocus
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                autoComplete="given-bio"
-                                name="bio"
-                                fullWidth
-                                id="bio"
-                                label="Bio (Opicional)"
-                                multiline
-                                rows={15}
-                            />
-                        </Grid>
+                <Field name="cellphoneNumber">
+                    {({field, meta}: FieldProps) => (
+                        <TextField
+                            {...field}
+                            margin="normal"
+                            fullWidth
+                            id="cellphoneNumber"
+                            label="Número de Celular (Opcional)"
+                            autoFocus
+                            variant="outlined"
+                            error={(meta.touched && !!meta.error)}
+                            helperText={(meta.touched && meta.error)}
+                        />
+                    )}
+                </Field>
+                <Field name="bio">
+                    {({field, meta}: FieldProps) => (
+                        <TextField
+                            {...field}
+                            margin="normal"
+                            fullWidth
+                            id="bio"
+                            label="Bio (Opcional)"
+                            variant="outlined"
+                            multiline
+                            rows={15}
+                            error={(meta.touched && !!meta.error)}
+                            helperText={(meta.touched && meta.error)}
+                        />
+                    )}
+                </Field>
+                {/*<Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Field name="cellphoneNumber">
+                            {({field}) => (
+                                <TextField
+                                    {...field}
+                                    autoComplete="given-name"
+                                    fullWidth
+                                    id="cellphone-number"
+                                    label="Número de Celular (Opcional)"
+                                />
+                            )}
+                        </Field>
                     </Grid>
+                    <Grid item xs={12}>
+                        <Field name="bio">
+                            {({field}) => (
+                                <TextField
+                                    {...field}
+                                    autoComplete="given-bio"
+                                    fullWidth
+                                    id="bio"
+                                    label="Bio (Opcional)"
+                                    multiline
+                                    rows={15}
+                                />
+                            )}
+                        </Field>
+                    </Grid>
+                </Grid>*/}
 
-                    <div style={{ marginTop: '30px' }}></div>
-                </Box>
+                <div style={{marginTop: '30px'}}></div>
             </Box>
         </Container>
     );

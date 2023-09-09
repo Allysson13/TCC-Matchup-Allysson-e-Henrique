@@ -25,10 +25,12 @@ export const getAllInterests = async (): Promise<Array<Interest>> => {
 };
 
 
-export const register = async (userToRegister: User): Promise<User> => {
+export const register = async ({user}: { user: any }): Promise<User> => {
     try {
         let response: AxiosResponse<User, any>;
-        response = await axios.post<User>(`${API_BASE_URL}register/user`, userToRegister);
+        response = await axios.post<User>(`${API_BASE_URL}register/user`, {
+            ...user
+        });
         return response.data;
     } catch (error) {
         throw error;
