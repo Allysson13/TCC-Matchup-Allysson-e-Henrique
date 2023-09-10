@@ -1,65 +1,3 @@
-/*
-
-    return (
-        <Grid container justifyContent="center">
-            <CssBaseline/>
-            <Box
-                sx={{
-                    marginTop: 10,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}
-            >
-                <Grid item xs={12}>
-                    <Stepper activeStep={etapaAtual}>
-                        {etapas.map((etapa, index) => (
-                            <Step key={index}>
-                                <StepLabel>{etapa}</StepLabel>
-                            </Step>
-                        ))}
-                    </Stepper>
-                </Grid>
-
-
-                <Grid item xs={12}>
-                    <Grid container>
-
-                    </Grid>
-
-
-                    {/!*<div style={{ marginTop: '30px' }}></div>*!/}
-                    <CardHeader
-                        actAsExpander={true}
-                        showExpandableButton={true}
-                    />
-                </Grid>
-            </Box>
-        </Grid>
-    )
-}
-
-{/!*
- <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Cadastrar
-                        </Button>
-                        <Grid container justifyContent="flex-end">
-                            <Grid item>
-                                <Link href={ROUTE_SIGN_IN} variant="body2">
-                                    Já tem uma conta? Faça login
-                                </Link>
-                            </Grid>
-                        </Grid>*!/
-}
-
-export default SignUp;
-*/
-
 import React, {useState} from 'react';
 import {Container, CssBaseline, Typography, Stepper, Step, StepLabel, Button, Grid, Box} from '@mui/material';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
@@ -82,7 +20,6 @@ import {
     validateSignUpStep3,
     validateSignUpStep4
 } from "../../utils/validation/UserValidation";
-
 
 const steps = ['Pessoais', 'Endereço', 'Interesses', 'Conclusão'];
 

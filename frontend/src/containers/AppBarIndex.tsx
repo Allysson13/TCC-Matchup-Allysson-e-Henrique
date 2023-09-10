@@ -362,7 +362,7 @@ const AppBarIndex: React.FC<ToggleColorModeButtonProps> = ({ darkMode, onToggleC
                                     onClick={() => history(ROUTE_SIGN_UP)}
                                     variant="outlined"
                                     sx={{ my: 1, mx: 1.5 }}
-                                    color="primary"
+                                    color="secondary"
                                 >
                                     Cadastro
                                 </Button>
