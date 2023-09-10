@@ -49,13 +49,19 @@ import ProductSmokingHero from "../../components/AppIndex/ProductSmokingHero";
 import AppFooter from "../../components/AppIndex/AppFooter";
 import Introduction from "../../components/AppIndex/Introduction";
 import ForWho from "../../components/AppIndex/ForWho";
+import {useState} from "react";
+
+
 
 const AppIndex: React.FC = () => {
+    const [darkMode, setDarkMode] = useState(false);
+    theme.palette.mode = darkMode?'dark': 'light';
     return (
         <ThemeProvider theme={theme}>
             <GlobalStyles styles={{ul: {margin: 0, padding: 0, listStyle: 'none'}}}/>
             <CssBaseline/>
-            <AppBarIndex></AppBarIndex>
+            <AppBarIndex darkMode={darkMode}
+                         onToggleColorModeClick={() => setDarkMode(!darkMode)}></AppBarIndex>
             <Introduction/>
             <WhatIsMatchup/>
             <ForWho/>

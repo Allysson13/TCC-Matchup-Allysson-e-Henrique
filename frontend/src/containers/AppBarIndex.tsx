@@ -281,9 +281,14 @@ import {Avatar, Box, Grid, MenuItem, Stack, useScrollTrigger} from "@mui/materia
 import theme from "../theme";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../App";
+import ToggleColorModeButton from "../components/ToggleColorModeButton";
 
+interface ToggleColorModeButtonProps {
+    darkMode: boolean;
+    onToggleColorModeClick: () => void;
+}
 
-const AppBarIndex = () => {
+const AppBarIndex: React.FC<ToggleColorModeButtonProps> = ({ darkMode, onToggleColorModeClick }) => {
     const history = useNavigate();
 
     function isScrolled() {
@@ -355,22 +360,27 @@ const AppBarIndex = () => {
                             </nav>
                         </Grid>
                         <Grid item xs textAlign="right">
-                            <Button
-                                onClick={() => history(ROUTE_SIGN_UP)}
-                                variant="outlined"
-                                sx={{my: 1, mx: 1.5}}
-                                color="primary"
-                            >
-                                Cadastro
-                            </Button>
-                            <Button
-                                onClick={() => history(ROUTE_SIGN_IN)}
-                                variant="contained"
-                                sx={{my: 1, mx: 1.5}}
-                                color="primary"
-                            >
-                                Login
-                            </Button>
+                            <Box display="flex" justifyContent="flex-end">
+                                <ToggleColorModeButton
+                                    darkMode={darkMode}
+                                    onClick={onToggleColorModeClick}></ToggleColorModeButton>
+                                <Button
+                                    onClick={() => history(ROUTE_SIGN_UP)}
+                                    variant="outlined"
+                                    sx={{ my: 1, mx: 1.5 }}
+                                    color="primary"
+                                >
+                                    Cadastro
+                                </Button>
+                                <Button
+                                    onClick={() => history(ROUTE_SIGN_IN)}
+                                    variant="contained"
+                                    sx={{ my: 1, mx: 1.5 }}
+                                    color="primary"
+                                >
+                                    Login
+                                </Button>
+                            </Box>
                         </Grid>
                     </Grid>
                 </Toolbar>
