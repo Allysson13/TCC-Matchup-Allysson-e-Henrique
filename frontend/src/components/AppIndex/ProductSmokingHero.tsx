@@ -20,7 +20,7 @@ function ProductSmokingHero() {
         }}
       >
         <Typography variant="h4" component="span">
-          Got any questions? Need help?
+          Alguma pergunta? Precisa de ajuda?
         </Typography>
       </Button>
       <Typography variant="subtitle1" sx={{ my: 3 }}>

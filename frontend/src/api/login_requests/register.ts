@@ -75,10 +75,12 @@ export interface ValidationResponse {
     body: unknown;
 }
 
-export const usernameExists = async (username: string | undefined): Promise<ValidationResponse> => {
-    return await userAvailability(`/username/check-unavailability/${username}`);
+export const usernameExists = async (username: string | undefined): Promise<Boolean> => {
+    let response: ValidationResponse = await userAvailability(`/username/check-availability/${username}`);
+    return (response.status == 200);
 };
 
-export const emailExists = async (email: string | undefined): Promise<ValidationResponse> => {
-    return await userAvailability(`/email/check-unavailability/${email}`);
+export const emailExists = async (email: string | undefined): Promise<Boolean> => {
+    let response: ValidationResponse = await userAvailability(`/email/check-availability/${email}`);
+    return (response.status == 200);
 };

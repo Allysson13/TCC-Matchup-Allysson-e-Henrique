@@ -53,16 +53,6 @@ const ImageIconButton = styled(ButtonBase)(({theme}) => ({
     },
 }));
 
-/*RPG
-Mundo aberto
-Luta
-FPS
-Souls Like
-Puzzle
-Plataforma
-COOP
-Tabuleiro / Cartas*/
-
 const images = [
     {
         url: 'https://www.pockettactics.com/wp-content/sites/pockettactics/2022/10/skyrim-wallpaper.jpg',

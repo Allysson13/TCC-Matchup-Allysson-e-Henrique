@@ -31,14 +31,18 @@ const iconStyle = {
 };
 
 const LANGUAGES = [
-  {
-    code: 'en-US',
-    name: 'English',
-  },
-  {
-    code: 'fr-FR',
-    name: 'Français',
-  },
+    {
+        code: 'pt-BR',
+        name: 'Português',
+    },
+    {
+        code: 'en-US',
+        name: 'English',
+    },
+    {
+        code: 'fr-FR',
+        name: 'Français',
+    },
 ];
 
 export default function AppFooter() {
