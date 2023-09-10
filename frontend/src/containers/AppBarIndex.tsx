@@ -271,6 +271,8 @@ const AppBarIndex = () => {
 export default AppBarIndex;
 */
 
+/*import logo from '../logo.svg'*/
+import logo from '../img/logo-matchup2.png'
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
@@ -317,17 +319,9 @@ const AppBarIndex: React.FC<ToggleColorModeButtonProps> = ({ darkMode, onToggleC
 
             >
                 <Toolbar sx={{flexWrap: 'wrap'}}>
-                    <Grid container spacing={3}>
-                        <Grid item xs textAlign="center" alignItems='center' margin="auto">
-                            {/*<Typography variant="h6" color="inherit" sx={{flexGrow: 1}}>
-                                MATCHUP
-                            </Typography>*/}
-                            <Avatar src="https://img.freepik.com/vetores-gratis/jogo-joystick-tecnologia-esportiva_138676-2045.jpg?t=st=1694285891~exp=1694286491~hmac=58c3de4e27ef8663655dd5ad479b6b914393fb14cd481d12ca7d2feb140d09b3">
-                            </Avatar>
-
-                            {/*<Image
-                                src="https://img.freepik.com/vetores-gratis/jogo-joystick-tecnologia-esportiva_138676-2045.jpg?t=st=1694285891~exp=1694286491~hmac=58c3de4e27ef8663655dd5ad479b6b914393fb14cd481d12ca7d2feb140d09b3"
-                                alt="MATCHUP"/>*/}
+                    <Grid container spacing={3} alignContent='center'>
+                        <Grid item xs textAlign="left" alignItems='left' marginTop="8px">
+                            <img src={logo+''}/>
                         </Grid>
                         <Grid item xs={6} textAlign="center" margin="auto"  sx={{fontSize: '20px'}}>
                             <nav>

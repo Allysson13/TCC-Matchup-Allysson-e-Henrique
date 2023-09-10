@@ -39,7 +39,7 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
-import theme from "../../theme";
+import { lightTheme, theme} from "../../theme";
 import AppBarIndex from "../../containers/AppBarIndex";
 import AppAppBar from "../../components/AppIndex/AppAppBar";
 import GameGenres from "../../components/AppIndex/GameGenres";
@@ -54,8 +54,9 @@ import {useState} from "react";
 
 
 const AppIndex: React.FC = () => {
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
     theme.palette.mode = darkMode?'dark': 'light';
+    //const theme = darkMode? darkTheme: lightTheme;
     return (
         <ThemeProvider theme={theme}>
             <GlobalStyles styles={{ul: {margin: 0, padding: 0, listStyle: 'none'}}}/>
