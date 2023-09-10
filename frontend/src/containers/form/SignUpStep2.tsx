@@ -184,6 +184,7 @@ import * as Yup from 'yup';
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import logo from '../../img/logo-matchup3.png';
 
 const SignUpStep2: React.FC = () => {
     return (
@@ -197,9 +198,7 @@ const SignUpStep2: React.FC = () => {
                     alignItems: 'center',
                 }}
             >
-                <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
-                    <LockOutlinedIcon/>
-                </Avatar>
+                <img src={logo+''} alt=""/>
                 <Typography component="h1" variant="h5">
                     Faça Cadastro
                 </Typography>

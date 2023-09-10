@@ -120,6 +120,7 @@ import * as Yup from 'yup';
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import {Interest} from "../../model/interest";
 import {getAllInterests} from "../../api/login_requests/register";
+import logo from '../../img/logo-matchup3.png';
 
 const SignUpStep3: React.FC = () => {
     const [notSelectedInterests, setNotSelectedInterests] = useState([]);
@@ -150,9 +151,7 @@ const SignUpStep3: React.FC = () => {
                     alignItems: 'center',
                 }}
             >
-                <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
-                    <LockOutlinedIcon/>
-                </Avatar>
+                <img src={logo + ''} alt=""/>
                 <Typography component="h1" variant="h5">
                     Faça Cadastro
                 </Typography>

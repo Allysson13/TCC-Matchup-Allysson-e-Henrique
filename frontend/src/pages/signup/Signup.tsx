@@ -83,7 +83,7 @@ const SignUp: React.FC = () => {
         }
     };
 
-    const getValidationSchema =  (step: number) => {
+    const getValidationSchema = (step: number) => {
         switch (step) {
             case 0:
                 return validateSignUpStep1;
@@ -141,39 +141,43 @@ const SignUp: React.FC = () => {
                             rawPassword: '',
                             confirmPassword: '',
                             birthDate: '',
-                            addressZipcode: 0,
+                            addressZipcode: '',
                             addressState: '',
                             addressCity: '',
                             addressNeighborhood: '',
                             addressStreet: '',
-                            addressNumber: 50,
+                            addressNumber: null,
                             cellphoneNumber: '',
                             bio: '',
                         }}
                         validationSchema={getValidationSchema(activeStep)}
-                        validateOnBlur={false}
-                        validateOnChange={true}
+                        validateOnBlur={true}
+
                         onSubmit={(values, actions) => handleSubmit(values, actions)}
                     >
                         {(formikProps) => (
                             <Form>
 
                                 <Grid item>{getStepContent(activeStep)}</Grid>
-                                <Grid item justifyContent="space-between">
-                                    {activeStep !== 0 && (
-                                        <Button variant="text" color="primary" onClick={handleBack}>
-                                            Voltar
+                                <Grid container justifyContent="space-between" sx={{marginTop: '20px'}}>
+                                    <Grid item>
+                                        {activeStep !== 0 && (
+                                            <Button variant="text" color="primary" onClick={handleBack}>
+                                                Voltar
+                                            </Button>
+                                        )}
+                                    </Grid>
+                                    <Grid item>
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            type="submit"
+                                            disabled={!formikProps.isValid}
+                                            //onClick={activeStep === steps.length - 1 ? undefined : handleNext}
+                                        >
+                                            {activeStep === steps.length - 1 ? 'Cadastrar' : 'Próximo'}
                                         </Button>
-                                    )}
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        type="submit"
-                                        disabled={!formikProps.isValid}
-                                        //onClick={activeStep === steps.length - 1 ? undefined : handleNext}
-                                    >
-                                        {activeStep === steps.length - 1 ? 'Cadastrar' : 'Próximo'}
-                                    </Button>
+                                    </Grid>
                                 </Grid>
                             </Form>
                         )}

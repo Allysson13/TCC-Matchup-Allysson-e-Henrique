@@ -16,7 +16,7 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import InputMask from 'react-input-mask';
 import {Field, FieldProps} from "formik";
-
+import logo from '../../img/logo-matchup3.png';
 
 const SignUpStep4:  React.FC = () => {
     //const [value, setValue] = useState();
@@ -54,9 +54,7 @@ const SignUpStep4:  React.FC = () => {
                     alignItems: 'center',
                 }}
             >
-                <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
-                    <LockOutlinedIcon/>
-                </Avatar>
+                <img src={logo+''} alt=""/>
                 <Typography component="h1" variant="h5">
                     Faça Cadastro
                 </Typography>
