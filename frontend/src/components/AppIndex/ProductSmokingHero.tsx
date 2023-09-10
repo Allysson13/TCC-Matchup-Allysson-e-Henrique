@@ -24,7 +24,7 @@ function ProductSmokingHero() {
         </Typography>
       </Button>
       <Typography variant="subtitle1" sx={{ my: 3 }}>
-        We are here to help. Get in touch!
+        Estamos aqui para ajudar. Entre em contato.
       </Typography>
       {/*<Box
         component="img"

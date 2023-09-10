@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 import {emailExists} from "../../api/login_requests/login";
+import {usernameExists} from "../../api/login_requests/register";
 
 export var isEmail: boolean;
 export const validationLogin = Yup.object().shape({
@@ -43,14 +44,18 @@ export const validateSignUpStep1 = Yup.object().shape({
             .required('Campo obrigatório!')
             .min(5, 'O Nome de Usuário deve ter no mínimo 5 caracteres!')
             .max(20, 'O Nome de Usuário deve ter no máximo 20 caracteres!')
-            .matches(/^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$/, 'Nome de usuário não pode possuir símbolos diferentes de "_", "-" e ".", e só podem estar entre caracteres!'),
+            .matches(/^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$/, 'Nome de usuário não pode possuir símbolos diferentes de "_", "-" e ".", e só podem estar entre caracteres!')
+            /*.test('username', 'Nome de Usuário não está disponível!',  (value) => {
+                return usernameExists(value);
+            }),*/,
+
     email:
         Yup.string()
             .matches(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, "Email inválido!")
             .required('Campo obrigatório!'),
     rawPassword: Yup.string()
         .min(8, 'A senha deve ter no mínimo 8 caracteres!')
-        .matches(/^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/,'A senha deve conter letras maiúsculas, minúsculas e símbolos!')
+        .matches(/^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/, 'A senha deve conter letras maiúsculas, minúsculas e símbolos!')
         .required('Campo obrigatório!'),
     confirmPassword: Yup.string()
         .oneOf([Yup.ref('rawPassword'), null], 'As senhas devem coincidir!')
@@ -73,9 +78,7 @@ export const validateSignUpStep2 = Yup.object().shape({
         .required('Campo obrigatório'),
 });
 
-export const validateSignUpStep3 = Yup.object().shape({
-
-});
+export const validateSignUpStep3 = Yup.object().shape({});
 
 export const validateSignUpStep4 = Yup.object().shape({
     cellphoneNumber: Yup.string()

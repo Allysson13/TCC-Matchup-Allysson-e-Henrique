@@ -103,9 +103,9 @@ const images = [
 
 const GameGenres= () => {
     return (
-        <Container component="section" sx={{mt: 8, mb: 4}}>
-            <Typography> {/*variant="h6" marked="left" gutterBottom*/}
-                For all tastes and all desires
+        <Container component="section" sx={{mt: 8, mb: 4, textAlign:"center"}}>
+            <Typography variant="h4">
+                Comunidades para todos os Gêneros!
             </Typography>
             <Box sx={{mt: 8, display: 'flex', flexWrap: 'wrap'}}>
                 {images.map((image) => (

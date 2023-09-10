@@ -1,21 +1,9 @@
 import * as React from 'react';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
+
 import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
-import StarIcon from '@mui/icons-material/StarBorder';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
-import { lightTheme, theme} from "../../theme";
 import AppBarIndex from "../../containers/AppBarIndex";
 import AppAppBar from "../../components/AppIndex/AppAppBar";
 import GameGenres from "../../components/AppIndex/GameGenres";
@@ -26,12 +14,41 @@ import AppFooter from "../../components/AppIndex/AppFooter";
 import Introduction from "../../components/AppIndex/Introduction";
 import ForWho from "../../components/AppIndex/ForWho";
 import {useState} from "react";
-
+import theme from "../../theme";
+import {hexToRgb} from "@mui/material";
+import {grey} from "@mui/material/colors";
 
 
 const AppIndex: React.FC = () => {
     const [darkMode, setDarkMode] = useState(true);
-    theme.palette.mode = darkMode?'dark': 'light';
+    theme.palette.mode = darkMode ? 'dark' : 'light';
+    /*if (!darkMode) {
+        theme.palette = {
+            mode: 'light',
+            primary: {
+                main: hexToRgb('#880ED4'),
+                dark: hexToRgb('#5f0994'),
+                light: hexToRgb('#9f3edc'),
+                contrastText: hexToRgb('#51087E'),
+            },
+            secondary: {
+                main: hexToRgb('#00b0ff'),
+                dark: hexToRgb('#007bb2'),
+                light: hexToRgb('#33bfff'),
+                contrastText: hexToRgb('#51087E'),
+            },
+            text: {
+                primary: hexToRgb('#ffffff'),
+                secondary: hexToRgb('#000000'),
+                disabled: hexToRgb('#000000'),
+            },
+            //divider: hexToRgb('#00b0ff'),
+            background: {
+                default: grey[900],
+                paper: grey[900],
+            },
+        }
+    }*/
     //const theme = darkMode? darkTheme: lightTheme;
     return (
         <ThemeProvider theme={theme}>
