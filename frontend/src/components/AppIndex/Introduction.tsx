@@ -2,30 +2,29 @@ import * as React from 'react';
 import ProductHeroLayout from './ProductHeroLayout';
 import {Button, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import img1 from '../../img/img1.jpg'
+import img2 from '../../img/img2.jpg'
+import img3 from '../../img/img3.jpg'
+import img4 from '../../img/img4.jpg'
+import img5 from '../../img/img5.jpeg'
+import img6 from '../../img/img6.jpeg'
+import img7 from '../../img/img7.jpeg'
+import img8 from '../../img/img8.jpeg'
+import img9 from '../../img/img9.jpeg'
+import img10 from '../../img/img10.jpeg'
+import img11 from '../../img/img11.jpeg'
+import img12 from '../../img/img12.jpeg'
+import img13 from '../../img/img13.jpg'
+import img14 from '../../img/img14.jpg'
+import img15 from '../../img/img15.jpg'
+import img16 from '../../img/img16.jpg'
+import img17 from '../../img/img17.jpg'
+
 
 const Introduction = () => {
     const [backgroundImages, setBackgroundImages] = useState([
-        'https://img.freepik.com/fotos-premium/menino-de-oculos-vr-jogar-com-um-videogame-virtual_207634-10041.jpg?size=626&ext=jpg',
-        /*'/home/liceki/Documents/TCC-Matchup-All
-  ysson-e-Henrique/frontend/src/img/img1.jpg',
-        './img1.jpg',
-        '/frontend/src/img/img2.jpg',
-        'frontend/src/img/img3.jpg',
-        'frontend/src/img/img4.jpg',
-        'frontend/src/img/img5.jpg',
-        'frontend/src/img/img6.jpg',
-        'frontend/src/img/img7.jpg',
-        'frontend/src/img/img8.jpg',
-        'frontend/src/img/img9.jpg',
-        'frontend/src/img/img10.jpg',
-        'frontend/src/img/img11.jpg',
-        'frontend/src/img/img12.jpg',
-        'frontend/src/img/img13.jpg',
-        'frontend/src/img/img14.jpg',
-        'frontend/src/img/img15.jpg',
-        'frontend/src/img/img16.jpg',
-        'frontend/src/img/img17.jpg',*/
+        img1+'', img2+'', img3+'', img4+'', img5+'', img6+'', img7+'', img8+'', img9+'', img10+'',
+        img11+'', img12+'', img13+'', img14+'', img15+'', img16+'', img17+'',
     ]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
