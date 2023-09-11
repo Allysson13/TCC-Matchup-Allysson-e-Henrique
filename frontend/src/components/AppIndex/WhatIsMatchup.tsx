@@ -29,15 +29,24 @@ const image = {
 
 const WhatIsMatchup = () => {
 
-    function isScrolled() {
-        return window.scrollY > 3; // Defina o limite desejado
-    }
+    const [scrolled, setScrolled] = React.useState(false);
 
-    // Use o hook useScrollTrigger para detectar a rolagem
-    const scrolled = useScrollTrigger({
-        disableHysteresis: true, // O gatilho é ativado imediatamente quando você rola para cima
-        threshold: 0, // Defina o limite de deslocamento
-    });
+    React.useEffect(() => {
+        const handleScroll = () => {
+            //const isBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 5000;
+            if (window.scrollY > 200 || window.scrollY < 1200) {
+                setScrolled(true);
+            }
+            if (window.scrollY >= 1200 || window.scrollY <= 200) {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [scrolled]);
 
     return (
         <Box
@@ -70,7 +79,7 @@ const WhatIsMatchup = () => {
                 </Typography>
                 <div>
                     <Grid container spacing={5} sx={{marginBottom: '100px'}}>
-                        <Grow in={isScrolled()}>
+                        <Grow in={scrolled}>
                             <Grid item xs={12} md={4}>
                                 <Box sx={item}>
                                     <Box sx={number}>1.</Box>
@@ -82,9 +91,9 @@ const WhatIsMatchup = () => {
                                 </Box>
                             </Grid>
                         </Grow>
-                        <Grow in={isScrolled()}
+                        <Grow in={scrolled}
                               style={{transformOrigin: '0 0 0'}}
-                              {...(isScrolled() ? {timeout: 1000} : {})}
+                              {...(scrolled ? {timeout: 1000} : {})}
                         >
                             <Grid item xs={12} md={4}>
                                 <Box sx={item}>
@@ -99,9 +108,9 @@ const WhatIsMatchup = () => {
                                 </Box>
                             </Grid>
                         </Grow>
-                        <Grow in={isScrolled()}
+                        <Grow in={scrolled}
                               style={{transformOrigin: '0 0 0'}}
-                              {...(isScrolled() ? {timeout: 2000} : {})}
+                              {...(scrolled ? {timeout: 2000} : {})}
                         >
                             <Grid item xs={12} md={4}>
                                 <Box sx={item}>

@@ -12,39 +12,6 @@ import SignUp from "./pages/signup/Signup";
 import Home from "./pages/home/home";
 import Profile from "./pages/profile/profile";
 import {User} from "./model/user";
-/*
-/!*import { BrowserRouter as Router, Route, Switch } f*!/rom 'react-router-dom';import {Sign} from "crypto";
-*/
-
-/*const App: React.FC = () => {
-    return (
-        <div className="App">
-            <SignIn></SignIn>
-        </div>
-        /!*<Router>
-            <div>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/signin">About</Link>
-                        </li>
-                        <li>
-                            <Link to="/contact">Contact</Link>
-                        </li>
-                    </ul>
-                </nav>
-
-                <Switch>
-                    <Route path="/" exact component={AppIndex}/>
-                    <Route path="/signin" component={SignIn}/>
-                </Switch>
-            </div>
-        </Router>*!/
-    );
-}*/
 
 export const ROUTE_INDEX= '/';
 export const ROUTE_HOME = '/home';

@@ -17,9 +17,24 @@ const item: SxProps<Theme> = {
 };
 
 const ForWho = () => {
-    function isScrolled() {
-        return window.scrollY > 100; // Defina o limite desejado
-    }
+    const [scrolled, setScrolled] = React.useState(false);
+
+    React.useEffect(() => {
+        const handleScroll = () => {
+            //const isBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 5000;
+            if (window.scrollY > 800 || window.scrollY < 1600) {
+                setScrolled(true);
+            }
+            if (window.scrollY >= 1600 || window.scrollY <= 800) {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [scrolled]);
 
     return (
         <Box
@@ -27,17 +42,10 @@ const ForWho = () => {
             sx={{display: 'flex', overflow: 'hidden', bgcolor: 'secondary.dark'}}
         >
             <Container sx={{mt: 20, mb: 25, display: 'flex', position: 'relative'}}>
-                {/*<Box
-                    component="img"
-                    src="/static/themes/onepirate/productCurvyLines.png"
-                    alt="curvy lines"
-                    sx={{pointerEvents: 'none', position: 'absolute', top: -180}}
-                />*/}
-
                 <Grid container spacing={5}>
-                    <Grow in={isScrolled()}
+                    <Grow in={scrolled}
                           style={{transformOrigin: '0 0 0'}}
-                          {...(isScrolled() ? {timeout: 2000} : {})}
+                          {...(scrolled ? {timeout: 1000} : {})}
                     >
                         <Grid item xs={12} md={4}>
                             <Box sx={item}>
@@ -49,9 +57,9 @@ const ForWho = () => {
                             </Box>
                         </Grid>
                     </Grow>
-                    <Grow in={isScrolled()}
+                    <Grow in={scrolled}
                           style={{transformOrigin: '0 0 0'}}
-                          {...(isScrolled() ? {timeout: 1000} : {})}
+                          {...(scrolled ? {timeout: 1000} : {})}
                     >
                         <Grid item xs={12} md={4}>
                             <Box sx={item}>
@@ -63,7 +71,7 @@ const ForWho = () => {
                             </Box>
                         </Grid>
                     </Grow>
-                    <Grow in={isScrolled()}>
+                    <Grow in={scrolled}>
                         <Grid item xs={12} md={4}>
                             <Box sx={item}>
                                 <SchoolIcon
@@ -77,7 +85,7 @@ const ForWho = () => {
                 </Grid>
             </Container>
         </Box>
-);
+    );
 }
 
 export default ForWho;
