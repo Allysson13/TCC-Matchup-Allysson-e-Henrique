@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Container from '@mui/material/Container';
 import {Typography} from "@mui/material";
+import theme from "../../theme";
 
 const ImageBackdrop = styled('div')(({theme}) => ({
     position: 'absolute',
@@ -103,8 +104,8 @@ const images = [
 
 const GameGenres= () => {
     return (
-        <Container component="section" sx={{mt: 8, mb: 4, textAlign:"center"}}>
-            <Typography variant="h4">
+        <Container component="section"  color={theme.palette.background.default} sx={{mt: 8, mb: 4, textAlign:"center"}}>
+            <Typography  color={theme.palette.background.paper} variant="h4">
                 Comunidades para todos os Gêneros!
             </Typography>
             <Box sx={{mt: 8, display: 'flex', flexWrap: 'wrap'}}>
