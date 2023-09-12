@@ -39,6 +39,7 @@ const AppBarIndex: React.FC<ToggleColorModeButtonProps> = ({ darkMode, onToggleC
                 borderRadius: scrolled || isScrolled() ? '0px' : '50px', // Verifica se o usuário rolou a página
                 marginTop: scrolled || isScrolled() ? '0px' : '15px', // Verifica se o usuário rolou a página
                 transition: 'border-radius 0.3s ease, margin-top 0.3s ease', // Adiciona transições suaves
+                bgcolor: 'background.default',
             }}
         >
             <Box
