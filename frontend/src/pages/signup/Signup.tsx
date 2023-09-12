@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Container, CssBaseline, Typography, Stepper, Step, StepLabel, Button, Grid, Box} from '@mui/material';
+import {Container, CssBaseline, Typography, Stepper, Step, StepLabel, Button, Grid, Box, Link} from '@mui/material';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 
@@ -10,7 +10,7 @@ import SignUpStep3 from "../../containers/form/SignUpStep3";
 import {Interest} from "../../model/interest";
 import {register} from "../../api/login_requests/register";
 import {useNavigate} from "react-router-dom";
-import {ROUTE_HOME} from "../../App";
+import {ROUTE_HOME, ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../../App";
 import {User} from "../../model/user";
 import {string} from "yup";
 import {format} from 'date-fns';
@@ -20,6 +20,7 @@ import {
     validateSignUpStep3,
     validateSignUpStep4
 } from "../../utils/validation/UserValidation";
+import GoogleIcon from '@mui/icons-material/Google';
 
 const steps = ['Pessoais', 'Endereço', 'Interesses', 'Conclusão'];
 
@@ -182,10 +183,24 @@ const SignUp: React.FC = () => {
                             </Form>
                         )}
                     </Formik>
+                    <Grid container justifyContent={'center'}>
+                        {/*<Grid item>
+                            <Box display="flex" alignItems="center">
+                                <GoogleIcon />
+                                <Typography>oogle</Typography>
+                            </Box>
+                        </Grid>*/}
+                        <Grid item>
+                            <Link href={ROUTE_SIGN_IN} variant="body2">
+                                Já tem uma conta? Faça login
+                            </Link>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Box>
         </Grid>
-    );
+    )
+        ;
 };
 
 export default SignUp;
