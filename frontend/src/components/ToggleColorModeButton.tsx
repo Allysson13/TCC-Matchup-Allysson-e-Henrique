@@ -24,7 +24,7 @@ const ToggleColorModeButton: React.FC<ToggleColorModeButtonProps> = ({ darkMode,
             }}
         >
             <IconButton sx={{ ml: 1 }} onClick={onClick} color="inherit">
-                {darkMode ? <DarkModeIcon color="primary"/> : <LightModeIcon color="secondary"/>}
+                {darkMode ? <DarkModeIcon color="primary"/> : <LightModeIcon color="primary"/>}
             </IconButton>
         </Box>
     );
