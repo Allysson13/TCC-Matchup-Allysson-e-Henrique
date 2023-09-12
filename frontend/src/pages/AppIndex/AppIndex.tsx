@@ -21,7 +21,40 @@ import {grey} from "@mui/material/colors";
 
 const AppIndex: React.FC = () => {
     const [darkMode, setDarkMode] = useState(true);
-    setMode(darkMode ? 'dark' : 'light');
+    if(darkMode){
+        theme.palette.mode = 'dark';
+        theme.palette.primary.main = hexToRgb('#9f3edc');
+        theme.palette.primary.dark = hexToRgb('#5f0994');
+        theme.palette.primary.light = hexToRgb('#5f0994');
+        /*theme.palette.primary.contrastText = hexToRgb('#5f0994');*/
+        theme.palette.secondary.main = hexToRgb('#33bfff');
+        theme.palette.secondary.dark = hexToRgb('#5f0994');
+        theme.palette.secondary.light = hexToRgb('#5f0994');
+        /*theme.palette.secondary.contrastText = hexToRgb('#5f0994');*/
+        theme.palette.text.primary = hexToRgb('#5f0994');
+        theme.palette.text.secondary = hexToRgb('#5f0994');
+        theme.palette.text.disabled = hexToRgb('#5f0994');
+        theme.palette.divider = hexToRgb('#5f0994');
+        theme.palette.background.default = hexToRgb('#000000');
+        theme.palette.background.paper = hexToRgb('#ffffff');
+    }else{
+        theme.palette.mode = 'light';
+        theme.palette.primary.main = hexToRgb('#5f0994');
+        theme.palette.primary.dark = hexToRgb('#5f0994');
+        theme.palette.primary.light = hexToRgb('#5f0994');
+        /*theme.palette.primary.contrastText = hexToRgb('#5f0994');*/
+        theme.palette.secondary.main = hexToRgb('#007bb2');
+        theme.palette.secondary.dark = hexToRgb('#5f0994');
+        theme.palette.secondary.light = hexToRgb('#5f0994');
+        /*theme.palette.secondary.contrastText = hexToRgb('#5f0994');*/
+        theme.palette.text.primary = hexToRgb('#5f0994');
+        theme.palette.text.secondary = hexToRgb('#5f0994');
+        theme.palette.text.disabled = hexToRgb('#5f0994');
+        theme.palette.divider = hexToRgb('#5f0994');
+        theme.palette.background.default = hexToRgb('#ffffff');
+        theme.palette.background.paper = hexToRgb('#000000');
+    }
+    /*setMode(darkMode? 'dark': 'light');*/
     /*if (!darkMode) {
         theme.palette = {
             mode: 'light',
