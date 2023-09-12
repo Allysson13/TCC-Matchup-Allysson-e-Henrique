@@ -5,6 +5,7 @@ import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
 import {TextField, Typography} from "@mui/material";
 import InstagramIcon from '@mui/icons-material/Instagram';
+import theme from "../../theme";
 
 function Copyright() {
     return (
@@ -47,7 +48,7 @@ export default function AppFooter() {
     return (
         <Typography
             component="footer"
-            sx={{display: 'flex', bgcolor: 'black'}}
+            sx={{display: 'flex', bgcolor: 'background'}}
         >
             <Container sx={{my: 8, display: 'flex'}}>
                 <Grid container spacing={5}>

@@ -72,7 +72,6 @@ const AppBarIndex: React.FC<ToggleColorModeButtonProps> = ({ darkMode, onToggleC
                                 <Link
                                     variant="button"
                                     color={theme.palette.secondary.main}
-                                    //color="primary"
                                     href="#"
                                     sx={{my: 1, mx: 1.5}}
                                 >
