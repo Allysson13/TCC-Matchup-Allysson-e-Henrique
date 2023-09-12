@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import {Button, Snackbar, TextField, Typography} from "@mui/material";
+import theme from "../../theme";
 
 const GetBeta = () => {
     const [open, setOpen] = React.useState(false);
@@ -27,16 +28,16 @@ const GetBeta = () => {
                             bgcolor: 'background.default',
                             py: 8,
                             px: 3,
-                            border: (theme) => `1px solid ${theme.palette.secondary.dark}`,
+                            border: (theme) => `1px solid ${theme.palette.divider}`,
                             borderRadius: '10px',
                             marginBottom: '150px',
                         }}
                     >
                         <Box component="form" onSubmit={handleSubmit} sx={{maxWidth: 400}} textAlign={'center'}>
-                            <Typography variant="h2" component="h2" gutterBottom>
+                            <Typography color={theme.palette.background.paper} variant="h2" component="h2" gutterBottom>
                                 Acesso Antecipado!
                             </Typography>
-                            <Typography variant="h5">
+                            <Typography color={theme.palette.background.paper} variant="h5">
                                 Teste a versão beta do aplicativo quando disponível
                             </Typography>
                             <TextField
