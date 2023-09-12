@@ -25,7 +25,6 @@ const iconStyle = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
     mr: 1,
 };
 
@@ -66,6 +65,7 @@ export default function AppFooter() {
                                     <InstagramIcon sx={{
                                         width: '64px',
                                         height: '64px',
+                                        color: 'purple',
                                         '&:hover': {width: '70px', height: '70px',},
                                     }}></InstagramIcon>
                                 </Box>

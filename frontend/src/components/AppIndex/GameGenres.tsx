@@ -56,7 +56,7 @@ const ImageIconButton = styled(ButtonBase)(({theme}) => ({
 
 const images = [
     {
-        url: 'https://www.pockettactics.com/wp-content/sites/pockettactics/2022/10/skyrim-wallpaper.jpg',
+        url: 'https://www.teahub.io/photos/full/11-110513_elder-scrolls-v-skyrim.jpg',
         title: 'RPG',
         width: '40%',
     },
