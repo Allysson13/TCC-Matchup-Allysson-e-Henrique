@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 import {grey} from "@mui/material/colors";
 
 interface ToggleColorModeButtonProps {
@@ -22,7 +24,7 @@ const ToggleColorModeButton: React.FC<ToggleColorModeButtonProps> = ({ darkMode,
             }}
         >
             <IconButton sx={{ ml: 1 }} onClick={onClick} color="inherit">
-                {darkMode ? <Brightness7Icon /> : <Brightness4Icon color="secondary"/>}
+                {darkMode ? <DarkModeIcon color="primary"/> : <LightModeIcon color="secondary"/>}
             </IconButton>
         </Box>
     );

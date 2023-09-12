@@ -14,14 +14,14 @@ import AppFooter from "../../components/AppIndex/AppFooter";
 import Introduction from "../../components/AppIndex/Introduction";
 import ForWho from "../../components/AppIndex/ForWho";
 import {useState} from "react";
-import theme from "../../theme";
+import theme, {setMode} from "../../theme";
 import {hexToRgb} from "@mui/material";
 import {grey} from "@mui/material/colors";
 
 
 const AppIndex: React.FC = () => {
     const [darkMode, setDarkMode] = useState(true);
-    theme.palette.mode = darkMode ? 'dark' : 'light';
+    setMode(darkMode ? 'dark' : 'light');
     /*if (!darkMode) {
         theme.palette = {
             mode: 'light',

@@ -2,6 +2,7 @@ import { createTheme } from '@mui/material/styles';
 import purple from '@mui/material/colors/purple';
 import {cyan, grey} from "@mui/material/colors";
 import {hexToRgb} from "@mui/material";
+import React from "react";
 
 /*const [mode, setMode] = React.useState<'light' | 'dark'>('light');
   const colorMode = React.useMemo(
@@ -23,9 +24,17 @@ import {hexToRgb} from "@mui/material";
     [mode],
   );*/
 
+
+export const [mode, setMode] = React.useState<'light' | 'dark'>('light');
+
 const theme = createTheme({
+
+
         palette: {
-            mode: 'dark',
+            mode,
+            /*if(mode = 'light'){
+
+            }*/
             primary: {
                 main: hexToRgb('#880ED4'),
                 dark: hexToRgb('#5f0994'),
@@ -52,35 +61,5 @@ const theme = createTheme({
         },
 
 });
-
-/*export const getDesignTokens = (mode: PaletteMode) => ({
-  palette: {
-    mode,
-    ...(mode === "light"
-      ? {
-          // palette values for light mode
-          primary: amber,
-          divider: amber[200],
-          text: {
-            primary: grey[900],
-            secondary: grey[800],
-          },
-        }
-      : {
-          // palette values for dark mode
-          primary: deepOrange,
-          divider: deepOrange[700],
-          background: {
-            default: deepOrange[900],
-            paper: deepOrange[900],
-          },
-          text: {
-            primary: "#fff",
-            secondary: grey[500],
-          },
-        }),
-  },
-});*/
-
 
 export default theme;
