@@ -7,6 +7,7 @@ import Container from '@mui/material/Container';
 import {Button, Grow, Typography, useScrollTrigger} from "@mui/material";
 import SportsEsportsOutlinedIcon from '@mui/icons-material/SportsEsportsOutlined';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
+import theme from "../../theme";
 
 const item: SxProps<Theme> = {
     display: 'flex',
@@ -51,7 +52,7 @@ const WhatIsMatchup = () => {
     return (
         <Box
             component="section"
-            sx={{display: 'flex', bgcolor: 'black', overflow: 'hidden'}}
+            sx={{display: 'flex', bgcolor: 'background', overflow: 'hidden'}}
         >
             <Container
                 sx={{
@@ -74,7 +75,7 @@ const WhatIsMatchup = () => {
                         opacity: 0.7,
                     }}
                 />
-                <Typography variant="h4" component="h2" sx={{mb: 14}}> {/*marked="center"*/}
+                <Typography variant="h4" component="h2" color={theme.palette.secondary.main} sx={{mb: 14}}>
                     O que é o Matchup?
                 </Typography>
                 <div>
@@ -83,9 +84,9 @@ const WhatIsMatchup = () => {
                             <Grid item xs={12} md={4}>
                                 <Box sx={item}>
                                     <Box sx={number}>1.</Box>
-                                    <SportsEsportsOutlinedIcon
-                                        sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
-                                    <Typography variant="h5" align="center">
+                                    <SportsEsportsOutlinedIcon color="primary"
+                                                               sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
+                                    <Typography color={theme.palette.primary.main} variant="h5" align="center">
                                         Selecione seus jogos favoritos e converse sobre eles com seus amigos!
                                     </Typography>
                                 </Box>
@@ -99,10 +100,9 @@ const WhatIsMatchup = () => {
                                 <Box sx={item}>
                                     <Box sx={number}>2.</Box>
 
-                                    <GroupAddOutlinedIcon
-                                        sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
-
-                                    <Typography variant="h5" align="center">
+                                    <GroupAddOutlinedIcon color="primary"
+                                                          sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
+                                    <Typography color={theme.palette.primary.main} variant="h5" align="center">
                                         Encontre pessoas com gostos em comum para conversar pela plataforma!
                                     </Typography>
                                 </Box>
@@ -116,9 +116,9 @@ const WhatIsMatchup = () => {
                                 <Box sx={item}>
                                     <Box sx={number}>3.</Box>
 
-                                    <SportsEsportsOutlinedIcon
-                                        sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
-                                    <Typography variant="h5" align="center">
+                                    <SportsEsportsOutlinedIcon color="primary"
+                                                               sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
+                                    <Typography color={theme.palette.primary.main} variant="h5" align="center">
                                         Descubra novos jogos recomendados com base nos seus interesses!
                                     </Typography>
                                 </Box>
@@ -126,21 +126,9 @@ const WhatIsMatchup = () => {
                         </Grow>
                     </Grid>
                 </div>
-                {/*<Button
-          color="secondary"
-          size="large"
-          variant="contained"
-          component="a"
-          href="/premium-themes/onepirate/sign-up/"
-          sx={{ mt: 8 }}
-        >
-          Get started
-        </Button>*/}
             </Container>
         </Box>
-    )
-        ;
+    );
 }
 
-export default WhatIsMatchup
-;
+export default WhatIsMatchup;

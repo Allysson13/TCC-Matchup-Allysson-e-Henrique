@@ -8,6 +8,7 @@ import {Grow, Typography} from "@mui/material";
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import GroupsIcon from '@mui/icons-material/Groups';
 import SchoolIcon from '@mui/icons-material/School';
+import theme from "../../theme";
 
 const item: SxProps<Theme> = {
     display: 'flex',
@@ -50,8 +51,8 @@ const ForWho = () => {
                         <Grid item xs={12} md={4}>
                             <Box sx={item}>
                                 <QuestionAnswerIcon
-                                    sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
-                                <Typography variant="h5" align="center">
+                                                    sx={{width: '80px', height: '80px', color: 'white', marginTop: '15px', marginBottom: '15px'}}/>
+                                <Typography color='white' variant="h5" align="center">
                                     Para pessoas que adoram conversar sobre jogos
                                 </Typography>
                             </Box>
@@ -63,9 +64,9 @@ const ForWho = () => {
                     >
                         <Grid item xs={12} md={4}>
                             <Box sx={item}>
-                                <GroupsIcon
-                                    sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
-                                <Typography variant="h5" align="center">
+                                <GroupsIcon color="primary"
+                                            sx={{width: '80px', height: '80px', color: 'white', marginTop: '15px', marginBottom: '15px'}}/>
+                                <Typography color='white' variant="h5" align="center">
                                     Para gamers solitários em busca de mais companheiros de jogatina
                                 </Typography>
                             </Box>
@@ -75,8 +76,8 @@ const ForWho = () => {
                         <Grid item xs={12} md={4}>
                             <Box sx={item}>
                                 <SchoolIcon
-                                    sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
-                                <Typography variant="h5" align="center">
+                                            sx={{width: '80px', height: '80px', marginTop: '15px', color: 'white', marginBottom: '15px'}}/>
+                                <Typography color='white' variant="h5" align="center">
                                     Para aqueles que desejam expandir o seu repertório gamer
                                 </Typography>
                             </Box>
