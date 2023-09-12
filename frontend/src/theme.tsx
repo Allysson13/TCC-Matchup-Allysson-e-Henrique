@@ -1,7 +1,7 @@
-import { createTheme } from '@mui/material/styles';
+import {createTheme} from '@mui/material/styles';
 import purple from '@mui/material/colors/purple';
 import {cyan, grey} from "@mui/material/colors";
-import {hexToRgb} from "@mui/material";
+import {hexToRgb, PaletteMode} from "@mui/material";
 import React from "react";
 
 /*const [mode, setMode] = React.useState<'light' | 'dark'>('light');
@@ -25,11 +25,15 @@ import React from "react";
   );*/
 
 
-export const [mode, setMode] = React.useState<'light' | 'dark'>('light');
+/*export const [mode, setMode] = React.useState<'light' | 'dark'>('light');*/
+let mode: PaletteMode = 'dark';
 
-const theme = createTheme({
+export function setMode(mode2: PaletteMode) {
+    mode = mode2;
+}
 
-
+const theme =
+    createTheme({
         palette: {
             mode,
             /*if(mode = 'light'){
@@ -60,6 +64,17 @@ const theme = createTheme({
             },
         },
 
-});
+    });
+
+
+/*const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }),
+    [mode],
+  );*/
 
 export default theme;
