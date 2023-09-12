@@ -19,6 +19,7 @@ import img14 from '../../img/img14.jpg'
 import img15 from '../../img/img15.jpg'
 import img16 from '../../img/img16.jpg'
 import img17 from '../../img/img17.jpg'
+import theme from "../../theme";
 
 
 const Introduction = () => {
