@@ -86,3 +86,9 @@ export const validateSignUpStep4 = Yup.object().shape({
     bio: Yup.string(),
 
 });
+
+export const validateForgotPasswordStep1 = Yup.object().shape({});
+
+export const validateForgotPasswordStep2 = Yup.object().shape({});
+
+export const validateForgotPasswordStep3 = Yup.object().shape({});
