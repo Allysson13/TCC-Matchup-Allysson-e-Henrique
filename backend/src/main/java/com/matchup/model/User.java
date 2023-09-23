@@ -61,6 +61,9 @@ public class User {
     @OneToMany(mappedBy = "receiver")
     private List<Message> receivedMessages;
 
+    @OneToMany(mappedBy = "user")
+    private List<VerificationCode> codes;
+
 
     // <editor-fold desc="Constructors">
     public User() {

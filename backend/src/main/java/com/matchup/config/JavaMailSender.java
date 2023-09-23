@@ -10,11 +10,11 @@ import java.util.Properties;
 @Configuration
 public class JavaMailSender {
 
-    @Value("${MAIL_USERNAME}")
+    @Value("${MAIL_USERNAME:default}")
     private String username;
 
-    @Value("${MAIL_PASSWORD}")
-    private String password;
+    @Value("${MAIL_APP_PASSWORD:default}")
+    private String appPassword;
 
     @Bean
     public JavaMailSenderImpl getJavaMailSender() {
@@ -22,8 +22,8 @@ public class JavaMailSender {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 
-        mailSender.setUsername(username);
-        mailSender.setPassword(password);
+        mailSender.setUsername(username); // environment variables aren't working yet
+        mailSender.setPassword(appPassword); // values need to be inserted manually
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
