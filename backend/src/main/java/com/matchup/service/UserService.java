@@ -44,12 +44,6 @@ public class UserService {
         return userRepository.save(userToSave);
     }
 
-    /*public User findById(Long id){
-        //public User(String name, String email, LocalDateTime age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address
-        //address)
-        return userRepository.findById(id).get();
-    }*/
-
     public Optional<User> findById(Long id){
         return userRepository.findById(id);
     }
@@ -158,6 +152,7 @@ public class UserService {
                 }
             });
             invalidateCodeThread.start();
+
             //send the code by email
             System.out.println("Código: " + code);
             return code;
