@@ -32,7 +32,5 @@ public class JavaMailSender {
         props.put("mail.debug", "true");
 
         return mailSender;
-
-
     }
 }
