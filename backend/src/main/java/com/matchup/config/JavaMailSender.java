@@ -33,5 +33,6 @@ public class JavaMailSender {
 
         return mailSender;
 
+
     }
 }
