@@ -18,6 +18,7 @@ public class UserDto {
     private String rawPassword;
     private String cellphoneNumber;
     private Byte[] profilePicture;
+    private String bio;
     private List<Long> friends;
     private List<Long> interests;
     private List<Long> sentMessages;
@@ -67,6 +68,14 @@ public class UserDto {
     public Byte[] getProfilePicture() {return profilePicture;}
 
     public void setProfilePicture(Byte[] profilePicture) {this.profilePicture = profilePicture;}
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 
     public List<Long> getFriends() {return friends;}
 

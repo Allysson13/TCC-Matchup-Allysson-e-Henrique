@@ -45,6 +45,9 @@ public class User {
     @Column(name = "profile_picture", length = 455, updatable = true)
     private Byte[] profilePicture;
 
+    @Column(name = "bio", length = 2000, updatable = true)
+    private String bio;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
@@ -70,8 +73,7 @@ public class User {
 
     }
 
-    public User(long id, String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, Byte[] profilePicture) {
-        this.id = id;
+    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, String bio) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -79,10 +81,10 @@ public class User {
         this.hashedPassword = hashedPassword;
         this.cellphoneNumber = cellphoneNumber;
         this.profilePicture = profilePicture;
+        this.bio = bio;
     }
 
-    public User(long id, String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages) {
-        this.id = id;
+    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, String bio, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -90,6 +92,7 @@ public class User {
         this.hashedPassword = hashedPassword;
         this.cellphoneNumber = cellphoneNumber;
         this.profilePicture = profilePicture;
+        this.bio = bio;
         this.address = address;
         this.friends = friends;
         this.interests = interests;
@@ -153,6 +156,14 @@ public class User {
 
     public void setProfilePicture(Byte[] profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public Address getAddress() {

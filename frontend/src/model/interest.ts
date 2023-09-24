@@ -9,6 +9,7 @@ import {User} from "./user";
 export interface Interest {
     id: bigint;
     name: string;
+    description: string;
     company: Company;
     lowestPrice: number;
     highestPrice: number;
