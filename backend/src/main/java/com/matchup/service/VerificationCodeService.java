@@ -29,10 +29,11 @@ public class VerificationCodeService {
         }
     }
 
-    public boolean verifyCode(User user, String code) {
+    public String verifyCode(User user, String code) {
         deleteExpiredVerificationCodes();
         VerificationCode verificationCode = verificationCodeRepository.findByUserAndCode(user, code);
-        return verificationCode != null;
+        if(verificationCode == null) return "Código inválido";
+        return null;
     }
 
 }

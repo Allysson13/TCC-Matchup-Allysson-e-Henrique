@@ -119,7 +119,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public String sendCode(String email){
+    public Boolean sendCode(String email){
         System.out.println("Send code: " + email);
         System.out.println("Valid email? " + userRepository.existsByEmail(email));
         System.out.println("Usuário do email: " + userRepository.findByEmail(email));
@@ -132,7 +132,7 @@ public class UserService {
                 id = userID.get().getId();
             }else {
                 System.out.println("Email não cadastrado!");
-                return "Email não cadastrado!";
+                return false;
             }
             Random generator = new Random();
             int codes;
@@ -156,9 +156,9 @@ public class UserService {
 
             //send the code by email
             System.out.println("Código: " + code);
-            return code;
+            return true;
         }else{
-            return "Email não cadastrado!";
+            return false;
         }
     }
 
